@@ -25,9 +25,6 @@ local.properties
 # PDT-specific (PHP Development Tools)
 .buildpath
 
-# sbteclipse plugin
-.target
-
 # Tern plugin
 .tern-project
 
@@ -47,4 +44,4 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
-/target/
+
