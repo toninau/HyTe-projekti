@@ -10,10 +10,8 @@
    <property name="hibernate.connection.driver_class">
       com.mysql.jdbc.Driver
    </property>
-
    <property name="hibernate.connection.url">
-      <!--jdbc:mysql://mysql.metropolia.fi:3306/silas-->
-      jdbc:mariadb://10.114.34.77:3306/hyte
+      jdbc:mysql://localhost:2206/hyte
    </property>
    <property name="hibernate.connection.username">
       mikkopuu
@@ -23,7 +21,7 @@
    </property>
    <property name="hbm2ddl.auto">validate</property>
    <property name="show_sql">true</property>
-   <mapping class="model.Valuutta"/>
+   <mapping class="model.Asiakas"/>
 
 </session-factory>
 </hibernate-configuration>

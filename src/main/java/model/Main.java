@@ -4,35 +4,8 @@ package model;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Laskin laskin = new Laskin();
-
-		laskin.virtaON();
-		System.out.println("...Virta päälle...");
-
-		laskin.lisaa(500);
-		System.out.println("Lisää 500    = " + laskin.annaTulos());
-
-		laskin.lisaa(200);
-		System.out.println("Lisää 200    = " + laskin.annaTulos());
-
-		laskin.vahenna(100);
-		System.out.println("Vähennä 100  = " + laskin.annaTulos());
-
-		laskin.jaa(2);
-		System.out.println("Jaa 2:lla    = " + laskin.annaTulos());
-
-		laskin.kerro(10);
-		System.out.println("Kerro 10:llä = " + laskin.annaTulos());
-
-		System.out.println("...Nollaa...");
-		laskin.nollaa();
-
-		laskin.lisaa(500);
-		System.out.println("Lisää 500    = " + laskin.annaTulos());
-
-		laskin.virtaOFF();
-		System.out.println("...Katkaisee virta...");
+		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject();
+		Asiakas asiakas = asiakasDAO.readAsiakas("101150-010A");
+		System.out.println(asiakas.getEtunimi());
 	}
-
 }
