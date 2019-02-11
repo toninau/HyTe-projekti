@@ -1,6 +1,9 @@
-package HyTe_projekti.HyTe_sovellus;
+package model;
 
 import org.junit.jupiter.api.Test;
+
+import model.Laskin;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 

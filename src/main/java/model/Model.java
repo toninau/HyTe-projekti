@@ -1,4 +1,4 @@
-package HyTe_projekti.HyTe_sovellus;
+package model;
 
 public class Model implements Model_IF {
 

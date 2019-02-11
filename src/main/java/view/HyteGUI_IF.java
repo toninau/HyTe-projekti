@@ -1,4 +1,4 @@
-package HyTe_projekti.HyTe_sovellus;
+package view;
 
 public interface HyteGUI_IF {
 	public abstract String getUsername();

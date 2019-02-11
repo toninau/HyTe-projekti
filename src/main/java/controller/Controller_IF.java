@@ -1,4 +1,4 @@
-package HyTe_projekti.HyTe_sovellus;
+package controller;
 
 public interface Controller_IF {
 

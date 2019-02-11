@@ -1,5 +1,7 @@
-package HyTe_projekti.HyTe_sovellus;
+package view;
 
+import controller.Controller;
+import controller.Controller_IF;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
