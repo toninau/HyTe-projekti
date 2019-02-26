@@ -8,7 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import java.util.List;
 
-public class AsiakasAccessObject implements AsiakasDAO_IF {
+public class AsiakasAccessObject {
 
 	SessionFactory istuntotehdas = null;
 	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -22,7 +22,7 @@ public class AsiakasAccessObject implements AsiakasDAO_IF {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public boolean createAsiakas(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -42,13 +42,13 @@ public class AsiakasAccessObject implements AsiakasDAO_IF {
 		return onnistui;
 	}
 
-	public Asiakas readAsiakas(String hetu) {
+	public Asiakas readAsiakas(int id) {
 		Session istunto = istuntotehdas.openSession();
 		Asiakas asiakas = new Asiakas();
 		try {
 			istunto = istuntotehdas.openSession();
 			istunto.beginTransaction();
-			istunto.load(asiakas, hetu);
+			istunto.load(asiakas, id);
 			istunto.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,13 +80,15 @@ public class AsiakasAccessObject implements AsiakasDAO_IF {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
 		istunto.beginTransaction();
-		Asiakas a = (Asiakas) istunto.get(Asiakas.class, asiakas.getHeTu());
+		Asiakas a = (Asiakas) istunto.get(Asiakas.class, asiakas.getAsiakasID());
 		if (a != null) {
 			a.setEtunimi(asiakas.getEtunimi());
+			a.setSukunimi(asiakas.getSukunimi());
+			a.setHetu(asiakas.getHetu());
+			a.setSposti(asiakas.getSposti());
 			a.setIcenumero(asiakas.getIcenumero());
 			a.setKotiosoite(asiakas.getKotiosoite());
 			a.setPuhnumero(asiakas.getPuhnumero());
-			a.setSukunimi(asiakas.getSukunimi());
 			onnistui = true;
 		} else {
 			System.out.println("Ei löytynyt päivitettävää");
@@ -96,11 +98,11 @@ public class AsiakasAccessObject implements AsiakasDAO_IF {
 		return onnistui;
 	}
 
-	public boolean deleteAsiakas(String hetu) {
+	public boolean deleteAsiakas(int id) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
 		istunto.beginTransaction();
-		Asiakas a = (Asiakas) istunto.get(Asiakas.class, hetu);
+		Asiakas a = (Asiakas) istunto.get(Asiakas.class, id);
 		if (a != null) {
 			istunto.delete(a);
 			onnistui = true;
