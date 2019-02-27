@@ -6,6 +6,7 @@ import java.util.*;
 @Entity
 @Table(name = "henkilökunta")
 public class Henkilökunta {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "henkilökuntaID")
@@ -25,12 +26,12 @@ public class Henkilökunta {
 
 	@Column(name = "oikeus")
 	private String oikeus;
-	
-	@ManyToMany(mappedBy="henkilökunnanjäsenet")
+
+	@ManyToMany(mappedBy = "henkilökunnanjäsenet")
 	private Set<Asiakas> asiakkaat = new HashSet<Asiakas>();
-	
+
 	public Henkilökunta() {
-		
+
 	}
 
 	public int getHenkilökuntaID() {
@@ -79,13 +80,5 @@ public class Henkilökunta {
 
 	public void setOikeus(String oikeus) {
 		this.oikeus = oikeus;
-	}
-
-	public Set<Asiakas> getAsiakkaat() {
-		return asiakkaat;
-	}
-
-	public void setAsiakkaat(Set<Asiakas> asiakkaat) {
-		this.asiakkaat = asiakkaat;
 	}
 }

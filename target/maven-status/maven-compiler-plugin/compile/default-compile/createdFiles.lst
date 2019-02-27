@@ -1,6 +1,5 @@
 model\Model.class
 controller\Controller.class
-view\HyteGUI$1.class
 model\Main.class
 model\Model_IF.class
 view\HyteGUI.class

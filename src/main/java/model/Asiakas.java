@@ -106,9 +106,4 @@ public class Asiakas {
 	public void setIcenumero(String icenumero) {
 		this.icenumero = icenumero;
 	}
-
-	public void addHenkilökunta(Henkilökunta henkilökunta) {
-		henkilökunnanjäsenet.add(henkilökunta);
-		henkilökunta.getAsiakkaat().add(this);
-	}
 }
