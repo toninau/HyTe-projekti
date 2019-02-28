@@ -33,7 +33,10 @@ public class Asiakas {
 	@Column(name = "icenumero")
 	private String icenumero;
 	
-	@ManyToMany (cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "asiakas", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Sairaus> sairaudet = new HashSet<Sairaus>();
+	
+	@ManyToMany
 	@JoinTable(name="asiakkaanHenkilökunta", 
 		joinColumns= {@JoinColumn(name="AsiakasID")},
 		inverseJoinColumns= {@JoinColumn(name="HenkilökuntaID")})

@@ -64,4 +64,18 @@ public class SairausAccessObject {
 		Sairaus[] returnArray = new Sairaus[result.size()];
 		return (Sairaus[]) result.toArray(returnArray);
 	}
+	
+	public boolean deleteSairaus(int id) {
+		boolean onnistui = false;
+		Session istunto = istuntotehdas.openSession();
+		istunto.beginTransaction();
+		Sairaus s = (Sairaus) istunto.get(Sairaus.class, id);
+		if (s != null) {
+			istunto.delete(s);
+			onnistui = true;
+		}
+		istunto.getTransaction().commit();
+		istunto.close();
+		return onnistui;
+	}
 }

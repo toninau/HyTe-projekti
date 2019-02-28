@@ -14,7 +14,7 @@ public class Sairaus {
 	@Column(name = "sairausNimi")
 	private String sairausNimi;
 
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name = "asiakasID", nullable = false)
 	private Asiakas asiakas;
 
