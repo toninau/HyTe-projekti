@@ -100,4 +100,38 @@ public class HenkilökuntaAccessObject {
 		}
 		return henkilö;
 	}
+	
+	public boolean updateHenkilökunta(Henkilökunta henkilökunta) {
+		boolean onnistui = false;
+		Session istunto = istuntotehdas.openSession();
+		istunto.beginTransaction();
+		Henkilökunta h = (Henkilökunta) istunto.get(Henkilökunta.class, henkilökunta.getHenkilökuntaID());
+		if (h != null) {
+			h.setEtunimi(henkilökunta.getEtunimi());
+			h.setSukunimi(henkilökunta.getSukunimi());
+			h.setOikeus(henkilökunta.getOikeus());
+			h.setSposti(henkilökunta.getSposti());
+			h.setPuhnumero(henkilökunta.getPuhnumero());
+			onnistui = true;
+		} else {
+			System.out.println("Ei löytynyt päivitettävää");
+		}
+		istunto.getTransaction().commit();
+		istunto.close();
+		return onnistui;
+	}
+
+	public boolean deleteHenkilökunta(int id) {
+		boolean onnistui = false;
+		Session istunto = istuntotehdas.openSession();
+		istunto.beginTransaction();
+		Henkilökunta h = (Henkilökunta) istunto.get(Henkilökunta.class, id);
+		if (h != null) {
+			istunto.delete(h);
+			onnistui = true;
+		}
+		istunto.getTransaction().commit();
+		istunto.close();
+		return onnistui;
+	}
 }
