@@ -4,12 +4,11 @@ package model;
 public class Main {
 
 	public static void main(String[] args) {
+		
 		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject();
 		SairausAccessObject sairausDAO = new SairausAccessObject();
 		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject();
-		//KOMMENTOIDUT OSAT LUO UUDET ASIAKKAAT,SAIRAUDET,HENKILÖKUNNAN JÄSENET
-		//KÄYTÖSSÄ OLEVAAN TIETOKANTAAN NÄMÄ OVAT JO LUOTU
-		
+	
 		//Luo ensimmäinen henkilökunnan jäsen
 		Henkilökunta henkilökunta = new Henkilökunta();
 		henkilökunta.setEtunimi("test");
@@ -19,6 +18,7 @@ public class Main {
 		henkilökunta.setOikeus("Lääkäri");
 		henkilöDAO.createHenkilökunta(henkilökunta);
 		henkilökunta = henkilöDAO.readHenkilökunta(1);
+		
 		//Ensimmäinen asiakas
 		Asiakas asiakas = new Asiakas();
 		asiakas.setEtunimi("Jorma");
@@ -30,11 +30,14 @@ public class Main {
 		asiakas.setPuhnumero("12341235");
 		asiakasDAO.createAsiakas(asiakas);
 		asiakas = asiakasDAO.readAsiakas(1);
+		
 		//liitetään henkilökunnan jäsen asiakkaaseen
 		henkilöDAO.addAsiakas(henkilökunta, asiakas);
+		
 		//lisätään sairaus asiakkaaseen
 		Sairaus sairaus = new Sairaus("yskä", asiakas);
 		sairausDAO.createSairaus(sairaus);
+		
 		//Toinen henkilökunna jäsen
 		henkilökunta = new Henkilökunta();
 		henkilökunta.setEtunimi("tohtori");
@@ -44,6 +47,7 @@ public class Main {
 		henkilökunta.setOikeus("Lääkäri");
 		henkilöDAO.createHenkilökunta(henkilökunta);
 		henkilökunta = henkilöDAO.readHenkilökunta(2);
+		
 		//Toinen asiakas
 		asiakas = new Asiakas();
 		asiakas.setEtunimi("Jarmo");
@@ -54,22 +58,33 @@ public class Main {
 		asiakas.setSposti("jarmo.testinen@mail.com");
 		asiakas.setPuhnumero("94844938");
 		asiakasDAO.createAsiakas(asiakas);
+		
 		//liitetään henkilökunnan jäsen asiakkaaseen
 		henkilöDAO.addAsiakas(henkilökunta, asiakas);
 		henkilökunta = henkilöDAO.readHenkilökunta(1);
 		henkilöDAO.addAsiakas(henkilökunta, asiakas);
+		
 		//lisätään sairaudet
 		asiakas = asiakasDAO.readAsiakas(2);
 		sairaus = new Sairaus("jalka poikki", asiakas);
 		sairausDAO.createSairaus(sairaus);
 		sairaus= new Sairaus("käsi poikki", asiakas);
 		sairausDAO.createSairaus(sairaus);
+		
 		//Henkilökunnan jäsenen asiakkaiden lukeminen
 		Henkilökunta henkilö = henkilöDAO.readHenkilökunta(1);
 		Asiakas[] asiakkaat2 = henkilöDAO.readHenkilönAsiakkaat(henkilö);
-		System.out.println(henkilö.getEtunimi() + ", " + henkilö.getSukunimi() + "\nAsiakkaat:");
+		System.out.println("henkilökunta: " + henkilö.getEtunimi() + ", " + henkilö.getSukunimi() + "\nAsiakkaat:");
 		for (Asiakas a : asiakkaat2) {
 			System.out.println(a.getEtunimi() + ", " + a.getSukunimi());
+		}
+		
+		//Asiakkaan henkilökunnan lukeminen
+		asiakas = asiakasDAO.readAsiakas(2);
+		Henkilökunta[] henkilöt = asiakasDAO.readAsiakkaanHenkilökunta(asiakas);
+		System.out.println("asiakas: " + asiakas.getEtunimi() + ", " + asiakas.getSukunimi() + "\nHenkilökunta:");
+		for (Henkilökunta h : henkilöt) {
+			System.out.println(h.getEtunimi() + ", " + h.getSukunimi());
 		}
 		//Asiakkaan sairauksien lukeminen
 		Asiakas[] asiakkaat = asiakasDAO.readAsiakkaat();
