@@ -36,6 +36,9 @@ public class Asiakas {
 	@OneToMany(mappedBy = "asiakas", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private Set<Sairaus> sairaudet = new HashSet<Sairaus>();
 	
+	@OneToMany(mappedBy = "asiakas", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Varaus> varaukset = new HashSet<Varaus>();
+	
 	@ManyToMany
 	@JoinTable(name="asiakkaanHenkilökunta", 
 		joinColumns= {@JoinColumn(name="AsiakasID")},

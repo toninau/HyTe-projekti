@@ -26,6 +26,9 @@ public class Henkilökunta {
 
 	@Column(name = "oikeus")
 	private String oikeus;
+	
+	@OneToMany(mappedBy = "henkilökunta", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Varaus> varaukset = new HashSet<Varaus>();
 
 	@ManyToMany(mappedBy = "henkilökunnanjäsenet")
 	private Set<Asiakas> asiakkaat = new HashSet<Asiakas>();

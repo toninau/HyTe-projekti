@@ -8,7 +8,8 @@ public class Main {
 		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject();
 		SairausAccessObject sairausDAO = new SairausAccessObject();
 		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject();
-	
+		VarausAccessObject varausDAO = new VarausAccessObject();
+		
 		//Luo ensimmäinen henkilökunnan jäsen
 		Henkilökunta henkilökunta = new Henkilökunta();
 		henkilökunta.setEtunimi("test");
@@ -34,6 +35,9 @@ public class Main {
 		//liitetään henkilökunnan jäsen asiakkaaseen
 		henkilöDAO.addAsiakas(henkilökunta, asiakas);
 		
+		//lisätään varaus
+		Varaus varaus = new Varaus("12.12.2020", "12:30", "leikkaus", asiakas, henkilökunta);
+		varausDAO.createVaraus(varaus);
 		//lisätään sairaus asiakkaaseen
 		Sairaus sairaus = new Sairaus("yskä", asiakas);
 		sairausDAO.createSairaus(sairaus);
@@ -47,6 +51,10 @@ public class Main {
 		henkilökunta.setOikeus("Lääkäri");
 		henkilöDAO.createHenkilökunta(henkilökunta);
 		henkilökunta = henkilöDAO.readHenkilökunta(2);
+		
+		//Luodaan toinen varaus
+		varaus = new Varaus("29.2.2090", "00:30", "katsastus", asiakas, henkilökunta);
+		varausDAO.createVaraus(varaus);
 		
 		//Toinen asiakas
 		asiakas = new Asiakas();
@@ -86,6 +94,7 @@ public class Main {
 		for (Henkilökunta h : henkilöt) {
 			System.out.println(h.getEtunimi() + ", " + h.getSukunimi());
 		}
+		
 		//Asiakkaan sairauksien lukeminen
 		Asiakas[] asiakkaat = asiakasDAO.readAsiakkaat();
 		int i = 1;
@@ -98,5 +107,28 @@ public class Main {
 			}
 			i++;
 		}
+		
+		//Asiakkaan varauksien lukeminen
+		asiakas = asiakasDAO.readAsiakas(1);
+		Varaus[] varaukset = varausDAO.readAsiakkaanVaraukset(asiakas);
+		System.out.println("Varaukset: " + asiakas.getEtunimi() + ", " + asiakas.getSukunimi());
+		for (Varaus v : varaukset) {
+			System.out.println("\t" + v.getPäivämäärä() + "/" + v.getKellonaika() + "/" + v.getInfo() + "/"+ v.getHenkilökunta().getEtunimi() + ", " + v.getHenkilökunta().getSukunimi());
+		}
+		
+		//Henkilökunnan varauksien lukeminen
+		henkilö = henkilöDAO.readHenkilökunta(1);
+		varaukset = varausDAO.readHenkilökunnanVaraukset(henkilö);
+		System.out.println("Varaukset: " + henkilö.getEtunimi() + ", " + henkilö.getSukunimi());
+		for (Varaus v : varaukset) {
+			System.out.println("\t" + v.getPäivämäärä() + "/" + v.getKellonaika() + "/" + v.getAsiakas().getEtunimi() + ", " + v.getAsiakas().getSukunimi());
+		}
+		
+		//Varauksen päivitys
+		asiakas = asiakasDAO.readAsiakas(2);
+		varaus = varausDAO.readVaraus(1);
+		varaus.setInfo("tämä on testi");
+		varaus.setAsiakas(asiakas);
+		varausDAO.updateVaraus(varaus);
 	}
 }
