@@ -41,8 +41,8 @@ public class Asiakas {
 	
 	@ManyToMany
 	@JoinTable(name="asiakkaanHenkilökunta", 
-		joinColumns= {@JoinColumn(name="AsiakasID")},
-		inverseJoinColumns= {@JoinColumn(name="HenkilökuntaID")})
+		joinColumns= {@JoinColumn(name="asiakasID")},
+		inverseJoinColumns= {@JoinColumn(name="henkilökuntaID")})
 	private Set<Henkilökunta> henkilökunnanjäsenet = new HashSet<Henkilökunta>();
 
 	public Asiakas() {

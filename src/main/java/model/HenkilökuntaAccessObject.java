@@ -50,7 +50,28 @@ public class HenkilökuntaAccessObject {
 		try {
 			istunto = istuntotehdas.openSession();
 			istunto.beginTransaction();
-			String sql = "INSERT INTO asiakkaanhenkilökunta (AsiakasID, HenkilökuntaID) VALUES (:asiakasID,:henkilökuntaID)";
+			String sql = "INSERT INTO asiakkaanhenkilökunta (asiakasID, henkilökuntaID) VALUES (:asiakasID,:henkilökuntaID)";
+			Query kysely = istunto.createSQLQuery(sql);
+			kysely.setParameter("asiakasID", asiakas.getAsiakasID());
+			kysely.setParameter("henkilökuntaID", henkilö.getHenkilökuntaID());
+			kysely.executeUpdate();
+			onnistui = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			istunto.close();
+		}
+		return onnistui;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public boolean deleteAsiakas(Henkilökunta henkilö, Asiakas asiakas) {
+		Session istunto = istuntotehdas.openSession();
+		boolean onnistui = false;
+		try {
+			istunto = istuntotehdas.openSession();
+			istunto.beginTransaction();
+			String sql = "DELETE FROM asiakkaanhenkilökunta WHERE asiakkaanhenkilökunta.asiakasID = :asiakasID AND asiakkaanhenkilökunta.henkilökuntaID = :henkilökuntaID";
 			Query kysely = istunto.createSQLQuery(sql);
 			kysely.setParameter("asiakasID", asiakas.getAsiakasID());
 			kysely.setParameter("henkilökuntaID", henkilö.getHenkilökuntaID());
@@ -120,7 +141,8 @@ public class HenkilökuntaAccessObject {
 		istunto.close();
 		return onnistui;
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	public boolean deleteHenkilökunta(int id) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
@@ -128,6 +150,10 @@ public class HenkilökuntaAccessObject {
 		Henkilökunta h = (Henkilökunta) istunto.get(Henkilökunta.class, id);
 		if (h != null) {
 			istunto.delete(h);
+			String sql = "DELETE FROM asiakkaanhenkilökunta WHERE asiakkaanhenkilökunta.henkilökuntaID = :id";
+			Query<Henkilökunta> kysely = istunto.createSQLQuery(sql).addEntity(Henkilökunta.class);
+			kysely.setParameter("id", h.getHenkilökuntaID());
+			kysely.executeUpdate();
 			onnistui = true;
 		}
 		istunto.getTransaction().commit();
