@@ -9,6 +9,7 @@ public class Main {
 		SairausAccessObject sairausDAO = new SairausAccessObject();
 		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject();
 		VarausAccessObject varausDAO = new VarausAccessObject();
+		ReseptiAccessObject reseptiDAO = new ReseptiAccessObject();
 		
 		//Luo ensimmäinen henkilökunnan jäsen
 		Henkilökunta henkilökunta = new Henkilökunta();
@@ -130,5 +131,39 @@ public class Main {
 		varaus.setInfo("tämä on testi");
 		varaus.setAsiakas(asiakas);
 		varausDAO.updateVaraus(varaus);
+		
+		//Reseptin lisäys
+		Resepti resepti = new Resepti();
+		resepti.setAlkupvm("21.12.2012");
+		resepti.setLoppupvm("22.12.2012");
+		resepti.setReseptiNimi("testilääke 200mg");
+		resepti.setReseptiOhje("Yksi pilleri aamuin ja illoin.");
+		resepti.setAsiakas(asiakas);
+		resepti.setHenkilökunta(henkilökunta);
+		reseptiDAO.createResepti(resepti);
+		resepti = new Resepti();
+		resepti.setAlkupvm("21.12.2012");
+		resepti.setLoppupvm("22.12.2052");
+		resepti.setReseptiNimi("testilääke 600mg");
+		resepti.setReseptiOhje("kaksi pilleriä aamuin ja illoin.");
+		resepti.setAsiakas(asiakas);
+		henkilökunta = henkilöDAO.readHenkilökunta(2);
+		resepti.setHenkilökunta(henkilökunta);
+		reseptiDAO.createResepti(resepti);
+		
+		//Asiakkaan reseptien läpikäynti
+		System.out.println("Reseptit: " + asiakas.getEtunimi() + ", " + asiakas.getSukunimi());
+		Resepti[] reseptit = reseptiDAO.readAsiakkaanReseptit(asiakas);
+		for (Resepti r : reseptit) {
+			System.out.println("\t" + r.getAlkupvm() + "/" + r.getLoppupvm() + "/" + r.getReseptiNimi() + "/"+ r.getHenkilökunta().getEtunimi() + ", " + r.getHenkilökunta().getSukunimi());
+		}
+		
+		//Henkilökunnan reseptit
+		henkilökunta = henkilöDAO.readHenkilökunta(2);
+		System.out.println("Reseptit: " + henkilökunta.getEtunimi() + ", " + henkilökunta.getSukunimi());
+		reseptit = reseptiDAO.readHenkilökunnanReseptit(henkilökunta);
+		for (Resepti r : reseptit) {
+			System.out.println("\t" + r.getAlkupvm() + "/" + r.getLoppupvm() + "/" + r.getReseptiNimi() + "/"+ r.getAsiakas().getEtunimi() + ", " + r.getAsiakas().getSukunimi());
+		}		
 	}
 }
