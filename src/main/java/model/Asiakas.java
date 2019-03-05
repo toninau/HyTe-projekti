@@ -1,50 +1,71 @@
 package model;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
-@Table(name = "Asiakas")
+@Table(name = "asiakas")
 public class Asiakas {
 
 	@Id
-	@Column(name = "HeTu")
-	private String heTu;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "asiakasID")
+	private int asiakasID;
 
-	@Column(name = "Etunimi")
+	@Column(name = "etunimi")
 	private String etunimi;
 
-	@Column(name = "Sukunimi")
+	@Column(name = "sukunimi")
 	private String sukunimi;
 
-	@Column(name = "Kotiosoite")
+	@Column(name = "hetu")
+	private String hetu;
+
+	@Column(name = "kotiosoite")
 	private String kotiosoite;
 
-	@Column(name = "Puhelinnumero")
+	@Column(name = "sposti")
+	private String sposti;
+
+	@Column(name = "puhelinnumero")
 	private String puhnumero;
 
-	@Column(name = "ICENumero")
+	@Column(name = "icenumero")
 	private String icenumero;
-
-	public Asiakas(String heTu, String etunimi, String sukunimi, String kotiosoite, String puhnumero,
-			String icenumero) {
-		this.heTu = heTu;
-		this.etunimi = etunimi;
-		this.sukunimi = sukunimi;
-		this.kotiosoite = kotiosoite;
-		this.puhnumero = puhnumero;
-		this.icenumero = icenumero;
-	}
+	
+	@OneToMany(mappedBy = "asiakas", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Sairaus> sairaudet = new HashSet<Sairaus>();
+	
+	@OneToMany(mappedBy = "asiakas", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Varaus> varaukset = new HashSet<Varaus>();
+	
+	@OneToMany(mappedBy = "asiakas", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Resepti> reseptit = new HashSet<Resepti>();
+	
+	@ManyToMany
+	@JoinTable(name="asiakkaanhenkilökunta", 
+		joinColumns= {@JoinColumn(name="asiakasID")},
+		inverseJoinColumns= {@JoinColumn(name="henkilökuntaID")})
+	private Set<Henkilökunta> henkilökunnanjäsenet = new HashSet<Henkilökunta>();
 
 	public Asiakas() {
 
 	}
 
-	public String getHeTu() {
-		return heTu;
+	public int getAsiakasID() {
+		return asiakasID;
 	}
 
-	public void setHeTu(String heTu) {
-		this.heTu = heTu;
+	public void setAsiakasID(int asiakasID) {
+		this.asiakasID = asiakasID;
+	}
+
+	public String getHetu() {
+		return hetu;
+	}
+
+	public void setHetu(String hetu) {
+		this.hetu = hetu;
 	}
 
 	public String getEtunimi() {
@@ -69,6 +90,14 @@ public class Asiakas {
 
 	public void setKotiosoite(String kotiosoite) {
 		this.kotiosoite = kotiosoite;
+	}
+
+	public String getSposti() {
+		return sposti;
+	}
+
+	public void setSposti(String sposti) {
+		this.sposti = sposti;
 	}
 
 	public String getPuhnumero() {

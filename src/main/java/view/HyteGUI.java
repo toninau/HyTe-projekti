@@ -9,10 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -22,17 +24,27 @@ import javafx.stage.Stage;
 
 public class HyteGUI extends Application implements HyteGUI_IF {
 	private Controller_IF controller;
-	private TextField username;
+	//private TextField username;
 	private PasswordField password;
 	private BorderPane rootLayout;
 	private Stage primaryStage;
+	
+	@FXML PasswordField pw;
+	@FXML Button loginBtn;
+	@FXML TextField username;
+	@FXML Label label;
+	
+	public void login() {
+		System.out.println("Login toimii");
+		label.setText("Welcome");
+	}
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
 	@Override
 	public void init() {
-		controller = new Controller(this);
+		//controller = new Controller(this);
 	}
 	@Override
 	public void start(Stage primaryStage) throws Exception {
