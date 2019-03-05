@@ -10,7 +10,7 @@ public class AsiakasTest {
 	@Test
 	public void testAsiakasTyhjäKonstruktori() {
 		try {
-			 asiakas = new Asiakas();
+			asiakas = new Asiakas();
 		} catch (Exception e) {
 			fail("Asiakas-olion luonti epäonnistui");
 		}
