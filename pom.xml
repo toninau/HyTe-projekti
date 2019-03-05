@@ -119,8 +119,7 @@
     		<artifactId>testFx</artifactId>
     		<version>3.1.2</version>
    			<scope>test</scope>
-		</dependency>
-		
+		</dependency>		
 		<dependency>
     		<groupId>org.testfx</groupId>
     		<artifactId>openjfx-monocle</artifactId>

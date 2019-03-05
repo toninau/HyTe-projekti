@@ -1,7 +1,5 @@
-model\Model.class
 controller\Controller.class
 model\Main.class
-model\Model_IF.class
 view\HyteGUI.class
 view\HyteGUI_IF.class
 controller\Controller_IF.class

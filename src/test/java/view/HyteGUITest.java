@@ -45,7 +45,6 @@ public class HyteGUITest extends ApplicationTest{
 
 	@BeforeAll
 	  public static void setUp () throws Exception {
-		
 		System.setProperty("testfx.robot", "glass"); 
 		System.setProperty("testfx.headless", "true"); 
 		System.setProperty("prism.order", "sw"); 
