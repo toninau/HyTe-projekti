@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.loadui.testfx.GuiTest;
@@ -41,9 +42,17 @@ public class HyteGUITest extends ApplicationTest{
 	    stage.toFront();
 	}
 	
-	@Before
-	  public void setUp () throws Exception {
+
+	@BeforeAll
+	  public static void setUp () throws Exception {
+		
+		System.setProperty("testfx.robot", "glass"); 
+		System.setProperty("testfx.headless", "true"); 
+		System.setProperty("prism.order", "sw"); 
+		System.setProperty("prism.text", "t2k"); 
+		System.setProperty("java.awt.headless", "true");
 	}
+	
 	  @After
 	  public void tearDown () throws Exception {
 	    FxToolkit.hideStage();
