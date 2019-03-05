@@ -43,7 +43,7 @@ public class Asiakas {
 	private Set<Resepti> reseptit = new HashSet<Resepti>();
 	
 	@ManyToMany
-	@JoinTable(name="asiakkaanHenkilökunta", 
+	@JoinTable(name="asiakkaanhenkilökunta", 
 		joinColumns= {@JoinColumn(name="asiakasID")},
 		inverseJoinColumns= {@JoinColumn(name="henkilökuntaID")})
 	private Set<Henkilökunta> henkilökunnanjäsenet = new HashSet<Henkilökunta>();
