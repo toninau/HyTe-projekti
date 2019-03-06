@@ -29,6 +29,9 @@ public class Henkilökunta {
 	
 	@OneToMany(mappedBy = "henkilökunta", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private Set<Varaus> varaukset = new HashSet<Varaus>();
+	
+	@OneToMany(mappedBy = "henkilökunta", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Resepti> reseptit = new HashSet<Resepti>();
 
 	@ManyToMany(mappedBy = "henkilökunnanjäsenet")
 	private Set<Asiakas> asiakkaat = new HashSet<Asiakas>();
