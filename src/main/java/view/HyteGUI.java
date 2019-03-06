@@ -57,7 +57,7 @@ public class HyteGUI extends Application implements HyteGUI_IF {
 	
 	public void initLayout() {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(HyteGUI.class.getResource("Skene.fxml"));
+		loader.setLocation(HyteGUI.class.getResource("/Skene.fxml"));
 		
 		try {
 			rootLayout = (BorderPane) loader.load();
