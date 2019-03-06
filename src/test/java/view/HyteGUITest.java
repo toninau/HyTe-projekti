@@ -51,8 +51,7 @@ public class HyteGUITest extends ApplicationTest{
     @Test
     public void testInput() {
         clickOn("#username");
-        write("name");
-       
+        write("name");      
     }
 
     
