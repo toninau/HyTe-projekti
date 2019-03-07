@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane id="rootPane" fx:id="rootPane" prefHeight="400.0" prefWidth="400.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewController">
+   <children>
+      <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="408.0" prefWidth="400.0">
+         <children>
+            <TabPane layoutY="4.0" prefHeight="408.0" prefWidth="407.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="add" text="Add">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                </Tab>
+                <Tab fx:id="modify" text="Modify">
+                  <content>
+                    <AnchorPane minHeight="362.0" minWidth="400.0" prefHeight="362.0" prefWidth="400.0">
+                           <children>
+                              <Label layoutX="121.0" layoutY="92.0" prefHeight="48.0" prefWidth="158.0" text="muokattavan hlön nimi" />
+                              <TextField fx:id="id" layoutX="126.0" layoutY="155.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <Button fx:id="logout" layoutX="325.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="30.0" prefWidth="61.0" text="Logout" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
