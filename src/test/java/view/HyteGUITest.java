@@ -16,22 +16,26 @@ import org.loadui.testfx.GuiTest;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import org.testfx.api.FxToolkit;
+
+import static org.junit.Assert.assertTrue;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
+
+import org.hamcrest.Matchers;
 
 public class HyteGUITest extends ApplicationTest{
 
 	private HyteGUI gui;
-	
+	Stage stage;
 	@Override
 	  public void start (Stage stage) throws Exception {
+		this.stage = stage;
 	    Parent mainNode = FXMLLoader.load(HyteGUI.class.getResource("/Skene.fxml"));
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
 	}
 	
-
 	@BeforeAll
 	  public static void setUp () throws Exception {
 		System.setProperty("testfx.robot", "glass"); 
@@ -41,7 +45,7 @@ public class HyteGUITest extends ApplicationTest{
 		System.setProperty("java.awt.headless", "true");
 	}
 	
-	  @After
+	@After
 	  public void tearDown () throws Exception {
 	    FxToolkit.hideStage();
 	    release(new KeyCode[]{});
@@ -50,16 +54,20 @@ public class HyteGUITest extends ApplicationTest{
 	  
     @Test
     public void testInput() {
-        clickOn("#username");
+        clickOn("#usernameAsiakas");
         write("name");      
     }
 
     
     @Test
-    public void testButton() {
-    	Label label = (Label)GuiTest.find("#label");
-        clickOn("#loginBtn");
-        verifyThat(label, hasText("Welcome"));
+    public void testAdminLogin() {
+    	clickOn("#staffTab");
+    	clickOn("#username");
+    	write("admin");
+    	clickOn("#pw");
+    	write("admin");
+    	clickOn("#loginBtn");
+    	assertTrue(stage.getTitle().equals("Admin view"));
     }
     
 }

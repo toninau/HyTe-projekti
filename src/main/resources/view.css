@@ -1,17 +1,52 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
-#loginBtn{
-	-fx-background-color: red;
+.loginBtn{
+	-fx-background-color: #828282;
+	-fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
 }
 
 .tab{
-	-fx-background-color: black;
-	-fx-padding: 0.5em, 0.5em;
+	-fx-background-color: white;
+	-fx-padding: 0.8em;
+	-fx-background-insets: 0 1 0 1,0,0;
 }
+
 .tab-pane{
-	-fx-background-color: gray;
+	-fx-background-color: white;
+	-fx-border-radius: 25px;
+	-fx-background-radius: 25px;
 }
-.tab-pane .tab:selected
-{
-    -fx-background-color: #3c3c3c;
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 0.2em;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+.tab-pane .tab:selected{
+    -fx-background-color: #3c3c3c;   
+}
+
+.root{
+	-fx-background-image: url("./pictures/bg.png");
+	
+}
+
+.usericon{
+	-fx-graphic: url("./pictures/usericon.png");
+	-fx-graphic-text-gap : 10;
 }

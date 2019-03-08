@@ -1,38 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 
-<Pane id="rootPane" fx:id="rootPane" prefHeight="400.0" prefWidth="400.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@view.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminViewController">
    <children>
-      <Pane layoutX="-1.0" layoutY="-4.0" prefHeight="408.0" prefWidth="400.0">
-         <children>
-            <TabPane layoutY="4.0" prefHeight="408.0" prefWidth="407.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab fx:id="add" text="Add">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-                     </content>
-                </Tab>
-                <Tab fx:id="modify" text="Modify">
-                  <content>
-                    <AnchorPane minHeight="362.0" minWidth="400.0" prefHeight="362.0" prefWidth="400.0">
-                           <children>
-                              <Label layoutX="121.0" layoutY="92.0" prefHeight="48.0" prefWidth="158.0" text="muokattavan hlön nimi" />
-                              <TextField fx:id="id" layoutX="126.0" layoutY="155.0" />
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-            <Button fx:id="logout" layoutX="325.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="30.0" prefWidth="61.0" text="Logout" />
-         </children>
-      </Pane>
+      <TabPane opacity="0.81" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab fx:id="addTab" text="Lisää">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="560.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0" />
+                        <Separator prefHeight="0.0" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label layoutX="128.0" layoutY="35.0" prefHeight="32.0" prefWidth="115.0" text="Lisää työntekijä" />
+                        <Label layoutX="549.0" layoutY="42.0" text="Lisää asiakas" />
+                        <TextField id="fNameStaff" fx:id="fNameStaff" layoutX="119.0" layoutY="95.0" promptText="Etunimi" />
+                        <TextField id="sNameStaff" fx:id="sNameStaff" layoutX="119.0" layoutY="145.0" promptText="Sukunimi" />
+                        <TextField id="phoneNroStaff" fx:id="phoneNroStaff" layoutX="119.0" layoutY="194.0" promptText="Puhelinnumero" />
+                        <TextField id="emailStaff" fx:id="emailStaff" layoutX="119.0" layoutY="240.0" promptText="Sähköposti" />
+                        <TextField id="fNameCust" fx:id="fNameCust" layoutX="515.0" layoutY="145.0" promptText="Etunimi" />
+                        <TextField id="sNameCust" fx:id="sNameCust" layoutX="515.0" layoutY="194.0" promptText="Sukunimi" />
+                        <TextField id="phoneNroCust" fx:id="phoneNroCust" layoutX="515.0" layoutY="285.0" promptText="Puhelinnumero" />
+                        <TextField id="emailCust" fx:id="emailCust" layoutX="515.0" layoutY="240.0" promptText="Sähköposti" />
+                        <TextField id="hetuCust" fx:id="hetuCust" layoutX="515.0" layoutY="95.0" promptText="Henkilötunnus" />
+                        <TextField id="addressCust" fx:id="addressCust" layoutX="515.0" layoutY="330.0" promptText="Osoite" />
+                        <TextField id="ICECust" fx:id="ICECust" layoutX="515.0" layoutY="380.0" promptText="ICE-numero" />
+                        <Button fx:id="addStaff" layoutX="145.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#addStaff" text="Lisää työntekijä" />
+                        <Button fx:id="addCustomer" layoutX="541.0" layoutY="433.0" mnemonicParsing="false" text="Lisää asiakas" />
+                        <ChoiceBox fx:id="profession" layoutX="118.0" layoutY="368.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="editTab" text="Muokkaa">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="560.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0" />
+                        <Separator prefHeight="0.0" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="find" layoutX="91.0" layoutY="104.0" mnemonicParsing="false" onAction="#findStaff" text="Etsi" />
+                        <TextField fx:id="staffID" layoutX="43.0" layoutY="64.0" promptText="Työntekijä ID" />
+                        <TextField fx:id="customerID" layoutX="524.0" layoutY="64.0" promptText="Asiakkaan hetu" />
+                        <Button fx:id="findCustomer" layoutX="573.0" layoutY="104.0" mnemonicParsing="false" text="Etsi" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
-</Pane>
+</AnchorPane>

@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
@@ -31,11 +32,14 @@ public class HyteGUI extends Application implements HyteGUI_IF{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Testiäppi");        
-        BorderPane rootLayout = FXMLLoader.load(getClass().getResource("/Skene.fxml"));       
+        this.primaryStage.setTitle("Login");        
+        AnchorPane rootLayout = FXMLLoader.load(getClass().getResource("/Skene.fxml"));       
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
 	}
 		
+	public Stage getStage() {
+		return primaryStage;
+	}
 }
