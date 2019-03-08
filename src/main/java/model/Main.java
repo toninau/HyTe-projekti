@@ -4,12 +4,13 @@ package model;
 public class Main {
 
 	public static void main(String[] args) {
-		
+		//Testaus main, jota voidaan myös käyttää tietokannan luomista varten
 		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject();
 		SairausAccessObject sairausDAO = new SairausAccessObject();
 		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject();
 		VarausAccessObject varausDAO = new VarausAccessObject();
 		ReseptiAccessObject reseptiDAO = new ReseptiAccessObject();
+		VeriarvoAccessObject veriarvoDAO = new VeriarvoAccessObject();
 		
 		//Luo ensimmäinen henkilökunnan jäsen
 		Henkilökunta henkilökunta = new Henkilökunta();
@@ -81,6 +82,7 @@ public class Main {
 		sairausDAO.createSairaus(sairaus);
 		
 		//Henkilökunnan jäsenen asiakkaiden lukeminen
+		System.out.println("Henkilökunnan id=1 asiakkaiden lukeminen:");
 		Henkilökunta henkilö = henkilöDAO.readHenkilökunta(1);
 		Asiakas[] asiakkaat2 = henkilöDAO.readHenkilönAsiakkaat(henkilö);
 		System.out.println("henkilökunta: " + henkilö.getEtunimi() + ", " + henkilö.getSukunimi() + "\nAsiakkaat:");
@@ -89,6 +91,7 @@ public class Main {
 		}
 		
 		//Asiakkaan henkilökunnan lukeminen
+		System.out.println("Asiakkaan id=2 henkilökunnan lukeminen:");
 		asiakas = asiakasDAO.readAsiakas(2);
 		Henkilökunta[] henkilöt = asiakasDAO.readAsiakkaanHenkilökunta(asiakas);
 		System.out.println("asiakas: " + asiakas.getEtunimi() + ", " + asiakas.getSukunimi() + "\nHenkilökunta:");
@@ -97,6 +100,7 @@ public class Main {
 		}
 		
 		//Asiakkaan sairauksien lukeminen
+		System.out.println("kaikkien asikkaiden sairauksien lukeminen:");
 		Asiakas[] asiakkaat = asiakasDAO.readAsiakkaat();
 		int i = 1;
 		for (Asiakas a : asiakkaat) {
@@ -110,6 +114,7 @@ public class Main {
 		}
 		
 		//Asiakkaan varauksien lukeminen
+		System.out.println("asikas id=1 varauksien lukeminen");
 		asiakas = asiakasDAO.readAsiakas(1);
 		Varaus[] varaukset = varausDAO.readAsiakkaanVaraukset(asiakas);
 		System.out.println("Varaukset: " + asiakas.getEtunimi() + ", " + asiakas.getSukunimi());
@@ -118,6 +123,7 @@ public class Main {
 		}
 		
 		//Henkilökunnan varauksien lukeminen
+		System.out.println("henkilökunta id=1 varauksien lukeminen");
 		henkilö = henkilöDAO.readHenkilökunta(1);
 		varaukset = varausDAO.readHenkilökunnanVaraukset(henkilö);
 		System.out.println("Varaukset: " + henkilö.getEtunimi() + ", " + henkilö.getSukunimi());
@@ -165,5 +171,28 @@ public class Main {
 		for (Resepti r : reseptit) {
 			System.out.println("\t" + r.getAlkupvm() + "/" + r.getLoppupvm() + "/" + r.getReseptiNimi() + "/"+ r.getAsiakas().getEtunimi() + ", " + r.getAsiakas().getSukunimi());
 		}		
+		
+		//Asiakkaan veriarvon lisäys 2x
+		asiakas = asiakasDAO.readAsiakas(2);
+		Veriarvo veriarvo = new Veriarvo();
+		veriarvo.setAsiakas(asiakas);
+		veriarvo.setAika("12:12");
+		veriarvo.setPvm("1.1.2012");
+		veriarvo.setVerensokeri(5.5);
+		veriarvoDAO.createVeriarvo(veriarvo);
+		veriarvo = new Veriarvo();
+		veriarvo.setAsiakas(asiakas);
+		veriarvo.setAika("12:15");
+		veriarvo.setPvm("1.1.2019");
+		veriarvo.setVerenpaine("100/100/100");
+		veriarvoDAO.createVeriarvo(veriarvo);
+		
+		//Asiakkaan veriarvojen hakeminen
+		System.out.println("asiakkaan id=2 veriarvot");
+		Veriarvo[] veriarvot = veriarvoDAO.readAsiakkaanVeriarvot(asiakas);
+		System.out.println("Asiakas: " + asiakas.getEtunimi() + ", " + asiakas.getSukunimi());
+		for (Veriarvo v : veriarvot) {
+			System.out.println("\t"+ v.getAika() + "/" + v.getPvm() + "/" + v.getVerenpaine() + "/" + v.getVerensokeri());
+		}
 	}
 }
