@@ -1,0 +1,6 @@
+model\HenkilökuntaTest.class
+model\VarausTest.class
+model\AsiakasTest.class
+model\ReseptiTest.class
+model\SairausTest.class
+view\HyteGUITest.class
