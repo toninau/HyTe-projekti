@@ -122,6 +122,23 @@ public class HenkilökuntaAccessObject {
 		return henkilö;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Henkilökunta[] readAll() {
+		Session istunto = istuntotehdas.openSession();
+		List<Henkilökunta> result = null;
+	try {	
+		istunto.beginTransaction();
+		result = istunto.createQuery("from Henkilökunta").list();
+		istunto.getTransaction().commit();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		istunto.close();
+	}
+		Henkilökunta[] returnArray = new Henkilökunta[result.size()];
+		return (Henkilökunta[]) result.toArray(returnArray);
+	}
+	
 	public boolean updateHenkilökunta(Henkilökunta henkilökunta) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();

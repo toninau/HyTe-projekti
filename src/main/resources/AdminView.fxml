@@ -25,11 +25,11 @@
                         <TextField id="sNameStaff" fx:id="sNameStaff" layoutX="119.0" layoutY="145.0" promptText="Sukunimi" />
                         <TextField id="phoneNroStaff" fx:id="phoneNroStaff" layoutX="119.0" layoutY="194.0" promptText="Puhelinnumero" />
                         <TextField id="emailStaff" fx:id="emailStaff" layoutX="119.0" layoutY="240.0" promptText="Sähköposti" />
+                        <TextField id="hetuCust" fx:id="hetuCust" layoutX="515.0" layoutY="95.0" promptText="Henkilötunnus" />
                         <TextField id="fNameCust" fx:id="fNameCust" layoutX="515.0" layoutY="145.0" promptText="Etunimi" />
                         <TextField id="sNameCust" fx:id="sNameCust" layoutX="515.0" layoutY="194.0" promptText="Sukunimi" />
-                        <TextField id="phoneNroCust" fx:id="phoneNroCust" layoutX="515.0" layoutY="285.0" promptText="Puhelinnumero" />
                         <TextField id="emailCust" fx:id="emailCust" layoutX="515.0" layoutY="240.0" promptText="Sähköposti" />
-                        <TextField id="hetuCust" fx:id="hetuCust" layoutX="515.0" layoutY="95.0" promptText="Henkilötunnus" />
+                        <TextField id="phoneNroCust" fx:id="phoneNroCust" layoutX="515.0" layoutY="285.0" promptText="Puhelinnumero" />
                         <TextField id="addressCust" fx:id="addressCust" layoutX="515.0" layoutY="330.0" promptText="Osoite" />
                         <TextField id="ICECust" fx:id="ICECust" layoutX="515.0" layoutY="380.0" promptText="ICE-numero" />
                         <Button fx:id="addStaff" layoutX="145.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#addStaff" text="Lisää työntekijä" />

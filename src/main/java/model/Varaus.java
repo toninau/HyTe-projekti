@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "varaus")
-public class Varaus {
+public class Varaus extends DAOManager {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

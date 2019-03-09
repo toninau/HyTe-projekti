@@ -87,6 +87,14 @@ public class AdminViewController  implements Initializable  {
 			System.out.println(string);
 		}
 		
+		/*asiakas.setHetu(hetu);
+		asiakas.setEtunimi(etunimi);
+		asiakas.setSukunimi(sukunimi);
+		asiakas.setPuhnumero(puhnro);
+		asiakas.setSposti(email);
+		asiakas.setIcenumero(ICE);
+		asiakas.setKotiosoite(osoite);*/
+		
 	}
 	
 	public void addStaff() {
@@ -110,11 +118,19 @@ public class AdminViewController  implements Initializable  {
 			System.out.println(string);
 		}
 			
-		/*hkunta.setEtunimi(etunimi);
+		hkunta.setEtunimi(etunimi);
 		hkunta.setSukunimi(sukunimi);
 		hkunta.setPuhnumero(puhnro);
 		hkunta.setSposti(email);
-		hkunta.setOikeus(ammatti);*/
+		hkunta.setOikeus(ammatti);
+		
+		hkunta.createHenkilökunta(hkunta);
+		
+		Henkilökunta [] kaikki = hkunta.readAll();
+		
+		for (Henkilökunta henkilökunta : kaikki) {
+			System.out.println(henkilökunta.getEtunimi());
+		}
 	}
 		
 	public void findStaff() {

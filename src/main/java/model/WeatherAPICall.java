@@ -13,7 +13,6 @@ public class WeatherAPICall {
 	public static void main(String[] args) throws Exception {
 
 		WeatherAPICall http = new WeatherAPICall();
-
 		System.out.println("Testing GET");
 		http.sendGet();
 

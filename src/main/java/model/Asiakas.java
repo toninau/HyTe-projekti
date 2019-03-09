@@ -5,7 +5,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "asiakas")
-public class Asiakas {
+public class Asiakas extends DAOManager {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,9 +50,20 @@ public class Asiakas {
 		joinColumns= {@JoinColumn(name="asiakasID")},
 		inverseJoinColumns= {@JoinColumn(name="henkilökuntaID")})
 	private Set<Henkilökunta> henkilökunnanjäsenet = new HashSet<Henkilökunta>();
-
+	
+	
 	public Asiakas() {
 
+	}
+	
+	public void createAsiakas(Asiakas asiakas) {
+		AsiakasAccessObject asiakasDAO = getAsiakasDAO();
+		asiakasDAO.createAsiakas(asiakas);	
+	}
+	
+	public Asiakas[] readAll() {
+		AsiakasAccessObject asiakasDAO = getAsiakasDAO();
+		return asiakasDAO.readAsiakkaat();
 	}
 
 	public int getAsiakasID() {
