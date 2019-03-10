@@ -45,6 +45,9 @@ public class Asiakas extends DAOManager {
 	@OneToMany(mappedBy = "asiakas", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private Set<Veriarvo> veriarvo = new HashSet<Veriarvo>();
 	
+	@OneToMany(mappedBy = "asiakas", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Ilmoitus> ilmoitus = new HashSet<Ilmoitus>();
+	
 	@ManyToMany
 	@JoinTable(name="asiakkaanhenkilökunta", 
 		joinColumns= {@JoinColumn(name="asiakasID")},

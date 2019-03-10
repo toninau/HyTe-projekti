@@ -32,6 +32,9 @@ public class Henkilökunta extends DAOManager {
 	
 	@OneToMany(mappedBy = "henkilökunta", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private Set<Resepti> reseptit = new HashSet<Resepti>();
+	
+	@OneToMany(mappedBy = "henkilökunta", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<Ilmoitus> ilmoitus = new HashSet<Ilmoitus>();
 
 	@ManyToMany(mappedBy = "henkilökunnanjäsenet")
 	private Set<Asiakas> asiakkaat = new HashSet<Asiakas>();
