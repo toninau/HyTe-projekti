@@ -43,21 +43,6 @@ public class Henkilökunta extends DAOManager {
 	public Henkilökunta() {
 	}
 	
-	public void createHenkilökunta(Henkilökunta henkilökunta) {
-		HenkilökuntaAccessObject henkilökuntaDAO = getHenkilökuntaDAO();
-		henkilökuntaDAO.createHenkilökunta(henkilökunta);
-	}
-	
-	public Henkilökunta read(int id) {
-		HenkilökuntaAccessObject henkilökuntaDAO = getHenkilökuntaDAO();
-		return henkilökuntaDAO.readHenkilökunta(id);
-	}
-	
-	public Henkilökunta[] readAll() {
-		HenkilökuntaAccessObject henkilökuntaDAO = getHenkilökuntaDAO();
-		return henkilökuntaDAO.readAll();
-	}
-
 	public int getHenkilökuntaID() {
 		return henkilökuntaID;
 	}

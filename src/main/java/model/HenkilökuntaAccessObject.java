@@ -23,7 +23,7 @@ public class HenkilökuntaAccessObject {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean createHenkilökunta(Henkilökunta henkilö) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -42,7 +42,7 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public boolean addAsiakas(Henkilökunta henkilö, Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -63,7 +63,7 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public boolean deleteAsiakas(Henkilökunta henkilö, Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -84,7 +84,7 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Asiakas[] readHenkilönAsiakkaat(Henkilökunta henkilö) {
 		Session istunto = istuntotehdas.openSession();
@@ -121,24 +121,24 @@ public class HenkilökuntaAccessObject {
 		}
 		return henkilö;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Henkilökunta[] readAll() {
 		Session istunto = istuntotehdas.openSession();
 		List<Henkilökunta> result = null;
-	try {	
-		istunto.beginTransaction();
-		result = istunto.createQuery("from Henkilökunta").list();
-		istunto.getTransaction().commit();
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-		istunto.close();
-	}
+		try {
+			istunto.beginTransaction();
+			result = istunto.createQuery("from Henkilökunta").list();
+			istunto.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			istunto.close();
+		}
 		Henkilökunta[] returnArray = new Henkilökunta[result.size()];
 		return (Henkilökunta[]) result.toArray(returnArray);
 	}
-	
+
 	public boolean updateHenkilökunta(Henkilökunta henkilökunta) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
@@ -158,7 +158,7 @@ public class HenkilökuntaAccessObject {
 		istunto.close();
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public boolean deleteHenkilökunta(int id) {
 		boolean onnistui = false;
