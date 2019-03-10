@@ -58,16 +58,6 @@ public class Asiakas extends DAOManager {
 	public Asiakas() {
 
 	}
-	
-	public void createAsiakas(Asiakas asiakas) {
-		AsiakasAccessObject asiakasDAO = getAsiakasDAO();
-		asiakasDAO.createAsiakas(asiakas);	
-	}
-	
-	public Asiakas[] readAll() {
-		AsiakasAccessObject asiakasDAO = getAsiakasDAO();
-		return asiakasDAO.readAsiakkaat();
-	}
 
 	public int getAsiakasID() {
 		return asiakasID;

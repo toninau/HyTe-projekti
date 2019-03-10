@@ -25,6 +25,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Asiakas;
 import model.Henkilökunta;
+import model.HenkilökuntaAccessObject;
 import view.HyteGUI_IF;
 
 public class AdminViewController  implements Initializable  {
@@ -54,8 +55,10 @@ public class AdminViewController  implements Initializable  {
 	@FXML TextField staffID;
 	@FXML TextField customerID;
 	
+	private HenkilökuntaAccessObject hDAO;
+	
 	public AdminViewController() {
-
+		hDAO = new HenkilökuntaAccessObject();
 	}
 
 	@FXML
@@ -104,34 +107,35 @@ public class AdminViewController  implements Initializable  {
 		String puhnro = getStaffPhone();
 		String email = getStaffEmail();
 		String ammatti = getProfession();
-		
 		String[] info = {etunimi, sukunimi, puhnro, email, ammatti};
-		
+		boolean onnistui = true;
 		for (String string : info) {
-			if(string == null) {
+			if(string.isEmpty()) {
+				onnistui = false;
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Tiedot");
 				alert.setContentText("Tarkista tiedot");
 				alert.showAndWait();
+				break;
 			}
 			System.out.println(string);
 		}
-			
-		hkunta.setEtunimi(etunimi);
-		hkunta.setSukunimi(sukunimi);
-		hkunta.setPuhnumero(puhnro);
-		hkunta.setSposti(email);
-		hkunta.setOikeus(ammatti);
-		
-		hkunta.createHenkilökunta(hkunta);
-		
-		Henkilökunta [] kaikki = hkunta.readAll();
-		
+		if (onnistui) {
+			hkunta.setEtunimi(etunimi);
+			hkunta.setSukunimi(sukunimi);
+			hkunta.setPuhnumero(puhnro);
+			hkunta.setSposti(email);
+			hkunta.setOikeus(ammatti);
+			hDAO.createHenkilökunta(hkunta);
+		}
+		Henkilökunta [] kaikki = hDAO.readAll();
 		for (Henkilökunta henkilökunta : kaikki) {
 			System.out.println(henkilökunta.getEtunimi());
 		}
 	}
+		
+
 		
 	public void findStaff() {
 		Henkilökunta henk = new Henkilökunta();	
