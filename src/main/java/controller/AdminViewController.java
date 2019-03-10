@@ -24,6 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Asiakas;
+import model.AsiakasAccessObject;
 import model.Henkilökunta;
 import view.HyteGUI_IF;
 
@@ -54,6 +55,8 @@ public class AdminViewController  implements Initializable  {
 	@FXML TextField staffID;
 	@FXML TextField customerID;
 	
+	private AsiakasAccessObject accessObject;
+	
 	public AdminViewController() {
 
 	}
@@ -72,7 +75,7 @@ public class AdminViewController  implements Initializable  {
 		String email = getCustEmail();
 		String ICE = getCustICE();
 		String osoite = getCustAddress();
-		
+		accessObject.createAsiakas(asiakas);
 		String[] info = {etunimi, sukunimi, puhnro, email, hetu,
 				ICE, osoite};
 		
@@ -86,14 +89,6 @@ public class AdminViewController  implements Initializable  {
 			}
 			System.out.println(string);
 		}
-		
-		/*asiakas.setHetu(hetu);
-		asiakas.setEtunimi(etunimi);
-		asiakas.setSukunimi(sukunimi);
-		asiakas.setPuhnumero(puhnro);
-		asiakas.setSposti(email);
-		asiakas.setIcenumero(ICE);
-		asiakas.setKotiosoite(osoite);*/
 		
 	}
 	
@@ -118,19 +113,11 @@ public class AdminViewController  implements Initializable  {
 			System.out.println(string);
 		}
 			
-		hkunta.setEtunimi(etunimi);
+		/*hkunta.setEtunimi(etunimi);
 		hkunta.setSukunimi(sukunimi);
 		hkunta.setPuhnumero(puhnro);
 		hkunta.setSposti(email);
-		hkunta.setOikeus(ammatti);
-		
-		hkunta.createHenkilökunta(hkunta);
-		
-		Henkilökunta [] kaikki = hkunta.readAll();
-		
-		for (Henkilökunta henkilökunta : kaikki) {
-			System.out.println(henkilökunta.getEtunimi());
-		}
+		hkunta.setOikeus(ammatti);*/
 	}
 		
 	public void findStaff() {

@@ -7,7 +7,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 import java.net.URL;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 public class WeatherAPICall {
 
 	public static void main(String[] args) throws Exception {
@@ -34,8 +39,14 @@ public class WeatherAPICall {
 			response.append(inputLine);
 		}
 		in.close();
+		
+		
+		Gson gson = new GsonBuilder().create();
 
-		System.out.println(response.toString());
+		JsonElement jelement = new JsonParser().parse(response.toString());
+		JsonObject jobject = jelement.getAsJsonObject();
+		JsonArray main = jobject.getAsJsonArray("weather");
+		System.out.println(main.get(0).getAsJsonObject().get("main"));
 
 	}
 }
