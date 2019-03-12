@@ -2,6 +2,12 @@ package model;
 
 import javax.persistence.*;
 
+/**
+ * Resepti entity
+ * 
+ * @author tonin
+ *
+ */
 @Entity
 @Table(name = "resepti")
 public class Resepti {

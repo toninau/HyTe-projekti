@@ -1,30 +1,18 @@
 package model;
 
 import java.util.List;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
 public class VeriarvoAccessObject {
-	
-	SessionFactory istuntotehdas = null;
-	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-	
-	public VeriarvoAccessObject() {
-		try {
-			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		} catch (Exception e) {
-			System.out.println("Oh no");
-			StandardServiceRegistryBuilder.destroy(registry);
-			e.printStackTrace();
-		}
+
+	private Istuntotehdas istuntotehdas = null;
+
+	public VeriarvoAccessObject(Istuntotehdas istuntotehdas) {
+		this.istuntotehdas = istuntotehdas;
 	}
-	
+
 	public boolean createVeriarvo(Veriarvo veriarvo) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -43,7 +31,7 @@ public class VeriarvoAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Veriarvo[] readAsiakkaanVeriarvot(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -64,7 +52,7 @@ public class VeriarvoAccessObject {
 		Veriarvo[] returnArray = new Veriarvo[result.size()];
 		return (Veriarvo[]) result.toArray(returnArray);
 	}
-	
+
 	public boolean deleteVeriarvo(int id) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();

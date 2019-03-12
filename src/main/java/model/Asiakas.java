@@ -3,6 +3,12 @@ package model;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Asiakas entity
+ * 
+ * @author tonin
+ *
+ */
 @Entity
 @Table(name = "asiakas")
 public class Asiakas {

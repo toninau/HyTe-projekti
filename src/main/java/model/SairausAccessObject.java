@@ -1,30 +1,20 @@
 package model;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class SairausAccessObject {
-	
-	SessionFactory istuntotehdas = null;
-	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-	
-	public SairausAccessObject() {
-		try {
-			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		} catch (Exception e) {
-			System.out.println("Oh no");
-			StandardServiceRegistryBuilder.destroy(registry);
-			e.printStackTrace();
-		}
+
+	private Istuntotehdas istuntotehdas = null;
+
+	public SairausAccessObject(Istuntotehdas istuntotehdas) {
+		this.istuntotehdas = istuntotehdas;
+
 	}
-	
+
 	public boolean createSairaus(Sairaus sairaus) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -43,7 +33,7 @@ public class SairausAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Sairaus[] readAsiakkaanSairaudet(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -64,7 +54,7 @@ public class SairausAccessObject {
 		Sairaus[] returnArray = new Sairaus[result.size()];
 		return (Sairaus[]) result.toArray(returnArray);
 	}
-	
+
 	public boolean deleteSairaus(int id) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();

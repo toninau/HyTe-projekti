@@ -5,13 +5,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		//Testaus main, jota voidaan myös käyttää tietokannan luomista varten
-		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject();
-		SairausAccessObject sairausDAO = new SairausAccessObject();
-		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject();
-		VarausAccessObject varausDAO = new VarausAccessObject();
-		ReseptiAccessObject reseptiDAO = new ReseptiAccessObject();
-		VeriarvoAccessObject veriarvoDAO = new VeriarvoAccessObject();
-		IlmoitusAccessObject ilmoitusDAO = new IlmoitusAccessObject();
+		Istuntotehdas istuntotehdas = new Istuntotehdas();
+		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject(istuntotehdas);
+		SairausAccessObject sairausDAO = new SairausAccessObject(istuntotehdas);
+		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject(istuntotehdas);
+		VarausAccessObject varausDAO = new VarausAccessObject(istuntotehdas);
+		ReseptiAccessObject reseptiDAO = new ReseptiAccessObject(istuntotehdas);
+		VeriarvoAccessObject veriarvoDAO = new VeriarvoAccessObject(istuntotehdas);
+		IlmoitusAccessObject ilmoitusDAO = new IlmoitusAccessObject(istuntotehdas);
 		
 		//Luo ensimmäinen henkilökunnan jäsen
 		Henkilökunta henkilökunta = new Henkilökunta();

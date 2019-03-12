@@ -3,6 +3,12 @@ package model;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Henkilökunta entity
+ * 
+ * @author tonin
+ *
+ */
 @Entity
 @Table(name = "henkilökunta")
 public class Henkilökunta {
@@ -104,65 +110,73 @@ public class Henkilökunta {
 	public void setEtunimi(String etunimi) {
 		this.etunimi = etunimi;
 	}
-	
+
 	/**
 	 * Palauttaa henkilökunnan jäsenen sukunimen.
+	 * 
 	 * @return sukunimi
 	 */
 	public String getSukunimi() {
 		return sukunimi;
 	}
-	
+
 	/**
 	 * Asettaa henkilökunnan jäsenelle sukunimen.
+	 * 
 	 * @param sukunimi henkilökunnan jäsenelle asetettava sukunimi
 	 */
 	public void setSukunimi(String sukunimi) {
 		this.sukunimi = sukunimi;
 	}
-	
+
 	/**
 	 * Palauttaa henkilökunnan jäsenen puhelinnumeron.
+	 * 
 	 * @return puhelinnumero
 	 */
 	public String getPuhnumero() {
 		return puhnumero;
 	}
-	
+
 	/**
 	 * Asettaa henkilökunnan jäsenelle puhelinnumeron.
+	 * 
 	 * @param puhnumero henkilökunnan jäsenelle asetettava puhelinnumero
 	 */
 	public void setPuhnumero(String puhnumero) {
 		this.puhnumero = puhnumero;
 	}
-	
+
 	/**
 	 * Palauttaa henkilökunnan jäsenen sähköpostiosoitteen.
+	 * 
 	 * @return sähköpostiosoite
 	 */
 	public String getSposti() {
 		return sposti;
 	}
-	
+
 	/**
 	 * Asettaa henkilökunnan jäsenelle sähköpostiosoitteen.
+	 * 
 	 * @param sposti henkilökunnan jäsenelle asetettava sähköpostiosoite
 	 */
 	public void setSposti(String sposti) {
 		this.sposti = sposti;
 	}
-	
+
 	/**
 	 * Palauttaa henkilökunnan jäsenen oikeuden.
+	 * 
 	 * @return oikeus
 	 */
 	public String getOikeus() {
 		return oikeus;
 	}
-	
+
 	/**
 	 * Asettaa henkilökunnan jäsenelle oikeuden.
+	 * 
 	 * @param oikeus henkilökunnan jäsenelle asetettava oikeus
 	 */
 	public void setOikeus(String oikeus) {

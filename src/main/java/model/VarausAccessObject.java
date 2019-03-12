@@ -1,30 +1,18 @@
 package model;
 
 import java.util.List;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
 public class VarausAccessObject {
-	
-	SessionFactory istuntotehdas = null;
-	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-	
-	public VarausAccessObject() {
-		try {
-			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		} catch (Exception e) {
-			System.out.println("Oh no");
-			StandardServiceRegistryBuilder.destroy(registry);
-			e.printStackTrace();
-		}
+
+	private Istuntotehdas istuntotehdas = null;
+
+	public VarausAccessObject(Istuntotehdas istuntotehdas) {
+		this.istuntotehdas = istuntotehdas;
 	}
-	
+
 	public boolean createVaraus(Varaus varaus) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -43,7 +31,7 @@ public class VarausAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	public Varaus readVaraus(int id) {
 		Session istunto = istuntotehdas.openSession();
 		Varaus varaus = new Varaus();
@@ -59,7 +47,7 @@ public class VarausAccessObject {
 		}
 		return varaus;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Varaus[] readAsiakkaanVaraukset(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -80,7 +68,7 @@ public class VarausAccessObject {
 		Varaus[] returnArray = new Varaus[result.size()];
 		return (Varaus[]) result.toArray(returnArray);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Varaus[] readHenkilökunnanVaraukset(Henkilökunta henkilökunta) {
 		Session istunto = istuntotehdas.openSession();
@@ -101,7 +89,7 @@ public class VarausAccessObject {
 		Varaus[] returnArray = new Varaus[result.size()];
 		return (Varaus[]) result.toArray(returnArray);
 	}
-	
+
 	public boolean updateVaraus(Varaus varaus) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
@@ -121,7 +109,7 @@ public class VarausAccessObject {
 		istunto.close();
 		return onnistui;
 	}
-	
+
 	public boolean deleteVaraus(int id) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();

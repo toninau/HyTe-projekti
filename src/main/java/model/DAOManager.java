@@ -6,41 +6,48 @@ package model;
  */
 
 public class DAOManager {
-	 AsiakasAccessObject asiakasDAO = null;
-	 HenkilökuntaAccessObject henkilökuntaDAO = null;
-	 ReseptiAccessObject reseptiDAO = null;
-	 SairausAccessObject sairausDAO = null;
-	 VeriarvoAccessObject veriarvoDAO = null;
-	
-	public DAOManager(){		
+	Istuntotehdas istuntotehdas = null;
+	AsiakasAccessObject asiakasDAO = null;
+	HenkilökuntaAccessObject henkilökuntaDAO = null;
+	ReseptiAccessObject reseptiDAO = null;
+	SairausAccessObject sairausDAO = null;
+	VeriarvoAccessObject veriarvoDAO = null;
+
+	public DAOManager() {
+		istuntotehdas = new Istuntotehdas();
 	}
+
 	public AsiakasAccessObject getAsiakasDAO() {
-		if(this.asiakasDAO==null) {
-			this.asiakasDAO = new AsiakasAccessObject();
-		}			
+		if (this.asiakasDAO == null) {
+			this.asiakasDAO = new AsiakasAccessObject(istuntotehdas);
+		}
 		return this.asiakasDAO;
-	}	
+	}
+
 	public HenkilökuntaAccessObject getHenkilökuntaDAO() {
-		if(this.henkilökuntaDAO==null) {
-			this.henkilökuntaDAO = new HenkilökuntaAccessObject();
+		if (this.henkilökuntaDAO == null) {
+			this.henkilökuntaDAO = new HenkilökuntaAccessObject(istuntotehdas);
 		}
 		return this.henkilökuntaDAO;
-	}	
+	}
+
 	public ReseptiAccessObject getReseptiDAO() {
-		if(this.reseptiDAO==null) {
-			this.reseptiDAO = new ReseptiAccessObject();
+		if (this.reseptiDAO == null) {
+			this.reseptiDAO = new ReseptiAccessObject(istuntotehdas);
 		}
 		return this.reseptiDAO;
 	}
+
 	public SairausAccessObject getSairausDAO() {
-		if(this.sairausDAO==null) {
-			this.sairausDAO = new SairausAccessObject();
+		if (this.sairausDAO == null) {
+			this.sairausDAO = new SairausAccessObject(istuntotehdas);
 		}
 		return this.sairausDAO;
 	}
+
 	public VeriarvoAccessObject getVeriarvoDAO() {
-		if(this.veriarvoDAO==null) {
-			this.veriarvoDAO = new VeriarvoAccessObject();
+		if (this.veriarvoDAO == null) {
+			this.veriarvoDAO = new VeriarvoAccessObject(istuntotehdas);
 		}
 		return this.veriarvoDAO;
 	}
