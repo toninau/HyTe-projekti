@@ -3,16 +3,13 @@ package controller;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
@@ -22,36 +19,83 @@ import javafx.stage.Stage;
 import model.Asiakas;
 import model.DAOManager;
 import model.Henkilökunta;
-import view.HyteGUI;
-import view.HyteGUI_IF;
+
+/**
+ * 
+ * Sisäänkirjautumisnäkymän kontrolloimiseen tarkoitettu luokka.
+ *
+ */
 
 public class LoginController {
-	HyteGUI gui;
-	Henkilökunta hkunta;
-	Asiakas asiakas;
 	
-	DAOManager daom;
+	/**
+	 * Olio, jota käytetään muiden data access objectien hallinnoimiseen.
+	 */
+	private DAOManager daom;
 
-	@FXML PasswordField pw;
-	@FXML Button loginBtn;
-	@FXML TextField username;
-	@FXML Tab customerTab;
 	
-	@FXML Tab staffTab;
-	@FXML PasswordField pwAsiakas;
-	@FXML TextField usernameAsiakas;
-	@FXML Button loginBtnAsiakas;
+	/**
+	 * Välilehti henkilökunnan kirjautumiselle
+	 */
+	@FXML private Tab staffTab;
+	
+	/**
+	 * Tekstikenttä henkilökunnalle salasanan kirjoittamista varten
+	 */
+	@FXML private PasswordField pw;
+	
+	/**
+	 * Kirjautumisnappi henkilökunnalle
+	 */
+	@FXML private Button loginBtn;
+	
+	/**
+	 * Tekstikenttä henkilökunnalle käyttäjänimen kirjoittamista varten
+	 */
+	@FXML private TextField username;
+	
+	/**
+	 * Välilehti asiakkaiden kirjautumiselle
+	 */
+	@FXML private Tab customerTab;
+	
+	/**
+	 * Tekstikenttä asiakkaan salasanan kirjoittamista varten
+	 */
+	@FXML private PasswordField pwAsiakas;
+	
+	/**
+	 * Tekstikenttä asiakkaan käyttäjänimen kirjoittamista varten
+	 */
+	@FXML private TextField usernameAsiakas;
+	
+	/**
+	 * Kirjautumisnappi asiakkaille
+	 */
+	@FXML private Button loginBtnAsiakas;
 
+	
+	/**
+	 * Konstruktori LoginController -luokalle.
+	 * Luo Data access object -managerin. 
+	 */
 	public LoginController() {	
 		daom = new DAOManager();
-
 	}
-	
+		
+	/**
+	 * Toteutetaan kun Henkilökunnan kirjautumisnappia painetaan.
+	 * Sisältää myös ylläpitäjän kirjautumisen
+	 * 
+	 * @param event	Napin klikkaus hiirellä
+	 * @throws IOException	
+	 */
 	@FXML
 	public void loginStaff(MouseEvent event) throws IOException {
+		Henkilökunta hkunta = new Henkilökunta();
 		String fxml = "";
 		String title = "Login";
-		if(getUsername().equals("admin") && getPassword().equals("admin")) {
+		if(getUsernameStaff().equals("admin") && getPasswordStaff().equals("admin")) {
 			fxml = "/AdminView.fxml";
 			title = "Admin view";
 		}
@@ -69,16 +113,29 @@ public class LoginController {
 		sceneContent(fxml, event, title);
 	}
 	
+	
+	/**
+	 * Toteutetaan kun Asiakkaan kirjautumisnappia painetaan
+	 * @param event Napin klikkaus hiirellä
+	 */
 	@FXML
 	public void loginCustomer(MouseEvent event) {
-		String fxml = "/CustomerView.fxml";
+		Asiakas asiakas = new Asiakas();
+		String fxml = "/AsiakasView.fxml";
 		String title = "Welcome!";
 		
-		if(getUsername().equals(asiakas.getSposti()) && getPassword().equals("asiakkaanpassword")) {
+		if(getUsernameStaff().equals(asiakas.getSposti()) && getPasswordStaff().equals("asiakkaanpassword")) {
 			
 		}
 	}
 	
+	/**
+	 * Vaihtaa skenen sisällön parametrien mukaan
+	 * @param fxml Fxml -tiedostom jota käytetään
+	 * @param event	Tapahtuma, jonka avulla valitaan seuraava scene
+	 * @param title	Ruudun otsikko
+	 * @throws IOException
+	 */
 	public void sceneContent(String fxml, MouseEvent event, String title) throws IOException {
 		Pane p = FXMLLoader.load(getClass().getResource(fxml));		
 		Scene scene = new Scene(p);
@@ -88,16 +145,35 @@ public class LoginController {
 		stage.show();
 	}
 	
-	public String getUsername() {
+	/**
+	 * Palauttaa henkilökunnan käyttäjätunnus -kenttään kirjoitetun tiedon
+	 * @return Työntekijän käyttäjätunnus
+	 */
+	public String getUsernameStaff() {
 		return this.username.getText();
 	}
-	public String getPassword() {
+	
+	/**
+	 * Palauttaa henkilökunnan salasana -kenttään kirjoitetun tiedon
+	 * @return	Työntekijän salasana
+	 */
+	public String getPasswordStaff() {
 		return this.pw.getText();
 	}
-
-	/*
-	public void initialize(URL location, ResourceBundle resources) {
-		a = new AdminViewController();		
+	
+	/**
+	 * Palauttaa asiakkaan käyttäjätunnus -kenttään kirjoitetun tiedon
+	 * @return Asiakkaan käyttäjätunnus
+	 */
+	public String getUsernameCustomer() {
+		return this.usernameAsiakas.getText();
 	}
-	*/
+	
+	/**
+	 * Palauttaa asiakkaan salasana -kenttään kirjoitetun tiedon
+	 * @return Asiakkaan salasana
+	 */
+	public String getPasswordCustomer() {
+		return this.pwAsiakas.getText();
+	}
 }

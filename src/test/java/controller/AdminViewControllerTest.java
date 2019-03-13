@@ -1,5 +1,5 @@
 package controller;
-
+/*
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -63,8 +63,8 @@ public class AdminViewControllerTest extends ApplicationTest{
 		clickOn("#addTab");
 		verifyThat(b, hasText("Lisää työntekijä"));
 	}
-	
-	/*@Test
+
+	@Test
 	public void addStaffTest() {
 		ac = new AdminViewController();
 		clickOn("#addTab");
@@ -79,20 +79,13 @@ public class AdminViewControllerTest extends ApplicationTest{
         clickOn("#profession");
         type(KeyCode.DOWN);
         type(KeyCode.ENTER);
-        //clickOn("#addStaff");
-       
+        
         String fname = ac.getStaffFirstName();
         verifyThat(fname, Matchers.is("firstname"));
         verifyThat(ac.getStaffSurname(), Matchers.is("surname"));
         verifyThat(ac.getStaffPhone(), Matchers.is("0401234567"));
         verifyThat(ac.getStaffEmail(), Matchers.is("example@email.com"));
         verifyThat(ac.getProfession(), Matchers.is("Hoitaja"));
-
-       	assertTrue(ac.getStaffFirstName().equals("firstname"));
-       	assertTrue(ac.getStaffSurname().equals("surname"));
-       	assertTrue(ac.getStaffPhone().equals("0401234567"));
-       	assertTrue(ac.getStaffEmail().equals("example@email.com"));
-       	assertTrue(ac.getProfession().equals("Hoitaja"));
-	}*/
+	}
 		  
-}
+}*/
