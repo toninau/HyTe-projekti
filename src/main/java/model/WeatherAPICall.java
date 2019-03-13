@@ -13,6 +13,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+/**
+ * 
+ * @author Jeremiaza
+ * Luokka sään kutsumiselle.
+ * Käyttää GSON-kirjastoa JSON:in parsetukseen
+ */
 public class WeatherAPICall {
 
 	public static void main(String[] args) throws Exception {
@@ -22,7 +28,11 @@ public class WeatherAPICall {
 		http.sendGet();
 
 	}
-	
+	/**
+	 * OpenWeatherMap-API kutsuu halutun kaupungin sään
+	 * Tulostaa säätilan
+	 * @throws Exception
+	 */
 	private void sendGet() throws Exception {
 
 		String url = "http://api.openweathermap.org/data/2.5/weather?q=Helsinki&APPID=aec9142965fb3ca48cf10cd6300423fc";
