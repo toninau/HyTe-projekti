@@ -91,8 +91,6 @@ public class LoginController {
 	}
 
 	/*
-
-	
 	public void initialize(URL location, ResourceBundle resources) {
 		a = new AdminViewController();		
 	}

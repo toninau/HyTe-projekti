@@ -79,7 +79,7 @@ public class AdminViewControllerTest extends ApplicationTest{
         clickOn("#profession");
         type(KeyCode.DOWN);
         type(KeyCode.ENTER);
-        clickOn("#addStaff");
+        //clickOn("#addStaff");
        
         String fname = ac.getStaffFirstName();
         verifyThat(fname, Matchers.is("firstname"));

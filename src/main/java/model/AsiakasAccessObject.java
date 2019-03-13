@@ -1,30 +1,19 @@
 package model;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class AsiakasAccessObject {
 
-	SessionFactory istuntotehdas = null;
-	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	private Istuntotehdas istuntotehdas = null;
 
-	public AsiakasAccessObject() {
-		try {
-			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		} catch (Exception e) {
-			System.out.println("Oh no");
-			StandardServiceRegistryBuilder.destroy(registry);
-			e.printStackTrace();
-		}
+	public AsiakasAccessObject(Istuntotehdas istunto) {
+		this.istuntotehdas = istunto;
 	}
-	
+
 	public boolean createAsiakas(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -77,7 +66,7 @@ public class AsiakasAccessObject {
 		Asiakas[] returnArray = new Asiakas[result.size()];
 		return (Asiakas[]) result.toArray(returnArray);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Henkilökunta[] readAsiakkaanHenkilökunta(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();

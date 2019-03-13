@@ -5,12 +5,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		//Testaus main, jota voidaan myös käyttää tietokannan luomista varten
-		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject();
-		SairausAccessObject sairausDAO = new SairausAccessObject();
-		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject();
-		VarausAccessObject varausDAO = new VarausAccessObject();
-		ReseptiAccessObject reseptiDAO = new ReseptiAccessObject();
-		VeriarvoAccessObject veriarvoDAO = new VeriarvoAccessObject();
+		Istuntotehdas istuntotehdas = new Istuntotehdas();
+		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject(istuntotehdas);
+		SairausAccessObject sairausDAO = new SairausAccessObject(istuntotehdas);
+		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject(istuntotehdas);
+		VarausAccessObject varausDAO = new VarausAccessObject(istuntotehdas);
+		ReseptiAccessObject reseptiDAO = new ReseptiAccessObject(istuntotehdas);
+		VeriarvoAccessObject veriarvoDAO = new VeriarvoAccessObject(istuntotehdas);
+		IlmoitusAccessObject ilmoitusDAO = new IlmoitusAccessObject(istuntotehdas);
 		
 		//Luo ensimmäinen henkilökunnan jäsen
 		Henkilökunta henkilökunta = new Henkilökunta();
@@ -194,5 +196,25 @@ public class Main {
 		for (Veriarvo v : veriarvot) {
 			System.out.println("\t"+ v.getAika() + "/" + v.getPvm() + "/" + v.getVerenpaine() + "/" + v.getVerensokeri());
 		}
+		
+		//Ilmoituksen lisääminen
+		asiakas = asiakasDAO.readAsiakas(1);
+		henkilökunta = henkilöDAO.readHenkilökunta(1);
+		Ilmoitus ilmoitus = new Ilmoitus("12.12.2000", "syö lääkkeet", asiakas, henkilökunta);
+		ilmoitusDAO.createIlmoitus(ilmoitus);
+		ilmoitus = new Ilmoitus("12.12.2002", "syö lääkkeet", asiakas, henkilökunta);
+		ilmoitusDAO.createIlmoitus(ilmoitus);
+		
+		//Ilmoituksen merkkaaminen luetuksi
+		ilmoitus = ilmoitusDAO.readIlmoitus(1);
+		ilmoitus.setLuettu(true);
+		ilmoitusDAO.updateIlmoitus(ilmoitus);
+		
+		// Ilmoituksien läpikäynti
+		Ilmoitus[] ilmoitukset = ilmoitusDAO.readAsiakkaanIlmoitukset(asiakas);
+		System.out.println("Asiakas: " + asiakas.getEtunimi() + ", " + asiakas.getSukunimi());
+		for (Ilmoitus il : ilmoitukset) {
+			System.out.println("\t"+ il.getPvm() + "/" + il.getTeksti() + "/" + il.isLuettu() + "/" + il.getHenkilökunta().getEtunimi() + ", " + il.getHenkilökunta().getSukunimi());
+		}		
 	}
 }

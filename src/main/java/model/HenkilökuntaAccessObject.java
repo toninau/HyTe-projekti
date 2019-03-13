@@ -3,27 +3,16 @@ package model;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
 public class HenkilökuntaAccessObject {
-	SessionFactory istuntotehdas = null;
-	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	private Istuntotehdas istuntotehdas = null;
 
-	public HenkilökuntaAccessObject() {
-		try {
-			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		} catch (Exception e) {
-			System.out.println("Oh no");
-			StandardServiceRegistryBuilder.destroy(registry);
-			e.printStackTrace();
-		}
+	public HenkilökuntaAccessObject(Istuntotehdas istunto) {
+		this.istuntotehdas = istunto;
 	}
-	
+
 	public boolean createHenkilökunta(Henkilökunta henkilö) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -42,7 +31,7 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public boolean addAsiakas(Henkilökunta henkilö, Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -63,7 +52,7 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	public boolean deleteAsiakas(Henkilökunta henkilö, Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -84,7 +73,7 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Asiakas[] readHenkilönAsiakkaat(Henkilökunta henkilö) {
 		Session istunto = istuntotehdas.openSession();
@@ -121,7 +110,24 @@ public class HenkilökuntaAccessObject {
 		}
 		return henkilö;
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public Henkilökunta[] readAll() {
+		Session istunto = istuntotehdas.openSession();
+		List<Henkilökunta> result = null;
+		try {
+			istunto.beginTransaction();
+			result = istunto.createQuery("from Henkilökunta").list();
+			istunto.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			istunto.close();
+		}
+		Henkilökunta[] returnArray = new Henkilökunta[result.size()];
+		return (Henkilökunta[]) result.toArray(returnArray);
+	}
+
 	public boolean updateHenkilökunta(Henkilökunta henkilökunta) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
@@ -141,7 +147,7 @@ public class HenkilökuntaAccessObject {
 		istunto.close();
 		return onnistui;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public boolean deleteHenkilökunta(int id) {
 		boolean onnistui = false;

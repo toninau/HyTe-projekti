@@ -1,27 +1,15 @@
 package model;
 
 import java.util.List;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
 public class ReseptiAccessObject {
-	SessionFactory istuntotehdas = null;
-	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	private Istuntotehdas istuntotehdas = null;
 	
-	public ReseptiAccessObject() {
-		try {
-			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		} catch (Exception e) {
-			System.out.println("Oh no");
-			StandardServiceRegistryBuilder.destroy(registry);
-			e.printStackTrace();
-		}
+	public ReseptiAccessObject(Istuntotehdas istuntotehdas) {
+		this.istuntotehdas = istuntotehdas;
 	}
 	
 	public boolean createResepti(Resepti resepti) {

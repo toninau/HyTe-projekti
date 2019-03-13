@@ -3,29 +3,30 @@
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-   <session-factory>
-   <property name="hibernate.dialect">
-      org.hibernate.dialect.MySQL5Dialect
-   </property>
-   <property name="hibernate.connection.driver_class">
-      com.mysql.jdbc.Driver
-   </property>
-   <property name="hibernate.connection.url">
-      jdbc:mysql://localhost:2206/hyte
-   </property>
-   <property name="hibernate.connection.username">
-      mikkopuu
-   </property>
-   <property name="hibernate.connection.password">
-      password123
-   </property>
-   <property name="hbm2ddl.auto">validate</property>
-   <property name="show_sql">true</property>
-   <mapping class="model.Asiakas"/>
-   <mapping class="model.Sairaus" />
-	<mapping class="model.Henkilökunta" />
-	<mapping class="model.Varaus" />
-	<mapping class="model.Resepti" />
-	<mapping class="model.Veriarvo" />
-</session-factory>
+	<session-factory>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQL5Dialect
+		</property>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost:2206/hyte
+		</property>
+		<property name="hibernate.connection.username">
+			mikkopuu
+		</property>
+		<property name="hibernate.connection.password">
+			password123
+		</property>
+		<property name="hbm2ddl.auto">validate</property>
+		<property name="show_sql">true</property>
+		<mapping class="model.Asiakas" />
+		<mapping class="model.Sairaus" />
+		<mapping class="model.Henkilökunta" />
+		<mapping class="model.Varaus" />
+		<mapping class="model.Resepti" />
+		<mapping class="model.Veriarvo" />
+		<mapping class="model.Ilmoitus" />
+	</session-factory>
 </hibernate-configuration>

@@ -24,7 +24,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Asiakas;
+import model.AsiakasAccessObject;
 import model.Henkilökunta;
+import model.HenkilökuntaAccessObject;
 import view.HyteGUI_IF;
 
 public class AdminViewController  implements Initializable  {
@@ -54,8 +56,14 @@ public class AdminViewController  implements Initializable  {
 	@FXML TextField staffID;
 	@FXML TextField customerID;
 	
+<<<<<<< HEAD
+	private AsiakasAccessObject accessObject;
+=======
+	private HenkilökuntaAccessObject hDAO;
+>>>>>>> branch 'dev' of https://github.com/toninau/HyTe-projekti/
+	
 	public AdminViewController() {
-
+		hDAO = new HenkilökuntaAccessObject();
 	}
 
 	@FXML
@@ -72,7 +80,7 @@ public class AdminViewController  implements Initializable  {
 		String email = getCustEmail();
 		String ICE = getCustICE();
 		String osoite = getCustAddress();
-		
+		accessObject.createAsiakas(asiakas);
 		String[] info = {etunimi, sukunimi, puhnro, email, hetu,
 				ICE, osoite};
 		
@@ -96,26 +104,44 @@ public class AdminViewController  implements Initializable  {
 		String puhnro = getStaffPhone();
 		String email = getStaffEmail();
 		String ammatti = getProfession();
-		
 		String[] info = {etunimi, sukunimi, puhnro, email, ammatti};
-		
+		boolean onnistui = true;
 		for (String string : info) {
-			if(string == null) {
+			if(string.isEmpty()) {
+				onnistui = false;
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Tiedot");
 				alert.setContentText("Tarkista tiedot");
 				alert.showAndWait();
+				break;
 			}
 			System.out.println(string);
 		}
+<<<<<<< HEAD
 			
 		/*hkunta.setEtunimi(etunimi);
 		hkunta.setSukunimi(sukunimi);
 		hkunta.setPuhnumero(puhnro);
 		hkunta.setSposti(email);
 		hkunta.setOikeus(ammatti);*/
+=======
+		if (onnistui) {
+			hkunta.setEtunimi(etunimi);
+			hkunta.setSukunimi(sukunimi);
+			hkunta.setPuhnumero(puhnro);
+			hkunta.setSposti(email);
+			hkunta.setOikeus(ammatti);
+			hDAO.createHenkilökunta(hkunta);
+		}
+		Henkilökunta [] kaikki = hDAO.readAll();
+		for (Henkilökunta henkilökunta : kaikki) {
+			System.out.println(henkilökunta.getEtunimi());
+		}
+>>>>>>> branch 'dev' of https://github.com/toninau/HyTe-projekti/
 	}
+		
+
 		
 	public void findStaff() {
 		Henkilökunta henk = new Henkilökunta();	
