@@ -1,5 +1,5 @@
-package controller;
-/*
+/*package controller;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -86,6 +86,6 @@ public class AdminViewControllerTest extends ApplicationTest{
         verifyThat(ac.getStaffPhone(), Matchers.is("0401234567"));
         verifyThat(ac.getStaffEmail(), Matchers.is("example@email.com"));
         verifyThat(ac.getProfession(), Matchers.is("Hoitaja"));
-	}
+	}*/
 		  
-}*/
+}
