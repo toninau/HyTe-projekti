@@ -6,14 +6,28 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
+/**
+ * 
+ * Henkilökunnan jäsenten hallintaan käytettävä DataAccessObject
+ *
+ */
 public class HenkilökuntaAccessObject {
+	/**
+	 * Sessionfactory, jota käytetään CRUD-operaatioihin
+	 */
 	private SessionFactory istuntotehdas = null;
-
+	/**
+	 * Luokan konstruktori.
+	 * @param istuntotehdas Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 */
 	public HenkilökuntaAccessObject(SessionFactory istunto) {
 		this.istuntotehdas = istunto;
 	}
-
+	/**
+	 * Uuden kentän tietokantaan tallentava metodi
+	 * @param henkilö tietokantaan tallennettava henkilökunnan jäsen
+	 * @return true, mikäli operaatio onnistui, muuten false
+	 */
 	public boolean createHenkilökunta(Henkilökunta henkilö) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -32,7 +46,12 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-
+	/**
+	 * Lisää asiakkaan jonkin henkilökunnan jäsenen asiakkaaksi
+	 * @param henkilö Henkilökunnan jäsen, jolle asiakas lisätään
+	 * @param asiakas Lisättävä asiakas
+	 * @return true, jos operaatio onnistui, muuten false
+	 */
 	@SuppressWarnings("rawtypes")
 	public boolean addAsiakas(Henkilökunta henkilö, Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -53,7 +72,12 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-
+	/**
+	 * Poistaa asiakkaan "asiakkuuden" joltain henkilökunnan jäseneltä
+	 * @param henkilö Henkilökunnan jäsen, jolta asiakas poistetaan
+	 * @param asiakas Poistettava asiakas
+	 * @return true, jos operaatio onnistui, muuten false
+	 */
 	@SuppressWarnings("rawtypes")
 	public boolean deleteAsiakas(Henkilökunta henkilö, Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -74,7 +98,11 @@ public class HenkilökuntaAccessObject {
 		}
 		return onnistui;
 	}
-
+	/**
+	 * Palauttaa listan jonkun henkilökunnan jäsenen asiakkaista
+	 * @param henkilö Henkilökunnan jäsen, jonka asiakkaita haetaan
+	 * @return Lista henkilökunnan jäsenen asiakkaista
+	 */
 	@SuppressWarnings("unchecked")
 	public Asiakas[] readHenkilönAsiakkaat(Henkilökunta henkilö) {
 		Session istunto = istuntotehdas.openSession();
@@ -95,7 +123,11 @@ public class HenkilökuntaAccessObject {
 		Asiakas[] returnArray = new Asiakas[result.size()];
 		return (Asiakas[]) result.toArray(returnArray);
 	}
-
+	/**
+	 * Hakee tietokannasta halutun henkilön
+	 * @param id Haettavan henkilön id
+	 * @return Haettu henkilökunnan jäsen
+	 */
 	public Henkilökunta readHenkilökunta(int id) {
 		Session istunto = istuntotehdas.openSession();
 		Henkilökunta henkilö = new Henkilökunta();
@@ -111,7 +143,12 @@ public class HenkilökuntaAccessObject {
 		}
 		return henkilö;
 	}
-
+	/**
+	 * Lukee tietokannasta listana kaikki henkilökunnan jäsenet
+	 * 
+	 *
+	 * @return lista, joka sisltää henkilökunnan jäsenet
+	 */
 	@SuppressWarnings("unchecked")
 	public Henkilökunta[] readAll() {
 		Session istunto = istuntotehdas.openSession();
@@ -128,7 +165,11 @@ public class HenkilökuntaAccessObject {
 		Henkilökunta[] returnArray = new Henkilökunta[result.size()];
 		return (Henkilökunta[]) result.toArray(returnArray);
 	}
-
+	/**
+	 * Metodi jonkin henkilökunnan jäsenen tietojen päivittämiseen
+	 * @param henkilökunta Päivitettävä henkilökunnan jäsen
+	 * @return true, mikäli operaatio onnistui, muuten false
+	 */
 	public boolean updateHenkilökunta(Henkilökunta henkilökunta) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
@@ -148,7 +189,11 @@ public class HenkilökuntaAccessObject {
 		istunto.close();
 		return onnistui;
 	}
-
+/**
+ * Poistaa yhden henkilökunnan jäsenen
+ * @param id poistettavan henkilökunnan jäsenen id
+ * @return true, jos operaatio onnistui, muuten false
+ */
 	@SuppressWarnings("unchecked")
 	public boolean deleteHenkilökunta(int id) {
 		boolean onnistui = false;

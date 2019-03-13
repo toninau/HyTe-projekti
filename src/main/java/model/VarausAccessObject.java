@@ -5,15 +5,28 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
+/**
+ * 
+ * Asiakkaiden varauksien hallintaan käytettävä DataAccessObject
+ *
+ */
 public class VarausAccessObject {
-
+	/**
+	 * Sessionfactory, jota käytetään CRUD-operaatioihin
+	 */
 	private SessionFactory istuntotehdas = null;
-
+	/**
+	 * Luokan konstruktori.
+	 * @param istuntotehdas Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 */
 	public VarausAccessObject(SessionFactory istuntotehdas) {
 		this.istuntotehdas = istuntotehdas;
 	}
-
+	/**
+	 * Uuden kentän tietokantaan tallentava metodi
+	 * @param varaus tietokantaan tallennettava varaus
+	 * @return true, mikäli operaatio onnistui, muuten false
+	 */
 	public boolean createVaraus(Varaus varaus) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -32,7 +45,12 @@ public class VarausAccessObject {
 		}
 		return onnistui;
 	}
-
+	/**
+	 * Lukee tietokannasta listana kaikki asiakkaan varaukset
+	 * @param asiakas asiakas, jonka varauksia luetaan
+	 *
+	 * @return lista, joka sisältää arvot
+	 */
 	public Varaus readVaraus(int id) {
 		Session istunto = istuntotehdas.openSession();
 		Varaus varaus = new Varaus();
@@ -48,7 +66,11 @@ public class VarausAccessObject {
 		}
 		return varaus;
 	}
-
+	/**
+	 * Metodi jonkun asiakkaan kaikkien varausten hakemiseen
+	 * @param asiakas Asiakas, jonka varaus haetaan
+	 * @return Lista haetuista varauksista
+	 */
 	@SuppressWarnings("unchecked")
 	public Varaus[] readAsiakkaanVaraukset(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -69,7 +91,11 @@ public class VarausAccessObject {
 		Varaus[] returnArray = new Varaus[result.size()];
 		return (Varaus[]) result.toArray(returnArray);
 	}
-
+	/**
+	 * Metodi jonkun henkilökunnan tekemien varausten hakemiseen
+	 * @param henkilökunta Henkilökunnan jäsen, jonka tekemät varaukset haetaan
+	 * @return Lista varauksista
+	 */
 	@SuppressWarnings("unchecked")
 	public Varaus[] readHenkilökunnanVaraukset(Henkilökunta henkilökunta) {
 		Session istunto = istuntotehdas.openSession();
@@ -90,7 +116,11 @@ public class VarausAccessObject {
 		Varaus[] returnArray = new Varaus[result.size()];
 		return (Varaus[]) result.toArray(returnArray);
 	}
-
+	/**
+	 * Metodi varauksen päivittämistä varten
+	 * @param varaus Päivitettävä varaus
+	 * @return true, mikäli operaatio onnistui, muuten false
+	 */
 	public boolean updateVaraus(Varaus varaus) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
@@ -110,7 +140,11 @@ public class VarausAccessObject {
 		istunto.close();
 		return onnistui;
 	}
-
+	/**
+	 * Metodi jonkin tietyn varauksen poistamista varten
+	 * @param id Poistettavan varauksen id
+	 * @return true, jos operaatio onnistui, muuten falses
+	 */
 	public boolean deleteVaraus(int id) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();

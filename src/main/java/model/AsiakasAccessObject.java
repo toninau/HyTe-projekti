@@ -6,15 +6,28 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
-
+/**
+ * 
+ * Asiakkaiden hallintaan käytettävä DataAccessObject
+ *
+ */
 public class AsiakasAccessObject {
-
+	/**
+	 * Sessionfactory, jota käytetään CRUD-operaatioihin
+	 */
 	private SessionFactory istuntotehdas = null;
-
+	/**
+	 * Luokan konstruktori.
+	 * @param istuntotehdas Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 */
 	public AsiakasAccessObject(SessionFactory istunto) {
 		this.istuntotehdas = istunto;
 	}
-
+	/**
+	 * Uuden kentän tietokantaan tallentava metodi
+	 * @param veriarvo tietokantaan tallennettava arvo
+	 * @return true, mikäli operaatio onnistui, muuten false
+	 */
 	public boolean createAsiakas(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -33,7 +46,11 @@ public class AsiakasAccessObject {
 		}
 		return onnistui;
 	}
-
+	/**
+	 * Metodi yhden asiakkaan tietojen hakemiseen tietokannasta
+	 * @param id Haettavan asiakkaan id
+	 * @return Asiakkaan tiedot
+	 */
 	public Asiakas readAsiakas(int id) {
 		Session istunto = istuntotehdas.openSession();
 		Asiakas asiakas = new Asiakas();
@@ -49,7 +66,12 @@ public class AsiakasAccessObject {
 		}
 		return asiakas;
 	}
-
+	/**
+	 * Lukee tietokannasta listana kaikki asiakkaat
+	 *
+	 *
+	 * @return lista, joka sisltää asiakkaat
+	 */
 	@SuppressWarnings("unchecked")
 	public Asiakas[] readAsiakkaat() {
 		Session istunto = istuntotehdas.openSession();
@@ -67,7 +89,11 @@ public class AsiakasAccessObject {
 		Asiakas[] returnArray = new Asiakas[result.size()];
 		return (Asiakas[]) result.toArray(returnArray);
 	}
-
+	/**
+	 * Metodi henkilökunnan jäsenten, joiden asiakkaana tietty asiakas on, hakemiseen
+	 * @param asiakas Asiakas, jonka henkilökunta haetaan
+	 * @return Lista henkilökunnan jäsenistä
+	 */
 	@SuppressWarnings("unchecked")
 	public Henkilökunta[] readAsiakkaanHenkilökunta(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -88,7 +114,11 @@ public class AsiakasAccessObject {
 		Henkilökunta[] returnArray = new Henkilökunta[result.size()];
 		return (Henkilökunta[]) result.toArray(returnArray);
 	}
-
+	/**
+	 * Metodi asiakkaan tietojen päivittämistä varten
+	 * @param asiakas Asiakas, jonka tietoja päivitetään
+	 * @return true, jos operaatio onnistui, muuten false
+	 */
 	public boolean updateAsiakas(Asiakas asiakas) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
@@ -110,7 +140,11 @@ public class AsiakasAccessObject {
 		istunto.close();
 		return onnistui;
 	}
-
+	/**
+	 * Metodi asiakkaan tietojen poistamiseen
+	 * @param id Poistettavan asiakkaan id
+	 * @return true, mikäli operaatio onnistui, muuten false
+	 */
 	public boolean deleteAsiakas(int id) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();
