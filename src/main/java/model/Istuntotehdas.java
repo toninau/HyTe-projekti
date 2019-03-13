@@ -8,17 +8,26 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class Istuntotehdas {
 	
-	private SessionFactory istuntotehdas = null;
-	private final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+	private static SessionFactory istuntotehdas;
+	private final static StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 
 	public Istuntotehdas() {
-		try {
+		/*try {
 			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+			System.out.println("tehdasluotu");
 		} catch (Exception e) {
 			System.out.println("Oh no");
 			StandardServiceRegistryBuilder.destroy(registry);
 			e.printStackTrace();
+		}*/
+	}
+	
+	public static synchronized SessionFactory getSessionFactory() {
+		if (istuntotehdas == null) {
+			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+			System.out.println("tehdas tulilla");
 		}
+		return istuntotehdas;
 	}
 	
 	public Session openSession() {

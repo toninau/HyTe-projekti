@@ -2,13 +2,14 @@ package model;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class ReseptiAccessObject {
-	private Istuntotehdas istuntotehdas = null;
+	private SessionFactory istuntotehdas = null;
 	
-	public ReseptiAccessObject(Istuntotehdas istuntotehdas) {
+	public ReseptiAccessObject(SessionFactory istuntotehdas) {
 		this.istuntotehdas = istuntotehdas;
 	}
 	

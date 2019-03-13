@@ -25,6 +25,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Asiakas;
 import model.AsiakasAccessObject;
+import model.DAOManager;
 import model.Henkilökunta;
 import model.HenkilökuntaAccessObject;
 import view.HyteGUI_IF;
@@ -56,14 +57,14 @@ public class AdminViewController  implements Initializable  {
 	@FXML TextField staffID;
 	@FXML TextField customerID;
 	
-<<<<<<< HEAD
 	private AsiakasAccessObject accessObject;
-=======
-	private HenkilökuntaAccessObject hDAO;
->>>>>>> branch 'dev' of https://github.com/toninau/HyTe-projekti/
+
+	private DAOManager daoM;
+
 	
 	public AdminViewController() {
-		hDAO = new HenkilökuntaAccessObject();
+		daoM = new DAOManager();
+		
 	}
 
 	@FXML
@@ -72,6 +73,7 @@ public class AdminViewController  implements Initializable  {
 	
 	
 	public void addCustomer() {
+		
 		Asiakas asiakas = new Asiakas();
 		String hetu = getCustHetu();
 		String etunimi = getCustFirstname();
@@ -118,27 +120,27 @@ public class AdminViewController  implements Initializable  {
 			}
 			System.out.println(string);
 		}
-<<<<<<< HEAD
+
 			
 		/*hkunta.setEtunimi(etunimi);
 		hkunta.setSukunimi(sukunimi);
 		hkunta.setPuhnumero(puhnro);
 		hkunta.setSposti(email);
 		hkunta.setOikeus(ammatti);*/
-=======
+
 		if (onnistui) {
 			hkunta.setEtunimi(etunimi);
 			hkunta.setSukunimi(sukunimi);
 			hkunta.setPuhnumero(puhnro);
 			hkunta.setSposti(email);
 			hkunta.setOikeus(ammatti);
-			hDAO.createHenkilökunta(hkunta);
-		}
-		Henkilökunta [] kaikki = hDAO.readAll();
+			HenkilökuntaAccessObject hdao = daoM.getHenkilökuntaDAO();
+			hdao.createHenkilökunta(hkunta);
+			}
+		Henkilökunta [] kaikki = daoM.getHenkilökuntaDAO().readAll();
 		for (Henkilökunta henkilökunta : kaikki) {
 			System.out.println(henkilökunta.getEtunimi());
 		}
->>>>>>> branch 'dev' of https://github.com/toninau/HyTe-projekti/
 	}
 		
 

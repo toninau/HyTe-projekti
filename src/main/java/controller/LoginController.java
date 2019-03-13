@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Asiakas;
+import model.DAOManager;
 import model.Henkilökunta;
 import view.HyteGUI;
 import view.HyteGUI_IF;
@@ -28,6 +29,8 @@ public class LoginController {
 	HyteGUI gui;
 	Henkilökunta hkunta;
 	Asiakas asiakas;
+	
+	DAOManager daom;
 
 	@FXML PasswordField pw;
 	@FXML Button loginBtn;
@@ -40,10 +43,12 @@ public class LoginController {
 	@FXML Button loginBtnAsiakas;
 
 	public LoginController() {	
+		daom = new DAOManager();
+
 	}
 	
 	@FXML
-	public void loginStaff(MouseEvent event) throws IOException {	
+	public void loginStaff(MouseEvent event) throws IOException {
 		String fxml = "";
 		String title = "Login";
 		if(getUsername().equals("admin") && getPassword().equals("admin")) {

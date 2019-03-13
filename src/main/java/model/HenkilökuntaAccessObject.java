@@ -3,13 +3,14 @@ package model;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class HenkilökuntaAccessObject {
-	private Istuntotehdas istuntotehdas = null;
+	private SessionFactory istuntotehdas = null;
 
-	public HenkilökuntaAccessObject(Istuntotehdas istunto) {
+	public HenkilökuntaAccessObject(SessionFactory istunto) {
 		this.istuntotehdas = istunto;
 	}
 

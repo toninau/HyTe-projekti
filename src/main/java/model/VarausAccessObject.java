@@ -2,14 +2,15 @@ package model;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class VarausAccessObject {
 
-	private Istuntotehdas istuntotehdas = null;
+	private SessionFactory istuntotehdas = null;
 
-	public VarausAccessObject(Istuntotehdas istuntotehdas) {
+	public VarausAccessObject(SessionFactory istuntotehdas) {
 		this.istuntotehdas = istuntotehdas;
 	}
 

@@ -1,11 +1,12 @@
 package model;
 
+import org.hibernate.SessionFactory;
 
 public class Main {
 
 	public static void main(String[] args) {
 		//Testaus main, jota voidaan myös käyttää tietokannan luomista varten
-		Istuntotehdas istuntotehdas = new Istuntotehdas();
+		SessionFactory istuntotehdas = Istuntotehdas.getSessionFactory();
 		AsiakasAccessObject asiakasDAO = new AsiakasAccessObject(istuntotehdas);
 		SairausAccessObject sairausDAO = new SairausAccessObject(istuntotehdas);
 		HenkilökuntaAccessObject henkilöDAO = new HenkilökuntaAccessObject(istuntotehdas);

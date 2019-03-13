@@ -2,14 +2,15 @@ package model;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class VeriarvoAccessObject {
 
-	private Istuntotehdas istuntotehdas = null;
+	private SessionFactory istuntotehdas = null;
 
-	public VeriarvoAccessObject(Istuntotehdas istuntotehdas) {
+	public VeriarvoAccessObject(SessionFactory istuntotehdas) {
 		this.istuntotehdas = istuntotehdas;
 	}
 
