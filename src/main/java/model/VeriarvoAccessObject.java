@@ -5,13 +5,34 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-public class VeriarvoAccessObject {
 
+/**
+ * 
+ * 
+ * Asiakkaan veriarvojen DataAccessObject.
+ */
+public class VeriarvoAccessObject {
+	/**
+	 * Sessionfactory, jota käytetään CRUD-operaatioihin
+	 */
 	private SessionFactory istuntotehdas = null;
+
+	/**
+	 * Luokan konstruktori.
+	 * 
+	 * @param istuntotehdas Saa parametrina Sessionfactory-olion, jota käytetään
+	 *                      koko sovelluksessa
+	 */
 	public VeriarvoAccessObject(SessionFactory istuntotehdas) {
 		this.istuntotehdas = istuntotehdas;
 	}
 
+	/**
+	 * Uuden kentän tietokantaan tallentava metodi
+	 * 
+	 * @param veriarvo tietokantaan tallennettava arvo
+	 * @return true, mikäli operaatio onnistui, muuten false
+	 */
 	public boolean createVeriarvo(Veriarvo veriarvo) {
 		Session istunto = istuntotehdas.openSession();
 		Transaction transaktio = null;
@@ -31,6 +52,13 @@ public class VeriarvoAccessObject {
 		return onnistui;
 	}
 
+	/**
+	 * Lukee tietokannasta listana kaikki asiakkaan veriarvot
+	 * 
+	 * @param asiakas asiakas, jonka veriarvoja luetaan
+	 *
+	 * @return lista, joka sisältää arvot
+	 */
 	@SuppressWarnings("unchecked")
 	public Veriarvo[] readAsiakkaanVeriarvot(Asiakas asiakas) {
 		Session istunto = istuntotehdas.openSession();
@@ -52,6 +80,12 @@ public class VeriarvoAccessObject {
 		return (Veriarvo[]) result.toArray(returnArray);
 	}
 
+	/**
+	 * Poistaa halutun arvon tietokannasta
+	 * 
+	 * @param id poistettavan arvon id
+	 * @return true, mikäli operaatio onnistui, muuten false
+	 */
 	public boolean deleteVeriarvo(int id) {
 		boolean onnistui = false;
 		Session istunto = istuntotehdas.openSession();

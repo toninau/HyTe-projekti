@@ -31,7 +31,7 @@ public class WeatherAPICall {
 	/**
 	 * OpenWeatherMap-API kutsuu halutun kaupungin sään
 	 * Tulostaa säätilan
-	 * @throws Exception
+	 * @throws Exception virhe tapahtuu
 	 */
 	private void sendGet() throws Exception {
 

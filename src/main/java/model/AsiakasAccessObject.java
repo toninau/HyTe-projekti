@@ -16,16 +16,18 @@ public class AsiakasAccessObject {
 	 * Sessionfactory, jota käytetään CRUD-operaatioihin
 	 */
 	private SessionFactory istuntotehdas = null;
+
 	/**
 	 * Luokan konstruktori.
-	 * @param istuntotehdas Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 * @param istunto Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
 	 */
 	public AsiakasAccessObject(SessionFactory istunto) {
 		this.istuntotehdas = istunto;
 	}
+	
 	/**
 	 * Uuden kentän tietokantaan tallentava metodi
-	 * @param veriarvo tietokantaan tallennettava arvo
+	 * @param asiakas tietokantaan tallennettava asiakas
 	 * @return true, mikäli operaatio onnistui, muuten false
 	 */
 	public boolean createAsiakas(Asiakas asiakas) {

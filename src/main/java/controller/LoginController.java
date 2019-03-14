@@ -88,7 +88,7 @@ public class LoginController {
 	 * Sisältää myös ylläpitäjän kirjautumisen
 	 * 
 	 * @param event	Napin klikkaus hiirellä
-	 * @throws IOException	
+	 * @throws IOException virhe tapahtuu
 	 */
 	@FXML
 	public void loginStaff(MouseEvent event) throws IOException {
@@ -134,7 +134,7 @@ public class LoginController {
 	 * @param fxml Fxml -tiedostom jota käytetään
 	 * @param event	Tapahtuma, jonka avulla valitaan seuraava scene
 	 * @param title	Ruudun otsikko
-	 * @throws IOException
+	 * @throws IOException virhe tapahtuu
 	 */
 	public void sceneContent(String fxml, MouseEvent event, String title) throws IOException {
 		Pane p = FXMLLoader.load(getClass().getResource(fxml));		
