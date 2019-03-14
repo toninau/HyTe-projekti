@@ -45,10 +45,10 @@ public class VarausAccessObject {
 		}
 		return onnistui;
 	}
+	
 	/**
 	 * Lukee tietokannasta listana kaikki asiakkaan varaukset
-	 * @param asiakas asiakas, jonka varauksia luetaan
-	 *
+	 * @param id asiakas, jonka varauksia luetaan
 	 * @return lista, joka sisältää arvot
 	 */
 	public Varaus readVaraus(int id) {

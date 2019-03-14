@@ -16,9 +16,10 @@ public class HenkilökuntaAccessObject {
 	 * Sessionfactory, jota käytetään CRUD-operaatioihin
 	 */
 	private SessionFactory istuntotehdas = null;
+	
 	/**
 	 * Luokan konstruktori.
-	 * @param istuntotehdas Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 * @param istunto Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
 	 */
 	public HenkilökuntaAccessObject(SessionFactory istunto) {
 		this.istuntotehdas = istunto;

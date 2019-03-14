@@ -112,7 +112,7 @@ public class Veriarvo {
 	 * Asettaa veriarvon veriarvoID:n. VeriarvoID-arvo määritellään automaattisesti
 	 * tietokannassa. Ei käytetä uuden veriarvon luomisessa.
 	 * 
-	 * @param veriarvoID
+	 * @param veriarvoID veriarvolle asetettava id
 	 */
 	public void setVeriarvoID(int veriarvoID) {
 		this.veriarvoID = veriarvoID;
