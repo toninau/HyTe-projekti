@@ -3,7 +3,6 @@ package view;
 import java.io.IOException;
 
 import controller.AdminViewController;
-import controller.Controller_IF;
 import controller.LoginController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -20,7 +19,7 @@ import javafx.scene.layout.Pane;
  * Sovelluksen käyttäjäliittymän kirjautumisruutu
  * 
  */
-public class HyteGUI extends Application implements HyteGUI_IF{
+public class HyteGUI extends Application {
 	
 	private LoginController lc;
 	private Stage primaryStage;
