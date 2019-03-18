@@ -216,6 +216,7 @@ public class Main {
 		System.out.println("Asiakas: " + asiakas.getEtunimi() + ", " + asiakas.getSukunimi());
 		for (Ilmoitus il : ilmoitukset) {
 			System.out.println("\t"+ il.getPvm() + "/" + il.getTeksti() + "/" + il.isLuettu() + "/" + il.getHenkilökunta().getEtunimi() + ", " + il.getHenkilökunta().getSukunimi());
-		}		
+		}
+		//Testi committi
 	}
 }
