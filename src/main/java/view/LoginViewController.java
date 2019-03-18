@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ import model.Henkilökunta;
  *
  */
 
-public class LoginController {
+public class LoginViewController {
 	
 	/**
 	 * Olio, jota käytetään muiden data access objectien hallinnoimiseen.
@@ -79,7 +79,7 @@ public class LoginController {
 	 * Konstruktori LoginController -luokalle.
 	 * Luo Data access object -managerin. 
 	 */
-	public LoginController() {	
+	public LoginViewController() {	
 		daom = new DAOManager();
 	}
 		

@@ -2,8 +2,6 @@ package view;
 
 import java.io.IOException;
 
-import controller.AdminViewController;
-import controller.LoginController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +19,7 @@ import javafx.scene.layout.Pane;
  */
 public class HyteGUI extends Application {
 	
-	private LoginController lc;
+	private LoginViewController lc;
 	private Stage primaryStage;
 	
 	public static void main(String[] args) {
@@ -37,7 +35,7 @@ public class HyteGUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Login");        
-        AnchorPane rootLayout = FXMLLoader.load(getClass().getResource("/Skene.fxml"));       
+        AnchorPane rootLayout = FXMLLoader.load(getClass().getResource("/LoginView.fxml"));       
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
