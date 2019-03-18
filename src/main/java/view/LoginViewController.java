@@ -103,7 +103,7 @@ public class LoginViewController {
 			fxml = "/StaffView.fxml";
 			title = "Staff view";
 		}*/else {
-			fxml = "/Skene.fxml";			
+			fxml = "/LoginView.fxml";			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Login failed.");
 			alert.setHeaderText(null);
@@ -117,15 +117,16 @@ public class LoginViewController {
 	/**
 	 * Toteutetaan kun Asiakkaan kirjautumisnappia painetaan
 	 * @param event Napin klikkaus hiirellä
+	 * @throws IOException virhe tapahtuu
 	 */
 	@FXML
-	public void loginCustomer(MouseEvent event) {
+	public void loginCustomer(MouseEvent event) throws IOException {
 		Asiakas asiakas = new Asiakas();
 		String fxml = "/AsiakasView.fxml";
 		String title = "Welcome!";
 		
 		if(getUsernameStaff().equals(asiakas.getSposti()) && getPasswordStaff().equals("asiakkaanpassword")) {
-			
+			sceneContent(fxml, event, title);
 		}
 	}
 	
