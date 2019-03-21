@@ -9,28 +9,28 @@ import org.hibernate.SessionFactory;
  */
 public class DAOManager {
 	
-	private AsiakasAccessObject asiakasDAO = null;
-	private HenkilökuntaAccessObject henkilökuntaDAO = null;
-	private ReseptiAccessObject reseptiDAO = null;
-	private SairausAccessObject sairausDAO = null;
-	private VeriarvoAccessObject veriarvoDAO = null;
+	private CustomerDAO asiakasDAO = null;
+	private StaffDAO henkilökuntaDAO = null;
+	private PrescriptionDAO reseptiDAO = null;
+	private IllnessDAO sairausDAO = null;
+	private BloodValueDAO veriarvoDAO = null;
 	private SessionFactory s;
 	
 	/**
 	 * DAOManagerin konstruktori, joka hakee istuntotehtaan.
 	 */
 	public DAOManager() {
-		s =Istuntotehdas.getSessionFactory();
+		s =HibernateUtil.getSessionFactory();
 	}
 
 	/**
 	 * Luo asiakas data access objectin, jos sitä ei ole vielä luotu,
 	 * muuten palauttaa jo olemassa olevan asiakasDAOn.
-	 * @return	AsiakasAccessObject.
+	 * @return	CustomerDAO.
 	 */
-	public AsiakasAccessObject getAsiakasDAO() {
+	public CustomerDAO getAsiakasDAO() {
 		if (this.asiakasDAO == null) {
-			this.asiakasDAO = new AsiakasAccessObject(s);
+			this.asiakasDAO = new CustomerDAO(s);
 		}
 		return this.asiakasDAO;
 	}
@@ -38,11 +38,11 @@ public class DAOManager {
 	/**
 	 * Luo henkiökunta data access objectin, jos sitä ei ole vielä luotu,
 	 * muuten palauttaa jo olemassa olevan henkilökuntaDAOn.
-	 * @return	HenkilökuntaAccessObject
+	 * @return	StaffDAO
 	 */
-	public HenkilökuntaAccessObject getHenkilökuntaDAO() {
+	public StaffDAO getHenkilökuntaDAO() {
 		if (henkilökuntaDAO == null) {
-			henkilökuntaDAO = new HenkilökuntaAccessObject(s);
+			henkilökuntaDAO = new StaffDAO(s);
 		}
 		return henkilökuntaDAO;
 	}
@@ -50,11 +50,11 @@ public class DAOManager {
 	/**
 	 * Luo resepti data access objectin, jos sitä ei ole vielä luotu,
 	 * muuten palauttaa jo olemassa olevan reseptiDAOn.
-	 * @return	ReseptiAccessObject.
+	 * @return	PrescriptionDAO.
 	 */
-	public ReseptiAccessObject getReseptiDAO() {
+	public PrescriptionDAO getReseptiDAO() {
 		if (this.reseptiDAO == null) {
-			this.reseptiDAO = new ReseptiAccessObject(s);
+			this.reseptiDAO = new PrescriptionDAO(s);
 		}
 		return this.reseptiDAO;
 	}
@@ -62,11 +62,11 @@ public class DAOManager {
 	/**
 	 * Luo sairaus data access objectin, jos sitä ei ole vielä luotu,
 	 * muuten palauttaa jo olemassa olevan sairausDAOn.
-	 * @return	SairausAccessObject.
+	 * @return	IllnessDAO.
 	 */
-	public SairausAccessObject getSairausDAO() {
+	public IllnessDAO getSairausDAO() {
 		if (this.sairausDAO == null) {
-			this.sairausDAO = new SairausAccessObject(s);
+			this.sairausDAO = new IllnessDAO(s);
 		}
 		return this.sairausDAO;
 	}
@@ -74,11 +74,11 @@ public class DAOManager {
 	/**
 	 * Luo veriarvo data access objectin, jos sitä ei ole vielä luotu,
 	 * muuten palauttaa jo olemassa olevan veriarvoDAON.
-	 * @return	VeriarvoAccessObject
+	 * @return	BloodValueDAO
 	 */
-	public VeriarvoAccessObject getVeriarvoDAO() {
+	public BloodValueDAO getVeriarvoDAO() {
 		if (this.veriarvoDAO == null) {
-			this.veriarvoDAO = new VeriarvoAccessObject(s);
+			this.veriarvoDAO = new BloodValueDAO(s);
 		}
 		return this.veriarvoDAO;
 	}

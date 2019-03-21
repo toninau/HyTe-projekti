@@ -11,11 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import model.Asiakas;
-import model.AsiakasAccessObject;
+import model.Customer;
+import model.CustomerDAO;
 import model.DAOManager;
-import model.Henkilökunta;
-import model.HenkilökuntaAccessObject;
+import model.Staff;
+import model.StaffDAO;
 
 /**
  * Luokka kontrolloi ylläpitäjän näkymää 
@@ -68,7 +68,7 @@ public class AdminViewController  implements Initializable  {
 	 */
 	public void addCustomer() {
 		
-		Asiakas asiakas = new Asiakas();
+		Customer customer = new Customer();
 		String hetu = getCustHetu();
 		String etunimi = getCustFirstname();
 		String sukunimi = getCustSurname();
@@ -76,8 +76,8 @@ public class AdminViewController  implements Initializable  {
 		String email = getCustEmail();
 		String ICE = getCustICE();
 		String osoite = getCustAddress();
-		AsiakasAccessObject ao = daoM.getAsiakasDAO();
-		ao.createAsiakas(asiakas);
+		CustomerDAO ao = daoM.getAsiakasDAO();
+		ao.createAsiakas(customer);
 		String[] info = {etunimi, sukunimi, puhnro, email, hetu,
 				ICE, osoite};
 		
@@ -99,7 +99,7 @@ public class AdminViewController  implements Initializable  {
 	 * Käynnistyy napin painalluksesta.
 	 */
 	public void addStaff() {
-		Henkilökunta hkunta = new Henkilökunta();
+		Staff hkunta = new Staff();
 		String etunimi = getStaffFirstName();
 		String sukunimi = getStaffSurname();
 		String puhnro = getStaffPhone();
@@ -126,12 +126,12 @@ public class AdminViewController  implements Initializable  {
 			hkunta.setPuhnumero(puhnro);
 			hkunta.setSposti(email);
 			hkunta.setOikeus(ammatti);
-			HenkilökuntaAccessObject hdao = daoM.getHenkilökuntaDAO();
+			StaffDAO hdao = daoM.getHenkilökuntaDAO();
 			hdao.createHenkilökunta(hkunta);
 			}
-		Henkilökunta [] kaikki = daoM.getHenkilökuntaDAO().readAll();
-		for (Henkilökunta henkilökunta : kaikki) {
-			System.out.println(henkilökunta.getEtunimi());
+		Staff [] kaikki = daoM.getHenkilökuntaDAO().readAll();
+		for (Staff staff : kaikki) {
+			System.out.println(staff.getFirstName());
 		}
 	}
 		
@@ -140,7 +140,7 @@ public class AdminViewController  implements Initializable  {
 	 * Etsii halutun työntekijän tietokannasta ID:n avulla.
 	 */
 	public void findStaff() {
-		Henkilökunta henk = new Henkilökunta();	
+		Staff henk = new Staff();	
 		if(henk.getHenkilökuntaID() != getStaffID()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
@@ -148,8 +148,8 @@ public class AdminViewController  implements Initializable  {
 			alert.setContentText("Tarkista tiedot");
 			alert.showAndWait();
 		}else {
-			String[] tiedot = {henk.getEtunimi(), henk.getSukunimi(),
-					henk.getPuhnumero(), henk.getSposti(), henk.getOikeus()};
+			String[] tiedot = {henk.getFirstName(), henk.getSurname(),
+					henk.getPhoneNumber(), henk.getEmail(), henk.getAccessLevel()};
 				for (String string : tiedot) {
 					System.out.println(string);
 				}
@@ -160,17 +160,17 @@ public class AdminViewController  implements Initializable  {
 	 * Etsii halutun asiakkaan tietokannasta ID:n avulla.
 	 */
 	public void findCustomer() {
-		Asiakas asiakas = new Asiakas();	
-		if(asiakas.getAsiakasID() != getCustomerID()) {
+		Customer customer = new Customer();	
+		if(customer.getAsiakasID() != getCustomerID()) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("Tiedot");
 			alert.setContentText("Tarkista tiedot");
 			alert.showAndWait();
 		}else {
-			String[] tiedot = {asiakas.getEtunimi(), asiakas.getSukunimi(),
-				asiakas.getHetu(), asiakas.getKotiosoite(), asiakas.getPuhnumero(),
-				asiakas.getIcenumero(), asiakas.getSposti()};
+			String[] tiedot = {customer.getFirstName(), customer.getSurname(),
+				customer.getHetu(), customer.getKotiosoite(), customer.getPhoneNumber(),
+				customer.getIcenumero(), customer.getEmail()};
 					
 			for (String string : tiedot) {
 				System.out.println(string);

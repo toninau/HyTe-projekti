@@ -6,85 +6,85 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class VeriarvoTest {
-	private Veriarvo veriarvo;
-	private Asiakas asiakas;
+	private BloodValue bloodValue;
+	private Customer customer;
 
 	@BeforeEach
 	public void setVeriarvo() {
-		veriarvo = new Veriarvo();
-		asiakas = new Asiakas();
+		bloodValue = new BloodValue();
+		customer = new Customer();
 	}
 
 	@Test
 	public void testTyhjäKonstruktori() {
 		try {
-			veriarvo = new Veriarvo();
+			bloodValue = new BloodValue();
 		} catch (Exception e) {
-			fail("Veriarvo-olion luonti epäonnistui");
+			fail("BloodValue-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testKonstruktoriKaikki() {
 		try {
-			veriarvo = new Veriarvo("12.12.2000", "12:12", 6.0, "120/120/120");
+			bloodValue = new BloodValue("12.12.2000", "12:12", 6.0, "120/120/120");
 		} catch (Exception e) {
-			fail("Veriarvo-olion luonti epäonnistui");
+			fail("BloodValue-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testKonstruktoriVerenpaine() {
 		try {
-			veriarvo = new Veriarvo("12.12.2000", "12:12", "120/120/100");
+			bloodValue = new BloodValue("12.12.2000", "12:12", "120/120/100");
 		} catch (Exception e) {
-			fail("Veriarvo-olion luonti epäonnistui");
+			fail("BloodValue-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testKonstruktoriVerensokeri() {
 		try {
-			veriarvo = new Veriarvo("12.12.2000", "12:12", 6.0);
+			bloodValue = new BloodValue("12.12.2000", "12:12", 6.0);
 		} catch (Exception e) {
-			fail("Veriarvo-olion luonti epäonnistui");
+			fail("BloodValue-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testGetSetID() {
-		veriarvo.setVeriarvoID(2);
-		assertEquals(2, veriarvo.getVeriarvoID(), "veriarvo id:n asetus epäonnistui");
+		bloodValue.setVeriarvoID(2);
+		assertEquals(2, bloodValue.getVeriarvoID(), "bloodValue id:n asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetAika() {
-		veriarvo.setAika("12:12");
-		assertEquals("12:12", veriarvo.getAika(), "veriarvon ajan asetus epäonnistui");
+		bloodValue.setAika("12:12");
+		assertEquals("12:12", bloodValue.getAika(), "veriarvon ajan asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetPvm() {
-		veriarvo.setPvm("12.12.2000");
-		assertEquals("12.12.2000", veriarvo.getPvm(), "veriarvon pvm asetus epäonnistui");
+		bloodValue.setPvm("12.12.2000");
+		assertEquals("12.12.2000", bloodValue.getDate(), "veriarvon pvm asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetVerenpaine() {
-		veriarvo.setVerenpaine("100/100/100");
-		assertEquals("100/100/100", veriarvo.getVerenpaine(), "veriarvon verenpaineen asetus epäonnistui");
+		bloodValue.setVerenpaine("100/100/100");
+		assertEquals("100/100/100", bloodValue.getVerenpaine(), "veriarvon verenpaineen asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetVerensokeri() {
-		veriarvo.setVerensokeri(5.5);
-		assertEquals(5.5, veriarvo.getVerensokeri(), "veriarvon verensokerin asetus epäonnistui");
+		bloodValue.setVerensokeri(5.5);
+		assertEquals(5.5, bloodValue.getVerensokeri(), "veriarvon verensokerin asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetAsiakas() {
-		asiakas.setAsiakasID(3);
-		veriarvo.setAsiakas(asiakas);
-		assertEquals(3, veriarvo.getAsiakas().getAsiakasID(), "veriarvon asiakkaan asetus epäonnistui");
+		customer.setAsiakasID(3);
+		bloodValue.setAsiakas(customer);
+		assertEquals(3, bloodValue.getAsiakas().getAsiakasID(), "veriarvon asiakkaan asetus epäonnistui");
 	}
 }

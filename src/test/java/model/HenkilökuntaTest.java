@@ -6,28 +6,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class HenkilökuntaTest {
-	private Henkilökunta jäsen;
+	private Staff jäsen;
 
 	@BeforeEach
 	public void setHenkilökunta() {
-		jäsen = new Henkilökunta();
+		jäsen = new Staff();
 	}
 
 	@Test
 	public void testTyhjäKonstruktori() {
 		try {
-			jäsen = new Henkilökunta();
+			jäsen = new Staff();
 		} catch (Exception e) {
-			fail("Henkilökunta-olion luonti epäonnistui");
+			fail("Staff-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testKonstruktori() {
 		try {
-			jäsen = new Henkilökunta("Testi", "Testinen", "1234567890", "testi@mail.com", "Lääkäri");
+			jäsen = new Staff("Testi", "Testinen", "1234567890", "testi@mail.com", "Lääkäri");
 		} catch (Exception e) {
-			fail("Henkilökunta-olion luonti epäonnistui");
+			fail("Staff-olion luonti epäonnistui");
 		}
 	}
 
@@ -40,30 +40,30 @@ public class HenkilökuntaTest {
 	@Test
 	public void testGetSetEtunimi() {
 		jäsen.setEtunimi("tohtori");
-		assertEquals("tohtori", jäsen.getEtunimi(), "henkilökunta etunimi asetus epäonnistui");
+		assertEquals("tohtori", jäsen.getFirstName(), "henkilökunta etunimi asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetSukunimi() {
 		jäsen.setSukunimi("dr.tohtori");
-		assertEquals("dr.tohtori", jäsen.getSukunimi(), "henkilökunta sukunimi asetus epäonnistui");
+		assertEquals("dr.tohtori", jäsen.getSurname(), "henkilökunta sukunimi asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetOikeus() {
 		jäsen.setOikeus("Lääkäri");
-		assertEquals("Lääkäri", jäsen.getOikeus(), "henkilökunta oikeus asetus epäonnistui");
+		assertEquals("Lääkäri", jäsen.getAccessLevel(), "henkilökunta oikeus asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetPuhnumero() {
 		jäsen.setPuhnumero("12341234");
-		assertEquals("12341234", jäsen.getPuhnumero(), "henkilökunta puhnumero asetus epäonnistui");
+		assertEquals("12341234", jäsen.getPhoneNumber(), "henkilökunta puhnumero asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetSposti() {
 		jäsen.setSposti("test@mail.com");
-		assertEquals("test@mail.com", jäsen.getSposti(), "henkilökunta Sposti asetus epäonnistui");
+		assertEquals("test@mail.com", jäsen.getEmail(), "henkilökunta Sposti asetus epäonnistui");
 	}
 }

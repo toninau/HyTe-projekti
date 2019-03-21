@@ -16,9 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.Asiakas;
+import model.Customer;
 import model.DAOManager;
-import model.Henkilökunta;
+import model.Staff;
 
 /**
  * 
@@ -92,7 +92,7 @@ public class LoginViewController {
 	 */
 	@FXML
 	public void loginStaff(MouseEvent event) throws IOException {
-		Henkilökunta hkunta = new Henkilökunta();
+		Staff hkunta = new Staff();
 		String fxml = "";
 		String title = "Login";
 		if(getUsernameStaff().equals("admin") && getPasswordStaff().equals("admin")) {
@@ -121,11 +121,11 @@ public class LoginViewController {
 	 */
 	@FXML
 	public void loginCustomer(MouseEvent event) throws IOException {
-		Asiakas asiakas = new Asiakas();
+		Customer customer = new Customer();
 		String fxml = "/AsiakasView.fxml";
 		String title = "Welcome!";
 		
-		if(getUsernameStaff().equals(asiakas.getSposti()) && getPasswordStaff().equals("asiakkaanpassword")) {
+		if(getUsernameStaff().equals(customer.getEmail()) && getPasswordStaff().equals("asiakkaanpassword")) {
 			sceneContent(fxml, event, title);
 		}
 	}

@@ -3,18 +3,18 @@ package model;
 import javax.persistence.*;
 
 /**
- * Resepti entity
+ * Prescription entity
  * 
  * @author tonin
  *
  */
 @Entity
-@Table(name = "resepti")
-public class Resepti {
+@Table(name = "prescription")
+public class Prescription {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "reseptiID")
+	@Column(name = "prescriptionID")
 	private int reseptiID;
 
 	@Column(name = "alkupvm")
@@ -30,12 +30,12 @@ public class Resepti {
 	private String reseptiOhje;
 
 	@ManyToOne
-	@JoinColumn(name = "asiakasID", nullable = false)
-	private Asiakas asiakas;
+	@JoinColumn(name = "customerID", nullable = false)
+	private Customer customer;
 
 	@ManyToOne
-	@JoinColumn(name = "henkilökuntaID", nullable = false)
-	private Henkilökunta henkilökunta;
+	@JoinColumn(name = "staffID", nullable = false)
+	private Staff staff;
 
 	/**
 	 * Vakio resepti konstruktori.
@@ -44,26 +44,26 @@ public class Resepti {
 	 * @param loppupvm     Päivämäärä, johon saakka resepti on voimassa
 	 * @param reseptiNimi  Reseptin nimi, esimerkiksi lääke <i>Testilääke 600mg</i>
 	 * @param reseptiOhje  Reseptin käyttöohjeet
-	 * @param asiakas      Asiakas, jolle resepti on määrätty
-	 * @param henkilökunta Henkilökunnan jäsen, joka on määrännyt reseptin
-	 * @see #Resepti()
+	 * @param customer      Asiakas, jolle resepti on määrätty
+	 * @param staff Henkilökunnan jäsen, joka on määrännyt reseptin
+	 * @see #Prescription()
 	 */
-	public Resepti(String alkupvm, String loppupvm, String reseptiNimi, String reseptiOhje, Asiakas asiakas,
-			Henkilökunta henkilökunta) {
+	public Prescription(String alkupvm, String loppupvm, String reseptiNimi, String reseptiOhje, Customer customer,
+			Staff staff) {
 		this.alkupvm = alkupvm;
 		this.loppupvm = loppupvm;
 		this.reseptiNimi = reseptiNimi;
 		this.reseptiOhje = reseptiOhje;
-		this.asiakas = asiakas;
-		this.henkilökunta = henkilökunta;
+		this.customer = customer;
+		this.staff = staff;
 	}
 
 	/**
 	 * Tyhjä resepti konstruktori. Arvot annetaan set-metodeja käyttäen.
 	 * 
-	 * @see #Resepti()
+	 * @see #Prescription()
 	 */
-	public Resepti() {
+	public Prescription() {
 	}
 
 	/**
@@ -163,17 +163,17 @@ public class Resepti {
 	 * 
 	 * @return asiakas
 	 */
-	public Asiakas getAsiakas() {
-		return asiakas;
+	public Customer getAsiakas() {
+		return customer;
 	}
 
 	/**
 	 * Asettaa reseptin asiakkaan.
 	 * 
-	 * @param asiakas reseptille asetettava asiakas
+	 * @param customer reseptille asetettava asiakas
 	 */
-	public void setAsiakas(Asiakas asiakas) {
-		this.asiakas = asiakas;
+	public void setAsiakas(Customer customer) {
+		this.customer = customer;
 	}
 
 	/**
@@ -181,16 +181,16 @@ public class Resepti {
 	 * 
 	 * @return henkilökunnan jäsen
 	 */
-	public Henkilökunta getHenkilökunta() {
-		return henkilökunta;
+	public Staff getHenkilökunta() {
+		return staff;
 	}
 
 	/**
 	 * Asettaa reseptin henkilökunnan jäsenen.
 	 * 
-	 * @param henkilökunta reseptille asetettava henkilökunnan jäsen
+	 * @param staff reseptille asetettava henkilökunnan jäsen
 	 */
-	public void setHenkilökunta(Henkilökunta henkilökunta) {
-		this.henkilökunta = henkilökunta;
+	public void setHenkilökunta(Staff staff) {
+		this.staff = staff;
 	}
 }

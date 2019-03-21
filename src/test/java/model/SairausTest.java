@@ -6,49 +6,49 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class SairausTest {
-	private Sairaus sairaus;
-	private Asiakas asiakas;
+	private Illness illness;
+	private Customer customer;
 
 	@BeforeEach
 	public void setSairaus() {
-		sairaus = new Sairaus();
-		asiakas = new Asiakas();
+		illness = new Illness();
+		customer = new Customer();
 	}
 
 	@Test
 	public void testTyhjäKonstruktori() {
 		try {
-			sairaus = new Sairaus();
+			illness = new Illness();
 		} catch (Exception e) {
-			fail("Sairaus-olion luonti epäonnistui");
+			fail("Illness-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testKonstruktori() {
 		try {
-			sairaus = new Sairaus("testisairaus", asiakas);
+			illness = new Illness("testisairaus", customer);
 		} catch (Exception e) {
-			fail("Sairaus-olion luonti epäonnistui");
+			fail("Illness-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testGetSetID() {
-		sairaus.setSairausID(6);
-		assertEquals(6, sairaus.getSairausID(), "sairaus id:n asetus epäonnistui");
+		illness.setSairausID(6);
+		assertEquals(6, illness.getSairausID(), "illness id:n asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetNimi() {
-		sairaus.setSairausNimi("testi");
-		assertEquals("testi", sairaus.getSairausNimi(), "sairaus nimi asetus epäonnistui");
+		illness.setSairausNimi("testi");
+		assertEquals("testi", illness.getSairausNimi(), "illness nimi asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetAsiakas() {
-		asiakas.setAsiakasID(5);
-		sairaus.setAsiakas(asiakas);
-		assertEquals(5, sairaus.getAsiakas().getAsiakasID(), "sairauksen asiakkaan asetus epäonnistui");
+		customer.setAsiakasID(5);
+		illness.setAsiakas(customer);
+		assertEquals(5, illness.getAsiakas().getAsiakasID(), "sairauksen asiakkaan asetus epäonnistui");
 	}
 }

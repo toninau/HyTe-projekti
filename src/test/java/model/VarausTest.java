@@ -6,72 +6,72 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class VarausTest {
-	private Varaus varaus;
-	private Henkilökunta henkilö;
-	private Asiakas asiakas;
+	private Appointment appointment;
+	private Staff henkilö;
+	private Customer customer;
 	
 	@BeforeEach
 	public void setVaraus() {
-		varaus = new Varaus();
-		henkilö = new Henkilökunta();
-		asiakas = new Asiakas();
+		appointment = new Appointment();
+		henkilö = new Staff();
+		customer = new Customer();
 	}
 	
 	@Test
 	public void testTyhjäKonstruktori() {
 		try {
-			varaus = new Varaus();
+			appointment = new Appointment();
 		} catch (Exception e) {
-			fail("Varaus-olion luonti epäonnistui");
+			fail("Appointment-olion luonti epäonnistui");
 		}
 	}
 	
 	@Test
 	public void testKonstruktori() {
-		asiakas = new Asiakas();
-		henkilö = new Henkilökunta();
+		customer = new Customer();
+		henkilö = new Staff();
 		try {
-			varaus = new Varaus("12.12.2000", "12:20", "testi", asiakas, henkilö);
+			appointment = new Appointment("12.12.2000", "12:20", "testi", customer, henkilö);
 		} catch (Exception e) {
-			fail("Varaus-olion luonti epäonnistui");
+			fail("Appointment-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testGetSetID() {
-		varaus.setVarausID(1);
-		assertEquals(1, varaus.getVarausID(), "varaus id:n asetus epäonnistui");
+		appointment.setVarausID(1);
+		assertEquals(1, appointment.getVarausID(), "appointment id:n asetus epäonnistui");
 	}
 	
 	@Test
 	public void testGetSetPVM() {
-		varaus.setPäivämäärä("12.12.2020");
-		assertEquals("12.12.2020", varaus.getPäivämäärä(), "varauksen päivämäärän asetus epäonnistui");
+		appointment.setPäivämäärä("12.12.2020");
+		assertEquals("12.12.2020", appointment.getPäivämäärä(), "varauksen päivämäärän asetus epäonnistui");
 	}
 	
 	@Test
 	public void testGetSetAika() {
-		varaus.setKellonaika("12:12");
-		assertEquals("12:12", varaus.getKellonaika(), "varauksen kellonajan asetus epäonnistui");
+		appointment.setKellonaika("12:12");
+		assertEquals("12:12", appointment.getKellonaika(), "varauksen kellonajan asetus epäonnistui");
 	}
 	
 	@Test
 	public void testGetSetInfo() {
-		varaus.setInfo("testi");
-		assertEquals("testi", varaus.getInfo(), "varauksen infon asetus epäonnistui");
+		appointment.setInfo("testi");
+		assertEquals("testi", appointment.getInfo(), "varauksen infon asetus epäonnistui");
 	}
 	
 	@Test
 	public void testGetSetAsiakas() {
-		asiakas.setAsiakasID(5);
-		varaus.setAsiakas(asiakas);
-		assertEquals(5, varaus.getAsiakas().getAsiakasID(), "varauksen asiakkaan asetus epäonnistui");
+		customer.setAsiakasID(5);
+		appointment.setAsiakas(customer);
+		assertEquals(5, appointment.getAsiakas().getAsiakasID(), "varauksen asiakkaan asetus epäonnistui");
 	}
 	
 	@Test
 	public void testGetSetHenkilökunta() {
 		henkilö.setHenkilökuntaID(5);
-		varaus.setHenkilökunta(henkilö);
-		assertEquals(5, varaus.getHenkilökunta().getHenkilökuntaID(), "varauksen henkilökunnan asetus epäonnistui");
+		appointment.setHenkilökunta(henkilö);
+		assertEquals(5, appointment.getHenkilökunta().getHenkilökuntaID(), "varauksen henkilökunnan asetus epäonnistui");
 	}
 }

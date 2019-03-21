@@ -11,7 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
  * Luokka SessionFactoryn luomiseen.
  *
  */
-public class Istuntotehdas {
+public class HibernateUtil {
 	
 	private static SessionFactory istuntotehdas;
 	private final static StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -19,12 +19,12 @@ public class Istuntotehdas {
 	/**
 	 * Luokan konstruktori.
 	 */
-	public Istuntotehdas() {
+	public HibernateUtil() {
 	}
 	
 	/**
 	 * Luodaan istuntotehdas, jos sitä ei ole vielä luotu. Mahdollistaa sen, ettei tarvitse luoda useampaa istuntotehdasta.
-	 * @return Istuntotehdas.
+	 * @return HibernateUtil.
 	 */
 	public static synchronized SessionFactory getSessionFactory() {
 		if (istuntotehdas == null) {

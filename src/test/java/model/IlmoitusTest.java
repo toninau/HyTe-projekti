@@ -6,72 +6,72 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class IlmoitusTest {
-	private Ilmoitus ilmoitus;
-	private Henkilökunta henkilö;
-	private Asiakas asiakas;
+	private Notification notification;
+	private Staff henkilö;
+	private Customer customer;
 
 	@BeforeEach
 	public void setResepti() {
-		ilmoitus = new Ilmoitus();
-		henkilö = new Henkilökunta();
-		asiakas = new Asiakas();
+		notification = new Notification();
+		henkilö = new Staff();
+		customer = new Customer();
 	}
 
 	@Test
 	public void testTyhjäKonstruktori() {
 		try {
-			ilmoitus = new Ilmoitus();
+			notification = new Notification();
 		} catch (Exception e) {
-			fail("Ilmoitus-olion luonti epäonnistui");
+			fail("Notification-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testKonstruktori() {
-		asiakas = new Asiakas();
-		henkilö = new Henkilökunta();
+		customer = new Customer();
+		henkilö = new Staff();
 		try {
-			ilmoitus = new Ilmoitus("12.12.1212", "testi-ilmoitus", asiakas, henkilö);
+			notification = new Notification("12.12.1212", "testi-notification", customer, henkilö);
 		} catch (Exception e) {
-			fail("Ilmoitus-olion luonti epäonnistui");
+			fail("Notification-olion luonti epäonnistui");
 		}
 	}
 
 	@Test
 	public void testGetSetID() {
-		ilmoitus.setIlmoitusID(12);
-		assertEquals(12, ilmoitus.getIlmoitusID(), "ilmoitus id:n asetus epäonnistui");
+		notification.setIlmoitusID(12);
+		assertEquals(12, notification.getNotificationID(), "notification id:n asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetLuettu() {
-		ilmoitus.setLuettu(true);
-		assertEquals(true, ilmoitus.isLuettu(), "ilmoitus luettu asetus epäonnistui");
+		notification.setLuettu(true);
+		assertEquals(true, notification.isRead(), "notification luettu asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetPvm() {
-		ilmoitus.setPvm("12.12.2000");
-		assertEquals("12.12.2000", ilmoitus.getPvm(), "ilmoitus pvm asetus epäonnistui");
+		notification.setPvm("12.12.2000");
+		assertEquals("12.12.2000", notification.getDate(), "notification pvm asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetTeksti() {
-		ilmoitus.setTeksti("testi");
-		assertEquals("testi", ilmoitus.getTeksti(), "ilmoituksen tekstin asetus epäonnistui");
+		notification.setTeksti("testi");
+		assertEquals("testi", notification.getText(), "ilmoituksen tekstin asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetAsiakas() {
-		asiakas.setAsiakasID(5);
-		ilmoitus.setAsiakas(asiakas);
-		assertEquals(5, ilmoitus.getAsiakas().getAsiakasID(), "ilmoituksen asiakkaan asetus epäonnistui");
+		customer.setAsiakasID(5);
+		notification.setAsiakas(customer);
+		assertEquals(5, notification.getAsiakas().getAsiakasID(), "ilmoituksen asiakkaan asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetHenkilökunta() {
 		henkilö.setHenkilökuntaID(5);
-		ilmoitus.setHenkilökunta(henkilö);
-		assertEquals(5, ilmoitus.getHenkilökunta().getHenkilökuntaID(), "ilmoituksen henkilökunnan asetus epäonnistui");
+		notification.setHenkilökunta(henkilö);
+		assertEquals(5, notification.getHenkilökunta().getHenkilökuntaID(), "ilmoituksen henkilökunnan asetus epäonnistui");
 	}
 }

@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class AsiakasTest {
-	private Asiakas asiakas;
+	private Customer customer;
 
 	@BeforeEach
 	public void setAsiakas() {
-		asiakas = new Asiakas();
+		customer = new Customer();
 	}
 
 	@Test
 	public void testTyhjäKonstruktori() {
 		try {
-			asiakas = new Asiakas();
+			customer = new Customer();
 		} catch (Exception e) {
 			fail("Asiakas-olion luonti epäonnistui");
 		}
@@ -25,7 +25,7 @@ public class AsiakasTest {
 	@Test
 	public void testKonstruktori() {
 		try {
-			asiakas = new Asiakas("Testi", "Testinen", "111111-111A", "Testitie 3", "testi@mail.com", "1234567890",
+			customer = new Customer("Testi", "Testinen", "111111-111A", "Testitie 3", "testi@mail.com", "1234567890",
 					"0987654321");
 		} catch (Exception e) {
 			fail("Asiakas-olion luonti epäonnistui");
@@ -34,49 +34,49 @@ public class AsiakasTest {
 
 	@Test
 	public void testGetSetID() {
-		asiakas.setAsiakasID(12);
-		assertEquals(12, asiakas.getAsiakasID(), "Asiakkaan id:n asetus epäonnistui");
+		customer.setAsiakasID(12);
+		assertEquals(12, customer.getAsiakasID(), "Asiakkaan id:n asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetEtunimi() {
-		asiakas.setEtunimi("TestName");
-		assertEquals("TestName", asiakas.getEtunimi(), "Asiakkaan etunimen asetus epäonnistui");
+		customer.setEtunimi("TestName");
+		assertEquals("TestName", customer.getFirstName(), "Asiakkaan etunimen asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetSukunimi() {
-		asiakas.setSukunimi("NameTest");
-		assertEquals("NameTest", asiakas.getSukunimi(), "Asiakkaan sukunimen asetus epäonnistui");
+		customer.setSukunimi("NameTest");
+		assertEquals("NameTest", customer.getSurname(), "Asiakkaan sukunimen asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetHetu() {
-		asiakas.setHetu("098765-1234");
-		assertEquals("098765-1234", asiakas.getHetu(), "Asiakkaan HeTu:n asetus epäonnistui");
+		customer.setHetu("098765-1234");
+		assertEquals("098765-1234", customer.getHetu(), "Asiakkaan HeTu:n asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetIcenumero() {
-		asiakas.setIcenumero("123123123");
-		assertEquals("123123123", asiakas.getIcenumero(), "Asiakkaan Icenumeron asetus epäonnistui");
+		customer.setIcenumero("123123123");
+		assertEquals("123123123", customer.getIcenumero(), "Asiakkaan Icenumeron asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetKotiosoite() {
-		asiakas.setKotiosoite("testikuja 10");
-		assertEquals("testikuja 10", asiakas.getKotiosoite(), "Asiakkaan kotiosoitteen asetus epäonnistui");
+		customer.setKotiosoite("testikuja 10");
+		assertEquals("testikuja 10", customer.getKotiosoite(), "Asiakkaan kotiosoitteen asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetPuhnumero() {
-		asiakas.setPuhnumero("12341234");
-		assertEquals("12341234", asiakas.getPuhnumero(), "Asiakkaan puhnumeron asetus epäonnistui");
+		customer.setPuhnumero("12341234");
+		assertEquals("12341234", customer.getPhoneNumber(), "Asiakkaan puhnumeron asetus epäonnistui");
 	}
 
 	@Test
 	public void testGetSetSposti() {
-		asiakas.setSposti("test@mail.com");
-		assertEquals("test@mail.com", asiakas.getSposti(), "Asiakkaan Spostin asetus epäonnistui");
+		customer.setSposti("test@mail.com");
+		assertEquals("test@mail.com", customer.getEmail(), "Asiakkaan Spostin asetus epäonnistui");
 	}
 }
