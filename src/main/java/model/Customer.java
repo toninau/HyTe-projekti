@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 /**
- * Asiakas entity
+ * Customer entity
  * 
  * @author tonin
  *
@@ -60,25 +60,25 @@ public class Customer {
 	private Set<Staff> customersStaff = new HashSet<Staff>();
 
 	/**
-	 * Tyhjä asiakas konstruktori. Arvot annetaan set-metodeja käyttäen.
+	 * Empty customer constructor. Values are given using set-methods.
 	 * 
-	 * @see #Asiakas(String, String, String, String, String, String, String)
+	 * @see #Customer(String, String, String, String, String, String, String)
 	 */
 	public Customer() {
 
 	}
 
 	/**
-	 * Vakio asiakas konstruktori.
+	 * Customer constructor.
 	 * 
-	 * @param firstName    Asiakkaan etunimi
-	 * @param surname   Asiakkaan sukunimi
-	 * @param ssn       Asiakkaan henkilötunnus
-	 * @param address Asiakkaan kotiosoite
-	 * @param email     Asiakkaan sähköpostiosoite
-	 * @param phoneNumber  Asiakkaan puhelinnumero
-	 * @param icenumero  Asiakkaan "in case of emergency" puhelinnumero
-	 * @see #Asiakas()
+	 * @param firstName    Customer's first name
+	 * @param surname   Customer's surname
+	 * @param ssn       Customer's social security number
+	 * @param address Customer's home address
+	 * @param email     Customer's email
+	 * @param phoneNumber  Customer's phone number
+	 * @param iceNumber  Customer's "in case of emergency" phone number
+	 * @see #Customer()
 	 */
 	public Customer(String firstName, String surname, String ssn, String address, String email, String phoneNumber,
 			String iceNumber) {
@@ -92,146 +92,146 @@ public class Customer {
 	}
 
 	/**
-	 * Palauttaa asiakkaan asiakasID:n. AsiakasID-arvo määritellään automaattisesti
-	 * tietokannassa.
+	 * Returns customer's customerID. CustomerID value is given automatically
+	 * in the database.
 	 * 
-	 * @return asiakasID
+	 * @return customerID
 	 */
 	public int getCustomerID() {
 		return customerID;
 	}
 
 	/**
-	 * Asettaa asiakkaan asiakasID:n. AsiakasID-arvo määritellään automaattisesti
-	 * tietokannassa. Ei käytetä uuden asiakkaan luomisessa.
+	 * Sets customerID. CustomerID value is given automatically
+	 * in the database. Not used when creating a new customer.
 	 * 
-	 * @param asiakasID asiakkaalle annettava asiakasID
+	 * @param customerID customerID to set
 	 */
 	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
 
 	/**
-	 * Palauttaa asiakkaan henkilötunnuksen.
+	 * Returns customer's social security number.
 	 * 
-	 * @return henkilötunnus
+	 * @return ssn
 	 */
 	public String getSSN() {
 		return ssn;
 	}
 
 	/**
-	 * Asettaa asiakkaalle henkilötunnuksen.
+	 * Sets social security number.
 	 * 
-	 * @param hetu asiakkaalle asetettava henkilötunnus
+	 * @param ssn social security number to set
 	 */
 	public void setSSN(String ssn) {
 		this.ssn = ssn;
 	}
 
 	/**
-	 * Palauttaa asiakkaan etunimen.
+	 * Returns customer's first name.
 	 * 
-	 * @return etunimi
+	 * @return firstName
 	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
 	/**
-	 * Asettaa asiakkaalle etunimen.
+	 * Sets first name.
 	 * 
-	 * @param etunimi asiakkaalle asetettava etunimi
+	 * @param firstName first name to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
 	/**
-	 * Palauttaa asiakkaan sukunimen.
+	 * Returns customer's surname.
 	 * 
-	 * @return sukunimi
+	 * @return surname
 	 */
 	public String getSurname() {
 		return surname;
 	}
 
 	/**
-	 * Asettaa asiakkaalle sukunimen.
+	 * Sets surname.
 	 * 
-	 * @param sukunimi asiakkaalle asetettava sukunimi
+	 * @param surname surname to set
 	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
 	/**
-	 * Palauttaa asiakkaan kotiosoitteen.
+	 * Returns customer's home address.
 	 * 
-	 * @return kotiosoite
+	 * @return address
 	 */
 	public String getAddress() {
 		return address;
 	}
 
 	/**
-	 * Asettaa asiakkaalle kotiosoitteen.
+	 * Sets home address.
 	 * 
-	 * @param kotiosoite asiakkaalle asetettava kotiosoite
+	 * @param address address to set
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	/**
-	 * Palauttaa asiakkaan sähköpostiosoitteen.
+	 * Returns customer's email address.
 	 * 
-	 * @return sähköpostiosoite
+	 * @return email
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * Asettaa asiakkaalle sähköpostiosoitteen.
+	 * Sets email address.
 	 * 
-	 * @param sposti asiakkaalle asetettava sähköpostiosoite
+	 * @param email email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
-	 * Palauttaa asiakkaan puhelinnumeron.
+	 * Returns customer's phone number
 	 * 
-	 * @return puhelinnumero
+	 * @return phoneNumber
 	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
 	/**
-	 * Asettaa asiakkaalle sähköpostiosoitteen.
+	 * Sets phone number.
 	 * 
-	 * @param puhnumero asiakkaalle asetettava puhelinnumero
+	 * @param phoneNumber phone number to set.
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
 	/**
-	 * Palauttaa asiakkaan ICEnumeron ("in case of emergency" puhelinnumero).
+	 * Returns customer's ICEnumber ("in case of emergency" phone number).
 	 * 
-	 * @return ICEnumero
+	 * @return iceNumber
 	 */
 	public String getIceNumber() {
 		return iceNumber;
 	}
 
 	/**
-	 * Asettaa asiakkaalle ICEnumeron ("in case of emergency" puhelinnumero).
+	 * Sets ICEnumber ("in case of emergency" phone number).
 	 * 
-	 * @param icenumero asiakkaalle asetettava ICEnumero
+	 * @param iceNumber ice phone number to set
 	 */
 	public void setIceNumber(String iceNumber) {
 		this.iceNumber = iceNumber;

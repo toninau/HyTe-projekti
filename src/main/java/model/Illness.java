@@ -27,9 +27,9 @@ public class Illness {
 	/**
 	 * Standard illness object constructor.
 	 * 
-	 * @param sairausNimi Name of the illness
-	 * @param asiakas     Customer of the illness
-	 * @see #Sairaus()
+	 * @param illnessName Name of the illness
+	 * @param customer    Customer of the illness
+	 * @see #Illness()
 	 */
 	public Illness(String illnessName, Customer customer) {
 		this.illnessName = illnessName;
@@ -45,8 +45,7 @@ public class Illness {
 	}
 
 	/**
-	 * Returns the illnessID. The value is defined automatically in the database
-	 * 
+	 * Returns the illnessID. The value is defined automatically in the database.
 	 * 
 	 * @return illnessID
 	 */
@@ -55,17 +54,17 @@ public class Illness {
 	}
 
 	/**
-	 * Sets the illnessID. The value is defined automatically in the database
-	 * Not used in the creation of an illness object.
+	 * Sets the illnessID. The value is defined automatically in the database. Not
+	 * used in the creation of an illness object.
 	 * 
-	 * @param illnessID
+	 * @param illnessID illnessID to set
 	 */
 	public void setIllnessID(int illnessID) {
 		this.illnessID = illnessID;
 	}
 
 	/**
-	 * Returns the name of the illness
+	 * Returns the name of the illness.
 	 * 
 	 * @return illnessName
 	 */
@@ -74,7 +73,7 @@ public class Illness {
 	}
 
 	/**
-	 * Sets a name for the illness
+	 * Sets a name for the illness.
 	 * 
 	 * @param illnessName name of the illness
 	 */
@@ -83,7 +82,7 @@ public class Illness {
 	}
 
 	/**
-	 * Returns a customer object containing the illness
+	 * Returns a customer object containing the illness.
 	 * 
 	 * @return customer
 	 */

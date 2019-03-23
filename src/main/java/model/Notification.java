@@ -35,12 +35,12 @@ public class Notification {
 	private Staff staff;
 
 	/**
-	 * Vakio ilmoitus konstruktori.
+	 * Notification constructor.
 	 * 
-	 * @param date          ilmoituksen luonti päivämäärä
-	 * @param text       ilmoitukseen liitetty text
-	 * @param customer      asiakas, jolle ilmoitus lähetetään
-	 * @param staff ilmoituksen tekijä
+	 * @param date     notification's creation date
+	 * @param text     notification's text
+	 * @param customer customer whom the notification is sent
+	 * @param staff    staff member who created the notification
 	 * @see #Notification()
 	 */
 	public Notification(String date, String text, Customer customer, Staff staff) {
@@ -51,61 +51,122 @@ public class Notification {
 	}
 
 	/**
-	 * Tyhjä ilmoitus konstruktori. Arvot annetaan set-metodeja käyttäen.
+	 * Empty notification constructor. Values are given using set-methods.
 	 * 
 	 * @see #Notification(String, String, Customer, Staff)
 	 */
 	public Notification() {
-
 	}
 
+	/**
+	 * Returns notificationID. NotificationID value is given automatically in the
+	 * database.
+	 * 
+	 * @return notificationID
+	 */
 	public int getNotificationID() {
 		return notificationID;
 	}
 
-	public String getDate() {
-		return date;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public boolean isRead() {
-		return read;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public Staff getStaff() {
-		return staff;
-	}
-
+	/**
+	 * Sets notificationID. NotificationID value is given automatically in the
+	 * database. Not used when creating a new notification.
+	 * 
+	 * @param notificationID notificationID to set
+	 */
 	public void setNotificationID(int notificationID) {
 		this.notificationID = notificationID;
 	}
 
+	/**
+	 * Returns notification's date.
+	 * 
+	 * @return date
+	 */
+	public String getDate() {
+		return date;
+	}
+
+	/**
+	 * Sets date to notification.
+	 * 
+	 * @param date date to set
+	 */
 	public void setDate(String date) {
 		this.date = date;
 	}
 
+	/**
+	 * Returns notification's text.
+	 * 
+	 * @return text
+	 */
+	public String getText() {
+		return text;
+	}
+
+	/**
+	 * Sets text to notification.
+	 * 
+	 * @param text text to set
+	 */
 	public void setText(String text) {
 		this.text = text;
 	}
 
+	/**
+	 * Returns the read status of the notification.
+	 * 
+	 * @return <code>true</code> if notification has been read <br>
+	 *         <code>false</code> if notification has not been read
+	 */
+	public boolean isRead() {
+		return read;
+	}
+
+	/**
+	 * Sets the read status of the notification.
+	 * 
+	 * @param read <code>true</code> if notification has been read <br>
+	 *             <code>false</code> if notifications has not been read
+	 */
 	public void setRead(boolean read) {
 		this.read = read;
 	}
 
+	/**
+	 * Returns notification's customer.
+	 * 
+	 * @return customer
+	 */
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	/**
+	 * Sets customer to notification.
+	 * 
+	 * @param customer customer to set
+	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
+	/**
+	 * Returns notification's staff member.
+	 * 
+	 * @return staff
+	 */
+	public Staff getStaff() {
+		return staff;
+	}
+
+	/**
+	 * Sets staff member to notification.
+	 * 
+	 * @param staff staff member to set
+	 */
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
-
-	
 }

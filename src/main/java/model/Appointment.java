@@ -3,7 +3,7 @@ package model;
 import javax.persistence.*;
 
 /**
- * Varaus entity
+ * Appointment entity
  * 
  * @author tonin
  *
@@ -35,14 +35,14 @@ public class Appointment {
 	private Staff staff;
 
 	/**
-	 * Vakio varaus konstruktori.
+	 * Standard appointment constructor.
 	 * 
-	 * @param päivämäärä   Date of reservation
-	 * @param kellonaika   Time of reservation
-	 * @param info         Description
-	 * @param asiakas      Who the reservation is for
-	 * @param henkilökunta Staff member of the reservation
-	 * @see #Reservation()
+	 * @param date     Date of reservation
+	 * @param time     Time of reservation
+	 * @param info     Description
+	 * @param customer Who the reservation is for
+	 * @param staff    Staff member of the reservation
+	 * @see #Appointment()
 	 */
 	public Appointment(String date, String time, String info, Customer customer, Staff staff) {
 		this.date = date;
@@ -55,51 +55,51 @@ public class Appointment {
 	/**
 	 * Empty reservation constructor.
 	 * 
-	 * @see #Reservation(String, String, String, Asiakas, Henkilökunta)
+	 * @see #Appointment(String, String, String, Customer, Staff)
 	 */
 	public Appointment() {
 	}
 
 	/**
-	 * Palauttaa varauksen varausID:n. VarausID-arvo määritellään automaattisesti
-	 * tietokannassa.
+	 * Returns appointmentID. AppointmentID value is given automatically in the
+	 * database.
 	 * 
-	 * @return varausIDF
+	 * @return appointmentID
 	 */
 	public int getAppointmentID() {
 		return appointmentID;
 	}
 
 	/**
-	 * Asettaa varauksen varausID:n. VarausID-arvo määritellään automaattisesti
-	 * tietokannassa. Ei käytetä uuden varauksen luomisessa.
+	 * Sets appointmentID. AppointmentID value is given automatically in the
+	 * database. Not used when creating a new appointment.
 	 * 
-	 * @param varausID varaukselle annettava varausID
+	 * @param appointmentID appointmentID to set
 	 */
 	public void setAppointmentID(int appointmentID) {
 		this.appointmentID = appointmentID;
 	}
 
 	/**
-	 * Palauttaa varauksen päivämäärän.
+	 * Returns appointment's date.
 	 * 
-	 * @return päivämäärä
+	 * @return date
 	 */
 	public String getDate() {
 		return date;
 	}
 
 	/**
-	 * Asettaa varaukselle päivämäärän.
+	 * Sets appointment date.
 	 * 
-	 * @param päivämäärä varaukselle asetettava päivämäärä
+	 * @param date date to set
 	 */
 	public void setDate(String date) {
 		this.date = date;
 	}
 
 	/**
-	 * Returns the time of the reservation.
+	 * Returns appointment time.
 	 * 
 	 * @return time
 	 */
@@ -108,16 +108,16 @@ public class Appointment {
 	}
 
 	/**
-	 * Sets the time of the reservation.
+	 * Sets appointment time.
 	 * 
-	 * @param kellonaika varaukselle asetettava kellonaika
+	 * @param time appointment time to set
 	 */
 	public void setTime(String time) {
 		this.time = time;
 	}
 
 	/**
-	 * Returns the reservation description.
+	 * Returns appointment info.
 	 * 
 	 * @return info
 	 */
@@ -126,48 +126,47 @@ public class Appointment {
 	}
 
 	/**
-	 * Sets the reservation description.
+	 * Sets appointment info.
 	 * 
-	 * @param text
+	 * @param info appointment info to set
 	 */
 	public void setInfo(String info) {
 		this.info = info;
 	}
 
 	/**
-	 * Returns the customer of the reservation.
+	 * Returns appointment customer.
 	 * 
-	 * @return asiakas
+	 * @return customer
 	 */
 	public Customer getCustomer() {
 		return customer;
 	}
 
 	/**
-	 * Sets a customer for the reservation.
+	 * Sets appointment customer.
 	 * 
-	 * @param Customer object
+	 * @param customer appointment customer to set
 	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
 	/**
-	 * Returns the staff member of the reservation.
+	 * Returns appointment staff member.
 	 * 
-	 * @return Object of the Staff class
+	 * @return staff
 	 */
 	public Staff getStaff() {
 		return staff;
 	}
 
 	/**
-	 * Sets the staff member of the reservation
+	 * Sets appointment staff member.
 	 * 
-	 * @param Object of the Staff class
+	 * @param staff appointment staff member to set
 	 */
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
-
 }

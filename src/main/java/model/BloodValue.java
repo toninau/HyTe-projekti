@@ -3,7 +3,8 @@ package model;
 import javax.persistence.*;
 
 /**
- * Blood pressure and blood sugar are on this same class, but both of them are not needed
+ * Blood pressure and blood sugar are on this same class, but both of them are
+ * not needed.
  * 
  * @author tonin
  *
@@ -36,13 +37,13 @@ public class BloodValue {
 	/**
 	 * Standard Bloodvalue constructor.
 	 * 
-	 * @param date           date, when the measure is taken 
-	 * @param time           time, when the measure is taken
-	 * @param bloodsugar     blood sugar level
-	 * @param bloodpressure  blood pressure level
-	 * @see #Bloodvalue(String, String, double)
-	 * @see #Bloodvalue(String, String, String)
-	 * @see #Bloodvalue()
+	 * @param date          date, when the measure is taken
+	 * @param time          time, when the measure is taken
+	 * @param bloodsugar    blood sugar level
+	 * @param bloodpressure blood pressure level
+	 * @see #BloodValue(String, String, double)
+	 * @see #BloodValue(String, String, String)
+	 * @see #BloodValue()
 	 */
 	public BloodValue(String date, String time, double bloodsugar, String bloodpressure) {
 		this.date = date;
@@ -54,12 +55,12 @@ public class BloodValue {
 	/**
 	 * Bloodvalue constructor for only the blood sugar levels
 	 * 
-	 * @param date        date of the blood sugar measure
-	 * @param time        time of the blood sugar measure
-	 * @param bloodsugar  blood sugar level
-	 * @see #Bloodvalue(String, String, double, String)
-	 * @see #Bloodvalue(String, String, String)
-	 * @see #Bloodvalue()
+	 * @param date       date of the blood sugar measure
+	 * @param time       time of the blood sugar measure
+	 * @param bloodsugar blood sugar level
+	 * @see #BloodValue(String, String, double, String)
+	 * @see #BloodValue(String, String, String)
+	 * @see #BloodValue()
 	 */
 	public BloodValue(String date, String time, double bloodsugar) {
 		this.bloodpressure = null;
@@ -71,12 +72,12 @@ public class BloodValue {
 	/**
 	 * Bloodvalue constructor for only the blood pressure levels.
 	 * 
-	 * @param date        date of the blood pressure measure
-	 * @param time        time of the blood pressure measure
-	 * @param bloodpressure  blood pressure level
-	 * @see #Bloodvalue(String, String, double, String)
-	 * @see #Bloodvalue(String, String, String)
-	 * @see #Bloodvalue()
+	 * @param date          date of the blood pressure measure
+	 * @param time          time of the blood pressure measure
+	 * @param bloodpressure blood pressure level
+	 * @see #BloodValue(String, String, double, String)
+	 * @see #BloodValue(String, String, String)
+	 * @see #BloodValue()
 	 */
 	public BloodValue(String date, String time, String bloodpressure) {
 		this.bloodsugar = 0;
@@ -88,9 +89,9 @@ public class BloodValue {
 	/**
 	 * Empty Bloodvalue constructor.
 	 * 
-	 * @see #Bloodvalue(String, String, double, String)
-	 * @see #Bloodvalue(String, String, double)
-	 * @see #Bloodvalue(String, String, String)
+	 * @see #BloodValue(String, String, double, String)
+	 * @see #BloodValue(String, String, double)
+	 * @see #BloodValue(String, String, String)
 	 */
 	public BloodValue() {
 		this.bloodpressure = null;
@@ -98,8 +99,9 @@ public class BloodValue {
 	}
 
 	/**
-	 * Returns the ID of the Bloodvalue. ID is defined automatically in the database.
-	 * It is used to connect to the customer taking the measurement.
+	 * Returns the ID of the Bloodvalue. ID is defined automatically in the
+	 * database. It is used to connect to the customer taking the measurement.
+	 * 
 	 * @return bloodvalueID
 	 */
 	public int getBloodvalueID() {
@@ -107,8 +109,9 @@ public class BloodValue {
 	}
 
 	/**
-	 * Returns the ID of the Bloodvalue. ID is defined automatically in the database.
-	 * It is used to connect to the customer taking the measurement.
+	 * Returns the ID of the Bloodvalue. ID is defined automatically in the
+	 * database. It is used to connect to the customer taking the measurement. Not
+	 * used when creating a new Bloodvalue object.
 	 * 
 	 * @param bloodvalueID ID of the Bloodvalue object
 	 */
@@ -184,7 +187,7 @@ public class BloodValue {
 	 * 
 	 * @param bloodpressure String value of the blood pressure level
 	 */
-	public void setVerenpaine(String bloodpressure) {
+	public void setBloodpressure(String bloodpressure) {
 		this.bloodpressure = bloodpressure;
 	}
 

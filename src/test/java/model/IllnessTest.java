@@ -5,50 +5,50 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class SairausTest {
+public class IllnessTest {
 	private Illness illness;
 	private Customer customer;
 
 	@BeforeEach
-	public void setSairaus() {
+	public void setIllness() {
 		illness = new Illness();
 		customer = new Customer();
 	}
 
 	@Test
-	public void testTyhjäKonstruktori() {
+	public void testEmptyConstructor() {
 		try {
 			illness = new Illness();
 		} catch (Exception e) {
-			fail("Illness-olion luonti epäonnistui");
+			fail("Failed to create illness-object");
 		}
 	}
 
 	@Test
-	public void testKonstruktori() {
+	public void testConstructor() {
 		try {
 			illness = new Illness("testisairaus", customer);
 		} catch (Exception e) {
-			fail("Illness-olion luonti epäonnistui");
+			fail("Failed to create illness-object");
 		}
 	}
 
 	@Test
 	public void testGetSetID() {
-		illness.setSairausID(6);
-		assertEquals(6, illness.getSairausID(), "illness id:n asetus epäonnistui");
+		illness.setIllnessID(6);
+		assertEquals(6, illness.getIllnessID(), "Failed to set and get illnessID");
 	}
 
 	@Test
 	public void testGetSetNimi() {
-		illness.setSairausNimi("testi");
-		assertEquals("testi", illness.getSairausNimi(), "illness nimi asetus epäonnistui");
+		illness.setIllnessName("testi");
+		assertEquals("testi", illness.getIllnessName(), "Failed to set and get illness' name");
 	}
 
 	@Test
 	public void testGetSetAsiakas() {
-		customer.setAsiakasID(5);
-		illness.setAsiakas(customer);
-		assertEquals(5, illness.getAsiakas().getAsiakasID(), "sairauksen asiakkaan asetus epäonnistui");
+		customer.setCustomerID(5);
+		illness.setCustomer(customer);
+		assertEquals(5, illness.getCustomer().getCustomerID(), "Failed to set and get illness' customer");
 	}
 }

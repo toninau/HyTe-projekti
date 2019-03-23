@@ -15,19 +15,19 @@ public class Prescription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "prescriptionID")
-	private int reseptiID;
+	private int prescriptionID;
 
-	@Column(name = "alkupvm")
-	private String alkupvm;
+	@Column(name = "startDate")
+	private String startDate;
 
-	@Column(name = "loppupvm")
-	private String loppupvm;
+	@Column(name = "endDate")
+	private String endDate;
 
-	@Column(name = "reseptinimi")
-	private String reseptiNimi;
+	@Column(name = "prescriptionName")
+	private String prescriptionName;
 
-	@Column(name = "reseptiohje")
-	private String reseptiOhje;
+	@Column(name = "prescriptionGuide")
+	private String prescriptionGuide;
 
 	@ManyToOne
 	@JoinColumn(name = "customerID", nullable = false)
@@ -38,159 +38,144 @@ public class Prescription {
 	private Staff staff;
 
 	/**
-	 * Vakio resepti konstruktori.
+	 * Empty prescription constructor. Values are given using set-methods.
 	 * 
-	 * @param alkupvm      Päivämäärä, jolloin resepti on määrätty
-	 * @param loppupvm     Päivämäärä, johon saakka resepti on voimassa
-	 * @param reseptiNimi  Reseptin nimi, esimerkiksi lääke <i>Testilääke 600mg</i>
-	 * @param reseptiOhje  Reseptin käyttöohjeet
-	 * @param customer      Asiakas, jolle resepti on määrätty
-	 * @param staff Henkilökunnan jäsen, joka on määrännyt reseptin
-	 * @see #Prescription()
-	 */
-	public Prescription(String alkupvm, String loppupvm, String reseptiNimi, String reseptiOhje, Customer customer,
-			Staff staff) {
-		this.alkupvm = alkupvm;
-		this.loppupvm = loppupvm;
-		this.reseptiNimi = reseptiNimi;
-		this.reseptiOhje = reseptiOhje;
-		this.customer = customer;
-		this.staff = staff;
-	}
-
-	/**
-	 * Tyhjä resepti konstruktori. Arvot annetaan set-metodeja käyttäen.
-	 * 
-	 * @see #Prescription()
+	 * @see #Prescription(String, String, String, String, Customer, Staff)
 	 */
 	public Prescription() {
 	}
 
 	/**
-	 * Palauttaa reseptin reseptiID:n. ReseptiID-arvo määritellään automaattisesti
-	 * tietokannassa.
+	 * Prescription constructor.
 	 * 
-	 * @return reseptiID
+	 * @param startDate         Prescription starting date
+	 * @param endDate           Prescription ending date
+	 * @param prescriptionName  Prescription's name
+	 * @param prescriptionGuide Prescription's guide
+	 * @param customer          Prescription's customer
+	 * @param staff             Prescription's staff member
+	 * @see #Prescription()
 	 */
-	public int getReseptiID() {
-		return reseptiID;
+	public Prescription(String startDate, String endDate, String prescriptionName, String prescriptionGuide,
+			Customer customer, Staff staff) {
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.prescriptionName = prescriptionName;
+		this.prescriptionGuide = prescriptionGuide;
+		this.customer = customer;
+		this.staff = staff;
 	}
-
+	
 	/**
-	 * Asettaa reseptin reseptiID:n. ReseptiID-arvo määritellään automaattisesti
-	 * tietokannassa. Ei käytetä uuden reseptin luomisessa.
-	 * 
-	 * @param reseptiID reseptille annettava reseptiID
+	 * Returns prescriptionID. PrescriptionID value is given automatically in the database.
+	 * @return prescriptionID
 	 */
-	public void setReseptiID(int reseptiID) {
-		this.reseptiID = reseptiID;
+	public int getPrescriptionID() {
+		return prescriptionID;
 	}
-
+	
 	/**
-	 * Palauttaa reseptin alkamispäivämäärän.
-	 * 
-	 * @return alkamispäivämäärä
+	 * Sets prescriptionID. PrescriptionID value is given automatically
+	 * in the database. Not used when creating a new prescription.
+	 * @param prescriptionID prescriptionID to set
 	 */
-	public String getAlkupvm() {
-		return alkupvm;
+	public void setPrescriptionID(int prescriptionID) {
+		this.prescriptionID = prescriptionID;
 	}
-
+	
 	/**
-	 * Asettaa reseptille alkamispäivämäärän.
-	 * 
-	 * @param alkupvm reseptille asetettava alkamispäivämäärä
+	 * Returns prescription start date.
+	 * @return startDate
 	 */
-	public void setAlkupvm(String alkupvm) {
-		this.alkupvm = alkupvm;
+	public String getStartDate() {
+		return startDate;
 	}
-
+	
 	/**
-	 * Palauttaa reseptin loppupäivämäärän.
-	 * 
-	 * @return loppupäivämäärä
+	 * Sets prescription start date.
+	 * @param startDate date when prescription started
 	 */
-	public String getLoppupvm() {
-		return loppupvm;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
-
+	
 	/**
-	 * Asettaa reseptille loppupäivämäärän.
-	 * 
-	 * @param loppupvm reseptille asetettava loppupäivämäärä
+	 * Returns prescription end date.
+	 * @return endDate
 	 */
-	public void setLoppupvm(String loppupvm) {
-		this.loppupvm = loppupvm;
+	public String getEndDate() {
+		return endDate;
 	}
-
+	
 	/**
-	 * Palauttaa reseptin nimen.
-	 * 
-	 * @return reseptinimi
+	 * Sets prescription end date.
+	 * @param endDate date when prescription is going to end
 	 */
-	public String getReseptiNimi() {
-		return reseptiNimi;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
-
+	
 	/**
-	 * Asettaa reseptille nimen.
-	 * 
-	 * @param reseptiNimi reseptille asetettava nimi
+	 * Returns prescription name.
+	 * @return prescriptionName
 	 */
-	public void setReseptiNimi(String reseptiNimi) {
-		this.reseptiNimi = reseptiNimi;
+	public String getPrescriptionName() {
+		return prescriptionName;
 	}
-
+	
 	/**
-	 * Palauttaa reseptin käyttöohjeen.
-	 * 
-	 * @return käyttöohje
+	 * Sets prescription name.
+	 * @param prescriptionName name to set
 	 */
-	public String getReseptiOhje() {
-		return reseptiOhje;
+	public void setPrescriptionName(String prescriptionName) {
+		this.prescriptionName = prescriptionName;
 	}
-
+	
 	/**
-	 * Asettaa reseptille käyttöohjeen.
-	 * 
-	 * @param reseptiOhje reseptille asetettava käyttöohje
+	 * Returns prescription guide.
+	 * @return prescriptionGuide
 	 */
-	public void setReseptiOhje(String reseptiOhje) {
-		this.reseptiOhje = reseptiOhje;
+	public String getPrescriptionGuide() {
+		return prescriptionGuide;
 	}
-
+	
 	/**
-	 * Palauttaa reseptin asiakkaan.
-	 * 
-	 * @return asiakas
+	 * Sets prescription guide.
+	 * @param prescriptionGuide guide to set
 	 */
-	public Customer getAsiakas() {
+	public void setPrescriptionGuide(String prescriptionGuide) {
+		this.prescriptionGuide = prescriptionGuide;
+	}
+	
+	/**
+	 * Returns prescription customer.
+	 * @return customer
+	 */
+	public Customer getCustomer() {
 		return customer;
 	}
-
+	
 	/**
-	 * Asettaa reseptin asiakkaan.
-	 * 
-	 * @param customer reseptille asetettava asiakas
+	 * Sets prescription customer.
+	 * @param customer customer to set
 	 */
-	public void setAsiakas(Customer customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
+	
 	/**
-	 * Palauttaa reseptin henkilökunnan jäsenen.
-	 * 
-	 * @return henkilökunnan jäsen
+	 * Returns prescription staff member.
+	 * @return staff
 	 */
-	public Staff getHenkilökunta() {
+	public Staff getStaff() {
 		return staff;
 	}
-
+	
 	/**
-	 * Asettaa reseptin henkilökunnan jäsenen.
-	 * 
-	 * @param staff reseptille asetettava henkilökunnan jäsen
+	 * Sets prescription staff member.
+	 * @param staff staff member to set
 	 */
-	public void setHenkilökunta(Staff staff) {
+	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
 }

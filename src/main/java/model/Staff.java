@@ -46,7 +46,7 @@ public class Staff {
 	private Set<Customer> customersStaff = new HashSet<Customer>();
 
 	/**
-	 * Tyhjä henkilökunta konstruktori. Arvot annetaan set-metodeja käyttäen.
+	 * Empty staff constructor. Values are given using set-methods.
 	 * 
 	 * @see #Staff(String, String, String, String, String)
 	 */
@@ -54,14 +54,15 @@ public class Staff {
 	}
 
 	/**
-	 * Vakio henkilökunta konstruktori.
+	 * Staff constructor.
 	 * 
-	 * @param firstName   Henkilökunnan jäsenen firstName
-	 * @param surname  Henkilökunnan jäsenen surname
-	 * @param phoneNumber Henkilökunnan jäsenen puhelinnumero
-	 * @param email    Henkilökunnan jäsenen sähköpostiosoite
-	 * @param accessLevel    Henkilökunnan jäsenen accessLevel. Määrittää jäsenen oikeudet
-	 *                  esimerkiksi resepteiden määrämäämiseen asiakkaille.
+	 * @param firstName   Staff member's first name
+	 * @param surname     Staff member's surname
+	 * @param phoneNumber Staff member's phone number
+	 * @param email       Staff member's email address
+	 * @param accessLevel Staff member's access level. For example defines staff
+	 *                    member's authority to prescribe a prescription
+	 * 
 	 * @see #Staff()
 	 */
 
@@ -73,55 +74,105 @@ public class Staff {
 		this.accessLevel = accessLevel;
 	}
 
+	/**
+	 * Returns staff member's staffID. StaffID value is given automatically in the
+	 * database.
+	 * 
+	 * @return staffID
+	 */
 	public int getStaffID() {
 		return staffID;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getAccessLevel() {
-		return accessLevel;
-	}
-
+	/**
+	 * Sets staffID. staffID value is given automatically in the database. Not used
+	 * when creating a new staff member.
+	 * 
+	 * @param staffID staffID to set
+	 */
 	public void setStaffID(int staffID) {
 		this.staffID = staffID;
 	}
 
+	/**
+	 * Returns staff member's first name.
+	 * 
+	 * @return first name
+	 */
+	public String getFirstName() {
+		return firstName;
+	}
+
+	/**
+	 * Sets first name.
+	 * 
+	 * @param firstName first name to set
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
+	
+	/**
+	 * Returns staff member's surname.
+	 * @return surname
+	 */
+	public String getSurname() {
+		return surname;
+	}
+	
+	/**
+	 * Sets surname.
+	 * @param surname surname to set
+	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-
+	
+	/**
+	 * Returns staff member's phone number.
+	 * @return phoneNumber
+	 */
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	
+	/**
+	 * Sets phone number.
+	 * @param phoneNumber phone number to set
+	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
+	
+	/**
+	 * Returns staff member's email address.
+	 * @return email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	
+	/**
+	 * Sets email address.
+	 * @param email email address to set
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	/**
+	 * Returns staff member's access level.
+	 * @return accessLevel
+	 */
+	public String getAccessLevel() {
+		return accessLevel;
+	}
+	
+	/**
+	 * Sets access level.
+	 * @param accessLevel access level to set
+	 */
 	public void setAccessLevel(String accessLevel) {
 		this.accessLevel = accessLevel;
 	}
-	
-	
-
-
 }

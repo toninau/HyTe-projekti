@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 public class Main {
 
 	public static void main(String[] args) {
-		//Testaus main, jota voidaan myös käyttää tietokannan luomista varten
+		// Testaus main, jota voidaan myös käyttää tietokannan luomista varten
 		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory();
 		NotificationDAO ilmoitusDAO = new NotificationDAO(istuntotehdas);
 		CustomerDAO asiakasDAO = new CustomerDAO(istuntotehdas);
@@ -14,9 +14,8 @@ public class Main {
 		AppointmentDAO varausDAO = new AppointmentDAO(istuntotehdas);
 		PrescriptionDAO reseptiDAO = new PrescriptionDAO(istuntotehdas);
 		BloodValueDAO veriarvoDAO = new BloodValueDAO(istuntotehdas);
-		
-		
-		//Luo ensimmäinen henkilökunnan jäsen
+
+		// Luo ensimmäinen henkilökunnan jäsen
 		Staff staff = new Staff();
 		staff.setFirstName("test");
 		staff.setSurname("tohtori");
@@ -25,8 +24,8 @@ public class Main {
 		staff.setAccessLevel("Lääkäri");
 		henkilöDAO.create(staff);
 		staff = henkilöDAO.read(1);
-		
-		//Ensimmäinen asiakas
+
+		// Ensimmäinen asiakas
 		Customer customer = new Customer();
 		customer.setFirstName("Jorma");
 		customer.setSurname("Testi");
@@ -37,18 +36,18 @@ public class Main {
 		customer.setPhoneNumber("12341235");
 		asiakasDAO.create(customer);
 		customer = asiakasDAO.read(1);
-		
-		//liitetään henkilökunnan jäsen asiakkaaseen
+
+		// liitetään henkilökunnan jäsen asiakkaaseen
 		henkilöDAO.addCustomer(staff, customer);
-		
-		//lisätään varaus
+
+		// lisätään varaus
 		Appointment appointment = new Appointment("12.12.2020", "12:30", "leikkaus", customer, staff);
 		varausDAO.create(appointment);
-		//lisätään sairaus asiakkaaseen
+		// lisätään sairaus asiakkaaseen
 		Illness illness = new Illness("yskä", customer);
 		sairausDAO.create(illness);
-		
-		//Toinen henkilökunna jäsen
+
+		// Toinen henkilökunna jäsen
 		staff = new Staff();
 		staff.setFirstName("tohtori");
 		staff.setSurname("testinen");
@@ -57,12 +56,12 @@ public class Main {
 		staff.setAccessLevel("Lääkäri");
 		henkilöDAO.create(staff);
 		staff = henkilöDAO.read(2);
-		
-		//Luodaan toinen varaus
+
+		// Luodaan toinen varaus
 		appointment = new Appointment("29.2.2090", "00:30", "katsastus", customer, staff);
 		varausDAO.create(appointment);
-		
-		//Toinen asiakas
+
+		// Toinen asiakas
 		customer = new Customer();
 		customer.setFirstName("Jarmo");
 		customer.setSurname("Testinen");
@@ -72,20 +71,20 @@ public class Main {
 		customer.setEmail("jarmo.testinen@mail.com");
 		customer.setPhoneNumber("94844938");
 		asiakasDAO.create(customer);
-		
-		//liitetään henkilökunnan jäsen asiakkaaseen
+
+		// liitetään henkilökunnan jäsen asiakkaaseen
 		henkilöDAO.addCustomer(staff, customer);
 		staff = henkilöDAO.read(1);
 		henkilöDAO.addCustomer(staff, customer);
-		
-		//lisätään sairaudet
+
+		// lisätään sairaudet
 		customer = asiakasDAO.read(2);
 		illness = new Illness("jalka poikki", customer);
 		sairausDAO.create(illness);
-		illness= new Illness("käsi poikki", customer);
+		illness = new Illness("käsi poikki", customer);
 		sairausDAO.create(illness);
-		
-		//Henkilökunnan jäsenen asiakkaiden lukeminen
+
+		// Henkilökunnan jäsenen asiakkaiden lukeminen
 		System.out.println("Henkilökunnan id=1 asiakkaiden lukeminen:");
 		staff = henkilöDAO.read(1);
 		Customer[] asiakkaat2 = henkilöDAO.readHenkilönAsiakkaat(staff);
@@ -93,8 +92,8 @@ public class Main {
 		for (Customer a : asiakkaat2) {
 			System.out.println(a.getFirstName() + ", " + a.getSurname());
 		}
-		
-		//Asiakkaan henkilökunnan lukeminen
+
+		// Asiakkaan henkilökunnan lukeminen
 		System.out.println("Asiakkaan id=2 henkilökunnan lukeminen:");
 		customer = asiakasDAO.read(2);
 		Staff[] henkilöt = asiakasDAO.readAsiakkaanHenkilökunta(customer);
@@ -102,8 +101,8 @@ public class Main {
 		for (Staff h : henkilöt) {
 			System.out.println(h.getFirstName() + ", " + h.getSurname());
 		}
-		
-		//Asiakkaan sairauksien lukeminen
+
+		// Asiakkaan sairauksien lukeminen
 		System.out.println("kaikkien asikkaiden sairauksien lukeminen:");
 		Customer[] asiakkaat = asiakasDAO.readAll();
 		int i = 1;
@@ -116,67 +115,71 @@ public class Main {
 			}
 			i++;
 		}
-		
-		//Asiakkaan varauksien lukeminen
+
+		// Asiakkaan varauksien lukeminen
 		System.out.println("asikas id=1 varauksien lukeminen");
 		customer = asiakasDAO.read(1);
 		Appointment[] varaukset = varausDAO.readCustomerAppointments(customer);
 		System.out.println("Varaukset: " + customer.getFirstName() + ", " + customer.getSurname());
 		for (Appointment v : varaukset) {
-			System.out.println("\t" + v.getDate() + "/" + v.getTime() + "/" + v.getInfo() + "/"+ v.getStaff().getFirstName() + ", " + v.getStaff().getSurname());
+			System.out.println("\t" + v.getDate() + "/" + v.getTime() + "/" + v.getInfo() + "/"
+					+ v.getStaff().getFirstName() + ", " + v.getStaff().getSurname());
 		}
-		
-		//Henkilökunnan varauksien lukeminen
+
+		// Henkilökunnan varauksien lukeminen
 		System.out.println("henkilökunta id=1 varauksien lukeminen");
 		staff = henkilöDAO.read(1);
 		varaukset = varausDAO.readStaffAppointments(staff);
 		System.out.println("Varaukset: " + staff.getFirstName() + ", " + staff.getSurname());
 		for (Appointment v : varaukset) {
-			System.out.println("\t" + v.getDate() + "/" + v.getTime() + "/" + v.getCustomer().getFirstName() + ", " + v.getCustomer().getSurname());
+			System.out.println("\t" + v.getDate() + "/" + v.getTime() + "/" + v.getCustomer().getFirstName() + ", "
+					+ v.getCustomer().getSurname());
 		}
-		
-		//Varauksen päivitys
+
+		// Varauksen päivitys
 		customer = asiakasDAO.read(2);
 		appointment = varausDAO.read(1);
 		appointment.setInfo("tämä on testi");
 		appointment.setCustomer(customer);
 		varausDAO.update(appointment);
-		
-		//Reseptin lisäys
+
+		// Reseptin lisäys
 		Prescription prescription = new Prescription();
-		prescription.setAlkupvm("21.12.2012");
-		prescription.setLoppupvm("22.12.2012");
-		prescription.setReseptiNimi("testilääke 200mg");
-		prescription.setReseptiOhje("Yksi pilleri aamuin ja illoin.");
-		prescription.setAsiakas(customer);
-		prescription.setHenkilökunta(staff);
+		prescription.setStartDate("21.12.2012");
+		prescription.setEndDate("22.12.2012");
+		prescription.setPrescriptionName("testilääke 200mg");
+		prescription.setPrescriptionGuide("Yksi pilleri aamuin ja illoin.");
+		prescription.setCustomer(customer);
+		prescription.setStaff(staff);
 		reseptiDAO.create(prescription);
 		prescription = new Prescription();
-		prescription.setAlkupvm("21.12.2012");
-		prescription.setLoppupvm("22.12.2052");
-		prescription.setReseptiNimi("testilääke 600mg");
-		prescription.setReseptiOhje("kaksi pilleriä aamuin ja illoin.");
-		prescription.setAsiakas(customer);
+		prescription.setStartDate("21.12.2012");
+		prescription.setEndDate("22.12.2052");
+		prescription.setPrescriptionName("testilääke 600mg");
+		prescription.setPrescriptionGuide("kaksi pilleriä aamuin ja illoin.");
+		prescription.setCustomer(customer);
 		staff = henkilöDAO.read(2);
-		prescription.setHenkilökunta(staff);
+		prescription.setStaff(staff);
 		reseptiDAO.create(prescription);
-		
-		//Asiakkaan reseptien läpikäynti
+
+		// Asiakkaan reseptien läpikäynti
 		System.out.println("Reseptit: " + customer.getFirstName() + ", " + customer.getSurname());
 		Prescription[] reseptit = reseptiDAO.readCustomersPrescriptions(customer);
 		for (Prescription r : reseptit) {
-			System.out.println("\t" + r.getAlkupvm() + "/" + r.getLoppupvm() + "/" + r.getReseptiNimi() + "/"+ r.getHenkilökunta().getFirstName() + ", " + r.getHenkilökunta().getSurname());
+			System.out.println("\t" + r.getStartDate() + "/" + r.getEndDate() + "/" + r.getPrescriptionName() + "/"
+					+ r.getStaff().getFirstName() + ", " + r.getStaff().getSurname());
 		}
-		
-		//Henkilökunnan reseptit
+
+		// Henkilökunnan reseptit
 		staff = henkilöDAO.read(2);
 		System.out.println("Reseptit: " + staff.getFirstName() + ", " + staff.getSurname());
 		reseptit = reseptiDAO.readStaffsPrescriptions(staff);
 		for (Prescription r : reseptit) {
-			System.out.println("\t" + r.getAlkupvm() + "/" + r.getLoppupvm() + "/" + r.getReseptiNimi() + "/"+ r.getAsiakas().getFirstName() + ", " + r.getAsiakas().getSurname());
-		}		
-		
-		//Asiakkaan veriarvon lisäys 2x
+			System.out.println("\t" + r.getStartDate() + "/" + r.getEndDate() + "/" + r.getPrescriptionName() + "/"
+					+ r.getCustomer().getFirstName() + ", " + r.getCustomer().getSurname());
+		}
+
+		// Asiakkaan veriarvon lisäys 2x
 		customer = asiakasDAO.read(2);
 		BloodValue bloodValue = new BloodValue();
 		bloodValue.setCustomer(customer);
@@ -188,36 +191,38 @@ public class Main {
 		bloodValue.setCustomer(customer);
 		bloodValue.setTime("12:15");
 		bloodValue.setDate("1.1.2019");
-		bloodValue.setVerenpaine("100/100/100");
+		bloodValue.setBloodpressure("100/100/100");
 		veriarvoDAO.create(bloodValue);
-		
-		//Asiakkaan veriarvojen hakeminen
+
+		// Asiakkaan veriarvojen hakeminen
 		System.out.println("asiakkaan id=2 veriarvot");
 		BloodValue[] veriarvot = veriarvoDAO.readCustomerBloodvalues(customer);
 		System.out.println("Asiakas: " + customer.getFirstName() + ", " + customer.getSurname());
 		for (BloodValue v : veriarvot) {
-			System.out.println("\t"+ v.getTime() + "/" + v.getDate() + "/" + v.getBloodpressure() + "/" + v.getBloodsugar());
+			System.out.println(
+					"\t" + v.getTime() + "/" + v.getDate() + "/" + v.getBloodpressure() + "/" + v.getBloodsugar());
 		}
-		
-		//Ilmoituksen lisääminen
+
+		// Ilmoituksen lisääminen
 		customer = asiakasDAO.read(1);
 		staff = henkilöDAO.read(1);
 		Notification notification = new Notification("12.12.2000", "syö lääkkeet", customer, staff);
 		ilmoitusDAO.create(notification);
 		notification = new Notification("12.12.2002", "syö lääkkeet", customer, staff);
 		ilmoitusDAO.create(notification);
-		
-		//Ilmoituksen merkkaaminen luetuksi
+
+		// Ilmoituksen merkkaaminen luetuksi
 		notification = ilmoitusDAO.read(1);
 		notification.setRead(true);
 		ilmoitusDAO.update(notification);
-		
+
 		// Ilmoituksien läpikäynti
 		Notification[] ilmoitukset = ilmoitusDAO.readAsiakkaanIlmoitukset(customer);
 		System.out.println("Asiakas: " + customer.getFirstName() + ", " + customer.getSurname());
 		for (Notification il : ilmoitukset) {
-			System.out.println("\t"+ il.getDate() + "/" + il.getText() + "/" + il.isRead() + "/" + il.getStaff().getFirstName() + ", " + il.getStaff().getSurname());
+			System.out.println("\t" + il.getDate() + "/" + il.getText() + "/" + il.isRead() + "/"
+					+ il.getStaff().getFirstName() + ", " + il.getStaff().getSurname());
 		}
-		//Testi committi
+		// Testi committi
 	}
 }
