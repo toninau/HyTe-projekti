@@ -33,7 +33,7 @@
                         <TextField id="addressCust" fx:id="addressCust" layoutX="515.0" layoutY="330.0" promptText="Osoite" />
                         <TextField id="ICECust" fx:id="ICECust" layoutX="515.0" layoutY="380.0" promptText="ICE-numero" />
                         <Button fx:id="addStaff" layoutX="145.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#addStaff" text="Lisää työntekijä" />
-                        <Button fx:id="addCustomer" layoutX="541.0" layoutY="433.0" mnemonicParsing="false" text="Lisää asiakas" />
+                        <Button fx:id="addCustomer" layoutX="541.0" layoutY="433.0" mnemonicParsing="false" onMouseClicked="#addCustomer" text="Lisää asiakas" />
                         <ChoiceBox fx:id="profession" layoutX="118.0" layoutY="368.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>
@@ -46,7 +46,7 @@
                         <Separator orientation="VERTICAL" prefHeight="560.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0" />
                         <Separator prefHeight="0.0" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <Button fx:id="find" layoutX="91.0" layoutY="104.0" mnemonicParsing="false" onAction="#findStaff" text="Etsi" />
-                        <TextField fx:id="staffID" layoutX="43.0" layoutY="64.0" promptText="Työntekijä ID" />
+                        <TextField fx:id="findStaffName" layoutX="43.0" layoutY="64.0" onKeyReleased="#showStaffSuggestions" onMouseClicked="#findStaff" promptText="Työntekijän sukunimi" />
                         <TextField fx:id="customerID" layoutX="524.0" layoutY="64.0" promptText="Asiakkaan hetu" />
                         <Button fx:id="findCustomer" layoutX="573.0" layoutY="104.0" mnemonicParsing="false" text="Etsi" />
                      </children>

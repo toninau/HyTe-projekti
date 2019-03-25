@@ -25,7 +25,7 @@ public class StaffTest {
 	@Test
 	public void testConstructor() {
 		try {
-			staffmember = new Staff("Testi", "Testinen", "1234567890", "testi@mail.com", "Lääkäri");
+			staffmember = new Staff("Testi", "Testinen", "1234567890", "testi@mail.com", "Lääkäri", "password");
 		} catch (Exception e) {
 			fail("Failed to create staff-object");
 		}

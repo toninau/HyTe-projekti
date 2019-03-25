@@ -32,6 +32,9 @@ public class Staff {
 
 	@Column(name = "accessLevel")
 	private String accessLevel;
+	
+	@Column(name ="password")
+	private String password;
 
 	@OneToMany(mappedBy = "staff", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private Set<Appointment> appointments = new HashSet<Appointment>();
@@ -66,12 +69,13 @@ public class Staff {
 	 * @see #Staff()
 	 */
 
-	public Staff(String firstName, String surname, String phoneNumber, String email, String accessLevel) {
+	public Staff(String firstName, String surname, String phoneNumber, String email, String accessLevel, String password) {
 		this.firstName = firstName;
 		this.surname = surname;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.accessLevel = accessLevel;
+		this.password = password;
 	}
 
 	/**
@@ -174,5 +178,13 @@ public class Staff {
 	 */
 	public void setAccessLevel(String accessLevel) {
 		this.accessLevel = accessLevel;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getPassword() {
+		return password;
 	}
 }

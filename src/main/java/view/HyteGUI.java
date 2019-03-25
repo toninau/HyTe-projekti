@@ -19,7 +19,6 @@ import javafx.scene.layout.Pane;
  */
 public class HyteGUI extends Application {
 	
-	private LoginViewController lc;
 	private Stage primaryStage;
 	
 	public static void main(String[] args) {

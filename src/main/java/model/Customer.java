@@ -38,7 +38,10 @@ public class Customer {
 
 	@Column(name = "iceNumber")
 	private String iceNumber;
-
+	
+	@Column(name = "password")
+	private String password;
+	
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
 	private Set<Illness> illnesses = new HashSet<Illness>();
 
@@ -81,7 +84,7 @@ public class Customer {
 	 * @see #Customer()
 	 */
 	public Customer(String firstName, String surname, String ssn, String address, String email, String phoneNumber,
-			String iceNumber) {
+			String iceNumber, String password) {
 		this.firstName = firstName;
 		this.surname = surname;
 		this.ssn = ssn;
@@ -89,6 +92,7 @@ public class Customer {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.iceNumber = iceNumber;
+		this.password = password;
 	}
 
 	/**
@@ -235,5 +239,13 @@ public class Customer {
 	 */
 	public void setIceNumber(String iceNumber) {
 		this.iceNumber = iceNumber;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getPassword() {
+		return password;
 	}
 }

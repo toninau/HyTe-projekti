@@ -26,7 +26,7 @@ public class CustomerTest {
 	public void testConstructor() {
 		try {
 			customer = new Customer("Testi", "Testinen", "111111-111A", "Testitie 3", "testi@mail.com", "1234567890",
-					"0987654321");
+					"0987654321", "password");
 		} catch (Exception e) {
 			fail("Failed to create customer-object");
 		}

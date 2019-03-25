@@ -1,8 +1,10 @@
 package view;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -65,110 +67,54 @@ public class AdminViewController implements Initializable {
 	@FXML
 	Button findCustomer;
 	@FXML
-	TextField staffID;
+	TextField findStaffName;
 	@FXML
 	TextField customerID;
 
 	/**
 	 * Olio, jota käytetään muiden data access objectien hallinnoimiseen.
 	 */
+
 	private DAOManager daoM;
+	private Controller c;
+	private SuggestionHandler SuggestionHandler;
 
 	/**
 	 * Ylläpitäjän näkymän konstruktori. Luo myös data access object managerin.
 	 */
 	public AdminViewController() {
 		daoM = new DAOManager();
-
+		c = new Controller(this);
+		SuggestionHandler = new SuggestionHandler();
 	}
 
 	/**
 	 * Metodi asiakkaan luontia varten. Käynnistyy napin painalluksesta.
 	 */
 	public void addCustomer() {
-
-		Customer customer = new Customer();
-		String hetu = getCustHetu();
-		String etunimi = getCustFirstname();
-		String sukunimi = getCustSurname();
-		String puhnro = getCustPhone();
-		String email = getCustEmail();
-		String ICE = getCustICE();
-		String osoite = getCustAddress();
-		CustomerDAO ao = daoM.getAsiakasDAO();
-		ao.create(customer);
-		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ICE, osoite };
-
-		for (String string : info) {
-			if (string == null) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error");
-				alert.setHeaderText("Tiedot");
-				alert.setContentText("Tarkista tiedot");
-				alert.showAndWait();
-			}
-			System.out.println(string);
-		}
-
+		c.addCustomer();
 	}
 
 	/**
 	 * Metodi työntekijän luontia varten. Käynnistyy napin painalluksesta.
 	 */
 	public void addStaff() {
-		Staff hkunta = new Staff();
-		String etunimi = getStaffFirstName();
-		String sukunimi = getStaffSurname();
-		String puhnro = getStaffPhone();
-		String email = getStaffEmail();
-		String ammatti = getProfession();
-		String[] info = { etunimi, sukunimi, puhnro, email, ammatti };
-		boolean onnistui = true;
-		for (String string : info) {
-			if (string.isEmpty()) {
-				onnistui = false;
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error");
-				alert.setHeaderText("Tiedot");
-				alert.setContentText("Tarkista tiedot");
-				alert.showAndWait();
-				break;
-			}
-			System.out.println(string);
-		}
-
-		if (onnistui) {
-			hkunta.setFirstName(etunimi);
-			hkunta.setSurname(sukunimi);
-			hkunta.setPhoneNumber(puhnro);
-			hkunta.setEmail(email);
-			hkunta.setAccessLevel(ammatti);
-			StaffDAO hdao = daoM.getHenkilökuntaDAO();
-			hdao.create(hkunta);
-		}
-		Staff[] kaikki = daoM.getHenkilökuntaDAO().readAll();
-		for (Staff staff : kaikki) {
-			System.out.println(staff.getFirstName());
-		}
+		c.addStaff();
 	}
 
 	/**
 	 * Etsii halutun työntekijän tietokannasta ID:n avulla.
 	 */
 	public void findStaff() {
-		Staff henk = new Staff();
-		if (henk.getStaffID() != getStaffID()) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Tiedot");
-			alert.setContentText("Tarkista tiedot");
-			alert.showAndWait();
-		} else {
-			String[] tiedot = { henk.getFirstName(), henk.getSurname(), henk.getPhoneNumber(), henk.getEmail(),
-					henk.getAccessLevel() };
-			for (String string : tiedot) {
-				System.out.println(string);
-			}
+		Staff[] staffs = c.findStaff();
+		SuggestionHandler.setStaffLista(staffs);
+		System.out.println("findstaffkutsuttu");
+	}
+	
+	public void showStaffSuggestions() {
+		ArrayList<Staff> a = SuggestionHandler.findWithPrefix(getStaffName());
+		for (Staff staff : a) {
+			System.out.println(staff.getSurname());
 		}
 	}
 
@@ -196,6 +142,10 @@ public class AdminViewController implements Initializable {
 	@FXML
 	public void logout() {
 
+	}
+
+	public String getStaffName() {
+		return this.findStaffName.getText();
 	}
 
 	/**
@@ -270,14 +220,6 @@ public class AdminViewController implements Initializable {
 		return Integer.parseInt(this.customerID.getText());
 	}
 
-	/**
-	 * Palauttaa työntekijän ID:n.
-	 * 
-	 * @return Työntekijä ID.
-	 */
-	public int getStaffID() {
-		return Integer.parseInt(this.staffID.getText());
-	}
 
 	/**
 	 * Palauttaa työntekijän etunimen.
