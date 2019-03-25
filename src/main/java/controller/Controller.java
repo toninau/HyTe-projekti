@@ -1,7 +1,10 @@
 package controller;
 
+import com.lambdaworks.crypto.SCryptUtil;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import kotlin.reflect.jvm.internal.impl.util.CheckResult.SuccessCheck;
 import model.Customer;
 import model.CustomerDAO;
 import model.DAOManager;
@@ -56,6 +59,7 @@ public class Controller {
 	
 	public void addCustomer() {
 		Customer customer = new Customer();
+		boolean success = true;
 		String hetu = ac.getCustHetu();
 		String etunimi = ac.getCustFirstname();
 		String sukunimi = ac.getCustSurname();
@@ -63,12 +67,13 @@ public class Controller {
 		String email = ac.getCustEmail();
 		String ICE = ac.getCustICE();
 		String osoite = ac.getCustAddress();
-		CustomerDAO ao = daoM.getCustomerDAO();
-		ao.create(customer);
+
+		
 		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ICE, osoite };
 
 		for (String string : info) {
 			if (string == null) {
+				success = false;
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Tiedot");
@@ -77,11 +82,31 @@ public class Controller {
 			}
 			System.out.println(string);
 		}
+		
+		if (success) {
+			customer.setFirstName(etunimi);
+			customer.setSurname(sukunimi);
+			customer.setPhoneNumber(puhnro);
+			customer.setEmail(email);
+			customer.setAddress(osoite);
+			customer.setIceNumber(ICE);
+			customer.setSSN(hetu);
+			daoM.create(customer);
+		}
 	}
 	
 	public Staff[] findStaff() {
 		return (Staff[])daoM.readAll(1);
 		
+	}
+	
+	public Customer[] findCustomer() {
+		return(Customer[]) daoM.readAll(2);
+	}
+	
+	public void encryptPassword(String password) {
+		String originalPassword = password;
+		String encryptedPassword = SCryptUtil.scrypt(originalPassword, 16, 16, 16);
 	}
 	
 }

@@ -124,9 +124,9 @@ public class LoginViewController {
 		Customer customer = new Customer();
 		String fxml = "/AsiakasView.fxml";
 		String title = "Welcome!";
-		
+		sceneContent(fxml, event, title);
 		if(getUsernameStaff().equals(customer.getEmail()) && getPasswordStaff().equals("asiakkaanpassword")) {
-			sceneContent(fxml, event, title);
+			
 		}
 	}
 	

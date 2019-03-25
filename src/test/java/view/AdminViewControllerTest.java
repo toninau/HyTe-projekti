@@ -1,5 +1,5 @@
-package view;
-/*
+/*package view;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -65,8 +65,8 @@ public class AdminViewControllerTest extends ApplicationTest{
 	}
 
 	@Test
-	public void addStaffTest() {
-		ac = new AdminViewController();
+	public void addStaffTest(AdminViewController ac) {
+		this.ac = ac;
 		clickOn("#addTab");
         clickOn("#fNameStaff");
         write("firstname");

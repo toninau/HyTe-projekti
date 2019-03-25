@@ -49,14 +49,12 @@ public class WeatherAPICall {
 			response.append(inputLine);
 		}
 		in.close();
-		
-		
+
 		Gson gson = new GsonBuilder().create();
 
 		JsonElement jelement = new JsonParser().parse(response.toString());
 		JsonObject jobject = jelement.getAsJsonObject();
 		JsonArray main = jobject.getAsJsonArray("weather");
 		System.out.println(main.get(0).getAsJsonObject().get("main"));
-
 	}
 }

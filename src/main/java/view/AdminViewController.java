@@ -4,7 +4,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.TextFields;
+
 import controller.Controller;
+import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
+import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -14,10 +18,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import model.Customer;
-import model.CustomerDAO;
 import model.DAOManager;
 import model.Staff;
-import model.StaffDAO;
 
 /**
  * Luokka kontrolloi ylläpitäjän näkymää
@@ -93,6 +95,13 @@ public class AdminViewController implements Initializable {
 	 */
 	public void addCustomer() {
 		c.addCustomer();
+		fNameCust.clear();
+		sNameCust.clear();
+		hetuCust.clear();
+		phoneNroCust.clear();
+		emailCust.clear();
+		addressCust.clear();
+		ICECust.clear();
 	}
 
 	/**
@@ -100,6 +109,11 @@ public class AdminViewController implements Initializable {
 	 */
 	public void addStaff() {
 		c.addStaff();
+		fNameStaff.clear();
+		sNameStaff.clear();
+		emailStaff.clear();
+		phoneNroStaff.clear();
+
 	}
 
 	/**
@@ -112,10 +126,13 @@ public class AdminViewController implements Initializable {
 	}
 	
 	public void showStaffSuggestions() {
-		ArrayList<Staff> a = SuggestionHandler.findWithPrefix(getStaffName());
-		for (Staff staff : a) {
-			System.out.println(staff.getSurname());
+		ArrayList<String> a = SuggestionHandler.findWithPrefix(getStaffName());
+		for (String staff : a) {
+			//System.out.println(staff.getSurname());
 		}
+
+		TextFields.bindAutoCompletion(findStaffName, SuggestionProvider.create(a));
+		
 	}
 
 	/**
@@ -274,6 +291,7 @@ public class AdminViewController implements Initializable {
 		profession.getItems().add("Lääkäri");
 		profession.getItems().add("Hoitaja");
 		profession.getItems().add("Asiakaspalvelija");
+
 	}
 
 }
