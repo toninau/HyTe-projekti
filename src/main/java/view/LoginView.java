@@ -26,7 +26,7 @@ import model.Staff;
  *
  */
 
-public class LoginView {
+public class LoginView extends ViewChanger {
 
 	private DAOManager daom;
 
@@ -96,21 +96,7 @@ public class LoginView {
 		}
 	}
 	
-	/**
-	 * Changes scene's content according to given parameters.
-	 * @param fxml Given fxml file.
-	 * @param event	Event used to help determine which scene is wanted.
-	 * @param title	Stage's title.
-	 * @throws IOException Loading the fxml file failed.
-	 */
-	public void sceneContent(String fxml, MouseEvent event, String title) throws IOException {
-		Pane p = FXMLLoader.load(getClass().getResource(fxml));		
-		Scene scene = new Scene(p);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(scene);	
-		stage.setTitle(title);
-		stage.show();
-	}
+
 	
 	/**
 	 * Palauttaa henkilökunnan käyttäjätunnus -kenttään kirjoitetun tiedon
