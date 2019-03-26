@@ -49,7 +49,7 @@
                         <TextField layoutX="43.0" layoutY="64.0" onKeyReleased="#showStaffSuggestions" onMouseClicked="#findStaff" promptText="Työntekijän sukunimi" fx:id="findStaffName" />
                         <TextField fx:id="customerID" layoutX="524.0" layoutY="64.0" promptText="Asiakkaan hetu" />
                         <Button fx:id="findCustomer" layoutX="573.0" layoutY="104.0" mnemonicParsing="false" text="Etsi" />
-                     
+                     	<Button fx:id="logout" onMouseClicked="#logout"> Logout </Button>
                      </children>
                   </AnchorPane>
             </content>

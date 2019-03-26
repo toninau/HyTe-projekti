@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import model.Customer;
 import model.DAOManager;
 import model.Staff;
@@ -25,7 +27,7 @@ import model.Staff;
  * Luokka kontrolloi ylläpitäjän näkymää
  *
  */
-public class AdminView implements Initializable {
+public class AdminView extends ViewChanger implements Initializable {
 
 	@FXML
 	private Tab editTab;
@@ -75,7 +77,8 @@ public class AdminView implements Initializable {
 
 	private AdminController c;
 	private SuggestionHandler suggestionHandler;
-	
+	ArrayList<String> resultSet;
+
 
 	/**
 	 * Consturctor for AdminView. Creates a controller and a suggestionHandler.
@@ -83,6 +86,7 @@ public class AdminView implements Initializable {
 	public AdminView() {
 		c = new AdminController(this);
 		suggestionHandler = new SuggestionHandler();
+		resultSet = new ArrayList<>();
 	}
 	
 
@@ -117,19 +121,27 @@ public class AdminView implements Initializable {
 	 */
 	public void findStaff() {
 		Staff[] staffs = c.findStaffAll();
+        for (Staff staff : staffs) {
+            resultSet.add(staff.getSurname());
+        }
 		suggestionHandler.setStaffLista(staffs);
-		System.out.println("findstaffkutsuttu");
 	}
 	
+	
 	public void showStaffSuggestions() {
-		ArrayList<Staff> a = suggestionHandler.findWithPrefix(getStaffName());
+		//ArrayList<Staff> a = suggestionHandler.findWithPrefix(getStaffName());
 		
-		for (Staff staff : a) {
-			//System.out.println(staff.getSurname());
-			
-		}
+		//resultSet = new ArrayList<String>();
+        /*for (Staff staff : a) {
+            resultSet.add(staff.getSurname());
+        }*/
 
-		TextFields.bindAutoCompletion(findStaffName, SuggestionProvider.create(a));
+
+		//SuggestionProvider<String> provider = SuggestionProvider.create(resultSet);
+		//new AutoCompletionTextFieldBinding<>(findStaffName, SuggestionProvider.create(resultSet));
+
+		//SuggestionProvider.clearSuggestions();
+		//provider.addPossibleSuggestions(resultSet);
 		
 	}
 
@@ -155,8 +167,10 @@ public class AdminView implements Initializable {
 	}
 
 	@FXML
-	public void logout() {
-
+	public void logout(MouseEvent event) throws IOException {
+		String fxml = "/LoginView.fxml";
+		String title = "Login";
+		sceneContent(fxml, event, title);
 	}
 
 	public String getStaffName() {
@@ -289,6 +303,9 @@ public class AdminView implements Initializable {
 		profession.getItems().add("Lääkäri");
 		profession.getItems().add("Hoitaja");
 		profession.getItems().add("Asiakaspalvelija");
+
+		findStaff();
+		TextFields.bindAutoCompletion(findStaffName, SuggestionProvider.create(resultSet));
 
 	}
 
