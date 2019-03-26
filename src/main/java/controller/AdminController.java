@@ -9,14 +9,14 @@ import model.Customer;
 import model.CustomerDAO;
 import model.DAOManager;
 import model.Staff;
-import view.AdminViewController;
-import view.LoginViewController;
+import view.AdminView;
+import view.LoginView;
 
-public class Controller {
-	private AdminViewController ac;
+public class AdminController {
+	private AdminView ac;
 	private DAOManager daoM;
 	
-	public Controller(AdminViewController ac) {
+	public AdminController(AdminView ac) {
 		this.ac = ac;
 		daoM  = new DAOManager();
 	}
@@ -51,7 +51,7 @@ public class Controller {
 			hkunta.setAccessLevel(ammatti);
 			daoM.create(hkunta);
 		}
-		Staff[] kaikki = (Staff[])daoM.readAll(1);
+		Staff[] kaikki = (Staff[])daoM.readAll("staff");
 		for (Staff staff : kaikki) {
 			System.out.println(staff.getFirstName());
 		}
@@ -95,13 +95,17 @@ public class Controller {
 		}
 	}
 	
-	public Staff[] findStaff() {
-		return (Staff[])daoM.readAll(1);
+	public Staff[] findStaffAll() {
+		return (Staff[])daoM.readAll("staff");
 		
 	}
 	
-	public Customer[] findCustomer() {
-		return(Customer[]) daoM.readAll(2);
+	public Customer[] findCustomerAll() {
+		return(Customer[]) daoM.readAll("customer");
+	}
+	
+	public Staff findStaffWithID(int id) {
+		return (Staff)daoM.readWithID(id, "staff");
 	}
 	
 	public void encryptPassword(String password) {

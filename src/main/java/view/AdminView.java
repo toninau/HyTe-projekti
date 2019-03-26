@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import controller.Controller;
+import controller.AdminController;
 import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
@@ -25,73 +25,69 @@ import model.Staff;
  * Luokka kontrolloi ylläpitäjän näkymää
  *
  */
-public class AdminViewController implements Initializable {
+public class AdminView implements Initializable {
 
 	@FXML
-	Tab editTab;
+	private Tab editTab;
 	@FXML
-	Button logout;
+	private Button logout;
 
 	@FXML
-	Tab addTab;
+	private Tab addTab;
 	@FXML
-	TextField fNameStaff;
+	private TextField fNameStaff;
 	@FXML
-	TextField sNameStaff;
+	private TextField sNameStaff;
 	@FXML
-	TextField phoneNroStaff;
+	private TextField phoneNroStaff;
 	@FXML
-	TextField emailStaff;
+	private TextField emailStaff;
 	@FXML
-	ChoiceBox<String> profession;
+	private ChoiceBox<String> profession;
 	@FXML
-	Button addCustomer;
+	private Button addCustomer;
 
 	@FXML
-	Button addStaff;
+	private Button addStaff;
 	@FXML
-	TextField hetuCust;
+	private TextField hetuCust;
 	@FXML
-	TextField fNameCust;
+	private TextField fNameCust;
 	@FXML
-	TextField sNameCust;
+	private TextField sNameCust;
 	@FXML
-	TextField phoneNroCust;
+	private TextField phoneNroCust;
 	@FXML
-	TextField emailCust;
+	private TextField emailCust;
 	@FXML
-	TextField addressCust;
-	@FXML
-	TextField ICECust;
+	private TextField addressCust;
+	@FXML 
+	private TextField ICECust;
 
 	@FXML
-	Button find;
+	private Button find;
 	@FXML
-	Button findCustomer;
+	private Button findCustomer;
 	@FXML
-	TextField findStaffName;
+	private TextField findStaffName;
 	@FXML
-	TextField customerID;
+	private TextField customerID;
 
-	/**
-	 * Olio, jota käytetään muiden data access objectien hallinnoimiseen.
-	 */
-
-	private DAOManager daoM;
-	private Controller c;
-	private SuggestionHandler SuggestionHandler;
+	private AdminController c;
+	private SuggestionHandler suggestionHandler;
+	
 
 	/**
-	 * Ylläpitäjän näkymän konstruktori. Luo myös data access object managerin.
+	 * Consturctor for AdminView. Creates a controller and a suggestionHandler.
 	 */
-	public AdminViewController() {
-		daoM = new DAOManager();
-		c = new Controller(this);
-		SuggestionHandler = new SuggestionHandler();
+	public AdminView() {
+		c = new AdminController(this);
+		suggestionHandler = new SuggestionHandler();
 	}
+	
 
 	/**
-	 * Metodi asiakkaan luontia varten. Käynnistyy napin painalluksesta.
+	 * Method for creating a customer.
 	 */
 	public void addCustomer() {
 		c.addCustomer();
@@ -120,15 +116,17 @@ public class AdminViewController implements Initializable {
 	 * Etsii halutun työntekijän tietokannasta ID:n avulla.
 	 */
 	public void findStaff() {
-		Staff[] staffs = c.findStaff();
-		SuggestionHandler.setStaffLista(staffs);
+		Staff[] staffs = c.findStaffAll();
+		suggestionHandler.setStaffLista(staffs);
 		System.out.println("findstaffkutsuttu");
 	}
 	
 	public void showStaffSuggestions() {
-		ArrayList<String> a = SuggestionHandler.findWithPrefix(getStaffName());
-		for (String staff : a) {
+		ArrayList<Staff> a = suggestionHandler.findWithPrefix(getStaffName());
+		
+		for (Staff staff : a) {
 			//System.out.println(staff.getSurname());
+			
 		}
 
 		TextFields.bindAutoCompletion(findStaffName, SuggestionProvider.create(a));

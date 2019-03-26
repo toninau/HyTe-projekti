@@ -44,15 +44,27 @@ public class DAOManager {
 		
 	}
 	
-	public Object[] readAll(int xd){
-		switch (xd) {
-		case 1:
+	public Object[] readAll(String obj){
+		switch (obj) {
+		case "staff":
 			return getStaffDAO().readAll();
-		case 2:
+		case "customer":
 			return getCustomerDAO().readAll();	
 		default:
 			return null;
 		} 
+	}
+	
+	public Object readWithID(int id, String obj) {
+		switch (obj) {
+		case "staff":
+			return getStaffDAO().read(id);
+		case "customer":
+			return getCustomerDAO().read(id);
+		default:
+			return null;
+		}
+		
 	}
 	/**
 	 * Luo asiakas data access objectin, jos sitä ei ole vielä luotu,

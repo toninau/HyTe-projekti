@@ -9,13 +9,13 @@ public class SuggestionHandler {
 	Staff[] staffList;
 	
 	
-	public ArrayList<String> findWithPrefix(String prefix) {
-		ArrayList<String> returnList = new ArrayList<String>();
+	public ArrayList<Staff> findWithPrefix(String prefix) {
+		ArrayList<Staff> returnList = new ArrayList<Staff>();
 		
 		for (Staff staff : staffList) {
 			String string = staff.getSurname() + ", " + staff.getFirstName();
 			if (staff.getSurname().startsWith(prefix)) {	
-				returnList.add(string);
+				returnList.add(staff);
 				System.out.println(staff.getSurname());
 			}	
 		}

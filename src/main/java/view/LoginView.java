@@ -26,69 +26,35 @@ import model.Staff;
  *
  */
 
-public class LoginViewController {
-	
-	/**
-	 * Olio, jota käytetään muiden data access objectien hallinnoimiseen.
-	 */
+public class LoginView {
+
 	private DAOManager daom;
 
-	
-	/**
-	 * Välilehti henkilökunnan kirjautumiselle
-	 */
-	@FXML private Tab staffTab;
-	
-	/**
-	 * Tekstikenttä henkilökunnalle salasanan kirjoittamista varten
-	 */
-	@FXML private PasswordField pw;
-	
-	/**
-	 * Kirjautumisnappi henkilökunnalle
-	 */
+	@FXML private Tab staffTab;	
+	@FXML private PasswordField pw;	
 	@FXML private Button loginBtn;
-	
-	/**
-	 * Tekstikenttä henkilökunnalle käyttäjänimen kirjoittamista varten
-	 */
 	@FXML private TextField username;
 	
-	/**
-	 * Välilehti asiakkaiden kirjautumiselle
-	 */
 	@FXML private Tab customerTab;
-	
-	/**
-	 * Tekstikenttä asiakkaan salasanan kirjoittamista varten
-	 */
 	@FXML private PasswordField pwAsiakas;
-	
-	/**
-	 * Tekstikenttä asiakkaan käyttäjänimen kirjoittamista varten
-	 */
 	@FXML private TextField usernameAsiakas;
-	
-	/**
-	 * Kirjautumisnappi asiakkaille
-	 */
 	@FXML private Button loginBtnAsiakas;
 
 	
 	/**
-	 * Konstruktori LoginController -luokalle.
+	 * Constructor for LoginView -class.
 	 * Luo Data access object -managerin. 
 	 */
-	public LoginViewController() {	
+	public LoginView() {	
 		daom = new DAOManager();
 	}
 		
 	/**
-	 * Toteutetaan kun Henkilökunnan kirjautumisnappia painetaan.
-	 * Sisältää myös ylläpitäjän kirjautumisen
+	 * Function for staff and admin's login.
+	 * Fired when login button in Staff -tab is clicked.
 	 * 
-	 * @param event	Napin klikkaus hiirellä
-	 * @throws IOException virhe tapahtuu
+	 * @param event	Mouse clicked
+	 * @throws IOException Loading the fxml file failed.
 	 */
 	@FXML
 	public void loginStaff(MouseEvent event) throws IOException {
@@ -131,11 +97,11 @@ public class LoginViewController {
 	}
 	
 	/**
-	 * Vaihtaa skenen sisällön parametrien mukaan
-	 * @param fxml Fxml -tiedostom jota käytetään
-	 * @param event	Tapahtuma, jonka avulla valitaan seuraava scene
-	 * @param title	Ruudun otsikko
-	 * @throws IOException virhe tapahtuu
+	 * Changes scene's content according to given parameters.
+	 * @param fxml Given fxml file.
+	 * @param event	Event used to help determine which scene is wanted.
+	 * @param title	Stage's title.
+	 * @throws IOException Loading the fxml file failed.
 	 */
 	public void sceneContent(String fxml, MouseEvent event, String title) throws IOException {
 		Pane p = FXMLLoader.load(getClass().getResource(fxml));		

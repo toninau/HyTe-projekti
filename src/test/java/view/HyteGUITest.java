@@ -30,7 +30,7 @@ public class HyteGUITest extends ApplicationTest{
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(HyteGUI.class.getResource("/Skene.fxml"));
+	    Parent mainNode = FXMLLoader.load(HyteGUI.class.getResource("/LoginView.fxml"));
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
