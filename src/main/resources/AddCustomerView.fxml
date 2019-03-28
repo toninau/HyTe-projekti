@@ -14,7 +14,7 @@
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
             <Button fx:id="addCustomer" layoutX="347.0" layoutY="497.0" mnemonicParsing="false" onMouseClicked="#addCustomer" prefHeight="51.0" prefWidth="122.0" text="Lisää asiakas" />
-            <Label alignment="CENTER" layoutY="-1.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" stylesheets="@view.css" text="Lisää asiakas" textAlignment="CENTER" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" layoutY="-1.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" stylesheets="@view.css" text="Lisää asiakas" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Georgia" size="48.0" />
                </font>

@@ -46,7 +46,7 @@ public class LoginView extends ViewChanger {
 	 * Luo Data access object -managerin. 
 	 */
 	public LoginView() {	
-		//daom = new DAOManager();
+		daom = new DAOManager();
 	}
 		
 	/**

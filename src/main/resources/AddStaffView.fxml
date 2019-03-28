@@ -14,7 +14,7 @@
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="8.0" layoutY="5.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="Lisää työntekijä" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" layoutX="8.0" layoutY="5.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="Lisää työntekijä" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="48.0" />
                </font>
@@ -71,6 +71,19 @@
                            </HBox.margin>
                         </Label>
                         <TextField fx:id="sNameStaff" promptText="esimerkki@esimerkki.fi" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Salasana:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField promptText="Esim. Password123" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
