@@ -45,7 +45,7 @@ public class WeatherAPICall {
 		JsonObject jobject = jelement.getAsJsonObject();
 		JsonArray statemain = jobject.getAsJsonArray("weather");
 		JsonObject celsiusmain = jobject.get("main").getAsJsonObject();
-		state = statemain.get(0).getAsJsonObject().get("main").toString();
+		state = statemain.get(0).getAsJsonObject().get("main").toString().replace("\"", "");
 		celsius = celsiusmain.get("temp").toString();
 		System.out.println(celsius);
 		System.out.println(state);
