@@ -1,5 +1,5 @@
 package model;
-
+/*
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.hibernate.SessionFactory;
@@ -35,3 +35,4 @@ public class IllnessDAOTest {
 		assertTrue(iDAO.create(illness), "create(): Failed to create a new illness.");
 	}
 }
+*/
