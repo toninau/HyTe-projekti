@@ -64,7 +64,7 @@ public class AdminView extends ViewChanger implements Initializable {
 	@FXML
 	private TextField addressCust;
 	@FXML 
-	private TextField ICECust;
+	private TextField ICECust; 
 
 	@FXML
 	private Button find;
