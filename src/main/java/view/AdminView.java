@@ -86,7 +86,7 @@ public class AdminView extends ViewChanger implements Initializable {
 	public AdminView() {
 		c = new AdminController(this);
 		suggestionHandler = new SuggestionHandler();
-		resultSet = new ArrayList<>();
+		resultSet = new ArrayList<String>();
 	}
 	
 
