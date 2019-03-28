@@ -1,77 +1,221 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.control.Button?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="512.0" styleClass="anchor" stylesheets="@view.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CustomerView">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CustomerView">
    <children>
-   
-      <MenuBar layoutX="-19.0" layoutY="-116.0" prefHeight="0.0" prefWidth="531.0" AnchorPane.bottomAnchor="563.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Jotain">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Exit" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Jotain">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-         <padding>
-            <Insets bottom="10.0" />
-         </padding>
-      </MenuBar>
-      <GridPane layoutX="312.0" layoutY="25.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Text fx:id="city" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Helsinki" GridPane.rowIndex="1" />
-            <Text fx:id="weather" strokeType="OUTSIDE" strokeWidth="0.0" text="Pilvinen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Text fx:id="celcius" strokeType="OUTSIDE" strokeWidth="0.0" text="-1 C" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Arial Black" size="21.0" />
-               </font>
-            </Text>
-         </children>
-      </GridPane>
-
-      <Text fx:id="welcome" layoutX="14.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei sinä!">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-      </Text>
-      
-      <TextArea fx:id="notification" layoutX="256.0" layoutY="285.0" prefHeight="160.0" prefWidth="250.0" text="Lorem ipsum dolor sit amet, mi imperdiet lectus gravida pede semper, ea vivamus morbi fringilla laoreet ut, tristique quisque lacus tortor adipiscing, porta nulla ante malesuada. Porttitor id orci, egestas laoreet morbi nunc lorem. Tellus lobortis euismod felis nisl, vel in volutpat donec enim velit sit, sed pellentesque. Ligula mollis a ligula eget, convallis sodales odio" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <padding>
-            <Insets top="1.0" />
-         </padding>
-      </TextArea>
-      <Text layoutX="264.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilmoitusruutu" />
-         <Button fx:id="logout" onMouseClicked="#logout"> Logout </Button>
+      <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Koti">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="800.0" stylesheets="@view.css">
+                     <children>
+                        <GridPane layoutX="604.0" prefHeight="97.0" prefWidth="193.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text fx:id="weatherCity" strokeType="OUTSIDE" strokeWidth="0.0" text="Helsinki" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Text>
+                              <Text fx:id="weatherState" strokeType="OUTSIDE" strokeWidth="0.0" text="Tuulinen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Text>
+                              <Text fx:id="weatherCelsius" strokeType="OUTSIDE" strokeWidth="0.0" text="1.111" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font></Text>
+                              <ImageView fx:id="weatherImage" fitHeight="37.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <image>
+                                    <Image url="@pictures/usericon.png" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin></ImageView>
+                           </children>
+                        </GridPane>
+                        <Text fx:id="welcomeText" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei Mummi Muistiton!">
+                           <font>
+                              <Font name="Arial Black" size="32.0" />
+                           </font></Text>
+                        <TextArea fx:id="notification" layoutX="454.0" layoutY="256.0" prefHeight="284.0" prefWidth="346.0" />
+                        <Text layoutX="484.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Muistutuksesi tältä päivältä">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="132.0" fitWidth="181.0" layoutX="6.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pictures/usericon.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="559.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suosituksemme vaatetuksesta">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="logout" layoutX="14.0" layoutY="496.0" mnemonicParsing="false" onAction="#logout" text="Log out" />
+                        <Text layoutX="86.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perheenjäsenien kuvat tms." wrappingWidth="155.630859375">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Text>
+                  
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Kalenteri">
+            <content>
+              	<AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <HBox layoutX="194.0" layoutY="79.0" prefHeight="462.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="79.0">
+                           <children>
+                              <HBox fx:id="mondaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="100.0" prefHeight="541.0" prefWidth="500.0">
+                                       <children>
+                                          <Button fx:id="mondaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Monday" />
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" text="fkbhawkfwaawwa ff aknjw kjanfkjf awk fnaw fknawf kawnakf jnf awk fjawnf kawnf awkjnf awn fk" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets left="5.0" right="5.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="tuesdaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                       <children>
+                                          <Button fx:id="tuesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Tuesday" />
+                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                             <VBox.margin>
+                                                <Insets left="5.0" right="5.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="wednesdaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                       <children>
+                                          <Button fx:id="wednesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Wednesday" />
+                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                             <VBox.margin>
+                                                <Insets left="5.0" right="5.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="thursdaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                       <children>
+                                          <Button fx:id="thursdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Thursday" />
+                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                             <VBox.margin>
+                                                <Insets left="5.0" right="5.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="fridaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                       <children>
+                                          <Button fx:id="fridaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Friday" />
+                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                             <VBox.margin>
+                                                <Insets left="5.0" right="5.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="saturdaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                       <children>
+                                          <Button fx:id="saturdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Saturday" />
+                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                             <VBox.margin>
+                                                <Insets left="5.0" right="5.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="sundaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                       <children>
+                                          <Button fx:id="sundaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Sunday" />
+                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                             <VBox.margin>
+                                                <Insets left="5.0" right="5.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <Text layoutX="680.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Viikko 20">
+                           <font>
+                              <Font name="Arial" size="26.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="14.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klikkaa päivää saadaksesi lisätiedot">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Veriarvot">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Apua">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
-</AnchorPane>
+</VBox>
