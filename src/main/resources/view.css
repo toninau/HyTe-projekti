@@ -46,6 +46,10 @@
 	
 }
 
+.headerLabels{
+	-fx-background-color: red;
+}
+
 .usericon{
 	-fx-graphic: url("./pictures/usericon.png");
 	-fx-graphic-text-gap : 10;

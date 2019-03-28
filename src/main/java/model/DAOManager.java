@@ -63,9 +63,9 @@ public class DAOManager {
 			return getCustomerDAO().read(id);
 		default:
 			return null;
-		}
-		
+		}	
 	}
+	
 	/**
 	 * Luo asiakas data access objectin, jos sitä ei ole vielä luotu,
 	 * muuten palauttaa jo olemassa olevan asiakasDAOn.

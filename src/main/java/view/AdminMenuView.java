@@ -1,12 +1,15 @@
 package view;
 
-import java.awt.Button;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import javafx.scene.control.Button;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
-public class AdminMenuView extends ViewChanger {
+public class AdminMenuView extends ViewChanger implements Initializable {
 	
 	@FXML
 	Button addStaffButton;
@@ -43,6 +46,12 @@ public class AdminMenuView extends ViewChanger {
 		String fxml = "/EditCustomerView.fxml";
 		String title  = "Muokkaa asiakkaita";
 		sceneContent(fxml, event, title);
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

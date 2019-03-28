@@ -46,7 +46,7 @@ public class LoginView extends ViewChanger {
 	 * Luo Data access object -managerin. 
 	 */
 	public LoginView() {	
-		daom = new DAOManager();
+		//daom = new DAOManager();
 	}
 		
 	/**
@@ -62,8 +62,8 @@ public class LoginView extends ViewChanger {
 		String fxml = "";
 		String title = "Login";
 		if(getUsernameStaff().equals("admin") && getPasswordStaff().equals("admin")) {
-			fxml = "/AdminView.fxml";
-			title = "Admin view";
+			fxml = "/AdminMenuView.fxml";
+			title = "Menu";
 		}
 		/*else if(hkunta.getHenkilökuntaID() == Integer.parseInt(getUsername())) {
 			fxml = "/StaffView.fxml";
@@ -81,7 +81,7 @@ public class LoginView extends ViewChanger {
 	
 	
 	/**
-	 * Toteutetaan kun Asiakkaan kirjautumisnappia painetaan
+	 * Fired when customer's login button is clicked.
 	 * @param event Napin klikkaus hiirellä
 	 * @throws IOException virhe tapahtuu
 	 */
