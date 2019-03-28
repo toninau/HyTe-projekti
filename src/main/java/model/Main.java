@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Testaus main, jota voidaan myös käyttää tietokannan luomista varten
-		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory();
+		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(false);
 		NotificationDAO ilmoitusDAO = new NotificationDAO(istuntotehdas);
 		CustomerDAO asiakasDAO = new CustomerDAO(istuntotehdas);
 		IllnessDAO sairausDAO = new IllnessDAO(istuntotehdas);

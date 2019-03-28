@@ -23,7 +23,7 @@ public class DAOManager {
 	 * DAOManagerin konstruktori, joka hakee istuntotehtaan.
 	 */
 	public DAOManager() {
-		s =HibernateUtil.getSessionFactory();
+		s =HibernateUtil.getSessionFactory(false);
 	}
 
 	public void create(Object obj) {
