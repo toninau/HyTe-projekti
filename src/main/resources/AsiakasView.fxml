@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -96,7 +97,10 @@
                                  <children>
                                     <VBox minWidth="100.0" prefHeight="541.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="mondaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Monday" />
+                                          <Button fx:id="mondaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Maanantai">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin></Button>
                                           <TextArea prefHeight="200.0" prefWidth="200.0" text="fkbhawkfwaawwa ff aknjw kjanfkjf awk fnaw fknawf kawnakf jnf awk fjawnf kawnf awkjnf awn fk" wrapText="true">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
@@ -110,7 +114,11 @@
                                  <children>
                                     <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="tuesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Tuesday" />
+                                          <Button fx:id="tuesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Tiistai">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin>
+                                          </Button>
                                           <TextArea prefHeight="200.0" prefWidth="200.0">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
@@ -124,7 +132,11 @@
                                  <children>
                                     <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="wednesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Wednesday" />
+                                          <Button fx:id="wednesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Keskiviikko">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin>
+                                          </Button>
                                           <TextArea prefHeight="200.0" prefWidth="200.0">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
@@ -138,7 +150,11 @@
                                  <children>
                                     <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="thursdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Thursday" />
+                                          <Button fx:id="thursdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Torstai">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin>
+                                          </Button>
                                           <TextArea prefHeight="200.0" prefWidth="200.0">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
@@ -152,7 +168,11 @@
                                  <children>
                                     <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="fridaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Friday" />
+                                          <Button fx:id="fridaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Perjantai">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin>
+                                          </Button>
                                           <TextArea prefHeight="200.0" prefWidth="200.0">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
@@ -166,7 +186,11 @@
                                  <children>
                                     <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="saturdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Saturday" />
+                                          <Button fx:id="saturdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Lauantai">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin>
+                                          </Button>
                                           <TextArea prefHeight="200.0" prefWidth="200.0">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
@@ -180,7 +204,11 @@
                                  <children>
                                     <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="sundaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Sunday" />
+                                          <Button fx:id="sundaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Sunnuntai">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin>
+                                          </Button>
                                           <TextArea prefHeight="200.0" prefWidth="200.0">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
@@ -207,12 +235,28 @@
           </Tab>
             <Tab text="Veriarvot">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mittaa veriarvosi ja lähetä meille">
+                           <font>
+                              <Font name="Arial Bold" size="31.0" />
+                           </font>
+                        </Text>
+                        <TextField layoutX="14.0" layoutY="52.0" />
+                        <TextField layoutX="14.0" layoutY="92.0" />
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="Apua">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="247.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Soita numeroon 112">
+                           <font>
+                              <Font size="34.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
