@@ -6,14 +6,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import kotlin.reflect.jvm.internal.impl.util.CheckResult.SuccessCheck;
 import model.Customer;
-import model.CustomerDAO;
 import model.DAOManager;
 import model.Staff;
+import view.AddStaffView;
 import view.AdminView;
 import view.LoginView;
 
 public class AdminController {
 	private AdminView ac;
+	private AddStaffView addstaff;
 	private DAOManager daoM;
 	
 	public AdminController(AdminView ac) {
@@ -21,14 +22,20 @@ public class AdminController {
 		daoM  = new DAOManager();
 	}
 	
+	public AdminController(AddStaffView addstaff) {
+		this.addstaff = addstaff;
+	}
+	
 	public void addStaff() {
 		Staff hkunta = new Staff();
-		String etunimi = ac.getStaffFirstName();
-		String sukunimi = ac.getStaffSurname();
-		String puhnro = ac.getStaffPhone();
-		String email = ac.getStaffEmail();
-		String ammatti = ac.getProfession();
-		String[] info = { etunimi, sukunimi, puhnro, email, ammatti };
+		String etunimi = addstaff.getStaffFirstName();
+		String sukunimi = addstaff.getStaffSurname();
+		String puhnro = addstaff.getStaffPhone();
+		String email = addstaff.getStaffEmail();
+		String ammatti = addstaff.getProfession();
+		String pw = encryptPassword(addstaff.getPassword());
+
+		String[] info = { etunimi, sukunimi, puhnro, email, ammatti, pw };
 		boolean onnistui = true;
 		for (String string : info) {
 			if (string.isEmpty()) {
@@ -42,13 +49,14 @@ public class AdminController {
 			}
 			System.out.println(string);
 		}
-
+		
 		if (onnistui) {
 			hkunta.setFirstName(etunimi);
 			hkunta.setSurname(sukunimi);
 			hkunta.setPhoneNumber(puhnro);
 			hkunta.setEmail(email);
 			hkunta.setAccessLevel(ammatti);
+			hkunta.setPassword(pw);
 			daoM.create(hkunta);
 		}
 		Staff[] kaikki = (Staff[])daoM.readAll("staff");
@@ -112,9 +120,10 @@ public class AdminController {
 		return (Customer)daoM.readWithID(id, "customer");
 	}
 	
-	public void encryptPassword(String password) {
+	public String encryptPassword(String password) {
 		String originalPassword = password;
-		String encryptedPassword = SCryptUtil.scrypt(originalPassword, 16, 16, 16);
+		//SCryptUtil.check(passwd, hashed);
+		return SCryptUtil.scrypt(originalPassword, 16, 16, 16);
 	}
 	
 }

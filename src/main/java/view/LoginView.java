@@ -22,7 +22,7 @@ import model.Staff;
 
 /**
  * 
- * Sisäänkirjautumisnäkymän kontrolloimiseen tarkoitettu luokka.
+ * Class for login view.
  *
  */
 
@@ -99,32 +99,32 @@ public class LoginView extends ViewChanger {
 
 	
 	/**
-	 * Palauttaa henkilökunnan käyttäjätunnus -kenttään kirjoitetun tiedon
-	 * @return Työntekijän käyttäjätunnus
+	 * Return the text written in the employee's user name -field.
+	 * @return Employee's user name.
 	 */
 	public String getUsernameStaff() {
 		return this.username.getText();
 	}
 	
 	/**
-	 * Palauttaa henkilökunnan salasana -kenttään kirjoitetun tiedon
-	 * @return	Työntekijän salasana
+	 * Return the text written in the employee's password -field.
+	 * @return	Employee's password.
 	 */
 	public String getPasswordStaff() {
 		return this.pw.getText();
 	}
 	
 	/**
-	 * Palauttaa asiakkaan käyttäjätunnus -kenttään kirjoitetun tiedon
-	 * @return Asiakkaan käyttäjätunnus
+	 * Return the text written in the customer's user name -field.
+	 * @return Customer's user name.
 	 */
 	public String getUsernameCustomer() {
 		return this.usernameAsiakas.getText();
 	}
 	
 	/**
-	 * Palauttaa asiakkaan salasana -kenttään kirjoitetun tiedon
-	 * @return Asiakkaan salasana
+	 * Return the text written in the customer's password -field.
+	 * @return Customer's password.
 	 */
 	public String getPasswordCustomer() {
 		return this.pwAsiakas.getText();

@@ -11,9 +11,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Class for adding staff members to database.
+ * @author IdaKi
+ *
+ */
 public class AddStaffView extends ViewChanger implements Initializable{
 	
 	@FXML
@@ -26,10 +32,10 @@ public class AddStaffView extends ViewChanger implements Initializable{
 	private TextField emailStaff;
 	@FXML
 	private ChoiceBox<String> profession;
-	
 	@FXML
-	private Button addStaff;
-	
+	private PasswordField passwordStaff;
+	@FXML
+	private Button addStaff;	
 	@FXML
 	private Button logout;
 	@FXML
@@ -38,17 +44,17 @@ public class AddStaffView extends ViewChanger implements Initializable{
 	private AdminController c;
 
 	/**
-	 * Consturctor for AdminView. Creates a controller and a suggestionHandler.
+	 * Constructor for AdminStaffView. Creates a controller.
 	 */
 	public AddStaffView() {
-		
+		c = new AdminController(this);
 	}
 	
 	/**
-	 * Metodi työntekijän luontia varten. Käynnistyy napin painalluksesta.
+	 * Fires when a button is clicked. Method for creating an employee.
 	 */
 	public void addStaff() {
-		//c.addStaff();
+		c.addStaff();
 		fNameStaff.clear();
 		sNameStaff.clear();
 		emailStaff.clear();
@@ -56,12 +62,22 @@ public class AddStaffView extends ViewChanger implements Initializable{
 
 	}
 	
+	/**
+	 * Changes scene back to Login view.
+	 * @param event Mouse clicked.
+	 * @throws IOException Loading fxml file failed.
+	 */
 	public void logout(MouseEvent event) throws IOException {
 		String fxml = "/LoginView.fxml";
 		String title = "Login";
 		sceneContent(fxml, event, title);
 	}
 	
+	/**
+	 * Changes scene back to Admin's menu view.
+	 * @param event Mouse clicked.
+	 * @throws IOException Loading fxml file failed.
+	 */
 	public void toMenu(MouseEvent event) throws IOException {
 		String fxml = "/AdminMenuView.fxml";
 		String title = "Menu";
@@ -69,51 +85,56 @@ public class AddStaffView extends ViewChanger implements Initializable{
 	}
 	
 	/**
-	 * Palauttaa työntekijän etunimen.
-	 * 
-	 * @return Työnteijän etunimi.
+	 * Returns the text written in the first name -field.
+	 * @return Employee's first name
 	 */
 	public String getStaffFirstName() {
 		return this.fNameStaff.getText();
 	}
 
 	/**
-	 * Palauttaa työntekijän sukunimen.
-	 * 
-	 * @return Työntekijän sukunimi.
+	 * Returns the text written in the surname -field.
+	 * @return Employee's surname
 	 */
 	public String getStaffSurname() {
 		return this.sNameStaff.getText();
 	}
 
 	/**
-	 * Palauttaa työntekijän puhelinnumeron.
-	 * 
-	 * @return Työntekijän puhelinnumero.
+	 * Returns the text written in the phone number -field.
+	 * @return Employee's phone number
 	 */
 	public String getStaffPhone() {
 		return this.phoneNroStaff.getText();
 	}
 
 	/**
-	 * Palauttaa työntekijän sähköpostiosoitteen.
-	 * 
-	 * @return Työntekijän sähköpostiosoite.
+	 * Returns the text written in the email -field.
+	 * @return Employee's email
 	 */
 	public String getStaffEmail() {
 		return this.emailStaff.getText();
 	}
 
 	/**
-	 * Palauttaa työntekijän ammatin.
-	 * 
-	 * @return Työntekijän ammatti.
+	 * Returns the choice of the ChoiceBox.
+	 * @return Employee's profession
 	 */
 	public String getProfession() {
 		return (String) this.profession.getValue();
 	}
 
+	/**
+	 * Returns the text written in password -field.
+	 * @return Employee's password
+	 */
+	public String getPassword() {
+		return this.passwordStaff.getText();
+	}
 	
+	/**
+	 * Sets the ChoiceBox items.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		profession.setValue("Lääkäri");
 		profession.getItems().add("Lääkäri");
