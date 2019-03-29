@@ -8,27 +8,27 @@ import org.hibernate.query.Query;
 import java.util.List;
 /**
  * 
- * Asiakkaiden hallintaan käytettävä DataAccessObject
+ * DataAccessObject for customer class
  *
  */
 public class CustomerDAO {
 	/**
-	 * Sessionfactory, jota käytetään CRUD-operaatioihin
+	 * Sessionfactory for CRUD-operations
 	 */
 	private SessionFactory sessionFactory = null;
 
 	/**
-	 * Luokan konstruktori.
-	 * @param session Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 * Class constructor.
+	 * @param sessionfactory
 	 */
 	public CustomerDAO(SessionFactory session) {
 		this.sessionFactory = session;
 	}
 	
 	/**
-	 * Uuden kentän tietokantaan tallentava metodi
-	 * @param customer tietokantaan tallennettava asiakas
-	 * @return true, mikäli operaatio onnistui, muuten false
+	 * Create-method to save a customer object to the database
+	 * @param customer object
+	 * @return true if success
 	 */
 	public boolean create(Customer customer) {
 		Session session = sessionFactory.openSession();
@@ -49,9 +49,9 @@ public class CustomerDAO {
 		return success;
 	}
 	/**
-	 * Metodi yhden asiakkaan tietojen hakemiseen tietokannasta
-	 * @param id Haettavan asiakkaan id
-	 * @return Asiakkaan tiedot
+	 * Read-method to read customer data from database using customer ID
+	 * @param id of the customer
+	 * @return Customer data
 	 */
 	public Customer read(int id) {
 		Session session = sessionFactory.openSession();
@@ -69,10 +69,10 @@ public class CustomerDAO {
 		return customer;
 	}
 	/**
-	 * Lukee tietokannasta listana kaikki asiakkaat
+	 * Reads all customers from the database as a list
 	 *
 	 *
-	 * @return lista, joka sisltää asiakkaat
+	 * @return list of customer objects
 	 */
 	@SuppressWarnings("unchecked")
 	public Customer[] readAll() {
@@ -92,9 +92,9 @@ public class CustomerDAO {
 		return (Customer[]) result.toArray(returnArray);
 	}
 	/**
-	 * Metodi henkilökunnan jäsenten, joiden asiakkaana tietty asiakas on, hakemiseen
-	 * @param customer Asiakas, jonka henkilökunta haetaan
-	 * @return Lista henkilökunnan jäsenistä
+	 * Reads the staff members connected to a customer
+	 * @param customer 
+	 * @return List of staff objects
 	 */
 	@SuppressWarnings("unchecked")
 	public Staff[] readAsiakkaanHenkilökunta(Customer customer) {
@@ -117,9 +117,9 @@ public class CustomerDAO {
 		return (Staff[]) result.toArray(returnArray);
 	}
 	/**
-	 * Metodi asiakkaan tietojen päivittämistä varten
-	 * @param customer Asiakas, jonka tietoja päivitetään
-	 * @return true, jos operaatio onnistui, muuten false
+	 * Update-method to update a customer's data
+	 * @param customer Customer who you want to update
+	 * @return true if success
 	 */
 	public boolean update(Customer customer) {
 		boolean success = false;
@@ -143,9 +143,9 @@ public class CustomerDAO {
 		return success;
 	}
 	/**
-	 * Metodi asiakkaan tietojen poistamiseen
-	 * @param id Poistettavan asiakkaan id
-	 * @return true, mikäli operaatio onnistui, muuten false
+	 * Delete-method to delete a customer object from the database
+	 * @param id of the removable customer object
+	 * @return true if success
 	 */
 	public boolean delete(int id) {
 		boolean success = false;

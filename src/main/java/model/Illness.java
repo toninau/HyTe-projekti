@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * Illness entity
  * 
- * @author tonin
+ * @author Group 3
  *
  */
 @Entity

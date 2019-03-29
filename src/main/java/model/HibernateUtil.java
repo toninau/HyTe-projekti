@@ -7,7 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
  * 
- * Luokka SessionFactoryn luomiseen.
+ * Singleton class for creating and getting the SessionFactory
  *
  */
 public class HibernateUtil {
@@ -16,16 +16,15 @@ public class HibernateUtil {
 	private static StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 
 	/**
-	 * Luokan konstruktori.
+	 * Empty class constructor
 	 */
 	public HibernateUtil() {
 	}
 
 	/**
-	 * Luodaan istuntotehdas, jos sitä ei ole vielä luotu. Mahdollistaa sen, ettei
-	 * tarvitse luoda useampaa istuntotehdasta.
-	 * 
-	 * @return HibernateUtil.
+	 * Creates a single SessionFactory or returns an existing one.
+	 * Not possible to create multiple instances.
+	 * @return SessionFactory.
 	 */
 	public static synchronized SessionFactory getSessionFactory(boolean forTest) {
 		if (istuntotehdas == null) {

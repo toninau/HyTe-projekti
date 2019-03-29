@@ -8,26 +8,26 @@ import org.hibernate.query.Query;
 import java.util.List;
 /**
  * 
- * Asiakkaan sairauksien hallintaan käytettävä DataAccessObject
+ * DataAccessObject for Illness class.
  *
  */
 public class IllnessDAO {
 	/**
-	 * Sessionfactory, jota käytetään CRUD-operaatioihin
+	 * Sessionfactory for CRUD operations.
 	 */
 	private SessionFactory sessionFactory = null;
 	/**
-	 * Luokan konstruktori.
-	 * @param sessionFactory Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 * Class constructor.
+	 * @param sessionFactory SessionFactory object
 	 */
 	public IllnessDAO(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 
 	}
 	/**
-	 * Uuden kentän tietokantaan tallentava metodi
-	 * @param illness Tietokantaan tallennettava arvo
-	 * @return true, Mikäli operaatio onnistui, muuten false
+	 * Create-method to save an illness object to the database
+	 * @param Illness object
+	 * @return true if success
 	 */
 	public boolean create(Illness illness) {
 		Session session = sessionFactory.openSession();
@@ -48,10 +48,9 @@ public class IllnessDAO {
 		return onnistui;
 	}
 	/**
-	 * Lukee tietokannasta listana kaikki asiakkaan sairauksia
-	 * @param customer asiakas, jonka sairauksia luetaan
-	 *
-	 * @return lista, joka sisältää arvot
+	 * Read-method to save an illness object from the database
+	 * @param Customer customer, which the illness belongs to
+	 * @return true if success
 	 */
 	@SuppressWarnings("unchecked")
 	public Illness[] readCustomersIllnessess(Customer customer) {
