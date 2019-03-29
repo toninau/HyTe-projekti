@@ -73,9 +73,9 @@ public class IllnessDAO {
 		return (Illness[]) result.toArray(returnArray);
 	}
 	/**
-	 * Metodi poistaa jonkin sairauden tietokannasta
-	 * @param id Poistettavan sairauden id
-	 * @return true, mikäli operaatio onnistui, muuten false
+	 * Delete-method to remove an illness from the database
+	 * @param id of the illness object
+	 * @return true if success
 	 */
 	public boolean delete(int id) {
 		boolean success = false;

@@ -7,24 +7,24 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 /**
  * 
- * Ilmoitusten hallinnointiin käytettävä DataAccessObject
+ * DataAccessObject for notification management
  *
  */
 public class NotificationDAO {
 	/**
-	 * Sessionfactory, jota käytetään CRUD-operaatioihin
+	 * Sessionfactory for CRUD operations
 	 */
 	private SessionFactory sessionFactory = null;
 	/**
-	 * Luokan konstruktori.
-	 * @param sessionFactory Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 * Class constructor
+	 * @param sessionFactory
 	 */
 	public NotificationDAO(SessionFactory istuntotehdas) {
 		this.sessionFactory = istuntotehdas;
 	}
 	/**
-	 * Uuden kentän tietokantaan tallentava metodi
-	 * @param notification tietokantaan tallennettava ilmoitus
+	 * Create-method to save a Notification object to the database
+	 * @param notification object
 	 * @return true, mikäli operaatio onnistui, muuten false
 	 */
 	public boolean create(Notification notification) {

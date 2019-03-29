@@ -1,7 +1,11 @@
 package model;
 
 import org.hibernate.SessionFactory;
-
+/**
+ * Testing class
+ * @author Group 3
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
