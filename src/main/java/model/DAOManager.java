@@ -6,7 +6,7 @@ import javassist.expr.Instanceof;
 
 
 /**
- * Luokan avulla käytetään data access object -luokkia.
+ * Class offering data access object classes' CRUD operations for controllers.
  * 
  */
 public class DAOManager {
@@ -17,6 +17,7 @@ public class DAOManager {
 	private IllnessDAO illnessDAO = null;
 	private BloodValueDAO bloodValueDAO = null;
 	private NotificationDAO notificationDAO = null;
+	private AppointmentDAO appointmentDAO = null;
 	private SessionFactory s;
 	
 	/**
@@ -26,6 +27,11 @@ public class DAOManager {
 		s =HibernateUtil.getSessionFactory(false);
 	}
 
+
+	/**
+	 * 
+	 * @param obj 
+	 */
 	public void create(Object obj) {
 		if(obj instanceof Staff) {
 			getStaffDAO().create((Staff)obj);
@@ -44,31 +50,48 @@ public class DAOManager {
 		
 	}
 	
+	/**
+	 * 
+	 * @param obj Name of the wanted object.
+	 * @return
+	 */
 	public Object[] readAll(String obj){
 		switch (obj) {
 		case "staff":
 			return getStaffDAO().readAll();
 		case "customer":
-			return getCustomerDAO().readAll();	
+			return getCustomerDAO().readAll();
 		default:
 			return null;
 		} 
 	}
 	
+	/**
+	 * 
+	 * @param id Id of the object to be read.
+	 * @param obj Name of the wanted object.
+	 * @return 
+	 */
 	public Object readWithID(int id, String obj) {
 		switch (obj) {
 		case "staff":
 			return getStaffDAO().read(id);
 		case "customer":
 			return getCustomerDAO().read(id);
+		case "appointment":
+			return getAppointmentDAO().read(id);
+		case "notification":
+			return getNotificationDAO().read(id);
+		case "prescription":
+			return getPrescriptionDAO().read(id);
 		default:
 			return null;
 		}	
 	}
 	
 	/**
-	 * Luo asiakas data access objectin, jos sitä ei ole vielä luotu,
-	 * muuten palauttaa jo olemassa olevan asiakasDAOn.
+	 * Creates a new customer data access object if it's null,
+	 * otherwise returns existing customer data access object.
 	 * @return	CustomerDAO.
 	 */
 	public CustomerDAO getCustomerDAO() {
@@ -79,8 +102,8 @@ public class DAOManager {
 	}
 
 	/**
-	 * Luo henkiökunta data access objectin, jos sitä ei ole vielä luotu,
-	 * muuten palauttaa jo olemassa olevan henkilökuntaDAOn.
+	 * Creates a new staff data access object if it's null,
+	 * otherwise returns existing staff data access object.
 	 * @return	StaffDAO
 	 */
 	public StaffDAO getStaffDAO() {
@@ -91,8 +114,8 @@ public class DAOManager {
 	}
 
 	/**
-	 * Luo resepti data access objectin, jos sitä ei ole vielä luotu,
-	 * muuten palauttaa jo olemassa olevan reseptiDAOn.
+	 * Creates a new prescription data access object if it's null,
+	 * otherwise returns existing prescription data access object.
 	 * @return	PrescriptionDAO.
 	 */
 	public PrescriptionDAO getPrescriptionDAO() {
@@ -103,8 +126,8 @@ public class DAOManager {
 	}
 
 	/**
-	 * Luo sairaus data access objectin, jos sitä ei ole vielä luotu,
-	 * muuten palauttaa jo olemassa olevan sairausDAOn.
+	 * Creates a new illness data access object if it's null,
+	 * otherwise returns existing illness data access object.
 	 * @return	IllnessDAO.
 	 */
 	public IllnessDAO getIllnessDAO() {
@@ -115,8 +138,8 @@ public class DAOManager {
 	}
 
 	/**
-	 * Luo veriarvo data access objectin, jos sitä ei ole vielä luotu,
-	 * muuten palauttaa jo olemassa olevan veriarvoDAON.
+	 * Creates a new blood value data access object if it's null,
+	 * otherwise returns existing blood value data access object.
 	 * @return	BloodValueDAO
 	 */
 	public BloodValueDAO getBloodValueDAO() {
@@ -125,11 +148,28 @@ public class DAOManager {
 		}
 		return this.bloodValueDAO;
 	}
-	
+
+	/**
+	 * Creates a new notification data access object if it's null,
+	 * otherwise returns existing notification data access object.
+	 * @return NotificationDAO
+	 */
 	public NotificationDAO getNotificationDAO() {
 		if (this.notificationDAO == null) {
 			this.notificationDAO = new NotificationDAO(s);
 		}
 		return this.notificationDAO;
+	}
+	
+	/**
+	 * Creates a new appointment data access object if it's null,
+	 * otherwise returns existing appointment data access object.
+	 * @return	AppointmentDAO
+	 */
+	public AppointmentDAO getAppointmentDAO() {
+		if (this.appointmentDAO == null) {
+			this.appointmentDAO = new AppointmentDAO(s);
+		}
+		return this.appointmentDAO;
 	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.AdminController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -32,6 +33,12 @@ public class AddCustomerView extends ViewChanger implements Initializable {
 	private Button logout;
 	@FXML
 	private Button toMenu;
+	
+	private AdminController controller;
+	
+	public AddCustomerView() {
+		//controller = new AdminController(this);
+	}
 	
 	/**
 	 * Method for creating a customer.

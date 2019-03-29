@@ -108,6 +108,10 @@ public class AdminController {
 		return (Staff)daoM.readWithID(id, "staff");
 	}
 	
+	public Customer findCustomerWithID(int id) {
+		return (Customer)daoM.readWithID(id, "customer");
+	}
+	
 	public void encryptPassword(String password) {
 		String originalPassword = password;
 		String encryptedPassword = SCryptUtil.scrypt(originalPassword, 16, 16, 16);

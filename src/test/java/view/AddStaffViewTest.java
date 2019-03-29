@@ -28,13 +28,19 @@ import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 import org.hamcrest.Matchers;
 
-public class AdminViewTest extends ApplicationTest{
+/**
+ * 
+ * @author IdaKi
+ *
+ */
+/*
+public class AddStaffViewTest extends ApplicationTest{
 	
 	Stage stage;
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(AdminView.class.getResource("/AdminView.fxml"));
+	    Parent mainNode = FXMLLoader.load(AdminView.class.getResource("/AddStaffView.fxml"));
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
@@ -56,21 +62,12 @@ public class AdminViewTest extends ApplicationTest{
 	    release(new MouseButton[]{});
 	}
 	
-	@Test
-	public void tabTest() {
-		Button but = lookup("#find").query();
-		Button b = lookup("#addStaff").query();
-		clickOn("#editTab");
-		verifyThat(but, hasText("Etsi"));
-		clickOn("#addTab");
-		verifyThat(b, hasText("Lisää työntekijä"));
-	}
 
 	@Test
 	public void addStaffName() {
 		TextField fname = lookup("#fNameStaff").query();
 		TextField surname = lookup("#sNameStaff").query();
-		clickOn("#addTab");
+
         clickOn("#fNameStaff");
         write("firstname");
         clickOn("#sNameStaff");
@@ -105,4 +102,5 @@ public class AdminViewTest extends ApplicationTest{
         verifyThat(phoneNumber.getText(), Matchers.is("0401234567"));
 	}
 		  
-}*/
+}
+*/

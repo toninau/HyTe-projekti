@@ -1,10 +1,11 @@
 package view;
 
-
-/*import javafx.fxml.FXMLLoader;
+/*
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
@@ -23,6 +24,12 @@ import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 import org.hamcrest.Matchers;
 
+/**
+ * 
+ * @author IdaKi
+ *
+ */
+/*
 public class HyteGUITest extends ApplicationTest{
 
 	private HyteGUI gui;
@@ -53,11 +60,20 @@ public class HyteGUITest extends ApplicationTest{
 	}
 	  
     @Test
-    public void testInput() {
+    public void testNameInput() {
+    	TextField u = lookup("#usernameAsiakas").query();
         clickOn("#usernameAsiakas");
-        write("name");      
+        write("name");
+        assertTrue(u.getText().equals("name"));             
     }
 
+    @Test
+    public void testPasswordInput() {
+    	TextField u = lookup("#pwAsiakas").query();
+        clickOn("#pwAsiakas");
+        write("password");
+        assertTrue(u.getText().equals("password"));             
+    }
     
     @Test
     public void testAdminLogin() {
@@ -67,7 +83,7 @@ public class HyteGUITest extends ApplicationTest{
     	clickOn("#pw");
     	write("admin");
     	clickOn("#loginBtn");
-    	assertTrue(stage.getTitle().equals("Admin view"));
+    	assertTrue(stage.getTitle().equals("Menu"));
     }
     
 }

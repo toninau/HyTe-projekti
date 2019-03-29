@@ -43,7 +43,7 @@ public class CustomerView extends ViewChanger {
 	
 	public void openbox(MouseEvent event) throws IOException {
 		Button btn = (Button) event.getSource();
-		String id = btn.getId();
+		final String id = btn.getId();
 		mondaytextarea.setPrefWidth(200);
 		tuesdaytextarea.setPrefWidth(200);
 		wednesdaytextarea.setPrefWidth(200);

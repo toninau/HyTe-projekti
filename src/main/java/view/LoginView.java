@@ -46,7 +46,7 @@ public class LoginView extends ViewChanger {
 	 * Luo Data access object -managerin. 
 	 */
 	public LoginView() {	
-		daom = new DAOManager();
+		//daom = new DAOManager();
 	}
 		
 	/**
@@ -82,8 +82,8 @@ public class LoginView extends ViewChanger {
 	
 	/**
 	 * Fired when customer's login button is clicked.
-	 * @param event Napin klikkaus hiirellä
-	 * @throws IOException virhe tapahtuu
+	 * @param event Button clicked.
+	 * @throws IOException Loading the fxml file failed.
 	 */
 	@FXML
 	public void loginCustomer(MouseEvent event) throws IOException {
