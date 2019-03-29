@@ -4,10 +4,10 @@ import org.hibernate.SessionFactory;
 
 import javassist.expr.Instanceof;
 
-
 /**
- * Class offering data access object classes' CRUD operations for controllers.
- * 
+*
+ * This manager class manages all DAO-classes in the project.
+*
  */
 public class DAOManager {
 	
@@ -21,7 +21,7 @@ public class DAOManager {
 	private SessionFactory s;
 	
 	/**
-	 * DAOManagerin konstruktori, joka hakee istuntotehtaan.
+	 * Class constructor to get the SessionFactory.
 	 */
 	public DAOManager() {
 		s =HibernateUtil.getSessionFactory(false);
@@ -90,8 +90,8 @@ public class DAOManager {
 	}
 	
 	/**
-	 * Creates a new customer data access object if it's null,
-	 * otherwise returns existing customer data access object.
+	 * Creates a Customer Data Access Object. If it exists, return the existing one.
+	 * 
 	 * @return	CustomerDAO.
 	 */
 	public CustomerDAO getCustomerDAO() {
@@ -102,8 +102,7 @@ public class DAOManager {
 	}
 
 	/**
-	 * Creates a new staff data access object if it's null,
-	 * otherwise returns existing staff data access object.
+	 * Creates a Staff Data Access Object. If it exists, return the existing one.
 	 * @return	StaffDAO
 	 */
 	public StaffDAO getStaffDAO() {
@@ -114,8 +113,7 @@ public class DAOManager {
 	}
 
 	/**
-	 * Creates a new prescription data access object if it's null,
-	 * otherwise returns existing prescription data access object.
+	 * Creates a Prescription Data Access Object. If it exists, return the existing one.
 	 * @return	PrescriptionDAO.
 	 */
 	public PrescriptionDAO getPrescriptionDAO() {
@@ -126,8 +124,7 @@ public class DAOManager {
 	}
 
 	/**
-	 * Creates a new illness data access object if it's null,
-	 * otherwise returns existing illness data access object.
+	 * Creates an Illness Data Access Object. If it exists, return the existing one.
 	 * @return	IllnessDAO.
 	 */
 	public IllnessDAO getIllnessDAO() {
@@ -138,8 +135,7 @@ public class DAOManager {
 	}
 
 	/**
-	 * Creates a new blood value data access object if it's null,
-	 * otherwise returns existing blood value data access object.
+	 * Creates a BloodValue Data Access Object. If it exists, return the existing one.
 	 * @return	BloodValueDAO
 	 */
 	public BloodValueDAO getBloodValueDAO() {
@@ -150,9 +146,8 @@ public class DAOManager {
 	}
 
 	/**
-	 * Creates a new notification data access object if it's null,
-	 * otherwise returns existing notification data access object.
-	 * @return NotificationDAO
+	 * Creates a Notification Data Access Object. If it exists, return the existing one.
+	 * @return	NotificationDAO
 	 */
 	public NotificationDAO getNotificationDAO() {
 		if (this.notificationDAO == null) {

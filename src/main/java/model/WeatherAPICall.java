@@ -20,7 +20,7 @@ import com.google.gson.JsonParser;
  * Käyttää GSON-kirjastoa JSON:in parsetukseen
  */
 public class WeatherAPICall {
-	private String celsius;
+	private double celsius;
 	private String state;
 	
 	public WeatherAPICall() throws Exception{
@@ -46,7 +46,8 @@ public class WeatherAPICall {
 		JsonArray statemain = jobject.getAsJsonArray("weather");
 		JsonObject celsiusmain = jobject.get("main").getAsJsonObject();
 		state = statemain.get(0).getAsJsonObject().get("main").toString().replace("\"", "");
-		celsius = celsiusmain.get("temp").toString();
+		String kelvin = celsiusmain.get("temp").toString();
+		celsius = Double.parseDouble(kelvin) - 273.15;
 		System.out.println(celsius);
 		System.out.println(state);
 	}
@@ -92,7 +93,7 @@ public class WeatherAPICall {
 	}**/
 
 	public String getCelsius() {
-		return celsius;
+		return Double.toString(Math.round(celsius));
 	}
 
 	public String getState() {

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Blood pressure and blood sugar are on this same class, but both of them are
  * not needed.
  * 
- * @author tonin
+ * @author Group 3
  *
  */
 @Entity

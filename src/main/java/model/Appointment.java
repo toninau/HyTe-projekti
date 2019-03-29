@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * Appointment entity
  * 
- * @author tonin
+ * @author Group 3
  *
  */
 @Entity

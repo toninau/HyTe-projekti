@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Customer entity
  * 
- * @author tonin
+ * @author Group 3
  *
  */
 @Entity

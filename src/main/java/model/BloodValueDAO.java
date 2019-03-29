@@ -20,8 +20,8 @@ public class BloodValueDAO {
 	/**
 	 * Class constructor
 	 * 
-	 * @param istuntotehdas Saa parametrina Sessionfactory-olion, jota käytetään
-	 *                      koko sovelluksessa
+	 * @param sessionfactory
+	 *                     
 	 */
 	public BloodValueDAO(SessionFactory sessionfactory) {
 		this.sessionfactory = sessionfactory;
