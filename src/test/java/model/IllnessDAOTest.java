@@ -1,5 +1,6 @@
 package model;
-/*
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.hibernate.SessionFactory;
@@ -30,9 +31,11 @@ public class IllnessDAOTest {
 		customer.setEmail("jorma@mail.com");
 		customer.setPhoneNumber("12341235");
 		cDAO.create(customer);
-		customer = cDAO.read(1);
+		customer = cDAO.read(2);
 		illness = new Illness("illness", customer);
 		assertTrue(iDAO.create(illness), "create(): Failed to create a new illness.");
+		Illness[] i = iDAO.readCustomersIllnessess(customer);
+		assertEquals("illness", i[0].getIllnessName(), "read(): Failed to read customers illness.");
+		assertTrue(iDAO.delete(1), "delete(): Failed to delete illness.");
 	}
 }
-*/

@@ -1,5 +1,5 @@
 package model;
-/*
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.hibernate.SessionFactory;
@@ -24,10 +24,10 @@ public class StaffDAOTest {
 		assertEquals("Firstname", staff.getFirstName(), "read(): Failed to read firstname.");
 		staff.setFirstName("Update");
 		dao.update(staff);
+		staff = dao.read(1);
 		assertEquals("Update", staff.getFirstName(), "update(): Failed to update firstname.");
 		assertTrue(dao.delete(1), "delete(): Failed to delete staff member.");
 		Staff[] list = dao.readAll();
 		assertEquals(0, list.length, "readAll(): Failed to read all staff members");
 	}
 }
-*/
