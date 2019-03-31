@@ -1,6 +1,7 @@
 package view;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -22,6 +23,10 @@ public class CustomerView extends ViewChanger {
 	@FXML Button mondaybutton;
 	@FXML Button tuesdaybutton;
 	@FXML Button wednesdaybutton;
+	@FXML Button thursdaybutton;
+	@FXML Button fridaybutton;
+	@FXML Button saturdaybutton;
+	@FXML Button sundaybutton;
 	@FXML HBox mondaytextarea;
 	@FXML HBox tuesdaytextarea;
 	@FXML HBox wednesdaytextarea;
@@ -30,7 +35,8 @@ public class CustomerView extends ViewChanger {
 	@FXML HBox saturdaytextarea;
 	@FXML HBox sundaytextarea;
 	
-	
+	private String previoustextarea = "jotain";
+	private HashMap<Button, HBox> map = new HashMap<Button, HBox>();
 	/**public void setCelcius() {
 		this.celcius.setText(null);
 	}**/
@@ -42,60 +48,45 @@ public class CustomerView extends ViewChanger {
 	}
 	
 	public void openbox(MouseEvent event) throws IOException {
-		Button btn = (Button) event.getSource();
-		final String id = btn.getId();
-		mondaytextarea.setPrefWidth(200);
-		tuesdaytextarea.setPrefWidth(200);
-		wednesdaytextarea.setPrefWidth(200);
-		thursdaytextarea.setPrefWidth(200);
-		fridaytextarea.setPrefWidth(200);
-		saturdaytextarea.setPrefWidth(200);
-		sundaytextarea.setPrefWidth(200);
-		
-		
+		final Button btn = (Button) event.getSource();
 		new AnimationTimer() {
 			private long sleepNanoseconds = 15 * 1000000;
             private long prevTime = 0;
-
             public void handle(long currentNanoTime) {
 
                 if ((currentNanoTime - prevTime) < sleepNanoseconds) {
                     return;
                 }
-                if (id.equals("mondaybutton")) {
-                	mondaytextarea.setPrefWidth(mondaytextarea.getPrefWidth()+10);
-                }
-                if (id.equals("tuesdaybutton")) {
-                	tuesdaytextarea.setPrefWidth(tuesdaytextarea.getPrefWidth()+10);
-                }
-                if (id.equals("wednesdaybutton")) {
-                	wednesdaytextarea.setPrefWidth(wednesdaytextarea.getPrefWidth()+10);
-                }
-                if (id.equals("thursdaybutton")) {
-                	thursdaytextarea.setPrefWidth(thursdaytextarea.getPrefWidth()+10);
-                }
-                if (id.equals("fridaybutton")) {
-                	fridaytextarea.setPrefWidth(fridaytextarea.getPrefWidth()+10);
-                }
-                if (id.equals("saturdaybutton")) {
-                	saturdaytextarea.setPrefWidth(saturdaytextarea.getPrefWidth()+10);
-                }
-                if (id.equals("sundaybutton")) {
-                	sundaytextarea.setPrefWidth(sundaytextarea.getPrefWidth()+10);
-                }
-   
-                prevTime = currentNanoTime;
-                if (mondaytextarea.getPrefWidth()>=400 || tuesdaytextarea.getPrefWidth()>=400 ||
-                		wednesdaytextarea.getPrefWidth()>=400 || thursdaytextarea.getPrefWidth()>=400 ||
-                		fridaytextarea.getPrefWidth()>=400 || saturdaytextarea.getPrefWidth()>=400 ||
-                		sundaytextarea.getPrefWidth()>=400) {
+                for (HBox hbox: map.values()) {
+        			if (previoustextarea.equals(hbox.getId())) {
+                        hbox.setPrefWidth(hbox.getPrefWidth()-10);
+        			}
+        		}
+                map.get(btn).setPrefWidth(map.get(btn).getPrefWidth()+10);
+                if (map.get(btn).getPrefWidth()>=400) {
+                	previoustextarea = map.get(btn).getId();
                 	stop();
                 }
+                prevTime = currentNanoTime;
             }
 		}.start();
 	}
 	
+	public void createHashMap() {
+		//if (map==null) {
+			map.put(mondaybutton, mondaytextarea);
+			map.put(tuesdaybutton, tuesdaytextarea);
+			map.put(wednesdaybutton, wednesdaytextarea);
+			map.put(thursdaybutton, thursdaytextarea);
+			map.put(fridaybutton, fridaytextarea);
+			map.put(saturdaybutton, saturdaytextarea);
+			map.put(sundaybutton, sundaytextarea);
+			
+		//}
+	}
+	
 	public void initialize() {
+		createHashMap();
 		try {
 			WeatherAPICall weather = new WeatherAPICall();
 			weatherState.setText(weather.getState());
