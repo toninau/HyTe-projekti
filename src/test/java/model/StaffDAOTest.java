@@ -1,5 +1,5 @@
 package model;
-
+/*
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.hibernate.SessionFactory;
@@ -31,3 +31,4 @@ public class StaffDAOTest {
 		assertEquals(0, list.length, "readAll(): Failed to read all staff members");
 	}
 }
+*/
