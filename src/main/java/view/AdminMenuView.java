@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import com.sun.javafx.scene.control.Properties;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.fxml.FXML;
