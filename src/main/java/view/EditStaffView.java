@@ -5,11 +5,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.TextFields;
+
+import controller.AdminController;
+import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import model.Staff;
 
 /**
  * Class for editing staff members in database.
@@ -39,12 +44,19 @@ public class EditStaffView extends ViewChanger implements Initializable {
 	
 	private ArrayList<String> resultSet;
 
+	private AdminController c;
+
 	
 	public EditStaffView() {
-		
+		c = new AdminController(this);
 	}
 	
-	
+	public void getStaff() {
+		Staff[] staffs = c.findStaffAll();
+        for (Staff staff : staffs) {
+            resultSet.add(staff.getSurname());
+        }
+	}
 	/**
 	 * Changes scene back to Login view.
 	 * @param event Mouse clicked.
@@ -69,7 +81,7 @@ public class EditStaffView extends ViewChanger implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));
+		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));
 	
 	}
 	

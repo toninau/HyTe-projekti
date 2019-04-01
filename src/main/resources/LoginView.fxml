@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="root" stylesheets="@view.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
+<AnchorPane styleClass="root" stylesheets="@view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -63,7 +63,7 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button fx:id="loginBtnAsiakas" maxHeight="30.0" maxWidth="285.0" mnemonicParsing="false" onMouseClicked="#loginCustomer" prefHeight="30.0" prefWidth="250.0" styleClass="loginBtn" text="Login">
+                                    <Button fx:id="loginBtnAsiakas" maxHeight="30.0" maxWidth="285.0" mnemonicParsing="false" onMouseClicked="#loginCustomer" prefHeight="30.0" prefWidth="250.0" styleClass="loginBtn" text="%loginButton.text">
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>

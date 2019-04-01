@@ -2,9 +2,13 @@ package view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.sun.javafx.scene.control.Properties;
+
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
@@ -12,17 +16,14 @@ import javafx.scene.input.MouseEvent;
 public class AdminMenuView extends ViewChanger implements Initializable {
 	
 	@FXML
-	Button addStaffButton;
-	
+	Button addStaffButton;	
 	@FXML
 	Button addCustomerButton;
-	
 	@FXML
 	Button editStaffButton;
-	
 	@FXML
 	Button editCustomerButton;
-	
+		
 	
 	public void changeToAddStaff(MouseEvent event) throws IOException {
 		String fxml = "/AddStaffView.fxml";
@@ -50,7 +51,14 @@ public class AdminMenuView extends ViewChanger implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		Tooltip tt1 = new Tooltip("Add staff member");
+		addStaffButton.setTooltip(tt1);
+		
+		Locale currentLocale;
+		String language = "fi";
+		String country = "FI";
+		currentLocale = new Locale(language, country);
+		ResourceBundle.getBundle("AdminMenu", currentLocale);
 		
 	}
 	

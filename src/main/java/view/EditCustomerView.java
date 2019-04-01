@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import model.Customer;
 
 /**
  * Class for editing customers in database.
@@ -75,7 +76,7 @@ public class EditCustomerView extends ViewChanger implements Initializable {
 	 * Gets all customers from database.
 	 */
 	public void getCustomers() {
-		/*Staff[] staffs = c.findStaffAll();
+		/*Customer[] staffs = c.findStaffAll();
         for (Staff staff : staffs) {
             resultSet.add(staff.getSurname());
         }*/

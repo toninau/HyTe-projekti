@@ -10,11 +10,13 @@ import model.DAOManager;
 import model.Staff;
 import view.AddStaffView;
 import view.AdminView;
+import view.EditStaffView;
 import view.LoginView;
 
 public class AdminController {
 	private AdminView ac;
 	private AddStaffView addstaff;
+	private EditStaffView editstaff;
 	private DAOManager daoM;
 	
 	public AdminController(AdminView ac) {
@@ -24,6 +26,11 @@ public class AdminController {
 	
 	public AdminController(AddStaffView addstaff) {
 		this.addstaff = addstaff;
+	}
+	
+	public AdminController(EditStaffView editstaff) {
+		this.editstaff = editstaff;
+		daoM = new DAOManager();
 	}
 	
 	public void addStaff() {

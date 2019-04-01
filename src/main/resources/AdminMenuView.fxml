@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:controller="view.AdminMenuView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminMenuView">
    <children>
       <GridPane layoutX="119.0" layoutY="116.0" prefHeight="355.0" prefWidth="573.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="120.0">
         <columnConstraints>
@@ -20,12 +20,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="addStaffButton" mnemonicParsing="false" onMouseClicked="#changeToAddStaff" prefHeight="138.0" prefWidth="290.0" styleClass="adminMenuButton" text="Lisää työntekijä">
+            <Button fx:id="addStaffButton" mnemonicParsing="false" onMouseClicked="#changeToAddStaff" prefHeight="138.0" prefWidth="290.0" styleClass="adminMenuButton" text="%key1.text">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="addCustomerButton" mnemonicParsing="false" onMouseClicked="#changeToAddCustomer" prefHeight="143.0" prefWidth="290.0" styleClass="adminMenuButton" text="Lisää Asiakas" GridPane.rowIndex="1">
+            <Button fx:id="addCustomerButton" mnemonicParsing="false" onMouseClicked="#changeToAddCustomer" prefHeight="143.0" prefWidth="290.0" styleClass="adminMenuButton" text="%key2.text" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
