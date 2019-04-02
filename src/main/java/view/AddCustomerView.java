@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.AdminController;
+import controller.AdminController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -42,7 +43,7 @@ public class AddCustomerView extends ViewChanger implements Initializable {
 	@FXML
 	private PasswordField password;
 	
-	private AdminController controller;
+	private AdminController_IF controller;
 	
 	public AddCustomerView() {
 		//controller = new AdminController(this);
@@ -68,9 +69,7 @@ public class AddCustomerView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void logout(MouseEvent event) throws IOException {
-		String fxml = "/LoginView.fxml";
-		String title = "Login";
-		sceneContent(fxml, event, title);
+		logout(event);
 	}
 	
 	/**
@@ -79,9 +78,10 @@ public class AddCustomerView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void toMenu(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
 		String fxml = "/AdminMenuView.fxml";
 		String title = "Menu";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 	
 	/**

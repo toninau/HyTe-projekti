@@ -9,7 +9,7 @@ import javassist.expr.Instanceof;
  * This manager class manages all DAO-classes in the project.
 *
  */
-public class DAOManager {
+public class DAOManager implements DAOManager_IF {
 	
 	private CustomerDAO customerDAO = null;
 	private StaffDAO staffDAO = null;

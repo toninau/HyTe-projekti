@@ -11,13 +11,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
-import view.HyteGUI;
 
 import org.junit.After;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.loadui.testfx.GuiTest;
 import org.testfx.framework.junit5.ApplicationTest;
+
+import com.lambdaworks.crypto.SCryptUtil;
 
 import org.testfx.api.FxToolkit;
 
@@ -102,5 +103,13 @@ public class AddStaffViewTest extends ApplicationTest{
         verifyThat(phoneNumber.getText(), Matchers.is("0401234567"));
 	}
 		  
+	@Test
+	public void addStaffPasswordTest() {
+		TextField pw = lookup("#passwordStaff").query();
+		clickOn("#passwordStaff");
+	    write("salasana123");
+	    String hashed = SCryptUtil.scrypt(pw.getText(), 16, 16, 16);
+        assertTrue(SCryptUtil.check(pw.getText(), hashed));
+	}
 }
 */

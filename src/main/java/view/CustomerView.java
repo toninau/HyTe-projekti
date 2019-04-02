@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -35,6 +36,7 @@ public class CustomerView extends ViewChanger {
 	@FXML HBox saturdaytextarea;
 	@FXML HBox sundaytextarea;
 	
+
 	private String previoustextarea = "jotain";
 	private HashMap<Button, HBox> map = new HashMap<Button, HBox>();
 	/**public void setCelcius() {
@@ -42,9 +44,7 @@ public class CustomerView extends ViewChanger {
 	}**/
 	
 	public void logout(MouseEvent event) throws IOException {
-		String fxml = "/LoginView.fxml";
-		String title  = "Login";
-		sceneContent(fxml, event, title);
+		logout(event);
 	}
 	
 	public void openbox(MouseEvent event) throws IOException {

@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 
 import controller.AdminController;
-
+import controller.AdminController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,7 +20,7 @@ import javafx.scene.input.MouseEvent;
  * @author IdaKi
  *
  */
-public class AddStaffView extends ViewChanger implements Initializable{
+public class AddStaffView extends ViewChanger implements Initializable, AddStaffView_IF{
 	
 	@FXML
 	private TextField fNameStaff;
@@ -41,7 +41,8 @@ public class AddStaffView extends ViewChanger implements Initializable{
 	@FXML
 	private Button toMenu;
 	
-	private AdminController c;
+	private AdminController_IF c;
+	private ResourceBundle bundle;
 
 	/**
 	 * Constructor for AdminStaffView. Creates a controller.
@@ -69,7 +70,7 @@ public class AddStaffView extends ViewChanger implements Initializable{
 	public void logout(MouseEvent event) throws IOException {
 		String fxml = "/LoginView.fxml";
 		String title = "Login";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title,bundle);
 	}
 	
 	/**
@@ -80,7 +81,7 @@ public class AddStaffView extends ViewChanger implements Initializable{
 	public void toMenu(MouseEvent event) throws IOException {
 		String fxml = "/AdminMenuView.fxml";
 		String title = "Menu";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title,bundle);
 	}
 	
 	/**

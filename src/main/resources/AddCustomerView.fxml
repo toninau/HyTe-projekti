@@ -121,7 +121,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="ICECust" fx:id="ICECust1" promptText="ICE-numero" />
+                              <TextField id="ICECust" fx:id="ICECust" promptText="ICE-numero" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">

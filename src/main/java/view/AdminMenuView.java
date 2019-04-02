@@ -22,29 +22,30 @@ public class AdminMenuView extends ViewChanger implements Initializable {
 	@FXML
 	Button editCustomerButton;
 		
+	ResourceBundle bundle;
 	
 	public void changeToAddStaff(MouseEvent event) throws IOException {
 		String fxml = "/AddStaffView.fxml";
 		String title  = "Lisää henkilökuntaa";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToEditStaff(MouseEvent event) throws IOException {
 		String fxml = "/EditStaffView.fxml";
 		String title  = "Muokkaa henkilökuntaa";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToAddCustomer(MouseEvent event) throws IOException {
 		String fxml = "/AddCustomerView.fxml";
 		String title  = "Lisää asiakkaita";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToEditCustomer (MouseEvent event) throws IOException {
 		String fxml = "/EditCustomerView.fxml";
 		String title  = "Muokkaa asiakkaita";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 
 	@Override
@@ -52,12 +53,7 @@ public class AdminMenuView extends ViewChanger implements Initializable {
 		Tooltip tt1 = new Tooltip("Add staff member");
 		addStaffButton.setTooltip(tt1);
 		
-		Locale currentLocale;
-		String language = "fi";
-		String country = "FI";
-		currentLocale = new Locale(language, country);
-		ResourceBundle.getBundle("AdminMenu", currentLocale);
-		
+		bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
 	}
 	
 

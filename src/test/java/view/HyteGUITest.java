@@ -22,6 +22,9 @@ import static org.junit.Assert.assertTrue;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import org.hamcrest.Matchers;
 
 /**
@@ -32,16 +35,22 @@ import org.hamcrest.Matchers;
 /*
 public class HyteGUITest extends ApplicationTest{
 
-	private HyteGUI gui;
 	Stage stage;
 	@Override
 	  public void start (Stage stage) throws Exception {
+		String language = "fi";
+		String country = "FI";		
+		Locale currentLocale = new Locale(language, country);
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), currentLocale);	
+
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(HyteGUI.class.getResource("/LoginView.fxml"));
+	    Parent mainNode = FXMLLoader.load(HyteGUI.class.getResource("/LoginView.fxml"), bundle);
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
 	}
+	
+	
 	
 	@BeforeAll
 	  public static void setUp () throws Exception {

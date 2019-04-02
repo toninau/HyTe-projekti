@@ -1,6 +1,8 @@
 package view;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,12 +20,21 @@ public class ViewChanger {
 	 * @param title	Stage's title.
 	 * @throws IOException Loading the fxml file failed.
 	 */
-	public void sceneContent(String fxml, MouseEvent event, String title) throws IOException {
-		Pane p = FXMLLoader.load(getClass().getResource(fxml));		
+	
+	
+	public void sceneContent(String fxml, MouseEvent event, String title, ResourceBundle bundle) throws IOException {
+		Pane p = FXMLLoader.load(getClass().getResource(fxml), bundle);		
 		Scene scene = new Scene(p);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);	
 		stage.setTitle(title);
 		stage.show();
+	}
+	
+	public void logout(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
+		String fxml = "/LoginView.fxml";
+		String title = "Login";	
+		sceneContent(fxml, event, title, bundle);
 	}
 }

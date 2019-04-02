@@ -7,17 +7,19 @@ import javafx.scene.control.Alert.AlertType;
 import kotlin.reflect.jvm.internal.impl.util.CheckResult.SuccessCheck;
 import model.Customer;
 import model.DAOManager;
+import model.DAOManager_IF;
 import model.Staff;
 import view.AddStaffView;
+import view.AddStaffView_IF;
 import view.AdminView;
 import view.EditStaffView;
 import view.LoginView;
 
-public class AdminController {
+public class AdminController implements AdminController_IF {
 	private AdminView ac;
-	private AddStaffView addstaff;
+	private AddStaffView_IF addstaff;
 	private EditStaffView editstaff;
-	private DAOManager daoM;
+	private DAOManager_IF daoM;
 	
 	public AdminController(AdminView ac) {
 		this.ac = ac;
@@ -30,7 +32,6 @@ public class AdminController {
 	
 	public AdminController(EditStaffView editstaff) {
 		this.editstaff = editstaff;
-		daoM = new DAOManager();
 	}
 	
 	public void addStaff() {
@@ -112,7 +113,6 @@ public class AdminController {
 	
 	public Staff[] findStaffAll() {
 		return (Staff[])daoM.readAll("staff");
-		
 	}
 	
 	public Customer[] findCustomerAll() {

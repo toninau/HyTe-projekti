@@ -49,6 +49,7 @@ public class EditStaffView extends ViewChanger implements Initializable {
 	
 	public EditStaffView() {
 		c = new AdminController(this);
+		resultSet = new ArrayList<>();
 	}
 	
 	public void getStaff() {
@@ -63,9 +64,7 @@ public class EditStaffView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void logout(MouseEvent event) throws IOException {
-		String fxml = "/LoginView.fxml";
-		String title = "Login";
-		sceneContent(fxml, event, title);
+		logout(event);
 	}
 	
 	/**
@@ -74,15 +73,19 @@ public class EditStaffView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void toMenu(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
 		String fxml = "/AdminMenuView.fxml";
 		String title = "Menu";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		getStaff();
+		if(resultSet == null)
+			System.out.println("AA");
 		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));
-	
+		
 	}
 	
 	public String getFirstName() {

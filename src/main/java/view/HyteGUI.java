@@ -19,10 +19,12 @@ import javafx.scene.layout.Pane;
  * Sovelluksen käyttäjäliittymän kirjautumisruutu
  * 
  */
+
 public class HyteGUI extends Application {
 	
 	private Stage primaryStage;
 	ResourceBundle bundle;
+	static Locale currentLocale;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -30,12 +32,11 @@ public class HyteGUI extends Application {
 	
 	@Override
 	public void init() {
-		Locale currentLocale;
 		String language = "fi";
 		String country = "FI";
 		
 		currentLocale = new Locale(language, country);
-		bundle = ResourceBundle.getBundle("properties.LoginProperties", currentLocale);	
+		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), currentLocale);	
 	}
 	
 	@Override
@@ -48,8 +49,7 @@ public class HyteGUI extends Application {
         primaryStage.show();
 	}
 	
-
-	public Stage getStage() {
-		return primaryStage;
+	public static Locale getLocale() {
+		return currentLocale;
 	}
 }

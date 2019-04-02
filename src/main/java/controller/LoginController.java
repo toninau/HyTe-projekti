@@ -1,13 +1,13 @@
 package controller;
 
-import model.DAOManager;
+import model.DAOManager_IF;
 
 public class LoginController {
 
-	DAOManager daom;
+	DAOManager_IF daom;
 	
 	public LoginController() {
-		daom = new DAOManager();
+		//daom = new DAOManager();
 	}
 	
 	public void getUserFromDatabase() {

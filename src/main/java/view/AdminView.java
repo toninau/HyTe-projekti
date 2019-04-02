@@ -27,6 +27,7 @@ import model.Staff;
  * Luokka kontrolloi ylläpitäjän näkymää
  *
  */
+
 public class AdminView extends ViewChanger implements Initializable {
 
 	@FXML
@@ -79,6 +80,7 @@ public class AdminView extends ViewChanger implements Initializable {
 	private SuggestionHandler suggestionHandler;
 	ArrayList<String> resultSet;
 
+	private ResourceBundle bundle;
 
 	/**
 	 * Consturctor for AdminView. Creates a controller and a suggestionHandler.
@@ -170,7 +172,7 @@ public class AdminView extends ViewChanger implements Initializable {
 	public void logout(MouseEvent event) throws IOException {
 		String fxml = "/LoginView.fxml";
 		String title = "Login";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 
 	public String getStaffName() {

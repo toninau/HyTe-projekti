@@ -54,11 +54,11 @@ public class EditCustomerView extends ViewChanger implements Initializable {
 	 * @param event Mouse clicked.
 	 * @throws IOException Loading fxml file failed.
 	 */
-	public void logout(MouseEvent event) throws IOException {
+	/*public void logout(MouseEvent event) throws IOException {
 		String fxml = "/LoginView.fxml";
 		String title = "Login";
 		sceneContent(fxml, event, title);
-	}
+	}*/
 	
 	/**
 	 * Changes scene back to Admin's menu view.
@@ -66,9 +66,10 @@ public class EditCustomerView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void toMenu(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
 		String fxml = "/AdminMenuView.fxml";
 		String title = "Menu";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 	
 	

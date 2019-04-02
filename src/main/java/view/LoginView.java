@@ -2,9 +2,13 @@ package view;
 
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import controller.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -26,7 +30,7 @@ import model.Staff;
  *
  */
 
-public class LoginView extends ViewChanger {
+public class LoginView extends ViewChanger implements Initializable {
 
 	private DAOManager daom;
 
@@ -40,13 +44,15 @@ public class LoginView extends ViewChanger {
 	@FXML private TextField usernameAsiakas;
 	@FXML private Button loginBtnAsiakas;
 
-	
+	ResourceBundle bundle;
+	LoginController c;
 	/**
 	 * Constructor for LoginView -class.
 	 * Luo Data access object -managerin. 
 	 */
 	public LoginView() {	
-		daom = new DAOManager();
+		//daom = new DAOManager();
+		c = new LoginController();
 	}
 		
 	/**
@@ -64,6 +70,8 @@ public class LoginView extends ViewChanger {
 		if(getUsernameStaff().equals("admin") && getPasswordStaff().equals("admin")) {
 			fxml = "/AdminMenuView.fxml";
 			title = "Menu";
+			bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
+
 		}
 		/*else if(hkunta.getHenkilökuntaID() == Integer.parseInt(getUsername())) {
 			fxml = "/StaffView.fxml";
@@ -76,7 +84,7 @@ public class LoginView extends ViewChanger {
 			alert.setContentText("Login failed.");
 			alert.showAndWait();
 		}
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 	}
 	
 	
@@ -90,7 +98,7 @@ public class LoginView extends ViewChanger {
 		Customer customer = new Customer();
 		String fxml = "/AsiakasView.fxml";
 		String title = "Welcome!";
-		sceneContent(fxml, event, title);
+		sceneContent(fxml, event, title, bundle);
 		if(getUsernameStaff().equals(customer.getEmail()) && getPasswordStaff().equals("asiakkaanpassword")) {
 			
 		}
@@ -128,5 +136,11 @@ public class LoginView extends ViewChanger {
 	 */
 	public String getPasswordCustomer() {
 		return this.pwAsiakas.getText();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		bundle = ResourceBundle.getBundle("properties.LoginProperties", HyteGUI.getLocale());
+		
 	}
 }

@@ -25,7 +25,7 @@
          <center>
             <TabPane opacity="0.74" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab fx:id="customerTab" text="Asiakas">
+                <Tab fx:id="customerTab" text="%customerTab.text">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="300.0">
                            <children>
@@ -74,7 +74,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="staffTab" text="Henkilökunta">
+                <Tab fx:id="staffTab" text="%staffTab.text">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -112,7 +112,7 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button fx:id="loginBtn" maxHeight="30.0" maxWidth="285.0" mnemonicParsing="false" onMouseClicked="#loginStaff" prefHeight="30.0" prefWidth="250.0" styleClass="loginBtn" text="Login">
+                                    <Button fx:id="loginBtn" maxHeight="30.0" maxWidth="285.0" mnemonicParsing="false" onMouseClicked="#loginStaff" prefHeight="30.0" prefWidth="250.0" styleClass="loginBtn" text="%loginButton.text">
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>

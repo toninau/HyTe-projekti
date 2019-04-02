@@ -20,12 +20,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="addStaffButton" mnemonicParsing="false" onMouseClicked="#changeToAddStaff" prefHeight="138.0" prefWidth="290.0" styleClass="adminMenuButton" text="%key1.text">
+            <Button fx:id="addStaffButton" mnemonicParsing="false" onMouseClicked="#changeToAddStaff" prefHeight="138.0" prefWidth="290.0" styleClass="adminMenuButton" text="%addStaffButton.text">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="addCustomerButton" mnemonicParsing="false" onMouseClicked="#changeToAddCustomer" prefHeight="143.0" prefWidth="290.0" styleClass="adminMenuButton" text="%key2.text" GridPane.rowIndex="1">
+            <Button fx:id="addCustomerButton" mnemonicParsing="false" onMouseClicked="#changeToAddCustomer" prefHeight="143.0" prefWidth="290.0" styleClass="adminMenuButton" text="%addCustomerButton.text" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
@@ -35,12 +35,12 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="editStaffButton" mnemonicParsing="false" onMouseClicked="#changeToEditStaff" prefHeight="138.0" prefWidth="290.0" styleClass="adminMenuButton" text="Muokkaa työntekijää" GridPane.columnIndex="1">
+            <Button fx:id="editStaffButton" mnemonicParsing="false" onMouseClicked="#changeToEditStaff" prefHeight="138.0" prefWidth="290.0" styleClass="adminMenuButton" text="%editStaffButton.text" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="editCustomerButton" mnemonicParsing="false" onMouseClicked="#changeToEditCustomer" prefHeight="138.0" prefWidth="290.0" styleClass="adminMenuButton" text="Muokkaa Asiakasta" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="editCustomerButton" mnemonicParsing="false" onMouseClicked="#changeToEditCustomer" prefHeight="138.0" prefWidth="290.0" styleClass="adminMenuButton" text="%editCustomerButton.text" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
