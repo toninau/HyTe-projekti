@@ -25,25 +25,27 @@ public class AdminMenuView extends ViewChanger implements Initializable {
 	ResourceBundle bundle;
 	
 	public void changeToAddStaff(MouseEvent event) throws IOException {
-		String fxml = "/AddStaffView.fxml";
+		String fxml = "/fxml/AddStaffView.fxml";
 		String title  = "Lisää henkilökuntaa";
 		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToEditStaff(MouseEvent event) throws IOException {
-		String fxml = "/EditStaffView.fxml";
+		String fxml = "/fxml/EditStaffView.fxml";
 		String title  = "Muokkaa henkilökuntaa";
 		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToAddCustomer(MouseEvent event) throws IOException {
-		String fxml = "/AddCustomerView.fxml";
+		String fxml = "/fxml/AddCustomerView.fxml";
 		String title  = "Lisää asiakkaita";
 		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToEditCustomer (MouseEvent event) throws IOException {
-		String fxml = "/EditCustomerView.fxml";
+		bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
+
+		String fxml = "/fxml/EditCustomerView.fxml";
 		String title  = "Muokkaa asiakkaita";
 		sceneContent(fxml, event, title, bundle);
 	}

@@ -31,10 +31,17 @@ public class ViewChanger {
 		stage.show();
 	}
 	
-	public void logout(MouseEvent event) throws IOException {
-		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
-		String fxml = "/LoginView.fxml";
+	public void logoutForAll(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
+		String fxml = "/fxml/LoginView.fxml";
 		String title = "Login";	
 		sceneContent(fxml, event, title, bundle);
+	}
+	
+	public void toAdminMenu(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
+		String fxml = "/fxml/AdminMenuView.fxml";
+		String title = "Menu";
+		sceneContent(fxml, event, title,bundle);
 	}
 }

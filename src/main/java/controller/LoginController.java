@@ -1,20 +1,28 @@
 package controller;
 
+import model.DAOManager;
 import model.DAOManager_IF;
+import view.LoginView_IF;
 
-public class LoginController {
+public class LoginController implements LoginController_IF{
 
 	DAOManager_IF daom;
+	LoginView_IF view;
 	
-	public LoginController() {
-		//daom = new DAOManager();
+	public LoginController(LoginView_IF view) {
+		this.view = view;
+		daom = new DAOManager();
 	}
 	
 	public void getUserFromDatabase() {
 		
 	}
 	
-	public void checkUsername() {
+	public void getCustomerFromDB() {
+		
+	}
+	
+	public void checkUsernameCustomer() {
 		
 	}
 	

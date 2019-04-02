@@ -42,7 +42,7 @@
 }
 
 .root{
-	-fx-background-image: url("./pictures/bg.png");
+	-fx-background-image: url("../pictures/bg.png");
 	
 }
 

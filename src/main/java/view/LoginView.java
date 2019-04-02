@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.LoginController;
+import controller.LoginController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,9 +31,7 @@ import model.Staff;
  *
  */
 
-public class LoginView extends ViewChanger implements Initializable {
-
-	private DAOManager daom;
+public class LoginView extends ViewChanger implements Initializable, LoginView_IF {
 
 	@FXML private Tab staffTab;	
 	@FXML private PasswordField pw;	
@@ -45,14 +44,14 @@ public class LoginView extends ViewChanger implements Initializable {
 	@FXML private Button loginBtnAsiakas;
 
 	ResourceBundle bundle;
-	LoginController c;
+	private LoginController_IF c;
+	
 	/**
 	 * Constructor for LoginView -class.
 	 * Luo Data access object -managerin. 
 	 */
 	public LoginView() {	
-		//daom = new DAOManager();
-		c = new LoginController();
+		c = new LoginController(this);
 	}
 		
 	/**
@@ -68,7 +67,7 @@ public class LoginView extends ViewChanger implements Initializable {
 		String fxml = "";
 		String title = "Login";
 		if(getUsernameStaff().equals("admin") && getPasswordStaff().equals("admin")) {
-			fxml = "/AdminMenuView.fxml";
+			fxml = "/fxml/AdminMenuView.fxml";
 			title = "Menu";
 			bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
 
@@ -96,7 +95,7 @@ public class LoginView extends ViewChanger implements Initializable {
 	@FXML
 	public void loginCustomer(MouseEvent event) throws IOException {
 		Customer customer = new Customer();
-		String fxml = "/AsiakasView.fxml";
+		String fxml = "/fxml/AsiakasView.fxml";
 		String title = "Welcome!";
 		sceneContent(fxml, event, title, bundle);
 		if(getUsernameStaff().equals(customer.getEmail()) && getPasswordStaff().equals("asiakkaanpassword")) {

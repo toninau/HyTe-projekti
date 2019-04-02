@@ -35,7 +35,6 @@ public class DAOManager implements DAOManager_IF {
 	public void create(Object obj) {
 		if(obj instanceof Staff) {
 			getStaffDAO().create((Staff)obj);
-			System.out.println(((Staff) obj).getPhoneNumber());
 		} else if (obj instanceof Customer) {
 			getCustomerDAO().create((Customer)obj);
 		} else if (obj instanceof Illness) {
@@ -48,6 +47,17 @@ public class DAOManager implements DAOManager_IF {
 			getBloodValueDAO().create((BloodValue)obj);
 		} else { System.out.println("ei ole"); }
 		
+	}
+	
+	public boolean update(Object obj) {
+		if(obj instanceof Staff) 
+			 return getStaffDAO().update((Staff)obj);
+		else if (obj instanceof Customer) 
+			 return getCustomerDAO().update((Customer)obj);
+		else if (obj instanceof Notification) 
+			return getNotificationDAO().update((Notification)obj);
+		else 
+			return false;
 	}
 	
 	/**
@@ -88,6 +98,7 @@ public class DAOManager implements DAOManager_IF {
 			return null;
 		}	
 	}
+	
 	
 	/**
 	 * Creates a Customer Data Access Object. If it exists, return the existing one.

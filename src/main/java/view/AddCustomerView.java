@@ -46,14 +46,14 @@ public class AddCustomerView extends ViewChanger implements Initializable {
 	private AdminController_IF controller;
 	
 	public AddCustomerView() {
-		//controller = new AdminController(this);
+		controller = new AdminController(this);
 	}
 	
 	/**
 	 * Method for creating a customer.
 	 */
 	public void addCustomer() {
-		//c.addCustomer();
+		controller.addCustomer();
 		fNameCust.clear();
 		sNameCust.clear();
 		hetuCust.clear();
@@ -69,7 +69,7 @@ public class AddCustomerView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void logout(MouseEvent event) throws IOException {
-		logout(event);
+		logoutForAll(event);
 	}
 	
 	/**
@@ -78,10 +78,7 @@ public class AddCustomerView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void toMenu(MouseEvent event) throws IOException {
-		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
-		String fxml = "/AdminMenuView.fxml";
-		String title = "Menu";
-		sceneContent(fxml, event, title, bundle);
+		toAdminMenu(event);
 	}
 	
 	/**

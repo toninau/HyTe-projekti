@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
+import controller.AdminController;
+import controller.AdminController_IF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,23 +44,62 @@ public class EditCustomerView extends ViewChanger implements Initializable {
 	private Button confirmEdit;
 	@FXML
 	private Button findButton;
+	@FXML
+	private Button logout;
+	@FXML
+	private Button toMenu;
 	
 	private ArrayList<String> resultSet;
-
+	private AdminController_IF c;
+	Customer customer;
+	
 	public EditCustomerView() {
-		
+		c = new AdminController(this);
+		resultSet = new ArrayList<>();
+	}
+	
+	/**
+	 * Gets all customers from database.
+	 */
+	public void allCustomers() {
+		Customer[] customers = c.findCustomerAll();
+        for (Customer customer : customers) {
+            resultSet.add(customer.getCustomerID() + ", " + customer.getSurname() + ", " + customer.getFirstName());
+        }
 	}
 
+	public void showCustomerInfo() {
+		String [] split = findCustomer.getText().split(",");
+		int before = Integer.parseInt(split[0]);
+		customer = c.findCustomerWithID(before);
+		
+		fNameCust.setText(customer.getFirstName());
+		sNameCust.setText(customer.getSurname());
+		emailCust.setText(customer.getEmail());
+		hetuCust.setText(customer.getSSN());
+		phoneNroCust.setText(customer.getPhoneNumber());
+		ICECust.setText(customer.getIceNumber());
+		addressCust.setText(customer.getAddress());
+	}
+	
+	public void updateCustomerInfo() {
+		customer.setFirstName(getCustFirstname());
+		customer.setSurname(getCustSurname());
+		customer.setAddress(getCustAddress());
+		customer.setIceNumber(getCustICE());
+		customer.setPhoneNumber(getCustPhone());
+		customer.setSSN(getCustHetu());
+		customer.setEmail(getCustEmail());
+		c.updateCustomer(customer);	
+	}
 	/**
 	 * Changes scene back to Login view.
 	 * @param event Mouse clicked.
 	 * @throws IOException Loading fxml file failed.
 	 */
-	/*public void logout(MouseEvent event) throws IOException {
-		String fxml = "/LoginView.fxml";
-		String title = "Login";
-		sceneContent(fxml, event, title);
-	}*/
+	public void logout(MouseEvent event) throws IOException {
+		logoutForAll(event);
+	}
 	
 	/**
 	 * Changes scene back to Admin's menu view.
@@ -66,26 +107,16 @@ public class EditCustomerView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void toMenu(MouseEvent event) throws IOException {
-		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
-		String fxml = "/AdminMenuView.fxml";
-		String title = "Menu";
-		sceneContent(fxml, event, title, bundle);
+		toAdminMenu(event);
+
 	}
 	
 	
-	/**
-	 * Gets all customers from database.
-	 */
-	public void getCustomers() {
-		/*Customer[] staffs = c.findStaffAll();
-        for (Staff staff : staffs) {
-            resultSet.add(staff.getSurname());
-        }*/
-	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//TextFields.bindAutoCompletion(findCustomer, SuggestionProvider.create(resultSet));
+		allCustomers();
+		TextFields.bindAutoCompletion(findCustomer, SuggestionProvider.create(resultSet));
 	}
 	
 	/**

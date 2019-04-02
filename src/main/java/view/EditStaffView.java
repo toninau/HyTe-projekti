@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.textfield.TextFields;
 
 import controller.AdminController;
+import controller.AdminController_IF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,27 +45,46 @@ public class EditStaffView extends ViewChanger implements Initializable {
 	
 	private ArrayList<String> resultSet;
 
-	private AdminController c;
-
+	private AdminController_IF c;
+	Staff staff;
 	
 	public EditStaffView() {
 		c = new AdminController(this);
 		resultSet = new ArrayList<>();
 	}
 	
-	public void getStaff() {
+	public void allStaff() {
 		Staff[] staffs = c.findStaffAll();
         for (Staff staff : staffs) {
-            resultSet.add(staff.getSurname());
+            resultSet.add(staff.getStaffID() + ", " + staff.getSurname() + ", " + staff.getFirstName());
         }
 	}
+	
+	public void showStaffInfo() {
+		String [] split = searchStaff.getText().split(","); ;		
+		int before = Integer.parseInt(split[0]);
+		staff = c.findStaffWithID(before);
+		firstName.setText(staff.getFirstName());
+		surname.setText(staff.getSurname());
+		email.setText(staff.getEmail());
+		phoneNumber.setText(staff.getPhoneNumber());
+	}
+	
+	public void updateStaffInfo() {
+		staff.setFirstName(getFirstName());
+		staff.setSurname(getSurname());
+		staff.setEmail(getEmail());
+		staff.setPhoneNumber(getPhoneNumber());
+		c.updateStaff(staff);
+	}
+	
 	/**
 	 * Changes scene back to Login view.
 	 * @param event Mouse clicked.
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void logout(MouseEvent event) throws IOException {
-		logout(event);
+		logoutForAll(event);
 	}
 	
 	/**
@@ -73,17 +93,13 @@ public class EditStaffView extends ViewChanger implements Initializable {
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void toMenu(MouseEvent event) throws IOException {
-		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
-		String fxml = "/AdminMenuView.fxml";
-		String title = "Menu";
-		sceneContent(fxml, event, title, bundle);
+		toAdminMenu(event);
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		getStaff();
-		if(resultSet == null)
-			System.out.println("AA");
+		allStaff();
+
 		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));
 		
 	}

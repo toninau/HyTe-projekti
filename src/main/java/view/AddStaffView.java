@@ -68,9 +68,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void logout(MouseEvent event) throws IOException {
-		String fxml = "/LoginView.fxml";
-		String title = "Login";
-		sceneContent(fxml, event, title,bundle);
+		logoutForAll(event);
 	}
 	
 	/**
@@ -79,9 +77,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * @throws IOException Loading fxml file failed.
 	 */
 	public void toMenu(MouseEvent event) throws IOException {
-		String fxml = "/AdminMenuView.fxml";
-		String title = "Menu";
-		sceneContent(fxml, event, title,bundle);
+		toAdminMenu(event);
 	}
 	
 	/**

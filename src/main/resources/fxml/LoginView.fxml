@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane styleClass="root" stylesheets="@view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
+<AnchorPane styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -35,13 +35,13 @@
                                        <children>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@pictures/usericon.png" />
+                                                <Image url="@../pictures/usericon.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="usernameAsiakas" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Username" />
+                                          <TextField fx:id="usernameAsiakas" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%usernameCustomer.text" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="50.0" />
@@ -51,13 +51,13 @@
                                        <children>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@pictures/pwicon.png" />
+                                                <Image url="@../pictures/pwicon.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pwAsiakas" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+                                          <PasswordField fx:id="pwAsiakas" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%password.text" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
@@ -84,13 +84,13 @@
                                        <children>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@pictures/usericon.png" />
+                                                <Image url="@../pictures/usericon.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="username" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Staff ID" />
+                                          <TextField fx:id="username" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%staffUsername.text" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="50.0" />
@@ -100,13 +100,13 @@
                                        <children>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@pictures/pwicon.png" />
+                                                <Image url="@../pictures/pwicon.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pw" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+                                          <PasswordField fx:id="pw" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%password.text" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />

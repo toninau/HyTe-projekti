@@ -4,36 +4,45 @@ import com.lambdaworks.crypto.SCryptUtil;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import kotlin.reflect.jvm.internal.impl.util.CheckResult.SuccessCheck;
 import model.Customer;
 import model.DAOManager;
 import model.DAOManager_IF;
 import model.Staff;
+import view.AddCustomerView;
 import view.AddStaffView;
 import view.AddStaffView_IF;
-import view.AdminView;
+import view.EditCustomerView;
 import view.EditStaffView;
-import view.LoginView;
 
 public class AdminController implements AdminController_IF {
-	private AdminView ac;
+	
 	private AddStaffView_IF addstaff;
+	private AddCustomerView addcustomer;
 	private EditStaffView editstaff;
+	private EditCustomerView editcustomer;
 	private DAOManager_IF daoM;
 	
-	public AdminController(AdminView ac) {
-		this.ac = ac;
-		daoM  = new DAOManager();
-	}
-	
+
 	public AdminController(AddStaffView addstaff) {
 		this.addstaff = addstaff;
+		daoM  = new DAOManager();
 	}
-	
+	public AdminController(AddCustomerView addcustomer) {
+		this.addcustomer = addcustomer;
+		daoM = new DAOManager();
+	}
 	public AdminController(EditStaffView editstaff) {
 		this.editstaff = editstaff;
+		daoM  = new DAOManager();
+	}
+	public AdminController(EditCustomerView editcustomer) {
+		this.editcustomer = editcustomer;
+		daoM = new DAOManager();
 	}
 	
+	/**
+	 * Method for adding an employee to database.
+	 */
 	public void addStaff() {
 		Staff hkunta = new Staff();
 		String etunimi = addstaff.getStaffFirstName();
@@ -55,9 +64,7 @@ public class AdminController implements AdminController_IF {
 				alert.showAndWait();
 				break;
 			}
-			System.out.println(string);
-		}
-		
+		}	
 		if (onnistui) {
 			hkunta.setFirstName(etunimi);
 			hkunta.setSurname(sukunimi);
@@ -67,22 +74,18 @@ public class AdminController implements AdminController_IF {
 			hkunta.setPassword(pw);
 			daoM.create(hkunta);
 		}
-		Staff[] kaikki = (Staff[])daoM.readAll("staff");
-		for (Staff staff : kaikki) {
-			System.out.println(staff.getFirstName());
-		}
 	}
 	
 	public void addCustomer() {
 		Customer customer = new Customer();
 		boolean success = true;
-		String hetu = ac.getCustHetu();
-		String etunimi = ac.getCustFirstname();
-		String sukunimi = ac.getCustSurname();
-		String puhnro = ac.getCustPhone();
-		String email = ac.getCustEmail();
-		String ICE = ac.getCustICE();
-		String osoite = ac.getCustAddress();
+		String hetu = addcustomer.getCustHetu();
+		String etunimi = addcustomer.getCustFirstname();
+		String sukunimi = addcustomer.getCustSurname();
+		String puhnro = addcustomer.getCustPhone();
+		String email = addcustomer.getCustEmail();
+		String ICE = addcustomer.getCustICE();
+		String osoite = addcustomer.getCustAddress();
 
 		
 		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ICE, osoite };
@@ -111,6 +114,14 @@ public class AdminController implements AdminController_IF {
 		}
 	}
 	
+	public void updateStaff(Staff f) {
+		daoM.update(f);
+	}
+	
+	public void updateCustomer(Customer customer) {
+		daoM.update(customer);
+	}
+	
 	public Staff[] findStaffAll() {
 		return (Staff[])daoM.readAll("staff");
 	}
@@ -127,10 +138,18 @@ public class AdminController implements AdminController_IF {
 		return (Customer)daoM.readWithID(id, "customer");
 	}
 	
+	public String generateUsername(String firstname, String surname) {
+		String username = firstname.substring(0, 2) + surname.substring(0, 2);
+		
+		return username;
+	}
+	
 	public String encryptPassword(String password) {
 		String originalPassword = password;
 		//SCryptUtil.check(passwd, hashed);
 		return SCryptUtil.scrypt(originalPassword, 16, 16, 16);
 	}
+
+
 	
 }
