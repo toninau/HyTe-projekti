@@ -25,7 +25,7 @@ public class CustomerViewTest extends ApplicationTest{
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(CustomerView.class.getResource("/AsiakasView.fxml"));
+	    Parent mainNode = FXMLLoader.load(CustomerView.class.getResource("/fxml/AsiakasView.fxml"));
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();

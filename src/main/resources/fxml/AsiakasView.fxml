@@ -23,7 +23,7 @@
         <tabs>
           <Tab text="Koti">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="800.0" stylesheets="@view.css">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="800.0">
                      <children>
                         <GridPane layoutX="604.0" prefHeight="97.0" prefWidth="193.0">
                           <columnConstraints>
@@ -49,7 +49,7 @@
                                  </font></Text>
                               <ImageView fx:id="weatherImage" fitHeight="37.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <image>
-                                    <Image url="@pictures/usericon.png" />
+                                    <Image url="@../pictures/usericon.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets />

@@ -63,19 +63,20 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 */
 	@FXML
 	public void loginStaff(MouseEvent event) throws IOException {
-		Staff hkunta = new Staff();
 		String fxml = "";
 		String title = "Login";
+		c.getStaffFromDatabase();
 		if(getUsernameStaff().equals("admin") && getPasswordStaff().equals("admin")) {
 			fxml = "/fxml/AdminMenuView.fxml";
 			title = "Menu";
 			bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
 
 		}
-		/*else if(hkunta.getHenkilökuntaID() == Integer.parseInt(getUsername())) {
+		else if(c.checkLoginStaff()) {
 			fxml = "/StaffView.fxml";
 			title = "Staff view";
-		}*/else {
+		}
+		else {
 			fxml = "/LoginView.fxml";			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Login failed.");
@@ -94,13 +95,24 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 */
 	@FXML
 	public void loginCustomer(MouseEvent event) throws IOException {
-		Customer customer = new Customer();
-		String fxml = "/fxml/AsiakasView.fxml";
-		String title = "Welcome!";
-		sceneContent(fxml, event, title, bundle);
-		if(getUsernameStaff().equals(customer.getEmail()) && getPasswordStaff().equals("asiakkaanpassword")) {
-			
+		String fxml;
+		String title;
+		c.getCustomerFromDatabase();
+		if(c.checkLoginCustomer()) {
+			fxml = "/fxml/AsiakasView.fxml";
+			title = "Welcome!";
 		}
+		else {
+			fxml = "/LoginView.fxml";	
+			title = "Login";
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Login failed.");
+			alert.setHeaderText(null);
+			alert.setContentText("Login failed.");
+			alert.showAndWait();
+		}
+		sceneContent(fxml, event, title, bundle);
+
 	}
 	
 

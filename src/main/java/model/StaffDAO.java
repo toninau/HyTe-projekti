@@ -144,6 +144,17 @@ public class StaffDAO {
 		}
 		return staff;
 	}
+	
+	public Staff readEmail(String emaila) {
+		Session session = sessionFactory.openSession();
+		String a = emaila;
+		String sql = "select id from Staff where email = :emailp";
+
+		//List<Customer> result = session.createQuery(sql).setParameter("emailp", a).list();
+		int id = (int) session.createQuery(sql).setParameter("emailp", a).getSingleResult();
+		System.out.println(id);
+		return read(id);
+	}
 	/**
 	 * Lukee tietokannasta listana kaikki henkilökunnan jäsenet
 	 * 

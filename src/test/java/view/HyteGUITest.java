@@ -44,7 +44,7 @@ public class HyteGUITest extends ApplicationTest{
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), currentLocale);	
 
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(HyteGUI.class.getResource("/LoginView.fxml"), bundle);
+	    Parent mainNode = FXMLLoader.load(HyteGUI.class.getResource("/fxml/LoginView.fxml"), bundle);
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();

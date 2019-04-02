@@ -27,7 +27,6 @@ public class DAOManager implements DAOManager_IF {
 		s =HibernateUtil.getSessionFactory(false);
 	}
 
-
 	/**
 	 * 
 	 * @param obj 
@@ -45,8 +44,7 @@ public class DAOManager implements DAOManager_IF {
 			getNotificationDAO().create((Notification)obj);
 		} else if (obj instanceof BloodValue) {
 			getBloodValueDAO().create((BloodValue)obj);
-		} else { System.out.println("ei ole"); }
-		
+		} else { System.out.println("ei ole"); }	
 	}
 	
 	public boolean update(Object obj) {
@@ -97,6 +95,17 @@ public class DAOManager implements DAOManager_IF {
 		default:
 			return null;
 		}	
+	}
+	
+	public Object readWithEmail(String key, String email) {
+		switch (key) {
+		case "staff":
+			return getStaffDAO().readEmail(email);
+		case "customer":
+			return getCustomerDAO().readEmail(email);
+		default:
+			return null;
+		}
 	}
 	
 	

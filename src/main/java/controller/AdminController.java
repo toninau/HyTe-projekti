@@ -86,9 +86,9 @@ public class AdminController implements AdminController_IF {
 		String email = addcustomer.getCustEmail();
 		String ICE = addcustomer.getCustICE();
 		String osoite = addcustomer.getCustAddress();
-
+		String pw = encryptPassword(addcustomer.getCustPassword());
 		
-		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ICE, osoite };
+		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ICE, osoite, pw };
 
 		for (String string : info) {
 			if (string == null) {
@@ -110,6 +110,7 @@ public class AdminController implements AdminController_IF {
 			customer.setAddress(osoite);
 			customer.setIceNumber(ICE);
 			customer.setSSN(hetu);
+			customer.setPassword(pw);
 			daoM.create(customer);
 		}
 	}

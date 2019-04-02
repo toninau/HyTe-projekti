@@ -68,6 +68,18 @@ public class CustomerDAO {
 		}
 		return customer;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Customer readEmail(String emaila) {
+		Session session = sessionFactory.openSession();
+		String a = emaila;
+		String sql = "select id from Customer where email = :emailp";
+
+		//List<Customer> result = session.createQuery(sql).setParameter("emailp", a).list();
+		int id = (int) session.createQuery(sql).setParameter("emailp", a).getSingleResult();
+		System.out.println(id);
+		return read(id);
+	}
 	/**
 	 * Reads all customers from the database as a list
 	 *

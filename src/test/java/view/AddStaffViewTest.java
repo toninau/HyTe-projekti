@@ -41,7 +41,7 @@ public class AddStaffViewTest extends ApplicationTest{
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(AdminView.class.getResource("/AddStaffView.fxml"));
+	    Parent mainNode = FXMLLoader.load(AdminView.class.getResource("/fxml/AddStaffView.fxml"));
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
