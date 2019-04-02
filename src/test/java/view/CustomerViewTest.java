@@ -1,6 +1,8 @@
 /*
 package view;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,8 +10,11 @@ import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
@@ -20,7 +25,7 @@ public class CustomerViewTest extends ApplicationTest{
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(CustomerView.class.getResource("/CustomerView.fxml"));
+	    Parent mainNode = FXMLLoader.load(CustomerView.class.getResource("/AsiakasView.fxml"));
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
@@ -50,6 +55,15 @@ public class CustomerViewTest extends ApplicationTest{
 	@Test
 	public void weatherCall() {
 		
+	}
+	
+	@Test
+	public void testCalendarTab() {
+		Node node = lookup("#calendarTab").query();
+		clickOn(node);
+		Button b = lookup("#mondayButton").query();
+		assertTrue(b.getText().equals("Maanantai"));
+	
 	}
 }
 */
