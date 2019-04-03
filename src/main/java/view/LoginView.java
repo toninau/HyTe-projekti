@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -66,20 +67,18 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		String fxml = "";
 		String title = "Login";
 		if(!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
-			c.getStaffFromDatabase();
 			if(c.checkLoginStaff()) {
-				fxml = "/StaffView.fxml";
+				fxml = "/fxml/StaffView.fxml";
 				title = "Staff view";
 			}else {
-				loginFailed("");
-				fxml = "/LoginView.fxml";	
+				fxml = "/fxml/LoginView.fxml";	
 				title = "Login";
 			}		
 		}
 		else {
 			fxml = "/fxml/AdminMenuView.fxml";
 			title = "Menu";
-			bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
+			bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 		}
 		sceneContent(fxml, event, title, bundle);
 	}
@@ -139,10 +138,21 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	public String getPasswordCustomer() {
 		return this.pwAsiakas.getText();
 	}
+	
+	public void tooltips() {
+		Tooltip usernameTip = new Tooltip(bundle.getString("tooltip.username"));
+		Tooltip pwTip = new Tooltip(bundle.getString("tooltip.password"));
+		
+		usernameAsiakas.setTooltip(usernameTip);
+		username.setTooltip(usernameTip);
+		pw.setTooltip(pwTip);
+		pwAsiakas.setTooltip(pwTip);
+		
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle("properties.LoginProperties", HyteGUI.getLocale());
-		
+		tooltips();
 	}
 }

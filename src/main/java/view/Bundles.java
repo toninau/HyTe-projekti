@@ -1,7 +1,7 @@
 package view;
 
 public enum Bundles {
-	ADMINMENU("properties.AdminMenu"),
+	ADMIN("properties.Admin"),
 	LOGIN("properties.LoginProperties");
 	private String bundleName;
 	

@@ -39,7 +39,7 @@ public class ViewChanger {
 	}
 	
 	public void toAdminMenu(MouseEvent event) throws IOException {
-		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 		String fxml = "/fxml/AdminMenuView.fxml";
 		String title = "Menu";
 		sceneContent(fxml, event, title,bundle);

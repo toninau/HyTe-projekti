@@ -65,7 +65,7 @@ public class CustomerDAO {
 			session.beginTransaction();
 			session.load(customer, id);
 			session.getTransaction().commit();
-		} catch (ObjectNotFoundException oe) {
+		}catch (ObjectNotFoundException oe) {
 			System.out.println("User not found");
 		}catch (Exception e) {
 			e.printStackTrace();

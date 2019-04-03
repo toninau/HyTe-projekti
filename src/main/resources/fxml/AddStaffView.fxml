@@ -15,7 +15,7 @@
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="8.0" layoutY="5.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="Lisää työntekijä" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" layoutX="8.0" layoutY="5.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="%addStaffButton.text" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="48.0" />
                </font>
@@ -24,7 +24,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Etunimi:">
+                        <Label text="%firstname.text">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -32,12 +32,12 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="fNameStaff" promptText="Esim. Pekka" />
+                        <TextField fx:id="fNameStaff" promptText="%firstname.prompt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Sukunimi:">
+                        <Label text="%surname.text">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -45,12 +45,12 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="emailStaff" promptText="Esim. Korhonen" />
+                        <TextField fx:id="emailStaff" promptText="%surname.prompt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Puhelinnumero:">
+                        <Label text="%phone.text">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -58,12 +58,12 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="phoneNroStaff" promptText="Esim. +358 XXXXXXXX" />
+                        <TextField fx:id="phoneNroStaff" promptText="%phone.prompt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="386.0">
                      <children>
-                        <Label text="Sähköposti:">
+                        <Label text="%email.text">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -71,12 +71,12 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="sNameStaff" promptText="esimerkki@esimerkki.fi" />
+                        <TextField fx:id="sNameStaff" promptText="%email.prompt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Salasana:">
+                        <Label text="%password.text">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -84,12 +84,12 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <PasswordField fx:id="passwordStaff" promptText="Esim. salasana123" />
+                        <PasswordField fx:id="passwordStaff" promptText="%password.prompt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Ammatti: ">
+                        <Label text="%profession.text">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -105,12 +105,12 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
-            <Button fx:id="addStaff" layoutX="338.0" layoutY="487.0" mnemonicParsing="false" onMouseClicked="#addStaff" prefHeight="50.0" prefWidth="120.0" text="Lisää työntekijä">
+            <Button fx:id="addStaff" layoutX="338.0" layoutY="487.0" mnemonicParsing="false" onMouseClicked="#addStaff" prefHeight="50.0" prefWidth="120.0" text="%addStaffButton.text">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button fx:id="logout" layoutX="47.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" />
-            <Button fx:id="toMenu" layoutX="47.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="Takaisin" />
+            <Button fx:id="logout" layoutX="47.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#logout" text="%logout.text" />
+            <Button fx:id="toMenu" layoutX="47.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="%back.text" />
          </children>
       </AnchorPane>
    </children>

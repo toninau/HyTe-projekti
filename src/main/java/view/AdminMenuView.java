@@ -43,19 +43,27 @@ public class AdminMenuView extends ViewChanger implements Initializable {
 	}
 	
 	public void changeToEditCustomer (MouseEvent event) throws IOException {
-		bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
-
 		String fxml = "/fxml/EditCustomerView.fxml";
 		String title  = "Muokkaa asiakkaita";
 		sceneContent(fxml, event, title, bundle);
 	}
+	
+	public void toolTips() {
+		Tooltip addStaffTip = new Tooltip(bundle.getString("addStaffButton.text"));
+		Tooltip addCustomerTip = new Tooltip (bundle.getString("addCustomerButton.text"));
+		Tooltip editStaffTip = new Tooltip (bundle.getString("editStaffButton.text"));
+		Tooltip editCustomerTip = new Tooltip (bundle.getString("editCustomerButton.text"));
+
+		addStaffButton.setTooltip(addStaffTip);
+		addCustomerButton.setTooltip(addCustomerTip);
+		editStaffButton.setTooltip(editStaffTip);
+		editCustomerButton.setTooltip(editCustomerTip);
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Tooltip tt1 = new Tooltip("Add staff member");
-		addStaffButton.setTooltip(tt1);
-		
-		bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
+		bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+		toolTips();
 	}
 	
 

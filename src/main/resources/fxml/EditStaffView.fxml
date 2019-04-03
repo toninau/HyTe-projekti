@@ -14,27 +14,27 @@
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="50.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="Muokkaa työntekijää" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" layoutX="14.0" layoutY="50.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="editStaffButton.text" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-            <Label layoutX="40.0" layoutY="141.0" prefHeight="21.0" prefWidth="316.0" text="Aloita kirjoittamaan työntekijän sukunimeä:">
+            <Label layoutX="40.0" layoutY="141.0" prefHeight="21.0" prefWidth="316.0" text="%searchPerson.text">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="searchStaff" layoutX="29.0" layoutY="177.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="170.0" />
+            <TextField promptText="%surname.prompt" fx:id="searchStaff" layoutX="29.0" layoutY="177.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="170.0" />
             <Button fx:id="search" onMouseClicked="#showStaffInfo" layoutX="673.0" layoutY="170.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Hae" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="170.0" />
             <Separator layoutX="12.0" layoutY="216.0" prefHeight="21.0" prefWidth="793.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0" />
-            <Button fx:id="save" onMouseClicked="#updateStaffInfo" layoutX="610.0" layoutY="510.0" mnemonicParsing="false" prefWidth="100.0" text="Tallenna" />
+            <Button fx:id="save" onMouseClicked="#updateStaffInfo" layoutX="610.0" layoutY="510.0" mnemonicParsing="false" prefWidth="100.0" text="%saveButton.text" />
             <HBox alignment="TOP_CENTER" layoutX="310.0" layoutY="253.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="250.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="304.0">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Etunimi:">
+                              <Label text="%firstname.text">
                                  <padding>
                                     <Insets right="5.0" />
                                  </padding>
@@ -42,12 +42,12 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="firstName" />
+                              <TextField fx:id="firstName" promptText="%firstname.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Sukunimi:">
+                              <Label text="%surname.text">
                                  <padding>
                                     <Insets right="5.0" />
                                  </padding>
@@ -55,7 +55,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="surname" prefHeight="31.0" prefWidth="192.0" />
+                              <TextField fx:id="surname" prefHeight="31.0" prefWidth="192.0" promptText="%surname.prompt"/>
                            </children>
                         </HBox>
                      </children>
@@ -67,7 +67,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Sähköposti:">
+                              <Label text="%email.text">
                                  <padding>
                                     <Insets right="5.0" />
                                  </padding>
@@ -75,12 +75,12 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="email" />
+                              <TextField fx:id="email" promptText="%email.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Puhelinnumero:">
+                              <Label text="%phone.text">
                                  <padding>
                                     <Insets right="5.0" />
                                  </padding>
@@ -88,7 +88,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="phoneNumber" />
+                              <TextField fx:id="phoneNumber" promptText="%phone.prompt"/>
                            </children>
                         </HBox>
                      </children>
@@ -98,8 +98,8 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="logout" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" />
-            <Button fx:id="toMenu" layoutX="50.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="Menu" />
+            <Button fx:id="logout" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#logout" text="%logout.text" />
+            <Button fx:id="toMenu" layoutX="50.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="%back.text" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

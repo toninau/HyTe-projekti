@@ -10,25 +10,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddCustomerView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800" prefWidth="1000" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddCustomerView">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <Button fx:id="addCustomer" layoutX="347.0" layoutY="497.0" mnemonicParsing="false" onMouseClicked="#addCustomer" prefHeight="51.0" prefWidth="122.0" text="Lisää asiakas" />
-            <Label alignment="CENTER" layoutY="-1.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" stylesheets="@view.css" text="Lisää asiakas" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Button fx:id="addCustomer" layoutX="347.0" layoutY="497.0" mnemonicParsing="false" onMouseClicked="#addCustomer" prefHeight="51.0" prefWidth="122.0" text="%addCustomerButton.text" />
+            <Label alignment="CENTER" layoutY="-1.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="%addCustomerButton.text" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Georgia" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="logout" layoutX="34.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" />
-            <Button fx:id="toMenu" layoutX="35.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="Takaisin" />
+            <Button fx:id="logout" layoutX="34.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#logout" text="%logout.text" />
+            <Button fx:id="toMenu" layoutX="35.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="%back.text" />
             <HBox alignment="CENTER" layoutX="74.0" layoutY="205.0" prefHeight="281.0" prefWidth="613.0">
                <children>
                   <VBox prefHeight="286.0" prefWidth="290.0">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Etunimi:">
+                              <Label text="%firstname.text">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -36,12 +36,12 @@
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField id="fNameCust" fx:id="fNameCust" promptText="Etunimi" />
+                              <TextField id="fNameCust" fx:id="fNameCust" promptText="%firstname.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Sukunimi:">
+                              <Label text="%surname.text">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -49,12 +49,12 @@
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField id="sNameCust" fx:id="sNameCust" promptText="Sukunimi" />
+                              <TextField id="sNameCust" fx:id="sNameCust" promptText="%surname.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Henkilötunnus:">
+                              <Label text="%ssn.text">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -62,12 +62,12 @@
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField id="hetuCust" fx:id="hetuCust" promptText="Esim. xxxxxx-xxxx" />
+                              <TextField id="hetuCust" fx:id="hetuCust" promptText="%ssn.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Salasana:">
+                              <Label text="%password.text">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -75,7 +75,7 @@
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <PasswordField fx:id="password" promptText="Esim. salasana123" />
+                              <PasswordField fx:id="password" promptText="%password.prompt" />
                            </children>
                         </HBox>
                      </children>
@@ -87,7 +87,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Sähköposti:">
+                              <Label text="%email.text">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
@@ -95,12 +95,12 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="emailCust" fx:id="emailCust" promptText="Sähköposti" />
+                              <TextField id="emailCust" fx:id="emailCust" promptText="email.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Puhelinnumero:">
+                              <Label text="%phone.text">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
@@ -108,12 +108,12 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="phoneNroCust" fx:id="phoneNroCust" promptText="Puhelinnumero" />
+                              <TextField id="phoneNroCust" fx:id="phoneNroCust" promptText="%phone.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="ICE-numero:">
+                              <Label text="%ICE.text">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
@@ -121,12 +121,12 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="ICECust" fx:id="ICECust" promptText="ICE-numero" />
+                              <TextField id="ICECust" fx:id="ICECust" promptText="%ICE.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Osoite:">
+                              <Label text="%address.text">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
@@ -134,7 +134,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="addressCust" fx:id="addressCust" promptText="Osoite" />
+                              <TextField id="addressCust" fx:id="addressCust" promptText="%address.prompt" />
                            </children>
                         </HBox>
                      </children>

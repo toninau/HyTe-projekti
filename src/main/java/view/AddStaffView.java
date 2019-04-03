@@ -60,6 +60,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 		sNameStaff.clear();
 		emailStaff.clear();
 		phoneNroStaff.clear();
+		passwordStaff.clear();
 	}
 	
 	/**

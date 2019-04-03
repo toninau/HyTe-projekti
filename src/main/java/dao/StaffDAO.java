@@ -2,10 +2,12 @@ package dao;
 
 import java.util.List;
 
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hsqldb.rights.User;
 
 import model.Customer;
 import model.Staff;
@@ -140,7 +142,9 @@ public class StaffDAO {
 			session.beginTransaction();
 			session.load(staff, id);
 			session.getTransaction().commit();
-		} catch (Exception e) {
+		}catch (ObjectNotFoundException oe) {
+			System.out.println("User not found");
+		}catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();

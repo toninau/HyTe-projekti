@@ -31,10 +31,9 @@ public class LoginController implements LoginController_IF{
 
 		String pwFromDB = customer.getPassword();
 		String emailFromDB = customer.getCustomerID();
-		System.out.println(pwFromDB);
+
 		if(pwFromDB != null) {
 			if(checkUsername(email, emailFromDB) && checkPassword(password, pwFromDB))
-				
 				return true;
 			else
 				return false;
@@ -43,6 +42,27 @@ public class LoginController implements LoginController_IF{
 		return false;
 	}
 	
+	public Staff getStaffFromDatabase(String email) {
+		return (Staff) daom.readWithEmail("staff", email);
+	}
+	
+	@Override
+	public boolean checkLoginStaff() {
+		String password = view.getPasswordStaff();
+		String email = view.getUsernameStaff();
+		Staff staff = getStaffFromDatabase(email);
+		String pwFromDB = staff.getPassword();
+		String emailFromDB = staff.getStaffID();
+		if(pwFromDB != null) {
+			if(checkUsername(email, emailFromDB) && checkPassword(password, pwFromDB))
+				return true;
+			else
+				return false;
+		}
+		view.loginFailed("Usernamenotfound");
+		return false;
+	}
+
 	public boolean checkPassword(String password, String pwFromDB) {
 		return SCryptUtil.check(password, pwFromDB);
 	}
@@ -51,22 +71,5 @@ public class LoginController implements LoginController_IF{
 		return emailFromDB.equals(email);
 	}
 	
-	@Override
-	public void getStaffFromDatabase() {
-		String email = view.getUsernameStaff();
-		staff = (Staff) daom.readWithEmail("staff", email);
-	}
 
-	@Override
-	public boolean checkLoginStaff() {
-		String password = view.getPasswordStaff();
-		String email = view.getUsernameStaff();
-		String pwFromDB = staff.getPassword();
-		String emailFromDB = staff.getStaffID();
-		if(emailFromDB.equals(email) && SCryptUtil.check(password, pwFromDB)  ) {
-			return true;
-		}else {
-			return false;
-		}
-	}
 }
