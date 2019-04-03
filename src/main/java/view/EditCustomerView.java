@@ -71,11 +71,11 @@ public class EditCustomerView extends ViewChanger implements Initializable {
 	public void showCustomerInfo() {
 		String [] split = findCustomer.getText().split(",");
 		int before = Integer.parseInt(split[0]);
-		customer = c.findCustomerWithID(before);
+		customer = c.findCustomerWithID(customer.getCustomerID());
 		
 		fNameCust.setText(customer.getFirstName());
 		sNameCust.setText(customer.getSurname());
-		emailCust.setText(customer.getEmail());
+		emailCust.setText(customer.getCustomerID());
 		hetuCust.setText(customer.getSSN());
 		phoneNroCust.setText(customer.getPhoneNumber());
 		ICECust.setText(customer.getIceNumber());
@@ -89,7 +89,7 @@ public class EditCustomerView extends ViewChanger implements Initializable {
 		customer.setIceNumber(getCustICE());
 		customer.setPhoneNumber(getCustPhone());
 		customer.setSSN(getCustHetu());
-		customer.setEmail(getCustEmail());
+		customer.setCustomerID(getCustEmail());
 		c.updateCustomer(customer);	
 	}
 	/**

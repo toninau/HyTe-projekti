@@ -83,8 +83,8 @@ public class BloodValueTest {
 
 	@Test
 	public void testGetSetCustomer() {
-		customer.setCustomerID(3);
+		customer.setCustomerID("testi@mail.com");
 		bloodValue.setCustomer(customer);
-		assertEquals(3, bloodValue.getCustomer().getCustomerID(), "Failed to set and get bloodvalue customer");
+		assertEquals("testi@mail.com", bloodValue.getCustomer().getCustomerID(), "Failed to set and get bloodvalue customer");
 	}
 }

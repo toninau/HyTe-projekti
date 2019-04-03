@@ -1,9 +1,13 @@
-package model;
+package dao;
 
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import model.Customer;
+import model.Staff;
 
 import java.util.List;
 /**
@@ -49,11 +53,11 @@ public class CustomerDAO {
 		return success;
 	}
 	/**
-	 * Read-method to read customer data from database using customer ID
+	 * Read-method to read customer data from database using customer ID which is an email
 	 * @param id of the customer
 	 * @return Customer data
 	 */
-	public Customer read(int id) {
+	public Customer read(String id) {
 		Session session = sessionFactory.openSession();
 		Customer customer = new Customer();
 		try {
@@ -61,25 +65,17 @@ public class CustomerDAO {
 			session.beginTransaction();
 			session.load(customer, id);
 			session.getTransaction().commit();
-		} catch (Exception e) {
+		} catch (ObjectNotFoundException oe) {
+			System.out.println("User not found");
+		}catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			session.close();
 		}
 		return customer;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Customer readEmail(String emaila) {
-		Session session = sessionFactory.openSession();
-		String a = emaila;
-		String sql = "select id from Customer where email = :emailp";
-
-		//List<Customer> result = session.createQuery(sql).setParameter("emailp", a).list();
-		int id = (int) session.createQuery(sql).setParameter("emailp", a).getSingleResult();
-		System.out.println(id);
-		return read(id);
-	}
 	/**
 	 * Reads all customers from the database as a list
 	 *
@@ -139,10 +135,10 @@ public class CustomerDAO {
 		istunto.beginTransaction();
 		Customer a = (Customer) istunto.get(Customer.class, customer.getCustomerID());
 		if (a != null) {
+			a.setCustomerID(customer.getCustomerID());
 			a.setFirstName(customer.getFirstName());
 			a.setSurname(customer.getSurname());
 			a.setSSN(customer.getSSN());
-			a.setEmail(customer.getEmail());
 			a.setIceNumber(customer.getIceNumber());
 			a.setAddress(customer.getAddress());
 			a.setPhoneNumber(customer.getPhoneNumber());
@@ -159,7 +155,7 @@ public class CustomerDAO {
 	 * @param id of the removable customer object
 	 * @return true if success
 	 */
-	public boolean delete(int id) {
+	public boolean delete(String id) {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();

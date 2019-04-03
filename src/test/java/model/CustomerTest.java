@@ -34,8 +34,8 @@ public class CustomerTest {
 
 	@Test
 	public void testGetSetID() {
-		customer.setCustomerID(12);
-		assertEquals(12, customer.getCustomerID(), "Failed to set and get customerID");
+		customer.setCustomerID("testi@mail.com");
+		assertEquals("testi@mail.com", customer.getCustomerID(), "Failed to set and get customerID");
 	}
 
 	@Test
@@ -74,9 +74,4 @@ public class CustomerTest {
 		assertEquals("12341234", customer.getPhoneNumber(), "Failed to set and get customer's phone number");
 	}
 
-	@Test
-	public void testGetSetSposti() {
-		customer.setEmail("test@mail.com");
-		assertEquals("test@mail.com", customer.getEmail(), "Failed to set and get customer's email");
-	}
 }

@@ -14,9 +14,8 @@ import java.util.*;
 public class Staff {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "staffID")
-	private int staffID;
+	private String staffID;
 
 	@Column(name = "firstName")
 	private String firstName;
@@ -26,9 +25,6 @@ public class Staff {
 
 	@Column(name = "phoneNumber")
 	private String phoneNumber;
-
-	@Column(name = "email")
-	private String email;
 
 	@Column(name = "accessLevel")
 	private String accessLevel;
@@ -69,11 +65,11 @@ public class Staff {
 	 * @see #Staff()
 	 */
 
-	public Staff(String firstName, String surname, String phoneNumber, String email, String accessLevel, String password) {
+	public Staff(String email, String firstName, String surname, String phoneNumber, String accessLevel, String password) {
+		this.staffID = email;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.phoneNumber = phoneNumber;
-		this.email = email;
 		this.accessLevel = accessLevel;
 		this.password = password;
 	}
@@ -84,7 +80,7 @@ public class Staff {
 	 * 
 	 * @return staffID
 	 */
-	public int getStaffID() {
+	public String getStaffID() {
 		return staffID;
 	}
 
@@ -94,7 +90,7 @@ public class Staff {
 	 * 
 	 * @param staffID staffID to set
 	 */
-	public void setStaffID(int staffID) {
+	public void setStaffID(String staffID) {
 		this.staffID = staffID;
 	}
 
@@ -148,21 +144,6 @@ public class Staff {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	/**
-	 * Returns staff member's email address.
-	 * @return email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	
-	/**
-	 * Sets email address.
-	 * @param email email address to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
 	/**
 	 * Returns staff member's access level.

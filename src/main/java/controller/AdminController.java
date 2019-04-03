@@ -69,7 +69,7 @@ public class AdminController implements AdminController_IF {
 			hkunta.setFirstName(etunimi);
 			hkunta.setSurname(sukunimi);
 			hkunta.setPhoneNumber(puhnro);
-			hkunta.setEmail(email);
+			hkunta.setStaffID(email);
 			hkunta.setAccessLevel(ammatti);
 			hkunta.setPassword(pw);
 			daoM.create(hkunta);
@@ -99,14 +99,12 @@ public class AdminController implements AdminController_IF {
 				alert.setContentText("Tarkista tiedot");
 				alert.showAndWait();
 			}
-			System.out.println(string);
 		}
-		
 		if (success) {
 			customer.setFirstName(etunimi);
 			customer.setSurname(sukunimi);
 			customer.setPhoneNumber(puhnro);
-			customer.setEmail(email);
+			customer.setCustomerID(email);
 			customer.setAddress(osoite);
 			customer.setIceNumber(ICE);
 			customer.setSSN(hetu);
@@ -131,26 +129,23 @@ public class AdminController implements AdminController_IF {
 		return(Customer[]) daoM.readAll("customer");
 	}
 	
-	public Staff findStaffWithID(int id) {
-		return (Staff)daoM.readWithID(id, "staff");
+	public Staff findStaffWithID(String id) {
+		return (Staff)daoM.readWithEmail("staff", id);
 	}
 	
-	public Customer findCustomerWithID(int id) {
-		return (Customer)daoM.readWithID(id, "customer");
+	public Customer findCustomerWithID(String id) {
+		return (Customer)daoM.readWithEmail("customer",id );
 	}
 	
-	public String generateUsername(String firstname, String surname) {
-		String username = firstname.substring(0, 2) + surname.substring(0, 2);
-		
-		return username;
+	public String checkEmailValidity(String email) {
+			
+		return "";
 	}
 	
 	public String encryptPassword(String password) {
 		String originalPassword = password;
-		//SCryptUtil.check(passwd, hashed);
 		return SCryptUtil.scrypt(originalPassword, 16, 16, 16);
 	}
-
 
 	
 }

@@ -1,11 +1,20 @@
 package model;
 
 import org.hibernate.SessionFactory;
+
+import dao.AppointmentDAO;
+import dao.BloodValueDAO;
+import dao.CustomerDAO;
+import dao.IllnessDAO;
+import dao.NotificationDAO;
+import dao.PrescriptionDAO;
+import dao.StaffDAO;
 /**
  * Testing class
  * @author Group 3
  *
  */
+/*
 public class Main {
 
 	public static void main(String[] args) {
@@ -230,3 +239,4 @@ public class Main {
 		// Testi committi
 	}
 }
+*/

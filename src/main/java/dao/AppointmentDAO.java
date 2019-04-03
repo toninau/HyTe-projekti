@@ -1,10 +1,14 @@
-package model;
+package dao;
 
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import model.Appointment;
+import model.Customer;
+import model.Staff;
 /**
  * 
  * Customer appointment DataAccessObject

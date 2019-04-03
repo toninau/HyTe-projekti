@@ -47,8 +47,8 @@ public class IllnessTest {
 
 	@Test
 	public void testGetSetAsiakas() {
-		customer.setCustomerID(5);
+		customer.setCustomerID("testi@mail.com");
 		illness.setCustomer(customer);
-		assertEquals(5, illness.getCustomer().getCustomerID(), "Failed to set and get illness' customer");
+		assertEquals("testi@mail.com", illness.getCustomer().getCustomerID(), "Failed to set and get illness' customer");
 	}
 }

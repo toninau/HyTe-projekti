@@ -69,16 +69,16 @@ public class PrescriptionTest {
 	
 	@Test
 	public void testGetSetAsiakas() {
-		customer.setCustomerID(5);
+		customer.setCustomerID("testi@mail.com");
 		prescription.setCustomer(customer);
-		assertEquals(5, prescription.getCustomer().getCustomerID(), "Failed to set and get prescription's customer");
+		assertEquals("testi@mail.com", prescription.getCustomer().getCustomerID(), "Failed to set and get prescription's customer");
 	}
 	
 	@Test
 	public void testGetSetHenkilökunta() {
-		staffmember.setStaffID(5);
+		staffmember.setStaffID("testi@mail.com");
 		prescription.setStaff(staffmember);
-		assertEquals(5, prescription.getStaff().getStaffID(), "Failed to set and get prescription's staff member");
+		assertEquals("testi@mail.com", prescription.getStaff().getStaffID(), "Failed to set and get prescription's staff member");
 	}
 
 }

@@ -63,15 +63,15 @@ public class NotificationTest {
 
 	@Test
 	public void testGetSetCustomer() {
-		customer.setCustomerID(5);
+		customer.setCustomerID("testi@mail.com");
 		notification.setCustomer(customer);
-		assertEquals(5, notification.getCustomer().getCustomerID(), "Failed to set and get notification's customer");
+		assertEquals("testi@mail.com", notification.getCustomer().getCustomerID(), "Failed to set and get notification's customer");
 	}
 
 	@Test
 	public void testGetSetStaff() {
-		staffmember.setStaffID(5);
+		staffmember.setStaffID("testi@mail.com");
 		notification.setStaff(staffmember);
-		assertEquals(5, notification.getStaff().getStaffID(), "Failed to set and get notification's staff member");
+		assertEquals("testi@mail.com", notification.getStaff().getStaffID(), "Failed to set and get notification's staff member");
 	}
 }

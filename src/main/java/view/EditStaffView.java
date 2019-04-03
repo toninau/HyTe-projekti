@@ -63,17 +63,17 @@ public class EditStaffView extends ViewChanger implements Initializable {
 	public void showStaffInfo() {
 		String [] split = searchStaff.getText().split(","); ;		
 		int before = Integer.parseInt(split[0]);
-		staff = c.findStaffWithID(before);
+		staff = c.findStaffWithID(staff.getStaffID());
 		firstName.setText(staff.getFirstName());
 		surname.setText(staff.getSurname());
-		email.setText(staff.getEmail());
+		email.setText(staff.getStaffID());
 		phoneNumber.setText(staff.getPhoneNumber());
 	}
 	
 	public void updateStaffInfo() {
 		staff.setFirstName(getFirstName());
 		staff.setSurname(getSurname());
-		staff.setEmail(getEmail());
+		staff.setStaffID(getEmail());
 		staff.setPhoneNumber(getPhoneNumber());
 		c.updateStaff(staff);
 	}

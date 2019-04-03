@@ -63,15 +63,15 @@ public class AppointmentTest {
 
 	@Test
 	public void testGetSetCustomer() {
-		customer.setCustomerID(5);
+		customer.setCustomerID("testi@mail.com");
 		appointment.setCustomer(customer);
-		assertEquals(5, appointment.getCustomer().getCustomerID(), "Failed to set and get appointment customer");
+		assertEquals("testi@mail.com", appointment.getCustomer().getCustomerID(), "Failed to set and get appointment customer");
 	}
 
 	@Test
 	public void testGetSetHenkilökunta() {
-		staffmember.setStaffID(5);
+		staffmember.setStaffID("testi@mail.com");
 		appointment.setStaff(staffmember);
-		assertEquals(5, appointment.getStaff().getStaffID(), "Failed to set and get appointment staff");
+		assertEquals("testi@mail.com", appointment.getStaff().getStaffID(), "Failed to set and get appointment staff");
 	}
 }

@@ -1,4 +1,4 @@
-package model;
+package dao;
 
 import java.util.List;
 
@@ -6,6 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import model.Customer;
+import model.Staff;
 /**
  * 
  * Henkilökunnan jäsenten hallintaan käytettävä DataAccessObject
@@ -129,7 +132,7 @@ public class StaffDAO {
 	 * @param id Haettavan henkilön id
 	 * @return Haettu henkilökunnan jäsen
 	 */
-	public Staff read(int id) {
+	public Staff read(String id) {
 		Session session = sessionFactory.openSession();
 		Staff staff = new Staff();
 		try {
@@ -151,7 +154,7 @@ public class StaffDAO {
 		String sql = "select id from Staff where email = :emailp";
 
 		//List<Customer> result = session.createQuery(sql).setParameter("emailp", a).list();
-		int id = (int) session.createQuery(sql).setParameter("emailp", a).getSingleResult();
+		String id = (String) session.createQuery(sql).setParameter("emailp", a).getSingleResult();
 		System.out.println(id);
 		return read(id);
 	}
@@ -191,7 +194,6 @@ public class StaffDAO {
 			h.setFirstName(staff.getFirstName());
 			h.setSurname(staff.getSurname());
 			h.setAccessLevel(staff.getAccessLevel());
-			h.setEmail(staff.getEmail());
 			h.setPhoneNumber(staff.getPhoneNumber());
 			success = true;
 		} else {
@@ -207,7 +209,7 @@ public class StaffDAO {
  * @return true, jos operaatio onnistui, muuten false
  */
 	@SuppressWarnings("unchecked")
-	public boolean delete(int id) {
+	public boolean delete(String id) {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();

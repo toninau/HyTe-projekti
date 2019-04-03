@@ -1,9 +1,12 @@
-package model;
+package dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import model.Customer;
+import model.Illness;
 
 import java.util.List;
 /**

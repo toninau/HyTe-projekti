@@ -2,7 +2,13 @@ package model;
 
 import org.hibernate.SessionFactory;
 
-import javassist.expr.Instanceof;
+import dao.AppointmentDAO;
+import dao.BloodValueDAO;
+import dao.CustomerDAO;
+import dao.IllnessDAO;
+import dao.NotificationDAO;
+import dao.PrescriptionDAO;
+import dao.StaffDAO;
 
 /**
 *
@@ -82,10 +88,6 @@ public class DAOManager implements DAOManager_IF {
 	 */
 	public Object readWithID(int id, String obj) {
 		switch (obj) {
-		case "staff":
-			return getStaffDAO().read(id);
-		case "customer":
-			return getCustomerDAO().read(id);
 		case "appointment":
 			return getAppointmentDAO().read(id);
 		case "notification":
@@ -100,9 +102,9 @@ public class DAOManager implements DAOManager_IF {
 	public Object readWithEmail(String key, String email) {
 		switch (key) {
 		case "staff":
-			return getStaffDAO().readEmail(email);
+			return getStaffDAO().read(email);
 		case "customer":
-			return getCustomerDAO().readEmail(email);
+			return getCustomerDAO().read(email);
 		default:
 			return null;
 		}

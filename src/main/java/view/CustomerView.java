@@ -44,7 +44,7 @@ public class CustomerView extends ViewChanger {
 	}**/
 	
 	public void logout(MouseEvent event) throws IOException {
-		logout(event);
+		logoutForAll(event);
 	}
 	
 	public void openbox(MouseEvent event) throws IOException {

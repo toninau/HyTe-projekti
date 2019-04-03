@@ -1,5 +1,13 @@
 package model;
 
+import dao.AppointmentDAO;
+import dao.BloodValueDAO;
+import dao.CustomerDAO;
+import dao.IllnessDAO;
+import dao.NotificationDAO;
+import dao.PrescriptionDAO;
+import dao.StaffDAO;
+
 public interface DAOManager_IF {
 	public abstract void create(Object obj);
 	public abstract boolean update(Object obj);

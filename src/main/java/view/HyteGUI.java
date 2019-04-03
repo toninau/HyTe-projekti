@@ -4,15 +4,19 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.sun.javafx.application.LauncherImpl;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 /**
  * 
  * @author Jeremiaza
@@ -26,16 +30,15 @@ public class HyteGUI extends Application {
 	private ResourceBundle bundle;
 	static Locale currentLocale;
 	
+	@SuppressWarnings("restriction")
 	public static void main(String[] args) {
 		launch(args);
 	}
 	
 	@Override
-	public void init() {
-		String language = "fi";
-		String country = "FI";
-		
-		currentLocale = new Locale(language, country);
+	public void init() throws IOException {
+		//initPreload();
+		initLocale();
 		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), currentLocale);	
 	}
 	
@@ -47,6 +50,24 @@ public class HyteGUI extends Application {
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
+	}
+
+	
+	public void initPreload() {
+		VBox vbox = new VBox();
+		Label label = new Label();
+		label.setText("Loading");
+		vbox.getChildren().add(label);
+		
+        Scene sc = new Scene(vbox, 200, 200);
+        primaryStage.setScene(sc);
+        primaryStage.show();
+	}
+	
+	public void initLocale() {
+		String language = "fi";
+		String country = "FI";
+		currentLocale = new Locale(language, country);
 	}
 	
 	public static Locale getLocale() {

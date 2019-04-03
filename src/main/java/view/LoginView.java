@@ -65,24 +65,21 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	public void loginStaff(MouseEvent event) throws IOException {
 		String fxml = "";
 		String title = "Login";
-		c.getStaffFromDatabase();
-		if(getUsernameStaff().equals("admin") && getPasswordStaff().equals("admin")) {
+		if(!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
+			c.getStaffFromDatabase();
+			if(c.checkLoginStaff()) {
+				fxml = "/StaffView.fxml";
+				title = "Staff view";
+			}else {
+				loginFailed("");
+				fxml = "/LoginView.fxml";	
+				title = "Login";
+			}		
+		}
+		else {
 			fxml = "/fxml/AdminMenuView.fxml";
 			title = "Menu";
 			bundle = ResourceBundle.getBundle(Bundles.ADMINMENU.getBundleName(), HyteGUI.getLocale());
-
-		}
-		else if(c.checkLoginStaff()) {
-			fxml = "/StaffView.fxml";
-			title = "Staff view";
-		}
-		else {
-			fxml = "/LoginView.fxml";			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Login failed.");
-			alert.setHeaderText(null);
-			alert.setContentText("Login failed.");
-			alert.showAndWait();
 		}
 		sceneContent(fxml, event, title, bundle);
 	}
@@ -95,28 +92,22 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 */
 	@FXML
 	public void loginCustomer(MouseEvent event) throws IOException {
-		String fxml;
-		String title;
-		c.getCustomerFromDatabase();
-		if(c.checkLoginCustomer()) {
+		String fxml = "/fxml/LoginView.fxml";
+		String title = "Welcome!";
+		if (c.checkLoginCustomer()) {
 			fxml = "/fxml/AsiakasView.fxml";
 			title = "Welcome!";
 		}
-		else {
-			fxml = "/LoginView.fxml";	
-			title = "Login";
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Login failed.");
-			alert.setHeaderText(null);
-			alert.setContentText("Login failed.");
-			alert.showAndWait();
-		}
 		sceneContent(fxml, event, title, bundle);
-
 	}
-	
 
-	
+	public void loginFailed(String msg) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Login failed.");
+		alert.setHeaderText(null);
+		alert.setContentText(msg);
+		alert.showAndWait();
+	}
 	/**
 	 * Return the text written in the employee's user name -field.
 	 * @return Employee's user name.

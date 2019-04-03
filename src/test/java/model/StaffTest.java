@@ -25,7 +25,7 @@ public class StaffTest {
 	@Test
 	public void testConstructor() {
 		try {
-			staffmember = new Staff("Testi", "Testinen", "1234567890", "testi@mail.com", "Lääkäri", "password");
+			staffmember = new Staff("testi@mail.com","Testi", "Testinen", "1234567890",  "Lääkäri", "password");
 		} catch (Exception e) {
 			fail("Failed to create staff-object");
 		}
@@ -33,8 +33,8 @@ public class StaffTest {
 
 	@Test
 	public void testGetSetID() {
-		staffmember.setStaffID(23);
-		assertEquals(23, staffmember.getStaffID(), "Failed to set and get staffID");
+		staffmember.setStaffID("testi@mail.com");
+		assertEquals("testi@mail.com", staffmember.getStaffID(), "Failed to set and get staffID");
 	}
 
 	@Test
@@ -61,9 +61,4 @@ public class StaffTest {
 		assertEquals("12341234", staffmember.getPhoneNumber(), "Failed to set and get staff member's phone number");
 	}
 
-	@Test
-	public void testGetSetSposti() {
-		staffmember.setEmail("test@mail.com");
-		assertEquals("test@mail.com", staffmember.getEmail(), "Failed to set and get staff member's email");
-	}
 }

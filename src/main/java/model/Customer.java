@@ -14,9 +14,8 @@ import java.util.*;
 public class Customer {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customerID")
-	private int customerID;
+	private String customerID;
 
 	@Column(name = "firstName")
 	private String firstName;
@@ -29,9 +28,6 @@ public class Customer {
 
 	@Column(name = "address")
 	private String address;
-
-	@Column(name = "email")
-	private String email;
 
 	@Column(name = "phoneNumber")
 	private String phoneNumber;
@@ -85,11 +81,11 @@ public class Customer {
 	 */
 	public Customer(String firstName, String surname, String ssn, String address, String email, String phoneNumber,
 			String iceNumber, String password) {
+		this.customerID = email;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.ssn = ssn;
 		this.address = address;
-		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.iceNumber = iceNumber;
 		this.password = password;
@@ -101,7 +97,7 @@ public class Customer {
 	 * 
 	 * @return customerID
 	 */
-	public int getCustomerID() {
+	public String getCustomerID() {
 		return customerID;
 	}
 
@@ -111,7 +107,7 @@ public class Customer {
 	 * 
 	 * @param customerID customerID to set
 	 */
-	public void setCustomerID(int customerID) {
+	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
 
@@ -187,23 +183,7 @@ public class Customer {
 		this.address = address;
 	}
 
-	/**
-	 * Returns customer's email address.
-	 * 
-	 * @return email
-	 */
-	public String getEmail() {
-		return email;
-	}
 
-	/**
-	 * Sets email address.
-	 * 
-	 * @param email email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	/**
 	 * Returns customer's phone number
