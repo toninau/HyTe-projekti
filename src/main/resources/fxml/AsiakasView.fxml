@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CustomerView">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CustomerView">
    <children>
       <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -119,7 +119,7 @@
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
                                              </VBox.margin>
@@ -137,7 +137,7 @@
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
                                              </VBox.margin>
@@ -155,7 +155,7 @@
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
                                              </VBox.margin>
@@ -173,7 +173,7 @@
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
                                              </VBox.margin>
@@ -191,7 +191,7 @@
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
                                              </VBox.margin>
@@ -209,7 +209,7 @@
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0">
+                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="10.0" />
                                              </VBox.margin>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutY="95.0" prefHeight="625.0" prefWidth="1280.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <tabs>
+          <Tab text="Päivä" />
+          <Tab text="Viikko">
+               <content>
+                  <HBox prefHeight="729.0" prefWidth="1283.0">
+                     <children>
+                        <HBox fx:id="mondaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
+                           <children>
+                              <VBox minWidth="100.0" prefHeight="541.0" prefWidth="500.0">
+                                 <children>
+                                    <Button fx:id="mondaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Maanantai">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" text="fkbhawkfwaawwa ff aknjw kjanfkjf awk fnaw fknawf kawnakf jnf awk fjawnf kawnf awkjnf awn fk" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="tuesdaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
+                           <children>
+                              <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                 <children>
+                                    <Button fx:id="tuesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Tiistai">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="wednesdaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
+                           <children>
+                              <VBox minWidth="100.0" prefHeight="462.0" prefWidth="320.0">
+                                 <children>
+                                    <Button fx:id="wednesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Keskiviikko">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="thursdaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                 <children>
+                                    <Button fx:id="thursdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Torstai">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="fridaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                 <children>
+                                    <Button fx:id="fridaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Perjantai">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="saturdaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                 <children>
+                                    <Button fx:id="saturdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Lauantai">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="sundaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                 <children>
+                                    <Button fx:id="sundaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Sunnuntai">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </HBox>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <HBox layoutX="120.0" layoutY="19.0" prefHeight="100.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.bottomAnchor="611.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
+            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
+            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
+            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -36,6 +36,7 @@
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-padding: 0.2em;
+    -fx-rotate: 90;
 }
 
 .tab:selected .tab-label { 
@@ -54,5 +55,19 @@
 
 .headerLabels{
 	-fx-background-color: red;
+}
+
+.customerMenuWrapper {
+	-fx-pref-width: 1280px;
+}
+
+.customerMenuBar{
+	
+	-fx-padding: 10px;
+	-fx-margin: 0 0 0 0;
+	-fx-background-color: #88b4fc;
+	-fx-border-color: #2654a0;
+	-fx-border-width: 4px;
+	-fx-border-radius: 3px;
 }
 
