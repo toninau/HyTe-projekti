@@ -13,17 +13,32 @@
 	-fx-background-color: white;
 	-fx-padding: 1em;
 	-fx-background-insets: 0 1 0 1,0,0;
-	-fx-dont-size: 20px;
+}
+
+.calendarTab{
+	-fx-rotate: 90;
+	    
+}
+
+.calendarTabPane{
+	-fx-tab-min-width:100px;
+	-fx-tab-max-width:100px;
+  	-fx-tab-min-height:100px;
+ 	-fx-tab-max-height:100px;
+}
+
+.loginTabPane{
+	-fx-tab-min-width:300px;
+	-fx-tab-max-width:300px;
+  	-fx-tab-min-height:60px;
+ 	-fx-tab-max-height:60px;
 }
 
 .tab-pane{
 	-fx-background-color: white;
 	-fx-border-radius: 25px;
 	-fx-background-radius: 25px;
-	-fx-tab-min-width:300px;
-	-fx-tab-max-width:300px;
-  	-fx-tab-min-height:50px;
- 	-fx-tab-max-height:50px;
+
 }
 
 .tab-pane .tab-header-area .tab-header-background {
@@ -33,10 +48,10 @@
 .tab .tab-label { 
     -fx-alignment: CENTER;
     -fx-text-fill: #828282;
-    -fx-font-size: 18px;
+    -fx-font-size: 25px;
     -fx-font-weight: bold;
     -fx-padding: 0.2em;
-    -fx-rotate: 90;
+
 }
 
 .tab:selected .tab-label { 
