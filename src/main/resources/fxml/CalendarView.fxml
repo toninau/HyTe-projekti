@@ -11,10 +11,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane layoutY="95.0" prefHeight="625.0" prefWidth="1280.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TabPane layoutY="95.0" prefHeight="625.0" prefWidth="1280.0" side="LEFT" styleClass="calendarTabPane" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="20.0" tabMaxWidth="20.0" tabMinHeight="20.0" tabMinWidth="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <tabs>
-          <Tab text="Päivä" />
-          <Tab text="Viikko">
+          <Tab styleClass="calendarTab" text="\%calendar.day" />
+          <Tab styleClass="calendarTab" text="\%calendar.week">
                <content>
                   <HBox prefHeight="729.0" prefWidth="1283.0">
                      <children>
@@ -155,10 +155,10 @@
       </TabPane>
       <HBox layoutX="120.0" layoutY="19.0" prefHeight="100.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.bottomAnchor="611.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="\%menuButton.frontpage" />
+            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="\%menuButton.calendar" />
             <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
-            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
-            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
-            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
+            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="\%menuButton.help" />
          </children>
       </HBox>
    </children>

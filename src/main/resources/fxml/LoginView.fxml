@@ -25,7 +25,7 @@
          <bottom>
          </bottom>
          <center>
-            <TabPane opacity="0.82" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="500.0" tabMinHeight="50.0" tabMinWidth="400.0" BorderPane.alignment="CENTER">
+            <TabPane opacity="0.82" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="450.0" tabMinHeight="50.0" tabMinWidth="450.0" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab fx:id="customerTab" text="%customerTab.text">
                   <content>
