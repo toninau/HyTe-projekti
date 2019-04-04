@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane styleClass="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StaffView">
+<AnchorPane styleClass="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StaffView">
    <children>
-      <Button fx:id="logout" layoutX="662.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#logout" text="Button" />
+      <Button fx:id="logout" layoutX="662.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" />
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@ public class HibernateUtil {
 	/**
 	 * Empty class constructor
 	 */
-	public HibernateUtil() {
+	private HibernateUtil() {
 	}
 
 	/**

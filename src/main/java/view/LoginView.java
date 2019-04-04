@@ -3,10 +3,13 @@ package view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import controller.LoginController;
 import controller.LoginController_IF;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
@@ -44,7 +48,9 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	@FXML private TextField usernameAsiakas;
 	@FXML private Button loginBtnAsiakas;
 
-	ResourceBundle bundle;
+	@FXML private ComboBox<Locale> languageChange;
+	
+	private ResourceBundle bundle;
 	private LoginController_IF c;
 	
 	/**
@@ -101,12 +107,35 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	}
 
 	public void loginFailed(String msg) {
+		String title;
+		switch (msg) {
+		case "user":
+			msg = bundle.getString("loginFailed.username");
+			title = bundle.getString("loginFailed.title");
+			break;
+		case "password":
+			msg = bundle.getString("loginFailed.password");
+			title = bundle.getString("loginFailed.title");
+			break;
+		default:
+			msg = "Login failed.";
+			title = "Login failed";
+			break;
+		}
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Login failed.");
+		alert.setTitle(title);
 		alert.setHeaderText(null);
 		alert.setContentText(msg);
 		alert.showAndWait();
 	}
+	
+	public void changeLocale(ActionEvent event) throws IOException {
+		if(languageChange.getValue() != null) {
+			HyteGUI.setLocale(languageChange.getValue());	
+			logoutForAll(event);
+		}
+	}
+	
 	/**
 	 * Return the text written in the employee's user name -field.
 	 * @return Employee's user name.
@@ -139,20 +168,28 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		return this.pwAsiakas.getText();
 	}
 	
+	/**
+	 * Create tooltips for components.
+	 */
 	public void tooltips() {
 		Tooltip usernameTip = new Tooltip(bundle.getString("tooltip.username"));
 		Tooltip pwTip = new Tooltip(bundle.getString("tooltip.password"));
-		
+		Tooltip loginTip = new Tooltip(bundle.getString("tooltip.login"));
+		Tooltip languageTip = new Tooltip(bundle.getString("tooltip.language"));
 		usernameAsiakas.setTooltip(usernameTip);
 		username.setTooltip(usernameTip);
 		pw.setTooltip(pwTip);
 		pwAsiakas.setTooltip(pwTip);
-		
+		loginBtn.setTooltip(loginTip);
+		loginBtnAsiakas.setTooltip(loginTip);
+		languageChange.setTooltip(languageTip);
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle("properties.LoginProperties", HyteGUI.getLocale());
 		tooltips();
+		languageChange.setItems(HyteGUI.getSupportedLocales());
+		languageChange.setPromptText("Language");
 	}
 }

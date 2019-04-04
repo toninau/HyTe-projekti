@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ public class ViewChanger {
 	 */
 	
 	
-	public void sceneContent(String fxml, MouseEvent event, String title, ResourceBundle bundle) throws IOException {
+	public void sceneContent(String fxml,Event event, String title, ResourceBundle bundle) throws IOException {
 		Pane p = FXMLLoader.load(getClass().getResource(fxml), bundle);		
 		Scene scene = new Scene(p);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -31,7 +32,7 @@ public class ViewChanger {
 		stage.show();
 	}
 	
-	public void logoutForAll(MouseEvent event) throws IOException {
+	public void logoutForAll(Event event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
 		String fxml = "/fxml/LoginView.fxml";
 		String title = "Login";	

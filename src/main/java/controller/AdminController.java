@@ -76,6 +76,9 @@ public class AdminController implements AdminController_IF {
 		}
 	}
 	
+	/**
+	 * Method for adding a customer to database.
+	 */
 	public void addCustomer() {
 		Customer customer = new Customer();
 		boolean success = true;
@@ -112,6 +115,7 @@ public class AdminController implements AdminController_IF {
 			daoM.create(customer);
 		}
 	}
+	
 	
 	public void updateStaff(Staff f) {
 		daoM.update(f);

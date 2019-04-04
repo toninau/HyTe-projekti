@@ -1,12 +1,17 @@
 package view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.sun.javafx.application.LauncherImpl;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -28,9 +33,8 @@ public class HyteGUI extends Application {
 	
 	private Stage primaryStage;
 	private ResourceBundle bundle;
-	static Locale currentLocale;
-	
-	@SuppressWarnings("restriction")
+	static Locale currentLocale = null;
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -54,20 +58,24 @@ public class HyteGUI extends Application {
 
 	
 	public void initPreload() {
-		VBox vbox = new VBox();
-		Label label = new Label();
-		label.setText("Loading");
-		vbox.getChildren().add(label);
-		
-        Scene sc = new Scene(vbox, 200, 200);
-        primaryStage.setScene(sc);
-        primaryStage.show();
+
+	}
+	
+	public static ObservableList<Locale> getSupportedLocales() {
+		ObservableList<Locale> observableList = FXCollections.observableArrayList();
+		observableList.add(new Locale("fi", "FI"));
+		observableList.add(new Locale("en", "GB"));
+	    return observableList;
 	}
 	
 	public void initLocale() {
 		String language = "fi";
 		String country = "FI";
 		currentLocale = new Locale(language, country);
+	}
+	
+	public static void setLocale(Locale newLocale) {
+		currentLocale = newLocale;
 	}
 	
 	public static Locale getLocale() {

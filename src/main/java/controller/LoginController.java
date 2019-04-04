@@ -12,8 +12,7 @@ public class LoginController implements LoginController_IF{
 
 	private DAOManager_IF daom;
 	private LoginView_IF view;
-
-	private Staff staff;
+	private boolean success = false;
 	
 	public LoginController(LoginView_IF view) {
 		this.view = view;
@@ -28,7 +27,6 @@ public class LoginController implements LoginController_IF{
 		String email = view.getUsernameCustomer();
 		String password = view.getPasswordCustomer();
 		Customer customer = getCustomerFromDatabase(email);
-
 		String pwFromDB = customer.getPassword();
 		String emailFromDB = customer.getCustomerID();
 
@@ -37,8 +35,10 @@ public class LoginController implements LoginController_IF{
 				return true;
 			else
 				return false;
+		}else {
+			view.loginFailed("Usernamenotfound");
 		}
-		view.loginFailed("Usernamenotfound");
+
 		return false;
 	}
 	
@@ -48,19 +48,31 @@ public class LoginController implements LoginController_IF{
 	
 	@Override
 	public boolean checkLoginStaff() {
+		success = false;
 		String password = view.getPasswordStaff();
 		String email = view.getUsernameStaff();
 		Staff staff = getStaffFromDatabase(email);
 		String pwFromDB = staff.getPassword();
 		String emailFromDB = staff.getStaffID();
+		
 		if(pwFromDB != null) {
-			if(checkUsername(email, emailFromDB) && checkPassword(password, pwFromDB))
-				return true;
-			else
-				return false;
+			if(checkUsername(email, emailFromDB)) {
+				if(checkPassword(password, pwFromDB)) {
+					success = true;
+				}else {
+					success = false;
+					view.loginFailed("password");
+				} 
+			}else {
+				success = false;
+				view.loginFailed("user");
+			}
+		}else {
+			success = false;
+			view.loginFailed("user");
 		}
-		view.loginFailed("Usernamenotfound");
-		return false;
+
+		return success;
 	}
 
 	public boolean checkPassword(String password, String pwFromDB) {
