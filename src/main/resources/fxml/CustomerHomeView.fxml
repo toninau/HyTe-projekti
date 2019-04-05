@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CustomerHomeView">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.bottomAnchor="630.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="homeButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.frontpage" />
+            <Button fx:id="calendarButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.calendar" />
+            <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" />
+            <Button fx:id="helpButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.help" />
+         </children>
+      </HBox>
+      <Label fx:id="welcome" layoutX="119.0" layoutY="155.0" text="Label" />
+   </children>
+</AnchorPane>

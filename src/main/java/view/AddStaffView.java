@@ -42,7 +42,6 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	private Button toMenu;
 	
 	private AdminController_IF c;
-	private ResourceBundle bundle;
 
 	/**
 	 * Constructor for AdminStaffView. Creates a controller.

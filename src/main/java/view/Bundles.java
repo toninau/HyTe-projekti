@@ -2,7 +2,8 @@ package view;
 
 public enum Bundles {
 	ADMIN("properties.Admin"),
-	LOGIN("properties.LoginProperties");
+	LOGIN("properties.LoginProperties"),
+	CUSTOMER("properties.Customer");
 	private String bundleName;
 	
 	Bundles(String bundleName){

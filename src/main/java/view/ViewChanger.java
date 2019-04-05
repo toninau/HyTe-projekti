@@ -1,7 +1,6 @@
 package view;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.event.Event;
@@ -22,7 +21,6 @@ public class ViewChanger {
 	 * @throws IOException Loading the fxml file failed.
 	 */
 	
-	
 	public void sceneContent(String fxml,Event event, String title, ResourceBundle bundle) throws IOException {
 		Pane p = FXMLLoader.load(getClass().getResource(fxml), bundle);		
 		Scene scene = new Scene(p);
@@ -34,15 +32,36 @@ public class ViewChanger {
 	
 	public void logoutForAll(Event event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
-		String fxml = "/fxml/LoginView.fxml";
+		String fxml = fxmls.LOGIN.getFxml();
 		String title = "Login";	
 		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void toAdminMenu(MouseEvent event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
-		String fxml = "/fxml/AdminMenuView.fxml";
+		String fxml = fxmls.ADMINMENU.getFxml();
 		String title = "Menu";
+		sceneContent(fxml, event, title,bundle);
+	}
+	
+	public void toCustomerHome(Event event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
+		String fxml = fxmls.CUSTOMERHOME.getFxml();
+		String title = "Home";
+		sceneContent(fxml, event, title,bundle);
+	}
+	
+	public void toCustomerCalendar(Event event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
+		String fxml = fxmls.CUSTOMERCALENDAR.getFxml();
+		String title = "Calendar";
+		sceneContent(fxml, event, title,bundle);
+	}
+	
+	public void toCustomerHelp(Event event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
+		String fxml = fxmls.CUSTOMERHELP.getFxml();
+		String title = "Help";
 		sceneContent(fxml, event, title,bundle);
 	}
 }

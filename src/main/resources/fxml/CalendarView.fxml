@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CustomerCalendarView">
    <children>
       <TabPane layoutY="95.0" prefHeight="625.0" prefWidth="1280.0" side="LEFT" styleClass="calendarTabPane" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="20.0" tabMaxWidth="20.0" tabMinHeight="20.0" tabMinWidth="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <tabs>
-          <Tab styleClass="calendarTab" text="\%calendar.day" />
-          <Tab styleClass="calendarTab" text="\%calendar.week">
+          <Tab styleClass="calendarTab" text="%calendar.day" />
+          <Tab styleClass="calendarTab" text="%calendar.week">
                <content>
                   <HBox prefHeight="729.0" prefWidth="1283.0">
                      <children>
@@ -22,7 +22,7 @@
                            <children>
                               <VBox minWidth="100.0" prefHeight="541.0" prefWidth="500.0">
                                  <children>
-                                    <Button fx:id="mondaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Maanantai">
+                                    <Button fx:id="mondaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.monday">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -40,7 +40,7 @@
                            <children>
                               <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                  <children>
-                                    <Button fx:id="tuesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Tiistai">
+                                    <Button fx:id="tuesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.tuesday">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -58,7 +58,7 @@
                            <children>
                               <VBox minWidth="100.0" prefHeight="462.0" prefWidth="320.0">
                                  <children>
-                                    <Button fx:id="wednesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Keskiviikko">
+                                    <Button fx:id="wednesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.wednesday">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -76,7 +76,7 @@
                            <children>
                               <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                  <children>
-                                    <Button fx:id="thursdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Torstai">
+                                    <Button fx:id="thursdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.thursday">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -94,7 +94,7 @@
                            <children>
                               <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                  <children>
-                                    <Button fx:id="fridaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Perjantai">
+                                    <Button fx:id="fridaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.friday">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -112,7 +112,7 @@
                            <children>
                               <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                  <children>
-                                    <Button fx:id="saturdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Lauantai">
+                                    <Button fx:id="saturdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.saturday">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -130,7 +130,7 @@
                            <children>
                               <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                  <children>
-                                    <Button fx:id="sundaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="Sunnuntai">
+                                    <Button fx:id="sundaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.sunday">
                                        <VBox.margin>
                                           <Insets left="5.0" />
                                        </VBox.margin>
@@ -153,7 +153,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <HBox layoutX="120.0" layoutY="19.0" prefHeight="100.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.bottomAnchor="611.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox layoutX="120.0" layoutY="19.0" prefHeight="100.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.bottomAnchor="630.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="\%menuButton.frontpage" />
             <Button alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="\%menuButton.calendar" />

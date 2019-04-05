@@ -50,7 +50,7 @@ public class HyteGUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Login");        
-        AnchorPane rootLayout = FXMLLoader.load(getClass().getResource("/fxml/LoginView.fxml"), bundle);       
+        AnchorPane rootLayout = FXMLLoader.load(getClass().getResource(fxmls.LOGIN.getFxml()), bundle);       
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();

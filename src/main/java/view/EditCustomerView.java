@@ -69,8 +69,8 @@ public class EditCustomerView extends ViewChanger implements Initializable {
 	}
 
 	public void showCustomerInfo() {
-		String [] split = findCustomer.getText().split(",");
-		int before = Integer.parseInt(split[0]);
+		//String [] split = findCustomer.getText().split(",");
+		//int before = Integer.parseInt(split[0]);
 		customer = c.findCustomerWithID(customer.getCustomerID());
 		
 		fNameCust.setText(customer.getFirstName());

@@ -74,15 +74,15 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		String title = "Login";
 		if(!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
 			if(c.checkLoginStaff()) {
-				fxml = "/fxml/StaffView.fxml";
+				fxml = fxmls.STAFF.getFxml();
 				title = "Staff view";
 			}else {
-				fxml = "/fxml/LoginView.fxml";	
+				fxml = fxmls.LOGIN.getFxml();	
 				title = "Login";
 			}		
 		}
 		else {
-			fxml = "/fxml/AdminMenuView.fxml";
+			fxml = fxmls.ADMINMENU.getFxml();
 			title = "Menu";
 			bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 		}
@@ -97,10 +97,12 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 */
 	@FXML
 	public void loginCustomer(MouseEvent event) throws IOException {
-		String fxml = "/fxml/LoginView.fxml";
+		String fxml = fxmls.LOGIN.getFxml();;
 		String title = "Welcome!";
+
 		if (c.checkLoginCustomer()) {
-			fxml = "/fxml/AsiakasView.fxml";
+			bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
+			fxml = fxmls.CUSTOMERHOME.getFxml();
 			title = "Welcome!";
 		}
 		sceneContent(fxml, event, title, bundle);
@@ -187,7 +189,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		bundle = ResourceBundle.getBundle("properties.LoginProperties", HyteGUI.getLocale());
+		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
 		tooltips();
 		languageChange.setItems(HyteGUI.getSupportedLocales());
 		languageChange.setPromptText("Language");
