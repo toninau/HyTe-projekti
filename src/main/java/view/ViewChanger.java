@@ -32,35 +32,35 @@ public class ViewChanger {
 	
 	public void logoutForAll(Event event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
-		String fxml = fxmls.LOGIN.getFxml();
+		String fxml = FxmlEnum.LOGIN.getFxml();
 		String title = "Login";	
 		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void toAdminMenu(MouseEvent event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
-		String fxml = fxmls.ADMINMENU.getFxml();
+		String fxml = FxmlEnum.ADMINMENU.getFxml();
 		String title = "Menu";
 		sceneContent(fxml, event, title,bundle);
 	}
 	
 	public void toCustomerHome(Event event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
-		String fxml = fxmls.CUSTOMERHOME.getFxml();
+		String fxml = FxmlEnum.CUSTOMERHOME.getFxml();
 		String title = "Home";
 		sceneContent(fxml, event, title,bundle);
 	}
 	
 	public void toCustomerCalendar(Event event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
-		String fxml = fxmls.CUSTOMERCALENDAR.getFxml();
+		String fxml = FxmlEnum.CUSTOMERCALENDAR.getFxml();
 		String title = "Calendar";
 		sceneContent(fxml, event, title,bundle);
 	}
 	
 	public void toCustomerHelp(Event event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
-		String fxml = fxmls.CUSTOMERHELP.getFxml();
+		String fxml = FxmlEnum.CUSTOMERHELP.getFxml();
 		String title = "Help";
 		sceneContent(fxml, event, title,bundle);
 	}

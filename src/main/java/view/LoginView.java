@@ -74,15 +74,15 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		String title = "Login";
 		if(!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
 			if(c.checkLoginStaff()) {
-				fxml = fxmls.STAFF.getFxml();
+				fxml = FxmlEnum.STAFF.getFxml();
 				title = "Staff view";
 			}else {
-				fxml = fxmls.LOGIN.getFxml();	
+				fxml = FxmlEnum.LOGIN.getFxml();	
 				title = "Login";
 			}		
 		}
 		else {
-			fxml = fxmls.ADMINMENU.getFxml();
+			fxml = FxmlEnum.ADMINMENU.getFxml();
 			title = "Menu";
 			bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 		}
@@ -97,12 +97,12 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 */
 	@FXML
 	public void loginCustomer(MouseEvent event) throws IOException {
-		String fxml = fxmls.LOGIN.getFxml();;
+		String fxml = FxmlEnum.LOGIN.getFxml();;
 		String title = "Welcome!";
 
 		if (c.checkLoginCustomer()) {
 			bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
-			fxml = fxmls.CUSTOMERHOME.getFxml();
+			fxml = FxmlEnum.CUSTOMERHOME.getFxml();
 			title = "Welcome!";
 		}
 		sceneContent(fxml, event, title, bundle);

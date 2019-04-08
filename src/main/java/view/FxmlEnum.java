@@ -1,6 +1,6 @@
 package view;
 
-public enum fxmls {
+public enum FxmlEnum {
 
 	/**
 	 * fxml files for admin
@@ -28,7 +28,7 @@ public enum fxmls {
 	
 	private String fxmlName;
 	
-	fxmls(String fxmlName){
+	FxmlEnum(String fxmlName){
 		this.fxmlName = fxmlName;
 	}
 	
