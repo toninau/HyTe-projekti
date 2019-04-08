@@ -21,6 +21,7 @@ public enum FxmlEnum {
 	CUSTOMERHOME("/fxml/CustomerHomeView.fxml"),
 	CUSTOMERCALENDAR("/fxml/CalendarView.fxml"),
 	CUSTOMERHELP("/fxml/CustomerHelpView.fxml"),
+	CUSTOMERHEALTH("/fxml/CustomerHealthView.fxml"),
 	/**
 	 * fxml files for staff
 	 */

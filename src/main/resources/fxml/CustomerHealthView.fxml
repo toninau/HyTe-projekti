@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CustomerHealthView">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="1280.0" styleClass="customerMenuWrapper">
+         <children>
+            <Button fx:id="homeButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.frontpage" />
+            <Button fx:id="calendarButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.calendar" />
+            <Button fx:id="myHealthButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.myHealth" />
+            <Button fx:id="helpButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.help" />
+         </children>
+      </HBox>
+      <LineChart fx:id="bloodSugarChart" animated="false" layoutX="820.0" layoutY="135.0" prefHeight="289.0" prefWidth="395.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <TextField fx:id="bloodsugar" layoutX="106.0" layoutY="346.0" promptText="bloodsugar" />
+      <Button fx:id="sendblood" layoutX="187.0" layoutY="526.0" mnemonicParsing="false" onMouseClicked="#createBlood" text="Button" />
+      <DatePicker fx:id="datePicker" layoutX="123.0" layoutY="244.0" />
+      <TextField fx:id="lowPressure" layoutX="113.0" layoutY="402.0" promptText="low" />
+      <TextField fx:id="highPressure" layoutX="124.0" layoutY="460.0" promptText="high" />
+      <LineChart fx:id="bloodPressureChart" animated="false" layoutX="345.0" layoutY="295.0" prefHeight="377.0" prefWidth="448.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xAxisPressure" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxisPressure" side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

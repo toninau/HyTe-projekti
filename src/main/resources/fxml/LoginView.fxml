@@ -62,7 +62,7 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pwAsiakas" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%password.text">
+                                          <PasswordField fx:id="pwAsiakas" maxHeight="30.0" maxWidth="250.0" onKeyPressed="#checkIfEnterCustomer" prefHeight="30.0" prefWidth="250.0" promptText="%password.text">
                                              <font>
                                                 <Font size="14.0" />
                                              </font></PasswordField>
@@ -117,13 +117,13 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pw" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%password.text" />
+                                          <PasswordField fx:id="pw" onKeyPressed="#checkIfEnterStaff" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%password.text" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button fx:id="loginBtn" maxHeight="30.0" maxWidth="285.0" mnemonicParsing="false" onMouseClicked="#loginStaff" prefHeight="30.0" prefWidth="250.0" styleClass="loginBtn" text="%loginButton.text">
+                                    <Button fx:id="loginBtn" maxHeight="30.0" maxWidth="285.0" mnemonicParsing="false"  onMouseClicked="#loginStaff" prefHeight="30.0" prefWidth="250.0" styleClass="loginBtn" text="%loginButton.text">
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>

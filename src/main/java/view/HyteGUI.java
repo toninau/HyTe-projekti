@@ -56,7 +56,6 @@ public class HyteGUI extends Application {
         primaryStage.show();
 	}
 
-	
 	public void initPreload() {
 
 	}
@@ -69,7 +68,6 @@ public class HyteGUI extends Application {
 		observableList.add(new Locale("fr", "FR"));
 		observableList.add(new Locale("sv", "SE"));
 		observableList.add(new Locale("es", "ES"));
-
 
 	    return observableList;
 	}

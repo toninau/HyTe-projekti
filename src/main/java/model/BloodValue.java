@@ -27,8 +27,11 @@ public class BloodValue {
 	@Column(name = "bloodsugar")
 	private double bloodsugar;
 
-	@Column(name = "bloodpressure")
-	private String bloodpressure;
+	@Column(name = "highBloodpressure")
+	private int highPressure;
+	
+	@Column(name = "lowBloodpressure")
+	private int lowPressure;
 
 	@ManyToOne
 	@JoinColumn(name = "customerID", nullable = false)
@@ -45,11 +48,12 @@ public class BloodValue {
 	 * @see #BloodValue(String, String, String)
 	 * @see #BloodValue()
 	 */
-	public BloodValue(String date, String time, double bloodsugar, String bloodpressure) {
+	public BloodValue(String date, String time, double bloodsugar, int lowPressure, int highPressure) {
 		this.date = date;
 		this.time = time;
 		this.bloodsugar = bloodsugar;
-		this.bloodpressure = bloodpressure;
+		this.lowPressure = lowPressure;
+		this.highPressure = highPressure;
 	}
 
 	/**
@@ -63,7 +67,8 @@ public class BloodValue {
 	 * @see #BloodValue()
 	 */
 	public BloodValue(String date, String time, double bloodsugar) {
-		this.bloodpressure = null;
+		this.highPressure = -1;
+		this.lowPressure = -1;
 		this.date = date;
 		this.time = time;
 		this.bloodsugar = bloodsugar;
@@ -79,11 +84,12 @@ public class BloodValue {
 	 * @see #BloodValue(String, String, String)
 	 * @see #BloodValue()
 	 */
-	public BloodValue(String date, String time, String bloodpressure) {
-		this.bloodsugar = 0;
+	public BloodValue(String date, String time, int highPressure, int lowPressure ) {
+		this.bloodsugar = -1;
 		this.date = date;
 		this.time = time;
-		this.bloodpressure = bloodpressure;
+		this.lowPressure = lowPressure;
+		this.highPressure = highPressure;
 	}
 
 	/**
@@ -94,8 +100,9 @@ public class BloodValue {
 	 * @see #BloodValue(String, String, String)
 	 */
 	public BloodValue() {
-		this.bloodpressure = null;
-		this.bloodsugar = 0;
+		this.highPressure = -1;
+		this.lowPressure = -1;
+		this.bloodsugar = -1;
 	}
 
 	/**
@@ -174,21 +181,34 @@ public class BloodValue {
 	}
 
 	/**
-	 * Returns the blood pressure level.
+	 * Returns the systolic blood pressure level.
 	 * 
-	 * @return bloodpressure
+	 * @return Systolic bloos pressure level.
 	 */
-	public String getBloodpressure() {
-		return bloodpressure;
+	public int getHighPressure() {
+		return highPressure;
 	}
 
 	/**
-	 * Sets the blood pressure level.
+	 * Returns the dystolic blood pressure level.
+	 * 
+	 * @return Dystolic bloos pressure level.
+	 */
+	public int getLowPressure() {
+		return lowPressure;
+	}
+	
+	/**
+	 * Sets the systolic blood pressure level.
 	 * 
 	 * @param bloodpressure String value of the blood pressure level
 	 */
-	public void setBloodpressure(String bloodpressure) {
-		this.bloodpressure = bloodpressure;
+	public void setHighPressure(int highPressure) {
+		this.highPressure = highPressure;
+	}
+	
+	public void setLowPressure(int lowPressure) {
+		this.lowPressure = lowPressure;
 	}
 
 	/**

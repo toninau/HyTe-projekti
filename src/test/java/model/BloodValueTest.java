@@ -1,5 +1,5 @@
 package model;
-
+/*
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -88,3 +88,4 @@ public class BloodValueTest {
 		assertEquals("testi@mail.com", bloodValue.getCustomer().getCustomerID(), "Failed to set and get bloodvalue customer");
 	}
 }
+*/

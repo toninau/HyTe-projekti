@@ -64,4 +64,10 @@ public class ViewChanger {
 		String title = "Help";
 		sceneContent(fxml, event, title,bundle);
 	}
+	public void toCustomerHealth(Event event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
+		String fxml = FxmlEnum.CUSTOMERHEALTH.getFxml();
+		String title = "Health";
+		sceneContent(fxml, event, title,bundle);
+	}
 }

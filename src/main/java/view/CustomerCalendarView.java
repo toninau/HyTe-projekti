@@ -14,6 +14,14 @@ import javafx.scene.layout.HBox;
 
 public class CustomerCalendarView extends ViewChanger implements Initializable {
 	
+	@FXML
+	Button homeButton;
+	@FXML
+	Button calendarButton;
+	@FXML
+	Button helpButton;
+	@FXML
+	Button myHealthButton;
 	@FXML Button logout;
 	@FXML Button mondaybutton;
 	@FXML Button tuesdaybutton;
@@ -83,5 +91,17 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		createHashMap();
 	}
 	
+	public void toHome(MouseEvent event) throws IOException {
+		toCustomerHome(event);
+	}
+	public void toCalendar(MouseEvent event) throws IOException {
+		toCustomerCalendar(event);
+	}
+	public void toHelp(MouseEvent event) throws IOException {
+		toCustomerHelp(event);
+	}
+	public void toHealth(MouseEvent event) throws IOException {
+		toCustomerHealth(event);
+	}
 
 }

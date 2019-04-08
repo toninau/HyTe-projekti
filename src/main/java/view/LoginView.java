@@ -1,6 +1,5 @@
 package view;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -8,8 +7,10 @@ import java.util.ResourceBundle;
 
 import controller.LoginController;
 import controller.LoginController_IF;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,16 +20,24 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.Customer;
 import model.DAOManager;
 import model.Staff;
+
+import javafx.scene.image.Image;
 
 /**
  * 
@@ -38,66 +47,73 @@ import model.Staff;
 
 public class LoginView extends ViewChanger implements Initializable, LoginView_IF {
 
-	@FXML private Tab staffTab;	
-	@FXML private PasswordField pw;	
-	@FXML private Button loginBtn;
-	@FXML private TextField username;
-	
-	@FXML private Tab customerTab;
-	@FXML private PasswordField pwAsiakas;
-	@FXML private TextField usernameAsiakas;
-	@FXML private Button loginBtnAsiakas;
+	@FXML
+	private Tab staffTab;
+	@FXML
+	private PasswordField pw;
+	@FXML
+	private Button loginBtn;
+	@FXML
+	private TextField username;
 
-	@FXML private ComboBox<Locale> languageChange;
-	
+	@FXML
+	private Tab customerTab;
+	@FXML
+	private PasswordField pwAsiakas;
+	@FXML
+	private TextField usernameAsiakas;
+	@FXML
+	private Button loginBtnAsiakas;
+
+	@FXML
+	private ComboBox<Locale> languageChange;
+	ObservableList<String> imageList;
 	private ResourceBundle bundle;
 	private LoginController_IF c;
-	
+
 	/**
-	 * Constructor for LoginView -class.
-	 * Luo Data access object -managerin. 
+	 * Constructor for LoginView -class. Luo Data access object -managerin.
 	 */
-	public LoginView() {	
+	public LoginView() {
 		c = new LoginController(this);
 	}
-		
+
 	/**
-	 * Function for staff and admin's login.
-	 * Fired when login button in Staff -tab is clicked.
+	 * Function for staff and admin's login. Fired when login button in Staff -tab
+	 * is clicked.
 	 * 
-	 * @param event	Mouse clicked
+	 * @param event Mouse clicked
 	 * @throws IOException Loading the fxml file failed.
 	 */
 	@FXML
-	public void loginStaff(MouseEvent event) throws IOException {
+	public void loginStaff(Event event) throws IOException {
 		String fxml = "";
 		String title = "Login";
-		if(!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
-			if(c.checkLoginStaff()) {
+		if (!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
+			if (c.checkLoginStaff()) {
 				fxml = FxmlEnum.STAFF.getFxml();
 				title = "Staff view";
-			}else {
-				fxml = FxmlEnum.LOGIN.getFxml();	
+			} else {
+				fxml = FxmlEnum.LOGIN.getFxml();
 				title = "Login";
-			}		
-		}
-		else {
+			}
+		} else {
 			fxml = FxmlEnum.ADMINMENU.getFxml();
 			title = "Menu";
 			bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 		}
 		sceneContent(fxml, event, title, bundle);
 	}
-	
-	
+
 	/**
 	 * Fired when customer's login button is clicked.
+	 * 
 	 * @param event Button clicked.
 	 * @throws IOException Loading the fxml file failed.
 	 */
 	@FXML
-	public void loginCustomer(MouseEvent event) throws IOException {
-		String fxml = FxmlEnum.LOGIN.getFxml();;
+	public void loginCustomer(Event event) throws IOException {
+		String fxml = FxmlEnum.LOGIN.getFxml();
 		String title = "Welcome!";
 
 		if (c.checkLoginCustomer()) {
@@ -131,48 +147,111 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		alert.showAndWait();
 	}
 	
-	public void changeLocale(ActionEvent event) throws IOException {
-		if(languageChange.getValue() != null) {
-			HyteGUI.setLocale(languageChange.getValue());	
-			logoutForAll(event);
+	public void checkIfEnterCustomer(KeyEvent event) throws IOException {
+		if(event.getCode() == KeyCode.ENTER) {
+			loginCustomer(event);
 		}
 	}
 	
-	/**
-	 * Return the text written in the employee's user name -field.
-	 * @return Employee's user name.
-	 */
-	public String getUsernameStaff() {
-		return this.username.getText();
+	public void checkIfEnterStaff(KeyEvent event) throws IOException {
+		if(event.getCode() == KeyCode.ENTER) {
+			loginStaff(event);
+		}
 	}
 	
-	/**
-	 * Return the text written in the employee's password -field.
-	 * @return	Employee's password.
-	 */
-	public String getPasswordStaff() {
-		return this.pw.getText();
+
+	public void changeLocale(ActionEvent event) throws IOException {
+		if (languageChange.getValue() != null) {
+			HyteGUI.setLocale(languageChange.getValue());
+			logoutForAll(event);
+		}
 	}
-	
-	/**
-	 * Return the text written in the customer's user name -field.
-	 * @return Customer's user name.
-	 */
-	public String getUsernameCustomer() {
-		return this.usernameAsiakas.getText();
+
+	public void languageChangePhotos() {
+		
+		languageChange.setItems(HyteGUI.getSupportedLocales());
+
+		languageChange.setCellFactory(new Callback<ListView<Locale>, ListCell<Locale>>() {
+			@Override
+			public ListCell<Locale> call(ListView<Locale> param) {
+				return new ListCell<Locale>() {
+
+					@Override
+					public void updateItem(Locale item, boolean empty) {
+						super.updateItem(item, empty);
+						Image flag = null;
+						String text = "";
+						if (item == null || empty) {
+							setGraphic(null);
+						} else {
+							switch (item.getCountry()) {
+							case "FI":
+								flag = new Image(getClass().getResourceAsStream("/pictures/finland_flag.png"));
+								text ="Finnish";
+								break;
+							case "GB":
+								flag = new Image(getClass().getResourceAsStream("/pictures/uk_flag.png"));
+								text ="English";
+								break;
+							case "DE":
+								flag = new Image(getClass().getResourceAsStream("/pictures/german_flag.jpg"));
+								text ="German";
+								break;
+							case "FR":
+								flag = new Image(getClass().getResourceAsStream("/pictures/france_flag.png"));
+								text ="French";
+								break;
+							case "SE":
+								flag = new Image(getClass().getResourceAsStream("/pictures/sweden_flag.png"));
+								text ="Swedish";
+								break;
+							case "ES":
+								flag = new Image(getClass().getResourceAsStream("/pictures/spain_flag.png"));
+								text ="Spanish";
+								break;
+							default:
+								flag = new Image(getClass().getResourceAsStream("/pictures/finland_flag.png"));
+								text ="Finnish";
+								break;
+							}
+							ImageView iconImageView = new ImageView(flag);
+							iconImageView.setFitHeight(20);
+							iconImageView.setFitWidth(30);
+							iconImageView.setPreserveRatio(true);
+							setGraphic(iconImageView);
+							setText(text);
+							setButton(flag, text);
+					
+						}
+					}
+				};
+			}
+
+		});
 	}
-	
-	/**
-	 * Return the text written in the customer's password -field.
-	 * @return Customer's password.
-	 */
-	public String getPasswordCustomer() {
-		return this.pwAsiakas.getText();
+
+
+	public void setButton(final Image flag, final String text) {
+		languageChange.setButtonCell(new ListCell<Locale>(){
+		    @Override
+		    protected void updateItem(Locale item, boolean btl){
+		        super.updateItem(item, btl);
+		        if(item != null) {
+		            Image img = flag;
+		            ImageView imgView = new ImageView(img);
+		            imgView.setFitHeight(20);
+		            imgView.setFitWidth(30);
+		            setGraphic(imgView);
+		            setText(text);
+		        }
+		    }
+		});
 	}
 	
 	/**
 	 * Create tooltips for components.
 	 */
+	
 	public void tooltips() {
 		Tooltip usernameTip = new Tooltip(bundle.getString("tooltip.username"));
 		Tooltip pwTip = new Tooltip(bundle.getString("tooltip.password"));
@@ -189,10 +268,46 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		String languageChangePrompt = HyteGUI.getLocale().toString();
 		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
 		tooltips();
-		languageChange.setItems(HyteGUI.getSupportedLocales());
-		languageChange.setPromptText(languageChangePrompt);
+		languageChangePhotos();
+
 	}
+
+	/**
+	 * Return the text written in the employee's user name -field.
+	 * 
+	 * @return Employee's user name.
+	 */
+	public String getUsernameStaff() {
+		return this.username.getText();
+	}
+
+	/**
+	 * Return the text written in the employee's password -field.
+	 * 
+	 * @return Employee's password.
+	 */
+	public String getPasswordStaff() {
+		return this.pw.getText();
+	}
+
+	/**
+	 * Return the text written in the customer's user name -field.
+	 * 
+	 * @return Customer's user name.
+	 */
+	public String getUsernameCustomer() {
+		return this.usernameAsiakas.getText();
+	}
+
+	/**
+	 * Return the text written in the customer's password -field.
+	 * 
+	 * @return Customer's password.
+	 */
+	public String getPasswordCustomer() {
+		return this.pwAsiakas.getText();
+	}
+
 }
