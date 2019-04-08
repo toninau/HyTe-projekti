@@ -25,25 +25,25 @@ public class AdminMenuView extends ViewChanger implements Initializable {
 	ResourceBundle bundle;
 	
 	public void changeToAddStaff(MouseEvent event) throws IOException {
-		String fxml = fxmls.ADDSTAFF.getFxml();
+		String fxml = FxmlEnum.ADDSTAFF.getFxml();
 		String title  = "Lisää henkilökuntaa";
 		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToEditStaff(MouseEvent event) throws IOException {
-		String fxml =  fxmls.EDITSTAFF.getFxml();
+		String fxml =  FxmlEnum.EDITSTAFF.getFxml();
 		String title  = "Muokkaa henkilökuntaa";
 		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToAddCustomer(MouseEvent event) throws IOException {
-		String fxml = fxmls.ADDCUSTOMER.getFxml();
+		String fxml = FxmlEnum.ADDCUSTOMER.getFxml();
 		String title  = "Lisää asiakkaita";
 		sceneContent(fxml, event, title, bundle);
 	}
 	
 	public void changeToEditCustomer (MouseEvent event) throws IOException {
-		String fxml = fxmls.EDITCUSTOMER.getFxml();
+		String fxml = FxmlEnum.EDITCUSTOMER.getFxml();
 		String title  = "Muokkaa asiakkaita";
 		sceneContent(fxml, event, title, bundle);
 	}
