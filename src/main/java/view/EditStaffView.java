@@ -22,7 +22,7 @@ import model.Staff;
  * @author IdaKi
  *
  */
-public class EditStaffView extends ViewChanger implements Initializable {
+public class EditStaffView extends ViewChanger implements Initializable, EditStaffView_IF {
 
 	@FXML 
 	private Button search;

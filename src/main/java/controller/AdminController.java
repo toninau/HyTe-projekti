@@ -9,17 +9,20 @@ import model.DAOManager;
 import model.DAOManager_IF;
 import model.Staff;
 import view.AddCustomerView;
+import view.AddCustomerView_IF;
 import view.AddStaffView;
 import view.AddStaffView_IF;
 import view.EditCustomerView;
+import view.EditCustomerView_IF;
 import view.EditStaffView;
+import view.EditStaffView_IF;
 
 public class AdminController implements AdminController_IF {
 	
 	private AddStaffView_IF addstaff;
-	private AddCustomerView addcustomer;
-	private EditStaffView editstaff;
-	private EditCustomerView editcustomer;
+	private AddCustomerView_IF addcustomer;
+	private EditStaffView_IF editstaff;
+	private EditCustomerView_IF editcustomer;
 	private DAOManager_IF daoM;
 	
 

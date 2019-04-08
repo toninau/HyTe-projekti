@@ -189,9 +189,10 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		String languageChangePrompt = HyteGUI.getLocale().toString();
 		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
 		tooltips();
 		languageChange.setItems(HyteGUI.getSupportedLocales());
-		languageChange.setPromptText("Language");
+		languageChange.setPromptText(languageChangePrompt);
 	}
 }

@@ -18,7 +18,7 @@ import javafx.scene.input.MouseEvent;
  * @author IdaKi
  *
  */
-public class AddCustomerView extends ViewChanger implements Initializable {
+public class AddCustomerView extends ViewChanger implements Initializable, AddCustomerView_IF {
 
 	@FXML
 	private Button addCustomer;

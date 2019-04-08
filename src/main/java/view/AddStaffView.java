@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -31,7 +32,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	@FXML
 	private TextField emailStaff;
 	@FXML
-	private ChoiceBox<String> profession;
+	private ComboBox<String> profession;
 	@FXML
 	private PasswordField passwordStaff;
 	@FXML
@@ -132,10 +133,12 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * Sets the ChoiceBox items.
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
-		profession.setValue("Lääkäri");
-		profession.getItems().add("Lääkäri");
-		profession.getItems().add("Hoitaja");
-		profession.getItems().add("Asiakaspalvelija");
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+
+		profession.setPromptText(bundle.getString("profession.choice"));
+		profession.getItems().add(bundle.getString("profession.choice.Doctor"));
+		profession.getItems().add(bundle.getString("profession.choice.Nurse"));
+		profession.getItems().add(bundle.getString("profession.choice.CustServ"));
 
 	}
 

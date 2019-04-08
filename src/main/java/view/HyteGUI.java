@@ -65,6 +65,12 @@ public class HyteGUI extends Application {
 		ObservableList<Locale> observableList = FXCollections.observableArrayList();
 		observableList.add(new Locale("fi", "FI"));
 		observableList.add(new Locale("en", "GB"));
+		observableList.add(new Locale("de", "DE"));
+		observableList.add(new Locale("fr", "FR"));
+		observableList.add(new Locale("sv", "SE"));
+		observableList.add(new Locale("es", "ES"));
+
+
 	    return observableList;
 	}
 	

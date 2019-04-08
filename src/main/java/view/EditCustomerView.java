@@ -22,7 +22,7 @@ import model.Customer;
  * @author IdaKi
  *
  */
-public class EditCustomerView extends ViewChanger implements Initializable {
+public class EditCustomerView extends ViewChanger implements Initializable, EditCustomerView_IF {
 
 	@FXML
 	private TextField findCustomer;
