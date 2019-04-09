@@ -6,6 +6,7 @@ import model.BloodValue;
 import model.Customer;
 import model.DAOManager;
 import model.DAOManager_IF;
+import model.Prescription;
 import view.CustomerCalendarView;
 import view.CustomerHealthView;
 import view.CustomerHomeView;
@@ -31,6 +32,10 @@ public class CustomerController implements CustomerController_IF {
 	public CustomerController(CustomerHealthView healthview) {
 		this.healthview = healthview;
 		daom = new DAOManager();
+	}
+	
+	public Prescription[] prescriptions() {
+		return daom.getPrescriptionDAO().readCustomersPrescriptions(customer);
 	}
 	
 	public boolean createBloodsugar() {
