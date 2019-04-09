@@ -44,10 +44,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		this.celcius.setText(null);
 	}**/
 	
-	public void logout(MouseEvent event) throws IOException {
-		logoutForAll(event);
-	}
-	
+
 	public void openbox(MouseEvent event) throws IOException {
 		final Button btn = (Button) event.getSource();
 		new AnimationTimer() {
@@ -91,6 +88,9 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		createHashMap();
 	}
 	
+	public void logout(MouseEvent event) throws IOException {
+		logoutForAll(event);
+	}
 	public void toHome(MouseEvent event) throws IOException {
 		toCustomerHome(event);
 	}

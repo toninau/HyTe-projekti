@@ -65,4 +65,5 @@ public class CustomerController implements CustomerController_IF {
 	public void loggedCustomer(Customer customer) {
 		CustomerController.customer = customer;	
 	}
+	
 }

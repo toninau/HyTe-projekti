@@ -88,7 +88,7 @@ public class CustomerView extends ViewChanger {
 	public void initialize() {
 		createHashMap();
 		try {
-			WeatherAPICall weather = new WeatherAPICall();
+			WeatherAPICall weather = new WeatherAPICall("Helsinki");
 			weatherState.setText(weather.getState());
 			weatherCelsius.setText(weather.getCelsius());
 		} catch (Exception e) {

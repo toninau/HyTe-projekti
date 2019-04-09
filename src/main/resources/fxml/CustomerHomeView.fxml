@@ -46,10 +46,23 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="1001.0" layoutY="136.0" prefHeight="262.0" prefWidth="181.0">
+      <VBox layoutX="1001.0" layoutY="136.0" prefHeight="262.0" prefWidth="181.0" style="-fx-border-color: black;">
          <children>
-            <TextField fx:id="locationField" />
-            <ImageView fx:id="weatherImageView" fitHeight="124.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="183.0">
+               <children>
+                  <TextField fx:id="locationField" onKeyPressed="#updateLocation" prefHeight="30.0" prefWidth="140.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="31.0" fitWidth="50.0" onMouseClicked="#updateLocationClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/magnifying_glass.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ImageView fx:id="weatherImageView" fitHeight="124.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="weatherState" alignment="CENTER" prefHeight="52.0" prefWidth="181.0" text="Label">
                <font>
                   <Font size="18.0" />

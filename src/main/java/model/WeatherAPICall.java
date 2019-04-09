@@ -23,8 +23,9 @@ public class WeatherAPICall {
 	private double celsius;
 	private String state;
 	
-	public WeatherAPICall() throws Exception{
-		String url = "http://api.openweathermap.org/data/2.5/weather?q=Helsinki&APPID=aec9142965fb3ca48cf10cd6300423fc";
+	public WeatherAPICall(String location) throws Exception{
+		
+		String url = "http://api.openweathermap.org/data/2.5/weather?q="+ location +"&APPID=aec9142965fb3ca48cf10cd6300423fc";
 		
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -51,6 +52,7 @@ public class WeatherAPICall {
 		System.out.println(celsius);
 		System.out.println(state);
 	}
+	
 	/**public static void main(String[] args) throws Exception {
 
 		WeatherAPICall http = new WeatherAPICall();

@@ -137,6 +137,9 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	public void toHealth(MouseEvent event) throws IOException {
 		toCustomerHealth(event);
 	}
+	public void logout(MouseEvent event) throws IOException {
+		logoutForAll(event);
+	}
 	public String getTime() {
 		return LocalDate.now().toString();
 	}
