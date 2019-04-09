@@ -1,18 +1,23 @@
 package model;
 
 import java.io.BufferedReader;
-
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import view.HyteGUI;
 /**
  * 
  * @author Jeremiaza
@@ -52,6 +57,8 @@ public class WeatherAPICall {
 		System.out.println(celsius);
 		System.out.println(state);
 	}
+	
+	
 	
 	/**public static void main(String[] args) throws Exception {
 

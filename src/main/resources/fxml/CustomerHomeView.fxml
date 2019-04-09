@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,10 +16,22 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.bottomAnchor="630.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="homeButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.frontpage" />
-            <Button fx:id="calendarButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.calendar" />
-            <Button fx:id="myHealthButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHealth" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.myHealth" />
-            <Button fx:id="helpButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.help" />
+            <Button fx:id="homeButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.frontpage">
+               <tooltip>
+                  <Tooltip text="%menuButton.frontpage.tt" />
+               </tooltip></Button>
+            <Button fx:id="calendarButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.calendar">
+               <tooltip>
+                  <Tooltip text="%menuButton.calendar.tt" />
+               </tooltip></Button>
+            <Button fx:id="myHealthButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHealth" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.myHealth">
+               <tooltip>
+                  <Tooltip text="%menuButton.myHealth.tt" />
+               </tooltip></Button>
+            <Button fx:id="helpButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.help">
+               <tooltip>
+                  <Tooltip text="%menuButton.help.tt" />
+               </tooltip></Button>
          </children>
       </HBox>
       <Label fx:id="welcome" layoutX="119.0" layoutY="155.0" text="Label" />

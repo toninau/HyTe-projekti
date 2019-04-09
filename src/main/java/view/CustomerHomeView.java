@@ -52,6 +52,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	@FXML
 	Label welcome;
 
+	WeatherAPICall weather;
 	private ResourceBundle bundle;
 	private CustomerController_IF controller;
 	private ArrayList<String> locations;
@@ -70,19 +71,31 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 	}
 
+	/**
+	 * Fired when location is chosen and button is pressed.
+	 * @param event Mouse clicked.
+	 */
 	public void updateLocationClicked(Event event) {
 		String[] loc = locationField.getText().split(",");
-		initWeather(loc[0]);
+		showWeather(loc[0]);
 	}
+	/**
+	 * Checks if the key pressed is enter, if yes updates the location.
+	 * @param event Key pressed.
+	 */
 	public void updateLocation(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			updateLocationClicked(event);
 		}
 	}
 
-	public void initWeather(String location) {
+	/**
+	 * Method for showing current weather of the wanted location.
+	 * @param location Wanted location for weather.
+	 */
+	public void showWeather(String location) {
 		Image image = null;
-		WeatherAPICall weather;
+
 		locationField.setText(location);
 		try {
 			weather = new WeatherAPICall(location);
@@ -117,64 +130,61 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		String loc = bundle.getString("weather.defaultLocation");
-		// welcome.setText(controller.getCustomer().getFirstName());
-		locationSuggestions();
-		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(locations));
+		String welcomeText = bundle.getString("welcome.morning");
+		welcome.setText(welcomeText + " " + controller.getCustomer().getFirstName());
+		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(controller.locationSuggestions()));
 		//initWeather(loc);
 	}
 
-	public void locationSuggestions() {
-		locations = new ArrayList<>();
-		InputStream csvFile = null;
-		String line = "";
-		String cvsSplitBy = "";
-		int col1 = 0, col2 = 0;
-		switch (HyteGUI.getLocale().getCountry()) {
-		case "FI":
-			csvFile = getClass().getResourceAsStream("/cityLists/kuntaluettelo.csv");
-			cvsSplitBy = ";";
-			col1 = 1;
-			col2 = 15;
-			break;
-		case "GB":
-			csvFile = getClass().getResourceAsStream("/cityLists/Towns_List.csv");
-			cvsSplitBy = ",";
-			col1 = 0;
-			col2 = 1;
-			break;
-		default:
-			csvFile = getClass().getResourceAsStream("/cityLists/kuntaluettelo.csv");
-			cvsSplitBy = ";";
-			col1 = 1;
-			col2 = 15;
-			break;
-		}
-		try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
-			while ((line = br.readLine()) != null) {
-				String[] city = line.split(cvsSplitBy);
-				locations.add(city[col1] + ", " + city[col2]);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
+	
+
+	/**
+	 * Fired when Home button is clicked.
+	 * @param event Mouse clicked.
+	 * @throws IOException Loading fxml file failed.
+	 * @see view.ViewChanger#toCustomerHome(Event);
+	 */
 	public void toHome(MouseEvent event) throws IOException {
 		toCustomerHome(event);
 	}
 
+	/**
+	 * Fired when Calendar button is clicked.
+	 * @param event Mouse clicked.
+	 * @throws IOException Loading fxml file failed.
+	 * @see view.ViewChanger#toCustomerCalendar(Event);
+	 */
 	public void toCalendar(MouseEvent event) throws IOException {
 		toCustomerCalendar(event);
 	}
 
+	/**
+	 * Fired when Help button is clicked.
+	 * @param event Mouse clicked.
+	 * @throws IOException Loading fxml file failed.
+	 * @see view.ViewChanger#toCustomerHelp(Event);
+	 */
 	public void toHelp(MouseEvent event) throws IOException {
 		toCustomerHelp(event);
 	}
 
+	/**
+	 * Fired when Health button is clicked.
+	 * @param event Mouse clicked.
+	 * @throws IOException Loading fxml file failed.
+	 * @see view.ViewChanger#toCustomerHealth(Event);
+	 */
 	public void toHealth(MouseEvent event) throws IOException {
 		toCustomerHealth(event);
 	}
 
+	/**
+	 * Fired when logout button is clicked.
+	 * @param event Mouse clicked.
+	 * @throws IOException Loading fxml file failed.
+	 * @see view.ViewChanger#logoutForAll(Event);
+	 */
 	public void logout(MouseEvent event) throws IOException {
 		logoutForAll(event);
 	}
