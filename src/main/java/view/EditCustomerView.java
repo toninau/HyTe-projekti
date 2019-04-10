@@ -27,19 +27,19 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	@FXML
 	private TextField findCustomer;
 	@FXML
-	private TextField hetuCust;
+	private TextField ssn;
 	@FXML
-	private TextField fNameCust;
+	private TextField firstname;
 	@FXML
-	private TextField sNameCust;
+	private TextField surname;
 	@FXML
-	private TextField phoneNroCust;
+	private TextField phone;
 	@FXML
-	private TextField emailCust;
+	private TextField email;
 	@FXML
-	private TextField addressCust;
+	private TextField address;
 	@FXML 
-	private TextField ICECust; 
+	private TextField ice; 
 	@FXML 
 	private Button confirmEdit;
 	@FXML
@@ -73,13 +73,13 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 		//int before = Integer.parseInt(split[0]);
 		customer = c.findCustomerWithID(customer.getCustomerID());
 		
-		fNameCust.setText(customer.getFirstName());
-		sNameCust.setText(customer.getSurname());
-		emailCust.setText(customer.getCustomerID());
-		hetuCust.setText(customer.getSSN());
-		phoneNroCust.setText(customer.getPhoneNumber());
-		ICECust.setText(customer.getIceNumber());
-		addressCust.setText(customer.getAddress());
+		firstname.setText(customer.getFirstName());
+		surname.setText(customer.getSurname());
+		email.setText(customer.getCustomerID());
+		ssn.setText(customer.getSSN());
+		phone.setText(customer.getPhoneNumber());
+		ice.setText(customer.getIceNumber());
+		address.setText(customer.getAddress());
 	}
 	
 	public void updateCustomerInfo() {
@@ -124,7 +124,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * @return Customer's social security number.
 	 */
 	public String getCustHetu() {
-		return this.hetuCust.getText();
+		return this.ssn.getText();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * @return Customer's home address.
 	 */
 	public String getCustAddress() {
-		return this.addressCust.getText();
+		return this.address.getText();
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * @return Customer's ICE-number.
 	 */
 	public String getCustICE() {
-		return this.ICECust.getText();
+		return this.ice.getText();
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * @return Customer's email address.
 	 */
 	public String getCustEmail() {
-		return this.emailCust.getText();
+		return this.email.getText();
 	}
 
 	/**
@@ -156,7 +156,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * @return Customer's phone number.
 	 */
 	public String getCustPhone() {
-		return this.phoneNroCust.getText();
+		return this.phone.getText();
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * @return Customer's surname.
 	 */
 	public String getCustSurname() {
-		return this.sNameCust.getText();
+		return this.surname.getText();
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * @return Customer's first name.
 	 */
 	public String getCustFirstname() {
-		return this.fNameCust.getText();
+		return this.firstname.getText();
 	}
 	
 }

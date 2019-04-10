@@ -64,20 +64,28 @@
 }
 
 .root{
-	-fx-background-image: url("../pictures/bg.png");
-	
+	-fx-background-image: url("../pictures/bg.jpeg");
+	-fx-background-color: #88b4fc;	
 }
 
 .headerLabels{
-	-fx-background-color: red;
+	-fx-background-color: #1f4b93;
 }
+
+
 
 .customerMenuWrapper {
 	-fx-pref-width: 1280px;
 }
 
+.adminMenuButton{
+	-fx-font-size: 1.5em ;
+	-fx-max-width: 300px;
+	-fx-min-width: 300px;
+	-fx-background-color: #88b4fc;
+}
+
 .customerMenuBar{
-	
 	-fx-padding: 10px;
 	-fx-margin: 0 0 0 0;
 	-fx-background-color: #88b4fc;

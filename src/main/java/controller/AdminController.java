@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.lambdaworks.crypto.SCryptUtil;
 
 import javafx.scene.control.Alert;
@@ -43,10 +46,12 @@ public class AdminController implements AdminController_IF {
 		daoM = new DAOManager();
 	}
 	
+	
+
 	/**
 	 * Method for adding an employee to database.
 	 */
-	public void addStaff() {
+	public boolean addStaff() {
 		Staff hkunta = new Staff();
 		String etunimi = addstaff.getStaffFirstName();
 		String sukunimi = addstaff.getStaffSurname();
@@ -54,12 +59,11 @@ public class AdminController implements AdminController_IF {
 		String email = addstaff.getStaffEmail();
 		String ammatti = addstaff.getProfession();
 		String pw = encryptPassword(addstaff.getPassword());
-
 		String[] info = { etunimi, sukunimi, puhnro, email, ammatti, pw };
-		boolean onnistui = true;
+		boolean success = true;
 		for (String string : info) {
 			if (string.isEmpty()) {
-				onnistui = false;
+				success = false;
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Tiedot");
@@ -68,7 +72,7 @@ public class AdminController implements AdminController_IF {
 				break;
 			}
 		}	
-		if (onnistui) {
+		if (success) {
 			hkunta.setFirstName(etunimi);
 			hkunta.setSurname(sukunimi);
 			hkunta.setPhoneNumber(puhnro);
@@ -77,14 +81,16 @@ public class AdminController implements AdminController_IF {
 			hkunta.setPassword(pw);
 			daoM.create(hkunta);
 		}
+		return success;
 	}
 	
 	/**
 	 * Method for adding a customer to database.
 	 */
-	public void addCustomer() {
+	public boolean addCustomer() {
 		Customer customer = new Customer();
 		boolean success = true;
+		
 		String hetu = addcustomer.getCustHetu();
 		String etunimi = addcustomer.getCustFirstname();
 		String sukunimi = addcustomer.getCustSurname();
@@ -93,20 +99,18 @@ public class AdminController implements AdminController_IF {
 		String ICE = addcustomer.getCustICE();
 		String osoite = addcustomer.getCustAddress();
 		String pw = encryptPassword(addcustomer.getCustPassword());
-		
 		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ICE, osoite, pw };
-
 		for (String string : info) {
-			if (string == null) {
+			if (string.isEmpty()) {
 				success = false;
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Tiedot");
-				alert.setContentText("Tarkista tiedot");
+				alert.setContentText("Tarkista antamasi tiedot");
 				alert.showAndWait();
 			}
 		}
-		if (success) {
+		/*if (success) {
 			customer.setFirstName(etunimi);
 			customer.setSurname(sukunimi);
 			customer.setPhoneNumber(puhnro);
@@ -116,7 +120,8 @@ public class AdminController implements AdminController_IF {
 			customer.setSSN(hetu);
 			customer.setPassword(pw);
 			daoM.create(customer);
-		}
+		}*/
+		return success;
 	}
 	
 	

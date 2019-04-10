@@ -2,6 +2,8 @@ package view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import controller.AdminController;
@@ -23,19 +25,19 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	@FXML
 	private Button addCustomer;
 	@FXML
-	private TextField hetuCust;
+	private TextField ssn;
 	@FXML
-	private TextField fNameCust;
+	private TextField firstname;
 	@FXML
-	private TextField sNameCust;
+	private TextField surname;
 	@FXML
-	private TextField phoneNroCust;
+	private TextField phone;
 	@FXML
-	private TextField emailCust;
+	private TextField email;
 	@FXML
-	private TextField addressCust;
+	private TextField address;
 	@FXML 
-	private TextField ICECust; 
+	private TextField ice; 
 	@FXML
 	private Button logout;
 	@FXML
@@ -44,23 +46,29 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	private PasswordField password;
 	
 	private AdminController_IF controller;
+	private HashMap<String, String> customerInfo;
+	private ResourceBundle bundle;
 	
 	public AddCustomerView() {
 		controller = new AdminController(this);
+		customerInfo = new HashMap<>();
 	}
 	
 	/**
 	 * Method for creating a customer.
 	 */
 	public void addCustomer() {
-		controller.addCustomer();
-		fNameCust.clear();
-		sNameCust.clear();
-		hetuCust.clear();
-		phoneNroCust.clear();
-		emailCust.clear();
-		addressCust.clear();
-		ICECust.clear();
+		//createInfoMap();
+		if(controller.addCustomer()) {
+			firstname.clear();
+			surname.clear();
+			ssn.clear();
+			phone.clear();
+			email.clear();
+			address.clear();
+			ice.clear();
+			password.clear();
+		}
 	}
 	
 	/**
@@ -81,12 +89,34 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 		toAdminMenu(event);
 	}
 	
+	public void createInfoMap() {
+		customerInfo.put("ssn", getCustHetu());
+		customerInfo.put("firstname", getCustFirstname());
+		customerInfo.put("surname", getCustSurname());
+		customerInfo.put("email", getCustEmail());
+		customerInfo.put("phone", getCustPhone());
+		customerInfo.put("ice", getCustICE());
+		customerInfo.put("address", getCustAddress());
+		customerInfo.put("password", getCustPassword());
+	}
+	
+	public String checkIfEmpty(TextField f) {
+		if(f.getText().isEmpty()) {
+			f.setPromptText("Arvo puuttuu");
+			f.setStyle("-fx-prompt-text-fill: red;");
+			return "";
+		}
+		f.setPromptText(bundle.getString(f.getId() + ".prompt"));
+		f.setStyle("-fx-prompt-text-fill: default;");
+		return f.getText();
+	}
+	
 	/**
 	 * Returns the text written in the social security number -field.
 	 * @return Customer's social security number.
 	 */
 	public String getCustHetu() {
-		return this.hetuCust.getText();
+		return checkIfEmpty(this.ssn);
 	}
 
 	/**
@@ -94,15 +124,15 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * @return Customer's home address.
 	 */
 	public String getCustAddress() {
-		return this.addressCust.getText();
+		return checkIfEmpty(this.address);
 	}
 
 	/**
 	 * Returns the text written in the in case of emergency number -field.
-	 * @return Customer's ICE-number.
+	 * @return Customer's ice-number.
 	 */
 	public String getCustICE() {
-		return this.ICECust.getText();
+		return checkIfEmpty(this.ice);
 	}
 
 	/**
@@ -110,7 +140,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * @return Customer's email address.
 	 */
 	public String getCustEmail() {
-		return this.emailCust.getText();
+		return checkIfEmpty(this.email);
 	}
 
 	/**
@@ -118,7 +148,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * @return Customer's phone number.
 	 */
 	public String getCustPhone() {
-		return this.phoneNroCust.getText();
+		return checkIfEmpty(this.phone);
 	}
 
 	/**
@@ -126,7 +156,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * @return Customer's surname.
 	 */
 	public String getCustSurname() {
-		return this.sNameCust.getText();
+		return checkIfEmpty(this.surname);
 	}
 
 	/**
@@ -134,7 +164,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * @return Customer's first name.
 	 */
 	public String getCustFirstname() {
-		return this.fNameCust.getText();
+		return checkIfEmpty(this.firstname);
 	}
 	
 	/**
@@ -142,12 +172,13 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * @return Customer's password.
 	 */
 	public String getCustPassword() {
-		return this.password.getText();
+		return checkIfEmpty(this.password);
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+
 		
 	}
 	

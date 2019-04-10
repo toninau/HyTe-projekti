@@ -55,12 +55,13 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * Fires when a button is clicked. Method for creating an employee.
 	 */
 	public void addStaff() {
-		c.addStaff();
-		fNameStaff.clear();
-		sNameStaff.clear();
-		emailStaff.clear();
-		phoneNroStaff.clear();
-		passwordStaff.clear();
+		if(c.addStaff()) {
+			fNameStaff.clear();
+			sNameStaff.clear();
+			emailStaff.clear();
+			phoneNroStaff.clear();
+			passwordStaff.clear();
+		}
 	}
 	
 	/**

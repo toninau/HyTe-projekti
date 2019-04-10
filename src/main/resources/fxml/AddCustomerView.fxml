@@ -12,19 +12,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddCustomerView">
    <children>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+      <AnchorPane prefHeight="600.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="addCustomer" layoutX="347.0" layoutY="497.0" mnemonicParsing="false" onMouseClicked="#addCustomer" prefHeight="51.0" prefWidth="122.0" text="%addCustomerButton.text" />
             <Label alignment="CENTER" layoutY="-1.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="%addCustomerButton.text" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Georgia" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="logout" layoutX="34.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#logout" text="%logout.text" />
-            <Button fx:id="toMenu" layoutX="35.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="%back.text" />
-            <HBox alignment="CENTER" layoutX="74.0" layoutY="205.0" prefHeight="281.0" prefWidth="613.0">
+            <Button fx:id="logout" layoutX="20.0" layoutY="48.0" mnemonicParsing="false" onMouseClicked="#logout" text="%logout.text" />
+            <Button fx:id="toMenu" layoutX="32.0" layoutY="79.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="%back.text" />
+            <HBox alignment="CENTER" layoutX="6.0" layoutY="205.0" prefHeight="343.0" prefWidth="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <VBox prefHeight="286.0" prefWidth="290.0">
+                  <VBox prefHeight="282.0" prefWidth="640.0" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
@@ -36,7 +35,7 @@
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField id="fNameCust" fx:id="fNameCust" promptText="%firstname.prompt" />
+                              <TextField id="firstname" fx:id="firstname" promptText="%firstname.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -49,7 +48,7 @@
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField id="sNameCust" fx:id="sNameCust" promptText="%surname.prompt" />
+                              <TextField id="surname" fx:id="surname" promptText="%surname.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -62,7 +61,7 @@
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField id="hetuCust" fx:id="hetuCust" promptText="%ssn.prompt" />
+                              <TextField id="ssn" fx:id="ssn" promptText="%ssn.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -80,12 +79,12 @@
                         </HBox>
                      </children>
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="100.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="394.0" prefWidth="310.0">
+                  <VBox prefHeight="282.0" prefWidth="640.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="311.0">
                            <children>
                               <Label text="%email.text">
                                  <HBox.margin>
@@ -95,7 +94,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="emailCust" fx:id="emailCust" promptText="email.prompt" />
+                              <TextField id="email" fx:id="email" promptText="%email.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -108,12 +107,12 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="phoneNroCust" fx:id="phoneNroCust" promptText="%phone.prompt" />
+                              <TextField id="phone" fx:id="phone" promptText="%phone.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="%ICE.text">
+                              <Label text="%ice.text">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
@@ -121,7 +120,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="ICECust" fx:id="ICECust" promptText="%ICE.prompt" />
+                              <TextField id="ice" fx:id="ice" promptText="%ice.prompt" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -134,16 +133,17 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField id="addressCust" fx:id="addressCust" promptText="%address.prompt" />
+                              <TextField id="address" fx:id="address" promptText="%address.prompt" />
                            </children>
                         </HBox>
                      </children>
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="200.0" top="20.0" />
                      </padding>
                   </VBox>
                </children>
             </HBox>
          </children></AnchorPane>
+      <Button fx:id="addCustomer" layoutX="541.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#addCustomer" prefHeight="86.0" prefWidth="228.0" text="%addCustomerButton.text" />
    </children>
 </AnchorPane>
