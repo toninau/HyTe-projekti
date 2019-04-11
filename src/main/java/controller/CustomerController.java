@@ -13,6 +13,7 @@ import model.DAOManager_IF;
 import model.Prescription;
 import view.CustomerCalendarView;
 import view.CustomerHealthView;
+import view.CustomerHelpView;
 import view.CustomerHomeView;
 import view.HyteGUI;
 
@@ -21,6 +22,7 @@ public class CustomerController implements CustomerController_IF {
 	private CustomerCalendarView calendarview;
 	private CustomerHomeView homeview;
 	private CustomerHealthView healthview;
+	private CustomerHelpView helpview;
 	private static Customer customer;
 	private DAOManager_IF daom;
 	
@@ -36,6 +38,11 @@ public class CustomerController implements CustomerController_IF {
 	}
 	public CustomerController(CustomerHealthView healthview) {
 		this.healthview = healthview;
+		daom = new DAOManager();
+	}
+	
+	public CustomerController(CustomerHelpView helpview) {
+		this.helpview = helpview;
 		daom = new DAOManager();
 	}
 	
