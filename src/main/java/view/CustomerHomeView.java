@@ -110,7 +110,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 				image = new Image(getClass().getResourceAsStream("/pictures/uk_flag.png"));
 				weatherState.setText(bundle.getString("weather.rain"));
 				break;
-			case "Sun":
+			case "Clear":
 				image = new Image(getClass().getResourceAsStream("/pictures/spain_flag.png"));
 				weatherState.setText(bundle.getString("weather.sunny"));
 				break;
@@ -133,7 +133,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		String welcomeText = bundle.getString("welcome.morning");
 		welcome.setText(welcomeText + " " + controller.getCustomer().getFirstName());
 		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(controller.locationSuggestions()));
-		//initWeather(loc);
+		showWeather(loc);
 	}
 
 

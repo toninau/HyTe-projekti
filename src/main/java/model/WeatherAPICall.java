@@ -31,7 +31,6 @@ public class WeatherAPICall {
 	public WeatherAPICall(String location) throws Exception{
 		
 		String url = "http://api.openweathermap.org/data/2.5/weather?q="+ location +"&APPID=aec9142965fb3ca48cf10cd6300423fc";
-		
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 

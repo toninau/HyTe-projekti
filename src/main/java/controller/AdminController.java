@@ -28,7 +28,6 @@ public class AdminController implements AdminController_IF {
 	private EditCustomerView_IF editcustomer;
 	private DAOManager_IF daoM;
 	
-
 	public AdminController(AddStaffView addstaff) {
 		this.addstaff = addstaff;
 		daoM  = new DAOManager();
@@ -59,6 +58,8 @@ public class AdminController implements AdminController_IF {
 		String email = addstaff.getStaffEmail();
 		String ammatti = addstaff.getProfession();
 		String pw = encryptPassword(addstaff.getPassword());
+		
+		
 		String[] info = { etunimi, sukunimi, puhnro, email, ammatti, pw };
 		boolean success = true;
 		for (String string : info) {
@@ -123,6 +124,8 @@ public class AdminController implements AdminController_IF {
 		}*/
 		return success;
 	}
+	
+
 	
 	
 	public void updateStaff(Staff f) {

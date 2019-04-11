@@ -10,14 +10,11 @@
 }
 
 .tab{
-	-fx-background-color: white;
-	-fx-padding: 1em;
-	-fx-background-insets: 0 1 0 1,0,0;
+
 }
 
 .calendarTab{
-	-fx-rotate: 90;
-	    
+	-fx-rotate: 90;	    
 }
 
 .calendarTabPane{
@@ -35,9 +32,7 @@
 }
 
 .tab-pane{
-	-fx-background-color: white;
-	-fx-border-radius: 25px;
-	-fx-background-radius: 25px;
+
 
 }
 
@@ -66,6 +61,7 @@
 .root{
 	-fx-background-image: url("../pictures/bg.jpeg");
 	-fx-background-color: #88b4fc;	
+	-fx-font-size: 2em;
 }
 
 .headerLabels{
@@ -75,7 +71,7 @@
 
 
 .customerMenuWrapper {
-	-fx-pref-width: 1280px;
+	
 }
 
 .adminMenuButton{
@@ -87,7 +83,6 @@
 
 .customerMenuBar{
 	-fx-padding: 10px;
-	-fx-margin: 0 0 0 0;
 	-fx-background-color: #88b4fc;
 	-fx-border-color: #2654a0;
 	-fx-border-width: 4px;

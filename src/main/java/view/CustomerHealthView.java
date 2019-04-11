@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import controller.CustomerController;
@@ -91,7 +92,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		}
 		bloodSugarChart.getData().add(seriesBloodSugar);
 	}
-	
+							
 	public void showBloodpressureChart() {
 		xAxisPressure.setLabel(bundle.getString("health.pressurechart.category"));
 		yAxisPressure.setLabel(bundle.getString("health.pressurechart.value"));
@@ -112,10 +113,8 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		}
 		bloodPressureChart.getData().add(seriesHighPressure);
 		bloodPressureChart.getData().add(seriesLowPressure);
-
 	}
-
-
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -179,8 +178,9 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		return LocalDate.now().toString();
 	}
 	public String getDate() {
-		LocalDate date = datePicker.getValue();
-		return date.toString();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.YYYY");
+		LocalDate localDate = LocalDate.now();
+		return dtf.format(localDate);
 	}
 	public int getHighPressure() {
 		return Integer.parseInt(highPressure.getText());
