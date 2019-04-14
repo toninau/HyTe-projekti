@@ -1,0 +1,141 @@
+package dao;
+
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import model.Customer;
+import model.UserImage;
+
+/**
+ * DataAccessObject for customers images
+ * @author tonin
+ *
+ */
+public class UserImageDAO {
+	/**
+	 * Sessionfactory used for CRUD operations
+	 */
+	private SessionFactory sessionFactory = null;
+	
+	/**
+	 * Standard constructor for UserImageDAO
+	 * @param sessionFactory hibernate SessionFactory
+	 */
+	public UserImageDAO(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	/**
+	 * Saves image to the database
+	 * @param image image to be saved in the database
+	 * @return <code>true</code> if image was successfully saved <br>
+	 * <code>false</code> if image was not saved
+	 */
+	public boolean create(UserImage image) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = null;
+		boolean success = false;
+		try {
+			transaction = session.beginTransaction();
+			session.saveOrUpdate(image);
+			transaction.commit();
+			success = true;
+		} catch (HibernateException e) {
+			transaction.rollback();
+		} finally {
+			session.close();
+		}
+		return success;
+	}
+	
+	/**
+	 * Retrieves image from the database
+	 * @param id imageID of the wanted image
+	 * @return UserImage object
+	 */
+	public UserImage read(int id) {
+		Session session = sessionFactory.openSession();
+		try {
+			UserImage image = (UserImage) session.get(UserImage.class, id);
+			return image;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	/**
+	 * Retrieves all customers images from the database
+	 * @param customer customer whose images are the be retrieved from the database
+	 * @return array of UserImages
+	 */
+	@SuppressWarnings("unchecked")
+	public UserImage[] readCustomerUserImages(Customer customer) {
+		Session session = sessionFactory.openSession();
+		List<UserImage> result = null;
+		try {
+			session.beginTransaction();
+			String sql = "SELECT * FROM userImage INNER JOIN customer on userImage.customerID = customer.customerID WHERE customer.customerID = :id";
+			Query<UserImage> query = session.createSQLQuery(sql).addEntity(UserImage.class);
+			query.setParameter("id", customer.getCustomerID());
+			result = query.list();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		UserImage[] returnArray = new UserImage[result.size()];
+		return (UserImage[]) result.toArray(returnArray);
+	}
+	
+	/**
+	 * Updates userImage information to the database
+	 * @param userImage image to be updated in the database
+	 * @return <code>true</code> if image was successfully updated <br>
+	 * <code>false</code> if image was not updated
+	 */
+	public boolean update(UserImage userImage) {
+		boolean success = false;
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		UserImage img = (UserImage) session.get(UserImage.class, userImage.getImageID());
+		if (img != null) {
+			img.setCustomer(userImage.getCustomer());
+			img.setImage(userImage.getImage());
+			img.setImageName(userImage.getImageName());
+			success = true;
+		} else {
+			System.out.println("Nothing to update");
+		}
+		session.getTransaction().commit();
+		session.close();
+		return success;
+	}
+	
+	/**
+	 * Deletes image from the database
+	 * @param id imageID of the image to be deleted
+	 * @return <code>true</code> if image was successfully deleted<br>
+	 * <code>false</code> if image was not deleted
+	 */
+	public boolean delete(int id) {
+		boolean success = false;
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		UserImage img = (UserImage) session.get(UserImage.class, id);
+		if (img != null) {
+			session.delete(img);
+			success = true;
+		}
+		session.getTransaction().commit();
+		session.close();
+		return success;
+	}
+}

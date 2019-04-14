@@ -39,7 +39,7 @@ public class Staff {
 	private Set<Prescription> prescriptions = new HashSet<Prescription>();
 
 	@OneToMany(mappedBy = "staff", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Notification> notification = new HashSet<Notification>();
+	private Set<Notification> notifications = new HashSet<Notification>();
 
 	@ManyToMany(mappedBy = "customersStaff")
 	private Set<Customer> customersStaff = new HashSet<Customer>();

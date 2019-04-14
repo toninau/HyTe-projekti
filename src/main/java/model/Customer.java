@@ -51,7 +51,10 @@ public class Customer {
 	private Set<BloodValue> bloodValues = new HashSet<BloodValue>();
 
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Notification> notification = new HashSet<Notification>();
+	private Set<Notification> notifications = new HashSet<Notification>();
+	
+	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
+	private Set<UserImage> images = new HashSet<UserImage>();
 
 	@ManyToMany
 	@JoinTable(name = "customersStaff", joinColumns = { @JoinColumn(name = "customerID") }, inverseJoinColumns = {
