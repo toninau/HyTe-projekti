@@ -7,32 +7,35 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.hsqldb.rights.User;
-
 import model.Customer;
 import model.Staff;
+
 /**
  * 
- * Henkilökunnan jäsenten hallintaan käytettävä DataAccessObject
+ * DataAccessObject for staff class
  *
  */
 public class StaffDAO {
 	/**
-	 * Sessionfactory, jota käytetään CRUD-operaatioihin
+	 * Sessionfactory for CRUD-operations
 	 */
 	private SessionFactory sessionFactory = null;
-	
+
 	/**
-	 * Luokan konstruktori.
-	 * @param session Saa parametrina Sessionfactory-olion, jota käytetään koko sovelluksessa
+	 * Class constructor.
+	 * 
+	 * @param session hibernate SessionFactory
 	 */
 	public StaffDAO(SessionFactory session) {
 		this.sessionFactory = session;
 	}
+
 	/**
-	 * Uuden kentän tietokantaan tallentava metodi
-	 * @param staff tietokantaan tallennettava henkilökunnan jäsen
-	 * @return true, mikäli operaatio onnistui, muuten false
+	 * Saves staff member to the database.
+	 * 
+	 * @param staff object
+	 * @return <code>true</code> if customer was successfully saved <br>
+	 *         <code>false</code> if customer was not saved
 	 */
 	public boolean create(Staff staff) {
 		Session session = sessionFactory.openSession();
@@ -44,32 +47,32 @@ public class StaffDAO {
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
+			transaction.rollback();
 		} finally {
 			session.close();
 		}
 		return success;
 	}
+
 	/**
-	 * Lisää asiakkaan jonkin henkilökunnan jäsenen asiakkaaksi
-	 * @param staff Henkilökunnan jäsen, jolle asiakas lisätään
-	 * @param customer Lisättävä asiakas
-	 * @return true, jos operaatio onnistui, muuten false
+	 * Adds customer to staff member.
+	 * 
+	 * @param staff    staff member whom the customer is added
+	 * @param customer customer who is added
+	 * @return <code>true</code> if customer was successfully added <br>
+	 *         <code>false</code> if customer was not added
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean addCustomer(Staff staff, Customer customer) {
 		Session session = sessionFactory.openSession();
 		boolean success = false;
 		try {
-			session = sessionFactory.openSession();
 			session.beginTransaction();
 			String sql = "INSERT INTO customersStaff (customerID, staffID) VALUES (:customerID,:staffID)";
-			Query kysely = session.createSQLQuery(sql);
-			kysely.setParameter("customerID", customer.getCustomerID());
-			kysely.setParameter("staffID", staff.getStaffID());
-			kysely.executeUpdate();
+			Query query = session.createSQLQuery(sql);
+			query.setParameter("customerID", customer.getCustomerID());
+			query.setParameter("staffID", staff.getStaffID());
+			query.executeUpdate();
 			success = true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,11 +81,14 @@ public class StaffDAO {
 		}
 		return success;
 	}
+
 	/**
-	 * Poistaa asiakkaan "asiakkuuden" joltain henkilökunnan jäseneltä
-	 * @param henkilö Henkilökunnan jäsen, jolta asiakas poistetaan
-	 * @param customer Poistettava asiakas
-	 * @return true, jos operaatio onnistui, muuten false
+	 * Deletes customer from staff member.
+	 * 
+	 * @param staff    staff member whom the customer is deleted from
+	 * @param customer customer who is deleted
+	 * @return <code>true</code> if customer was successfully deleted<br>
+	 *         <code>false</code> if customer was not deleted
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean deleteCustomer(Staff staff, Customer customer) {
@@ -104,22 +110,23 @@ public class StaffDAO {
 		}
 		return success;
 	}
+
 	/**
-	 * Palauttaa listan jonkun henkilökunnan jäsenen asiakkaista
-	 * @param henkilö Henkilökunnan jäsen, jonka asiakkaita haetaan
-	 * @return Lista henkilökunnan jäsenen asiakkaista
+	 * Returns an array of staff members customers.
+	 * 
+	 * @param staff staff member whose customers are retrieved
+	 * @return array of staff members customers
 	 */
 	@SuppressWarnings("unchecked")
 	public Customer[] readHenkilönAsiakkaat(Staff staff) {
 		Session session = sessionFactory.openSession();
 		List<Customer> result = null;
 		try {
-			session = sessionFactory.openSession();
 			session.beginTransaction();
 			String sql = "SELECT * FROM customer INNER JOIN customersStaff on customersStaff.customerID = customer.customerID WHERE customersStaff.staffID = :id";
-			Query<Customer> kysely = session.createSQLQuery(sql).addEntity(Customer.class);
-			kysely.setParameter("id", staff.getStaffID());
-			result = kysely.list();
+			Query<Customer> query = session.createSQLQuery(sql).addEntity(Customer.class);
+			query.setParameter("id", staff.getStaffID());
+			result = query.list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,44 +136,46 @@ public class StaffDAO {
 		Customer[] returnArray = new Customer[result.size()];
 		return (Customer[]) result.toArray(returnArray);
 	}
+
 	/**
-	 * Hakee tietokannasta halutun henkilön
-	 * @param id Haettavan henkilön id
-	 * @return Haettu henkilökunnan jäsen
+	 * Retrieves staff member from the database.
+	 * 
+	 * @param id staffID of the wanted staff member
+	 * @return staff object
 	 */
 	public Staff read(String id) {
 		Session session = sessionFactory.openSession();
 		Staff staff = new Staff();
 		try {
-			session = sessionFactory.openSession();
 			session.beginTransaction();
 			session.load(staff, id);
 			session.getTransaction().commit();
-		}catch (ObjectNotFoundException oe) {
-			System.out.println("User not found");
-		}catch (Exception e) {
+		} catch (ObjectNotFoundException oe) {
+			System.out.println("Staff member not found");
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 		return staff;
 	}
-	
+
 	public Staff readEmail(String emaila) {
 		Session session = sessionFactory.openSession();
 		String a = emaila;
 		String sql = "select id from Staff where email = :emailp";
 
-		//List<Customer> result = session.createQuery(sql).setParameter("emailp", a).list();
+		// List<Customer> result = session.createQuery(sql).setParameter("emailp",
+		// a).list();
 		String id = (String) session.createQuery(sql).setParameter("emailp", a).getSingleResult();
 		System.out.println(id);
 		return read(id);
 	}
+
 	/**
-	 * Lukee tietokannasta listana kaikki henkilökunnan jäsenet
+	 * Retrieves all staff members from the database.
 	 * 
-	 *
-	 * @return lista, joka sisltää henkilökunnan jäsenet
+	 * @return array of staff members.
 	 */
 	@SuppressWarnings("unchecked")
 	public Staff[] readAll() {
@@ -184,46 +193,52 @@ public class StaffDAO {
 		Staff[] returnArray = new Staff[result.size()];
 		return (Staff[]) result.toArray(returnArray);
 	}
+
 	/**
-	 * Metodi jonkin henkilökunnan jäsenen tietojen päivittämiseen
-	 * @param staff Päivitettävä henkilökunnan jäsen
-	 * @return true, mikäli operaatio onnistui, muuten false
+	 * Updates staff information to the database.
+	 * 
+	 * @param staff staff member to be updated in the database
+	 * @return <code>true</code> if staff member was successfully updated <br>
+	 *         <code>false</code> if staff member was not updated
 	 */
 	public boolean update(Staff staff) {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Staff h = (Staff) session.get(Staff.class, staff.getStaffID());
-		if (h != null) {
-			h.setFirstName(staff.getFirstName());
-			h.setSurname(staff.getSurname());
-			h.setAccessLevel(staff.getAccessLevel());
-			h.setPhoneNumber(staff.getPhoneNumber());
+		Staff s = (Staff) session.get(Staff.class, staff.getStaffID());
+		if (s != null) {
+			s.setFirstName(staff.getFirstName());
+			s.setSurname(staff.getSurname());
+			s.setAccessLevel(staff.getAccessLevel());
+			s.setPhoneNumber(staff.getPhoneNumber());
 			success = true;
 		} else {
-			System.out.println("Ei löytynyt päivitettävää");
+			System.out.println("Nothing to update");
 		}
 		session.getTransaction().commit();
 		session.close();
 		return success;
 	}
-/**
- * Poistaa yhden henkilökunnan jäsenen
- * @param id poistettavan henkilökunnan jäsenen id
- * @return true, jos operaatio onnistui, muuten false
- */
+
+	/**
+	 * Deletes staff member from the database.
+	 * 
+	 * @param id staffID of the staff member to be deleted
+	 * @return <code>true</code> if staff member was successfully deleted<br>
+	 *         <code>false</code> if staff member was not deleted
+	 */
 	@SuppressWarnings("unchecked")
 	public boolean delete(String id) {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Staff h = (Staff) session.get(Staff.class, id);
-		if (h != null) {
-			session.delete(h);
+		Staff s = (Staff) session.get(Staff.class, id);
+		if (s != null) {
+			session.delete(s);
 			String sql = "DELETE FROM customersStaff WHERE customersStaff.staffID = :id";
-			Query<Staff> kysely = session.createSQLQuery(sql).addEntity(Staff.class);
-			kysely.setParameter("id", h.getStaffID());
-			kysely.executeUpdate();
+			Query<Staff> query = session.createSQLQuery(sql).addEntity(Staff.class);
+			query.setParameter("id", s.getStaffID());
+			query.executeUpdate();
 			success = true;
 		}
 		session.getTransaction().commit();

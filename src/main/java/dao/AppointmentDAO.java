@@ -1,14 +1,16 @@
 package dao;
 
 import java.util.List;
+
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import model.Appointment;
 import model.Customer;
 import model.Staff;
+
 /**
  * 
  * Customer appointment DataAccessObject
@@ -19,17 +21,22 @@ public class AppointmentDAO {
 	 * Sessionfactory used for CRUD operations
 	 */
 	private SessionFactory sessionfactory = null;
+
 	/**
 	 * Class constructor
+	 * 
 	 * @param sessionfactory used in all CRUD methods
 	 */
 	public AppointmentDAO(SessionFactory sessionfactory) {
 		this.sessionfactory = sessionfactory;
 	}
+
 	/**
 	 * CREATE-Method for saving an appointment to the database
+	 * 
 	 * @param appointment object to save into the database
-	 * @return true if success
+	 * @return <code>true</code> if appointment was successfully created<br>
+	 *         <code>false</code> if appointment was not created
 	 */
 	public boolean create(Appointment appointment) {
 		Session session = sessionfactory.openSession();
@@ -41,28 +48,28 @@ public class AppointmentDAO {
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
+			transaction.rollback();
 		} finally {
 			session.close();
 		}
 		return success;
 	}
-	
+
 	/**
 	 * READ-Method to read an appointment by ID
+	 * 
 	 * @param id of the appointment
-	 * @return list appointment
+	 * @return appointment
 	 */
 	public Appointment read(int id) {
 		Session session = sessionfactory.openSession();
 		Appointment appointment = new Appointment();
 		try {
-			session = sessionfactory.openSession();
 			session.beginTransaction();
 			session.load(appointment, id);
 			session.getTransaction().commit();
+		} catch (ObjectNotFoundException oe) {
+			System.out.println("Appointment not found");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -70,17 +77,19 @@ public class AppointmentDAO {
 		}
 		return appointment;
 	}
+
 	/**
 	 * READ-Method to read all appointments from a customer
-	 * @param customer object
-	 * @return List of all appointments
+	 * 
+	 * @param customer customer whose appointments are retrieved from the database
+	 * @return List of all appointments for customer
+	 * @see #readStaffAppointments(Staff)
 	 */
 	@SuppressWarnings("unchecked")
 	public Appointment[] readCustomerAppointments(Customer customer) {
 		Session session = sessionfactory.openSession();
 		List<Appointment> result = null;
 		try {
-			session = sessionfactory.openSession();
 			session.beginTransaction();
 			String sql = "SELECT * FROM appointment INNER JOIN customer on appointment.customerID = customer.customerID WHERE customer.customerID = :id";
 			Query<Appointment> query = session.createSQLQuery(sql).addEntity(Appointment.class);
@@ -95,10 +104,13 @@ public class AppointmentDAO {
 		Appointment[] returnArray = new Appointment[result.size()];
 		return (Appointment[]) result.toArray(returnArray);
 	}
+
 	/**
 	 * READ-Method to read all appointments made by a staff member
-	 * @param henkilökunta Staff object
-	 * @return List appointments
+	 * 
+	 * @param staff staff member whose appointments are retrieved from the database
+	 * @return List of all appointments for staff member
+	 * @see #readCustomerAppointments(Customer)
 	 */
 	@SuppressWarnings("unchecked")
 	public Appointment[] readStaffAppointments(Staff staff) {
@@ -121,10 +133,13 @@ public class AppointmentDAO {
 		Appointment[] returnArray = new Appointment[result.size()];
 		return (Appointment[]) result.toArray(returnArray);
 	}
+
 	/**
 	 * UPDATE-Method to update an appointment in the database
+	 * 
 	 * @param appointment an existing appointment
-	 * @return true if success
+	 * @return <code>true</code> if appointment was successfully updated<br>
+	 *         <code>false</code> if appointment was not updated
 	 */
 	public boolean update(Appointment appointment) {
 		boolean success = false;
@@ -145,10 +160,13 @@ public class AppointmentDAO {
 		session.close();
 		return success;
 	}
+
 	/**
 	 * DELETE-Method to remove an appointment from the database
+	 * 
 	 * @param id of the Appointment object
-	 * @return true if success
+	 * @return <code>true</code> if appointment was successfully deleted<br>
+	 *         <code>false</code> if appointment was not deleted
 	 */
 	public boolean delete(int id) {
 		boolean success = false;

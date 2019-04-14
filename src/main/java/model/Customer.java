@@ -64,7 +64,7 @@ public class Customer {
 	/**
 	 * Empty customer constructor. Values are given using set-methods.
 	 * 
-	 * @see #Customer(String, String, String, String, String, String, String)
+	 * @see #Customer(String, String, String, String, String, String, String, String)
 	 */
 	public Customer() {
 
@@ -72,14 +72,14 @@ public class Customer {
 
 	/**
 	 * Customer constructor.
-	 * 
-	 * @param firstName    Customer's first name
-	 * @param surname   Customer's surname
-	 * @param ssn       Customer's social security number
+	 * @param firstName Customer's first name
+	 * @param surname Customer's surname
+	 * @param ssn Customer's social security number
 	 * @param address Customer's home address
-	 * @param email     Customer's email
-	 * @param phoneNumber  Customer's phone number
-	 * @param iceNumber  Customer's "in case of emergency" phone number
+	 * @param email Customer's email
+	 * @param phoneNumber Customer's phone number
+	 * @param iceNumber Customer's "in case of emergency" phone number
+	 * @param password Customer's password
 	 * @see #Customer()
 	 */
 	public Customer(String firstName, String surname, String ssn, String address, String email, String phoneNumber,
@@ -95,8 +95,7 @@ public class Customer {
 	}
 
 	/**
-	 * Returns customer's customerID. CustomerID value is given automatically
-	 * in the database.
+	 * Returns customer's customerID. 
 	 * 
 	 * @return customerID
 	 */
@@ -105,8 +104,7 @@ public class Customer {
 	}
 
 	/**
-	 * Sets customerID. CustomerID value is given automatically
-	 * in the database. Not used when creating a new customer.
+	 * Sets customerID. 
 	 * 
 	 * @param customerID customerID to set
 	 */
@@ -224,10 +222,18 @@ public class Customer {
 		this.iceNumber = iceNumber;
 	}
 	
+	/**
+	 * Sets customers password.
+	 * @param password password to set
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
+	/**
+	 * Returns customer password.
+	 * @return password
+	 */
 	public String getPassword() {
 		return password;
 	}

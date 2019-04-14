@@ -1,34 +1,42 @@
 package dao;
 
 import java.util.List;
+
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import model.Customer;
 import model.Notification;
+
 /**
  * 
  * DataAccessObject for notification management
  *
  */
 public class NotificationDAO {
+
 	/**
 	 * Sessionfactory for CRUD operations
 	 */
 	private SessionFactory sessionFactory = null;
+
 	/**
 	 * Class constructor
-	 * @param sessionFactory
+	 * 
+	 * @param sessionFactory hibernate SessionFactory
 	 */
 	public NotificationDAO(SessionFactory istuntotehdas) {
 		this.sessionFactory = istuntotehdas;
 	}
+
 	/**
 	 * Create-method to save a Notification object to the database
+	 * 
 	 * @param notification object
-	 * @return true, mikäli operaatio onnistui, muuten false
+	 * @return <code>true</code> if notification was successfully saved <br>
+	 *         <code>false</code> if notification was not saved
 	 */
 	public boolean create(Notification notification) {
 		Session session = sessionFactory.openSession();
@@ -40,27 +48,28 @@ public class NotificationDAO {
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
+			transaction.rollback();
 		} finally {
 			session.close();
 		}
 		return success;
 	}
+
 	/**
-	 * Hakee tietyn ilmoituksen tietokannasta
-	 * @param id Haettavan ilmoituksen id
-	 * @return Haettu ilmoitus
+	 * Retrieves notification with id from the database.
+	 * 
+	 * @param id id of the notification
+	 * @return notification object
 	 */
 	public Notification read(int id) {
 		Session session = sessionFactory.openSession();
 		Notification notification = new Notification();
 		try {
-			session = sessionFactory.openSession();
 			session.beginTransaction();
 			session.load(notification, id);
 			session.getTransaction().commit();
+		} catch (ObjectNotFoundException oe) {
+			System.out.println("Notification not found");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -68,8 +77,10 @@ public class NotificationDAO {
 		}
 		return notification;
 	}
+
 	/**
 	 * Lukee tietokannasta listana kaikki asiakkaan ilmoitukset
+	 * 
 	 * @param customer asiakas, jonka ilmoituksia luetaan
 	 *
 	 * @return lista, joka sisältää arvot
@@ -94,8 +105,10 @@ public class NotificationDAO {
 		Notification[] returnArray = new Notification[result.size()];
 		return (Notification[]) result.toArray(returnArray);
 	}
+
 	/**
 	 * Metodi päivittää ilmoituksen tietokantaan
+	 * 
 	 * @param notification Päivitettävä ilmoitus
 	 * @return true, mikäli operaatio onnistui, muuten false
 	 */
@@ -115,8 +128,10 @@ public class NotificationDAO {
 		session.close();
 		return success;
 	}
+
 	/**
 	 * Metodi poistaa halutun ilmoituksen
+	 * 
 	 * @param id Poistettavan ilmoituksen id
 	 * @return true, mikäli operaatio onnistui, muuten false
 	 */

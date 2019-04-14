@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 
@@ -23,7 +24,13 @@ public class CustomerHelpView extends ViewChanger implements Initializable {
 	@FXML
 	Button myHealthButton;	
 	@FXML
-	Label welcome;
+	Button previousButton;
+	@FXML
+	Button nextButton;
+	@FXML
+	Button startButton;
+	@FXML
+	ImageView slideShow;
 
 	private CustomerController_IF controller;
 

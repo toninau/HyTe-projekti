@@ -28,8 +28,8 @@ public class Staff {
 
 	@Column(name = "accessLevel")
 	private String accessLevel;
-	
-	@Column(name ="password")
+
+	@Column(name = "password")
 	private String password;
 
 	@OneToMany(mappedBy = "staff", orphanRemoval = true, cascade = CascadeType.PERSIST)
@@ -47,26 +47,25 @@ public class Staff {
 	/**
 	 * Empty staff constructor. Values are given using set-methods.
 	 * 
-	 * @see #Staff(String, String, String, String, String)
+	 * @see #Staff(String, String, String, String, String, String)
 	 */
 	public Staff() {
 	}
 
 	/**
-	 * Staff constructor.
 	 * 
+	 * @param staffID     Staff member's staffID
 	 * @param firstName   Staff member's first name
 	 * @param surname     Staff member's surname
 	 * @param phoneNumber Staff member's phone number
-	 * @param email       Staff member's email address
 	 * @param accessLevel Staff member's access level. For example defines staff
 	 *                    member's authority to prescribe a prescription
-	 * 
+	 * @param password    Staff member's password
 	 * @see #Staff()
 	 */
-
-	public Staff(String email, String firstName, String surname, String phoneNumber, String accessLevel, String password) {
-		this.staffID = email;
+	public Staff(String staffID, String firstName, String surname, String phoneNumber, String accessLevel,
+			String password) {
+		this.staffID = staffID;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.phoneNumber = phoneNumber;
@@ -75,8 +74,7 @@ public class Staff {
 	}
 
 	/**
-	 * Returns staff member's staffID. StaffID value is given automatically in the
-	 * database.
+	 * Returns staff member's staffID.
 	 * 
 	 * @return staffID
 	 */
@@ -85,8 +83,7 @@ public class Staff {
 	}
 
 	/**
-	 * Sets staffID. staffID value is given automatically in the database. Not used
-	 * when creating a new staff member.
+	 * Sets staffID.
 	 * 
 	 * @param staffID staffID to set
 	 */
@@ -111,60 +108,75 @@ public class Staff {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	/**
 	 * Returns staff member's surname.
+	 * 
 	 * @return surname
 	 */
 	public String getSurname() {
 		return surname;
 	}
-	
+
 	/**
 	 * Sets surname.
+	 * 
 	 * @param surname surname to set
 	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	
+
 	/**
 	 * Returns staff member's phone number.
+	 * 
 	 * @return phoneNumber
 	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	
+
 	/**
 	 * Sets phone number.
+	 * 
 	 * @param phoneNumber phone number to set
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
+
 	/**
 	 * Returns staff member's access level.
+	 * 
 	 * @return accessLevel
 	 */
 	public String getAccessLevel() {
 		return accessLevel;
 	}
-	
+
 	/**
 	 * Sets access level.
+	 * 
 	 * @param accessLevel access level to set
 	 */
 	public void setAccessLevel(String accessLevel) {
 		this.accessLevel = accessLevel;
 	}
-	
+
+	/**
+	 * Sets staff member's password.
+	 * 
+	 * @param password password to set
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	/**
+	 * Return staff member's password
+	 * 
+	 * @return password
+	 */
 	public String getPassword() {
 		return password;
 	}

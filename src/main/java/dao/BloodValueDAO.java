@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
 import model.BloodValue;
 import model.Customer;
 
@@ -23,8 +22,8 @@ public class BloodValueDAO {
 	/**
 	 * Class constructor
 	 * 
-	 * @param sessionfactory
-	 *                     
+	 * @param sessionfactory hibernate SessionFactory
+	 * 
 	 */
 	public BloodValueDAO(SessionFactory sessionfactory) {
 		this.sessionfactory = sessionfactory;
@@ -34,7 +33,8 @@ public class BloodValueDAO {
 	 * Method for saving a blood value object to the database
 	 * 
 	 * @param bloodvalue value for the database
-	 * @return true if success
+	 * @return <code>true</code> if bloodvalue was successfully created<br>
+	 *         <code>false</code> if bloodvalue was not created
 	 */
 	public boolean create(BloodValue bloodvalue) {
 		Session session = sessionfactory.openSession();
@@ -46,9 +46,7 @@ public class BloodValueDAO {
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
+			transaction.rollback();
 		} finally {
 			session.close();
 		}
@@ -59,7 +57,6 @@ public class BloodValueDAO {
 	 * Reads all the saved blood values from a customer
 	 * 
 	 * @param customer customer from where the values are retrieved
-	 *
 	 * @return list of the values
 	 */
 	@SuppressWarnings("unchecked")
@@ -67,7 +64,6 @@ public class BloodValueDAO {
 		Session session = sessionfactory.openSession();
 		List<BloodValue> result = null;
 		try {
-			session = sessionfactory.openSession();
 			session.beginTransaction();
 			String sql = "SELECT * FROM bloodvalue INNER JOIN customer on bloodvalue.customerID = customer.customerID WHERE customer.customerID = :id";
 			Query<BloodValue> query = session.createSQLQuery(sql).addEntity(BloodValue.class);
@@ -87,7 +83,8 @@ public class BloodValueDAO {
 	 * Removes a blood value from the database
 	 * 
 	 * @param id of the blood value object
-	 * @return true if success
+	 * @return <code>true</code> if bloodvalue was successfully deleted<br>
+	 *         <code>false</code> if bloodvalue was not deleted
 	 */
 	public boolean delete(int id) {
 		boolean success = false;

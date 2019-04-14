@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,6 +13,7 @@ import model.UserImage;
 
 /**
  * DataAccessObject for customers images
+ * 
  * @author tonin
  *
  */
@@ -20,20 +22,22 @@ public class UserImageDAO {
 	 * Sessionfactory used for CRUD operations
 	 */
 	private SessionFactory sessionFactory = null;
-	
+
 	/**
 	 * Standard constructor for UserImageDAO
+	 * 
 	 * @param sessionFactory hibernate SessionFactory
 	 */
 	public UserImageDAO(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	/**
 	 * Saves image to the database
+	 * 
 	 * @param image image to be saved in the database
 	 * @return <code>true</code> if image was successfully saved <br>
-	 * <code>false</code> if image was not saved
+	 *         <code>false</code> if image was not saved
 	 */
 	public boolean create(UserImage image) {
 		Session session = sessionFactory.openSession();
@@ -51,28 +55,34 @@ public class UserImageDAO {
 		}
 		return success;
 	}
-	
+
 	/**
 	 * Retrieves image from the database
+	 * 
 	 * @param id imageID of the wanted image
 	 * @return UserImage object
 	 */
 	public UserImage read(int id) {
 		Session session = sessionFactory.openSession();
+		UserImage image = new UserImage();
 		try {
-			UserImage image = (UserImage) session.get(UserImage.class, id);
-			return image;
+			session.beginTransaction();
+			session.load(image, id);
+			session.getTransaction().commit();
+		} catch (ObjectNotFoundException oe) {
+			System.out.println("Image not found");
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return null;
+		return image;
 	}
-	
+
 	/**
 	 * Retrieves all customers images from the database
-	 * @param customer customer whose images are the be retrieved from the database
+	 * 
+	 * @param customer customer whose images are retrieved from the database
 	 * @return array of UserImages
 	 */
 	@SuppressWarnings("unchecked")
@@ -94,12 +104,13 @@ public class UserImageDAO {
 		UserImage[] returnArray = new UserImage[result.size()];
 		return (UserImage[]) result.toArray(returnArray);
 	}
-	
+
 	/**
 	 * Updates userImage information to the database
+	 * 
 	 * @param userImage image to be updated in the database
 	 * @return <code>true</code> if image was successfully updated <br>
-	 * <code>false</code> if image was not updated
+	 *         <code>false</code> if image was not updated
 	 */
 	public boolean update(UserImage userImage) {
 		boolean success = false;
@@ -118,12 +129,13 @@ public class UserImageDAO {
 		session.close();
 		return success;
 	}
-	
+
 	/**
 	 * Deletes image from the database
+	 * 
 	 * @param id imageID of the image to be deleted
 	 * @return <code>true</code> if image was successfully deleted<br>
-	 * <code>false</code> if image was not deleted
+	 *         <code>false</code> if image was not deleted
 	 */
 	public boolean delete(int id) {
 		boolean success = false;

@@ -55,7 +55,7 @@ public class Main {
 
 		// Ensimmäinen asiakas
 		Customer customer = new Customer();
-		customer.setFirstName("Jorma");
+		customer.setFirstName("Jarmo");
 		customer.setSurname("Testi");
 		customer.setSSN("123456-7890");
 		customer.setIceNumber("12312145");
@@ -65,6 +65,9 @@ public class Main {
 		customer.setPassword("test");
 		asiakasDAO.create(customer);
 		customer = asiakasDAO.read("3");
+		System.out.println(customer.getFirstName());
+		Customer[] customers = asiakasDAO.readAll();
+		System.out.println(customers[0].getFirstName());
 
 		// Kuvan laittaminen tietokantaan
 		File file = new File(Main.class.getResource("/pictures/finland_flag.png").getFile());
@@ -93,7 +96,7 @@ public class Main {
 			ImageIcon icon = new ImageIcon(img);
 			JFrame frame = new JFrame();
 			frame.setLayout(new FlowLayout());
-			frame.setSize(200,300);
+			frame.setSize(600,300);
 			JLabel lbl = new JLabel();
 			lbl.setIcon(icon);
 			frame.add(lbl);
