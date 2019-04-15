@@ -9,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-public class StaffView extends ViewChanger implements Initializable{
+public class StaffHomeView extends ViewChanger implements Initializable{
 
+	
+	
+	
 	@FXML
 	private Button logout;
 	

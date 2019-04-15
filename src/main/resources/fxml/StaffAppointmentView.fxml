@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+   <children>
+      <HBox prefHeight="68.0" prefWidth="1280.0">
+         <children>
+            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="News">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Appointments" />
+            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Send notification" />
+            <Button disable="true" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Add prescription" />
+         </children>
+      </HBox>
+      <HBox layoutY="222.0" prefHeight="361.0" prefWidth="1282.0">
+         <children>
+            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <TabPane minHeight="500.0" minWidth="1280.0" prefHeight="719.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Add appointment">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="1280.0">
+                           <children>
+                              <VBox layoutX="14.0" layoutY="14.0" prefHeight="353.0" prefWidth="481.0">
+                                 <children>
+                                    <TextField prefHeight="88.0" prefWidth="481.0" promptText="appointment information" />
+                                    <TextField prefHeight="38.0" prefWidth="260.0" promptText="time (ex. 12.30)">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <DatePicker prefHeight="31.0" prefWidth="261.0">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </DatePicker>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add appointment to">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HENKILÖN NIMI JOTTA VARMISTUU" />
+                                    <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" text="Add">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Modify appointment">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox layoutX="14.0" layoutY="14.0" prefHeight="302.0" prefWidth="823.0">
+                                 <children>
+                                    <ListView fx:id="appointmentList" prefHeight="302.0" prefWidth="305.0" />
+                                    <VBox prefHeight="246.0" prefWidth="394.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose the appointment to modify" wrappingWidth="194.0126953125">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                          <TextField prefHeight="98.0" prefWidth="394.0" promptText="Appointment information">
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="30.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField promptText="time">
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <DatePicker>
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </DatePicker>
+                                          <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="118.0" text="Save">
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </HBox>
+      <ListView fx:id="CustomerAppointmentList" layoutX="6.0" layoutY="83.0" prefHeight="140.0" prefWidth="352.0" AnchorPane.bottomAnchor="500.0" AnchorPane.rightAnchor="930.0" AnchorPane.topAnchor="83.0" />
+      <Text layoutX="352.0" layoutY="99.1865234375" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your customer" wrappingWidth="288.1650390625" AnchorPane.leftAnchor="352.0" AnchorPane.topAnchor="83.0" />
+   </children>
+</AnchorPane>
