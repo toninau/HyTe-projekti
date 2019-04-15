@@ -111,7 +111,7 @@ public class AdminController implements AdminController_IF {
 				alert.showAndWait();
 			}
 		}
-		/*if (success) {
+		if (success) {
 			customer.setFirstName(etunimi);
 			customer.setSurname(sukunimi);
 			customer.setPhoneNumber(puhnro);
@@ -121,7 +121,7 @@ public class AdminController implements AdminController_IF {
 			customer.setSSN(hetu);
 			customer.setPassword(pw);
 			daoM.create(customer);
-		}*/
+		}
 		return success;
 	}
 	
