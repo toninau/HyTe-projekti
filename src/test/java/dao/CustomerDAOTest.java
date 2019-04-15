@@ -1,5 +1,5 @@
 package dao;
-/*
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -46,7 +46,8 @@ public class CustomerDAOTest {
 		customer = dao.read("12");
 		assertEquals("Update", customer.getFirstName(), "update(): Failed to update firstname.");
 		Customer[] list = dao.readAll();
+		assertTrue(dao.delete("12"), "delete(): Failed to delete customer.");
 		assertEquals(1, list.length, "readAll(): Failed to read all staff members");
 	}
 }
-*/
+
