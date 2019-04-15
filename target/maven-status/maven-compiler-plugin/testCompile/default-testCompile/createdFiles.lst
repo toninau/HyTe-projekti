@@ -2,9 +2,5 @@ model\AppointmentTest.class
 model\CustomerTest.class
 model\IllnessTest.class
 model\PrescriptionTest.class
-model\BloodValueTest.class
-model\CustomerDAOTest.class
-model\StaffDAOTest.class
 model\StaffTest.class
-model\IllnessDAOTest.class
 model\NotificationTest.class
