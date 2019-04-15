@@ -14,7 +14,7 @@ import java.util.*;
 public class Customer {
 
 	@Id
-	@Column(name = "customerID")
+	@Column(name = "customerID", length = 11)
 	private String customerID;
 
 	@Column(name = "firstName")
