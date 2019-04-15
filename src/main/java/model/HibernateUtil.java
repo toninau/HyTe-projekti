@@ -29,7 +29,7 @@ public class HibernateUtil {
 	public static synchronized SessionFactory getSessionFactory(boolean forTest) {
 		if (istuntotehdas == null) {
 			if (forTest) {
-				registry = new StandardServiceRegistryBuilder().configure("test.cfg.xml").build();
+				registry = new StandardServiceRegistryBuilder().configure(HibernateUtil.class.getResource("/test.cfg.xml")).build();
 			}
 			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 			System.out.println("tehdas tulilla");

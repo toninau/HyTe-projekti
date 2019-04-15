@@ -18,5 +18,6 @@
 		<mapping class="model.Prescription" />
 		<mapping class="model.BloodValue" />
 		<mapping class="model.Notification" />
+		<mapping class="model.UserImage" />
 	</session-factory>
 </hibernate-configuration>
