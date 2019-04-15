@@ -13,7 +13,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class HibernateUtil {
 
 	private static SessionFactory istuntotehdas;
-	private static StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 
 	/**
 	 * Empty class constructor
@@ -27,9 +26,12 @@ public class HibernateUtil {
 	 * @return SessionFactory.
 	 */
 	public static synchronized SessionFactory getSessionFactory(boolean forTest) {
+		StandardServiceRegistry registry = null;
 		if (istuntotehdas == null) {
 			if (forTest) {
 				registry = new StandardServiceRegistryBuilder().configure(HibernateUtil.class.getResource("/test.cfg.xml")).build();
+			} else {
+				registry = new StandardServiceRegistryBuilder().configure().build();
 			}
 			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 			System.out.println("tehdas tulilla");
