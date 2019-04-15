@@ -29,7 +29,7 @@ public class Staff {
 	@Column(name = "accessLevel")
 	private String accessLevel;
 
-	@Column(name = "password")
+	@Column(name = "staffPassword")
 	private String password;
 
 	@OneToMany(mappedBy = "staff", orphanRemoval = true, cascade = CascadeType.PERSIST)

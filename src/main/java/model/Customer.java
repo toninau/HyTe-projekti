@@ -35,7 +35,7 @@ public class Customer {
 	@Column(name = "iceNumber")
 	private String iceNumber;
 	
-	@Column(name = "password")
+	@Column(name = "customerPassword")
 	private String password;
 	
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
