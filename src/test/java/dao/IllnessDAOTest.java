@@ -41,6 +41,7 @@ public class IllnessDAOTest {
 		Illness[] i = iDAO.readCustomersIllnessess(customer);
 		assertEquals("illness", i[0].getIllnessName(), "read(): Failed to read customers illness.");
 		assertTrue(iDAO.delete(1), "delete(): Failed to delete illness.");
+		cDAO.delete("2");
 	}
 }
 

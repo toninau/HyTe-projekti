@@ -47,6 +47,6 @@ public class CustomerDAOTest {
 		assertEquals("Update", customer.getFirstName(), "update(): Failed to update firstname.");
 		Customer[] list = dao.readAll();
 		assertTrue(dao.delete("12"), "delete(): Failed to delete customer.");
-		assertEquals(1, list.length, "readAll(): Failed to read all staff members");
+		assertEquals(0, list.length, "readAll(): Failed to read all staff members");
 	}
 }
