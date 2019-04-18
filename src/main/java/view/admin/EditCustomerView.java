@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,13 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.Customer;
+import view.ViewChanger;
 
 /**
  * Class for editing customers in database.
  * @author IdaKi
  *
  */
-public class EditCustomerView extends ViewChanger implements Initializable, EditCustomerView_IF {
+public class EditCustomerView extends ViewChanger implements Initializable, EditCustomerIF {
 
 	@FXML
 	private TextField findCustomer;
@@ -66,7 +67,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	/**
 	 * Gets all customers from database for suggestion provider.
 	 */
-	public void allCustomers() {
+	public void allFromDatabase() {
 		Customer[] customers = c.findCustomerAll();
         for (Customer customer : customers) {
             resultSet.add(customer.getCustomerID() + ", " + customer.getSurname() + ", " + customer.getFirstName());
@@ -76,7 +77,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	/**
 	 * Fills the text fields with chosen customer's information.
 	 */
-	public void showCustomerInfo() {
+	public void showInfo() {
 		customer = c.findCustomerWithID(customer.getCustomerID());
 		firstname.setText(customer.getFirstName());
 		surname.setText(customer.getSurname());
@@ -90,14 +91,14 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	/**
 	 * Updates the customer's information with the text found in text fields.
 	 */
-	public void updateCustomerInfo() {
-		customer.setFirstName(getCustFirstname());
-		customer.setSurname(getCustSurname());
-		customer.setAddress(getCustAddress());
-		customer.setIceNumber(getCustICE());
-		customer.setPhoneNumber(getCustPhone());
-		customer.setSSN(getCustHetu());
-		customer.setCustomerID(getCustEmail());
+	public void updateInfo() {
+		customer.setFirstName(getFirstName());
+		customer.setSurname(getSurname());
+		customer.setAddress(getAddress());
+		customer.setIceNumber(getICE());
+		customer.setPhoneNumber(getPhoneNumber());
+		customer.setSSN(getSSN());
+		customer.setCustomerID(getEmail());
 		c.updateCustomer(customer);	
 	}
 	
@@ -129,7 +130,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		allCustomers();
+		allFromDatabase();
 		TextFields.bindAutoCompletion(findCustomer, SuggestionProvider.create(resultSet));
 	}
 	
@@ -137,7 +138,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Returns the text written in the social security number -field.
 	 * @return Customer's social security number.
 	 */
-	public String getCustHetu() {
+	public String getSSN() {
 		return this.ssn.getText();
 	}
 
@@ -145,7 +146,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Returns the text written in the address -field.
 	 * @return Customer's home address.
 	 */
-	public String getCustAddress() {
+	public String getAddress() {
 		return this.address.getText();
 	}
 
@@ -153,7 +154,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Returns the text written in the in case of emergency number -field.
 	 * @return Customer's ICE-number.
 	 */
-	public String getCustICE() {
+	public String getICE() {
 		return this.ice.getText();
 	}
 
@@ -161,7 +162,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Returns the text written in the email -field.
 	 * @return Customer's email address.
 	 */
-	public String getCustEmail() {
+	public String getEmail() {
 		return this.email.getText();
 	}
 
@@ -169,7 +170,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Returns the text written in the phone number -field.
 	 * @return Customer's phone number.
 	 */
-	public String getCustPhone() {
+	public String getPhoneNumber() {
 		return this.phone.getText();
 	}
 
@@ -177,7 +178,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Returns the text written in the surname -field.
 	 * @return Customer's surname.
 	 */
-	public String getCustSurname() {
+	public String getSurname() {
 		return this.surname.getText();
 	}
 
@@ -185,7 +186,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Returns the text written in the first name -field.
 	 * @return Customer's first name.
 	 */
-	public String getCustFirstname() {
+	public String getFirstName() {
 		return this.firstname.getText();
 	}
 	

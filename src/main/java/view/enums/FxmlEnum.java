@@ -1,4 +1,4 @@
-package view;
+package view.enums;
 
 public enum FxmlEnum {
 

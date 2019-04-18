@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,6 +28,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Prescription;
 import model.WeatherAPICall;
+import view.HyteGUI;
+import view.ViewChanger;
+import view.enums.Bundles;
 
 public class CustomerHomeView extends ViewChanger implements Initializable {
 

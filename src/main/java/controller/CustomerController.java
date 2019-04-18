@@ -5,17 +5,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.BloodValue;
 import model.Customer;
 import model.DAOManager;
 import model.DAOManager_IF;
 import model.Prescription;
-import view.CustomerCalendarView;
-import view.CustomerHealthView;
-import view.CustomerHelpView;
-import view.CustomerHomeView;
 import view.HyteGUI;
+import view.customer.CustomerCalendarView;
+import view.customer.CustomerHealthView;
+import view.customer.CustomerHelpView;
+import view.customer.CustomerHomeView;
 
 public class CustomerController implements CustomerController_IF {
 
@@ -78,7 +79,7 @@ public class CustomerController implements CustomerController_IF {
 		CustomerController.customer = customer;	
 	}
 	
-	public ArrayList<String> locationSuggestions() {
+	public List<String> locationSuggestions() {
 		ArrayList<String> locations = new ArrayList<>();
 		InputStream csvFile = null;
 		String line = "";

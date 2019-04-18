@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +22,9 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.BloodValue;
+import view.HyteGUI;
+import view.ViewChanger;
+import view.enums.Bundles;
 
 public class CustomerHealthView extends ViewChanger implements Initializable {
 	@FXML

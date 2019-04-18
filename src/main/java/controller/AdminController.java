@@ -7,21 +7,21 @@ import model.Customer;
 import model.DAOManager;
 import model.DAOManager_IF;
 import model.Staff;
-import view.AddCustomerView;
-import view.AddCustomerView_IF;
-import view.AddStaffView;
-import view.AddStaffView_IF;
-import view.EditCustomerView;
-import view.EditCustomerView_IF;
-import view.EditStaffView;
-import view.EditStaffView_IF;
+import view.admin.AddCustomerView;
+import view.admin.AddCustomerIF;
+import view.admin.AddStaffView;
+import view.admin.AddStaffIF;
+import view.admin.EditCustomerView;
+import view.admin.EditCustomerIF;
+import view.admin.EditStaffView;
+import view.admin.EditStaffIF;
 
 public class AdminController implements AdminController_IF {
 	
-	private AddStaffView_IF addstaff;
-	private AddCustomerView_IF addcustomer;
-	private EditStaffView_IF editstaff;
-	private EditCustomerView_IF editcustomer;
+	private AddStaffIF addstaff;
+	private AddCustomerIF addcustomer;
+	private EditStaffIF editstaff;
+	private EditCustomerIF editcustomer;
 	private DAOManager_IF daoM;
 	
 	public AdminController(AddStaffView addstaff) {
@@ -41,17 +41,16 @@ public class AdminController implements AdminController_IF {
 		daoM = new DAOManager();
 	}
 	
-	
 
 	/**
 	 * Method for adding an employee to database.
 	 */
 	public boolean addStaff() {
 		Staff hkunta = new Staff();
-		String etunimi = addstaff.getStaffFirstName();
-		String sukunimi = addstaff.getStaffSurname();
-		String puhnro = addstaff.getStaffPhone();
-		String email = addstaff.getStaffEmail();
+		String etunimi = addstaff.getFirstName();
+		String sukunimi = addstaff.getSurname();
+		String puhnro = addstaff.getPhoneNumber();
+		String email = addstaff.getEmail();
 		String ammatti = addstaff.getProfession();
 		String pw = encryptPassword(addstaff.getPassword());
 		
@@ -83,14 +82,14 @@ public class AdminController implements AdminController_IF {
 		Customer customer = new Customer();
 		boolean success = true;
 		
-		String hetu = addcustomer.getCustHetu();
-		String etunimi = addcustomer.getCustFirstname();
-		String sukunimi = addcustomer.getCustSurname();
-		String puhnro = addcustomer.getCustPhone();
-		String email = addcustomer.getCustEmail();
-		String ICE = addcustomer.getCustICE();
-		String osoite = addcustomer.getCustAddress();
-		String pw = encryptPassword(addcustomer.getCustPassword());
+		String hetu = addcustomer.getSSN();
+		String etunimi = addcustomer.getFirstName();
+		String sukunimi = addcustomer.getSurname();
+		String puhnro = addcustomer.getPhoneNumber();
+		String email = addcustomer.getEmail();
+		String ICE = addcustomer.getICE();
+		String osoite = addcustomer.getAddress();
+		String pw = encryptPassword(addcustomer.getPassword());
 		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ICE, osoite, pw };
 		for (String string : info) {
 			if (string.isEmpty()) {

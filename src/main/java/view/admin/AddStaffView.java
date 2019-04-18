@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,13 +17,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import view.HyteGUI;
+import view.ViewChanger;
+import view.enums.Bundles;
 
 /**
  * Class for adding staff members to database.
  * @author IdaKi
  *
  */
-public class AddStaffView extends ViewChanger implements Initializable, AddStaffView_IF{
+public class AddStaffView extends ViewChanger implements Initializable, AddStaffIF{
 	
 	@FXML
 	private TextField fNameStaff;
@@ -96,7 +99,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * Returns the text written in the first name -field.
 	 * @return Employee's first name
 	 */
-	public String getStaffFirstName() {
+	public String getFirstName() {
 		return this.fNameStaff.getText();
 	}
 
@@ -104,7 +107,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * Returns the text written in the surname -field.
 	 * @return Employee's surname
 	 */
-	public String getStaffSurname() {
+	public String getSurname() {
 		return this.surnameStaff.getText();
 	}
 
@@ -112,7 +115,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * Returns the text written in the phone number -field.
 	 * @return Employee's phone number
 	 */
-	public String getStaffPhone() {
+	public String getPhoneNumber() {
 		return this.phoneNroStaff.getText();
 	}
 
@@ -120,7 +123,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * Returns the text written in the email -field.
 	 * @return Employee's email
 	 */
-	public String getStaffEmail() {
+	public String getEmail() {
 		return this.emailStaff.getText();
 	}
 

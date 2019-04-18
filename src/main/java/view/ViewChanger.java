@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import view.enums.Bundles;
+import view.enums.FxmlEnum;
 
 /**
  * The <code> ViewChanger</code> class is a class that provides scene changing methods for its subclasses.

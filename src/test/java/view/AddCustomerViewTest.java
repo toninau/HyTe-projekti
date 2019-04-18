@@ -1,6 +1,7 @@
 package view;
-/*
+
 import org.hamcrest.Matchers;
+import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import model.HibernateUtil;
+import view.admin.AddCustomerView;
+
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 import static org.junit.Assert.assertTrue;
 import static org.testfx.api.FxAssert.verifyThat;
@@ -28,7 +32,7 @@ public class AddCustomerViewTest extends ApplicationTest {
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(AdminView.class.getResource("/fxml/AddCustomerView.fxml"));
+	    Parent mainNode = FXMLLoader.load(AddCustomerView.class.getResource("/fxml/AddCustomerView.fxml"));
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
@@ -36,6 +40,8 @@ public class AddCustomerViewTest extends ApplicationTest {
 	
 	@BeforeAll
 	  public static void setUp () throws Exception {
+		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
+
 		System.setProperty("testfx.robot", "glass"); 
 		System.setProperty("testfx.headless", "true"); 
 		System.setProperty("prism.order", "sw"); 
@@ -114,4 +120,3 @@ public class AddCustomerViewTest extends ApplicationTest {
         assertTrue(SCryptUtil.check(pw.getText(), hashed));
 	}
 }
-*/

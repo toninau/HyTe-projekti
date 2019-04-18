@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,13 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.Staff;
+import view.ViewChanger;
 
 /**
  * Class for editing staff members in database.
  * @author IdaKi
  *
  */
-public class EditStaffView extends ViewChanger implements Initializable, EditStaffView_IF {
+public class EditStaffView extends ViewChanger implements Initializable, EditStaffIF {
 
 	@FXML 
 	private Button search;
@@ -58,7 +59,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	/**
 	 * Generates an ArrayList for the suggestion provider.
 	 */
-	public void allStaff() {
+	public void allFromDatabase() {
 		Staff[] staffs = c.findStaffAll();
         for (Staff staff : staffs) {
             resultSet.add(staff.getStaffID() + ", " + staff.getSurname() + ", " + staff.getFirstName());
@@ -68,7 +69,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	/**
 	 * Shows chosen employee's information from the database in the text fields.
 	 */
-	public void showStaffInfo() {
+	public void showInfo() {
 		String [] split = searchStaff.getText().split(","); ;		
 		String before = split[0];
 		staff = c.findStaffWithID(before);
@@ -81,7 +82,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	/**
 	 * Updates the employee's information according to the text in the text fields.
 	 */
-	public void updateStaffInfo() {
+	public void updateInfo() {
 		staff.setFirstName(getFirstName());
 		staff.setSurname(getSurname());
 		staff.setStaffID(getEmail());
@@ -120,7 +121,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		allStaff();
+		allFromDatabase();
 		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));	
 	}
 	

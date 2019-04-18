@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,13 +16,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import view.HyteGUI;
+import view.ViewChanger;
+import view.enums.Bundles;
 
 /**
  * Class for adding customers to database.
  * @author IdaKi
  *
  */
-public class AddCustomerView extends ViewChanger implements Initializable, AddCustomerView_IF {
+public class AddCustomerView extends ViewChanger implements Initializable, AddCustomerIF {
 
 	@FXML
 	private Button addCustomer;
@@ -102,14 +105,14 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	
 	
 	public void createInfoMap() {
-		customerInfo.put("ssn", getCustHetu());
-		customerInfo.put("firstname", getCustFirstname());
-		customerInfo.put("surname", getCustSurname());
-		customerInfo.put("email", getCustEmail());
-		customerInfo.put("phone", getCustPhone());
-		customerInfo.put("ice", getCustICE());
-		customerInfo.put("address", getCustAddress());
-		customerInfo.put("password", getCustPassword());
+		customerInfo.put("ssn", getSSN());
+		customerInfo.put("firstname", getFirstName());
+		customerInfo.put("surname", getSurname());
+		customerInfo.put("email", getEmail());
+		customerInfo.put("phone", getPhoneNumber());
+		customerInfo.put("ice", getICE());
+		customerInfo.put("address", getAddress());
+		customerInfo.put("password", getPassword());
 	}
 	
 	/**
@@ -132,7 +135,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Returns the text written in the social security number -field.
 	 * @return Customer's social security number.
 	 */
-	public String getCustHetu() {
+	public String getSSN() {
 		return checkIfEmpty(this.ssn);
 	}
 
@@ -140,7 +143,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Returns the text written in the address -field.
 	 * @return Customer's home address.
 	 */
-	public String getCustAddress() {
+	public String getAddress() {
 		return checkIfEmpty(this.address);
 	}
 
@@ -148,7 +151,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Returns the text written in the in case of emergency number -field.
 	 * @return Customer's ice-number.
 	 */
-	public String getCustICE() {
+	public String getICE() {
 		return checkIfEmpty(this.ice);
 	}
 
@@ -156,7 +159,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Returns the text written in the email -field.
 	 * @return Customer's email address.
 	 */
-	public String getCustEmail() {
+	public String getEmail() {
 		return checkIfEmpty(this.email);
 	}
 
@@ -164,7 +167,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Returns the text written in the phone number -field.
 	 * @return Customer's phone number.
 	 */
-	public String getCustPhone() {
+	public String getPhoneNumber() {
 		return checkIfEmpty(this.phone);
 	}
 
@@ -172,7 +175,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Returns the text written in the surname -field.
 	 * @return Customer's surname.
 	 */
-	public String getCustSurname() {
+	public String getSurname() {
 		return checkIfEmpty(this.surname);
 	}
 
@@ -180,7 +183,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Returns the text written in the first name -field.
 	 * @return Customer's first name.
 	 */
-	public String getCustFirstname() {
+	public String getFirstName() {
 		return checkIfEmpty(this.firstname);
 	}
 	
@@ -188,7 +191,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Returns the text written in the password -field.
 	 * @return Customer's password.
 	 */
-	public String getCustPassword() {
+	public String getPassword() {
 		return checkIfEmpty(this.password);
 	}
 	

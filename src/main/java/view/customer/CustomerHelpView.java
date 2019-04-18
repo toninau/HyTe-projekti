@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import view.ViewChanger;
 
 
 public class CustomerHelpView extends ViewChanger implements Initializable {

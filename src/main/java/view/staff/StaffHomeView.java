@@ -1,4 +1,4 @@
-package view;
+package view.staff;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import view.ViewChanger;
 
 public class StaffHomeView extends ViewChanger implements Initializable{
 

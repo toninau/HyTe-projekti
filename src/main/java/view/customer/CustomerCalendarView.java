@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import view.ViewChanger;
 
 public class CustomerCalendarView extends ViewChanger implements Initializable {
 

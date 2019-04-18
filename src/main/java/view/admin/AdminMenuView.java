@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +10,10 @@ import javafx.scene.control.Tooltip;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import view.HyteGUI;
+import view.ViewChanger;
+import view.enums.Bundles;
+import view.enums.FxmlEnum;
 
 public class AdminMenuView extends ViewChanger implements Initializable {
 	

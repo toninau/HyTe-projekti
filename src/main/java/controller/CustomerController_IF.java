@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import model.BloodValue;
 import model.Customer;
@@ -12,5 +12,5 @@ public interface CustomerController_IF {
 	public abstract BloodValue[] bloodValueData();
 	public abstract boolean createBloodsugar();
 	public abstract Prescription[] prescriptions();
-	public abstract ArrayList<String> locationSuggestions();
+	public abstract List<String> locationSuggestions();
 }
