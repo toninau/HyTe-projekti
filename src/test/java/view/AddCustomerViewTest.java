@@ -24,6 +24,7 @@ import view.enums.Bundles;
 
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static org.junit.Assert.assertTrue;
@@ -36,7 +37,8 @@ public class AddCustomerViewTest extends ApplicationTest {
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+		Locale fi = new Locale("fi", "FI");
+		ResourceBundle bundle = ResourceBundle.getBundle("properties.Admin", fi);
 	    Parent mainNode = FXMLLoader.load(AddCustomerView.class.getResource("/fxml/AddCustomerView.fxml"), bundle);
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
