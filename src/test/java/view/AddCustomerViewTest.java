@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import model.HibernateUtil;
 import view.admin.AddCustomerView;
 import view.enums.Bundles;
+import view.enums.FxmlEnum;
 
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
@@ -47,7 +48,7 @@ public class AddCustomerViewTest extends ApplicationTest {
 	
 	@BeforeAll
 	  public static void setUp () throws Exception {
-		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
+		//SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
 
 		System.setProperty("testfx.robot", "glass"); 
 		System.setProperty("testfx.headless", "true"); 
@@ -65,12 +66,12 @@ public class AddCustomerViewTest extends ApplicationTest {
 	
 	@Test
 	public void addCustomerName() {
-		TextField fname = lookup("#fNameCust").query();
-		TextField surname = lookup("#sNameCust").query();
+		TextField fname = lookup("#firstname").query();
+		TextField surname = lookup("#surname").query();
 
-        clickOn("#fNameCust");
+        clickOn("#firstname");
         write("firstname");
-        clickOn("#sNameCust");
+        clickOn("#surname");
         write("surname");
         
         verifyThat(fname.getText(), Matchers.is("firstname"));
@@ -80,40 +81,40 @@ public class AddCustomerViewTest extends ApplicationTest {
 	
 	@Test
 	public void addCustomerEmail() {
-		TextField emailStaff = lookup("#emailCust").query();
-	    clickOn("#emailCust");
+		TextField email = lookup("#email").query();
+	    clickOn("#email");
 	    write("example@email.com");   
-	    verifyThat(emailStaff.getText(), Matchers.is("example@email.com"));
+	    verifyThat(email.getText(), Matchers.is("example@email.com"));
 	}
 	
 	@Test
 	public void addCustomerPhoneNumber() {
-		TextField phoneNumber = lookup("#phoneNroCust").query();
-		clickOn("#phoneNroCust");
+		TextField phoneNumber = lookup("#phone").query();
+		clickOn("#phone");
 	    write("0401234567");
         verifyThat(phoneNumber.getText(), Matchers.is("0401234567"));
 	}
 	
 	@Test
 	public void addCustomerSSN() {
-		TextField ssn = lookup("#hetuCust").query();
-		clickOn("#hetuCust");
+		TextField ssn = lookup("#ssn").query();
+		clickOn("#ssn");
 	    write("000000-000A");
         verifyThat(ssn.getText(), Matchers.is("000000-000A"));
 	}
 	
 	@Test
 	public void addCustomerICENumber() {
-		TextField ice = lookup("#ICECust").query();
-		clickOn("#ICECust");
+		TextField ice = lookup("#ice").query();
+		clickOn("#ice");
 	    write("0504230101");
         verifyThat(ice.getText(), Matchers.is("0504230101"));
 	}
 	
 	@Test
 	public void addCustomerAddressTest() {
-		TextField addr = lookup("#addressCust").query();
-		clickOn("#addressCust");
+		TextField addr = lookup("#address").query();
+		clickOn("#address");
 	    write("Pihakuja 1");
         verifyThat(addr.getText(), Matchers.is("Pihakuja 1"));
 	}

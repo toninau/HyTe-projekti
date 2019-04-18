@@ -35,7 +35,7 @@ public class HyteGUI extends Application {
 	
 	private Stage primaryStage;
 	private ResourceBundle bundle;
-	static Locale currentLocale = null;
+	static Locale currentLocale = new Locale("fi", "FI");
 
 	public static void main(String[] args) {
 		launch(args);
