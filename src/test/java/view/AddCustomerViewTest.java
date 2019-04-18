@@ -20,8 +20,12 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import model.HibernateUtil;
 import view.admin.AddCustomerView;
+import view.enums.Bundles;
 
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
+
+import java.util.ResourceBundle;
+
 import static org.junit.Assert.assertTrue;
 import static org.testfx.api.FxAssert.verifyThat;
 
@@ -32,7 +36,8 @@ public class AddCustomerViewTest extends ApplicationTest {
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(AddCustomerView.class.getResource("/fxml/AddCustomerView.fxml"));
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+	    Parent mainNode = FXMLLoader.load(AddCustomerView.class.getResource("/fxml/AddCustomerView.fxml"), bundle);
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
