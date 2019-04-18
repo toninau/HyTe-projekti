@@ -48,7 +48,7 @@ public class AddCustomerViewTest extends ApplicationTest {
 	
 	@BeforeAll
 	  public static void setUp () throws Exception {
-		//SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
+		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
 
 		System.setProperty("testfx.robot", "glass"); 
 		System.setProperty("testfx.headless", "true"); 
