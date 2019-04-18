@@ -10,6 +10,8 @@ import controller.AdminController;
 import controller.AdminController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -75,6 +77,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Changes scene back to Login view.
 	 * @param event Mouse clicked.
 	 * @throws IOException Loading fxml file failed.
+	 * 
 	 */
 	public void logout(MouseEvent event) throws IOException {
 		logoutForAll(event);
@@ -89,6 +92,15 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 		toAdminMenu(event);
 	}
 	
+	public void alert() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error");
+		alert.setHeaderText("Tiedot");
+		alert.setContentText("Tarkista antamasi tiedot");
+		alert.showAndWait();
+	}
+	
+	
 	public void createInfoMap() {
 		customerInfo.put("ssn", getCustHetu());
 		customerInfo.put("firstname", getCustFirstname());
@@ -100,15 +112,20 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 		customerInfo.put("password", getCustPassword());
 	}
 	
-	public String checkIfEmpty(TextField f) {
-		if(f.getText().isEmpty()) {
-			f.setPromptText("Arvo puuttuu");
-			f.setStyle("-fx-prompt-text-fill: red;");
+	/**
+	 * Checks if the given text field is empty.
+	 * @param field Text field which text is checked.
+	 * @return Empty string if text field is empty, otherwise the text in the text field.
+	 */
+	public String checkIfEmpty(TextField field) {
+		if(field.getText().isEmpty()) {
+			field.setPromptText("Arvo puuttuu");
+			field.setStyle("-fx-prompt-text-fill: red;");
 			return "";
 		}
-		f.setPromptText(bundle.getString(f.getId() + ".prompt"));
-		f.setStyle("-fx-prompt-text-fill: default;");
-		return f.getText();
+		field.setPromptText(bundle.getString(field.getId() + ".prompt"));
+		field.setStyle("-fx-prompt-text-fill: #adbace;");
+		return field.getText();
 	}
 	
 	/**

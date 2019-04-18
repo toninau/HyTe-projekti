@@ -10,4 +10,5 @@ public interface AddCustomerView_IF {
 	public abstract String getCustSurname();
 	public abstract String getCustFirstname();
 	public abstract String getCustPassword();
+	public abstract void alert();
 }

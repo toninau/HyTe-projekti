@@ -25,7 +25,7 @@ public enum FxmlEnum {
 	/**
 	 * fxml files for staff
 	 */
-	STAFF("fxml/StaffView.fxml");
+	STAFFHOME("fxml/StaffHomeView.fxml");
 	
 	private String fxmlName;
 	

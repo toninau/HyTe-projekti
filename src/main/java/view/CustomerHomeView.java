@@ -68,7 +68,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 			}
 		}
-
 	}
 
 	/**
@@ -111,6 +110,10 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 				weatherState.setText(bundle.getString("weather.rain"));
 				break;
 			case "Clear":
+				image = new Image(getClass().getResourceAsStream("/pictures/spain_flag.png"));
+				weatherState.setText(bundle.getString("weather.sunny"));
+				break;
+			case "Haze":
 				image = new Image(getClass().getResourceAsStream("/pictures/spain_flag.png"));
 				weatherState.setText(bundle.getString("weather.sunny"));
 				break;

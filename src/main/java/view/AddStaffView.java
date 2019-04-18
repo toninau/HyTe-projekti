@@ -9,11 +9,13 @@ import controller.AdminController;
 import controller.AdminController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -26,7 +28,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	@FXML
 	private TextField fNameStaff;
 	@FXML
-	private TextField sNameStaff;
+	private TextField surnameStaff;
 	@FXML
 	private TextField phoneNroStaff;
 	@FXML
@@ -57,11 +59,19 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	public void addStaff() {
 		if(c.addStaff()) {
 			fNameStaff.clear();
-			sNameStaff.clear();
+			surnameStaff.clear();
 			emailStaff.clear();
 			phoneNroStaff.clear();
 			passwordStaff.clear();
 		}
+	}
+	
+	public void alert() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error");
+		alert.setHeaderText("Tiedot");
+		alert.setContentText("Tarkista tiedot");
+		alert.showAndWait();
 	}
 	
 	/**
@@ -95,7 +105,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * @return Employee's surname
 	 */
 	public String getStaffSurname() {
-		return this.sNameStaff.getText();
+		return this.surnameStaff.getText();
 	}
 
 	/**

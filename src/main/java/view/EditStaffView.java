@@ -31,6 +31,8 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	@FXML 
 	private Button save;
 	@FXML
+	private Button remove;
+	@FXML
 	private TextField firstName;
 	@FXML
 	private TextField surname;
@@ -46,13 +48,16 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	private ArrayList<String> resultSet;
 
 	private AdminController_IF c;
-	Staff staff;
+	private Staff staff;
 	
 	public EditStaffView() {
 		c = new AdminController(this);
 		resultSet = new ArrayList<>();
 	}
 	
+	/**
+	 * Generates an ArrayList for the suggestion provider.
+	 */
 	public void allStaff() {
 		Staff[] staffs = c.findStaffAll();
         for (Staff staff : staffs) {
@@ -60,28 +65,44 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
         }
 	}
 	
+	/**
+	 * Shows chosen employee's information from the database in the text fields.
+	 */
 	public void showStaffInfo() {
 		String [] split = searchStaff.getText().split(","); ;		
-		int before = Integer.parseInt(split[0]);
-		staff = c.findStaffWithID(staff.getStaffID());
+		String before = split[0];
+		staff = c.findStaffWithID(before);
 		firstName.setText(staff.getFirstName());
 		surname.setText(staff.getSurname());
 		email.setText(staff.getStaffID());
 		phoneNumber.setText(staff.getPhoneNumber());
 	}
 	
+	/**
+	 * Updates the employee's information according to the text in the text fields.
+	 */
 	public void updateStaffInfo() {
 		staff.setFirstName(getFirstName());
 		staff.setSurname(getSurname());
 		staff.setStaffID(getEmail());
 		staff.setPhoneNumber(getPhoneNumber());
-		c.updateStaff(staff);
+		if(c.updateStaff(staff)) {
+			firstName.clear();
+			surname.clear();
+			email.clear();
+			phoneNumber.clear();
+		}
+	}
+	
+	public void removeCustomer() {
+		
 	}
 	
 	/**
 	 * Changes scene back to Login view.
 	 * @param event Mouse clicked.
 	 * @throws IOException Loading fxml file failed.
+	 * @see view.ViewChanger#logoutForAll(Event);
 	 */
 	public void logout(MouseEvent event) throws IOException {
 		logoutForAll(event);
@@ -91,6 +112,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	 * Changes scene back to Admin's menu view.
 	 * @param event Mouse clicked.
 	 * @throws IOException Loading fxml file failed.
+	 * @see view.ViewChanger#toAdminMenu(MouseEvent);
 	 */
 	public void toMenu(MouseEvent event) throws IOException {
 		toAdminMenu(event);
@@ -99,15 +121,21 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		allStaff();
-
-		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));
-		
+		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));	
 	}
 	
+	
+	
+	/**
+	 * @return 
+	 */
 	public String getFirstName() {
 		return this.firstName.getText();
 	}
 	
+	/**
+	 * 
+	 */
 	public String getSurname() {
 		return this.surname.getText();
 	}

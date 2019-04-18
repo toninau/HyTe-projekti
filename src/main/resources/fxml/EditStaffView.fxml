@@ -100,6 +100,7 @@
             </HBox>
             <Button fx:id="logout" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#logout" text="%logout.text" />
             <Button fx:id="toMenu" layoutX="50.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="%back.text" />
+            <Button fx:id="remove" layoutX="419.0" layoutY="561.0" mnemonicParsing="false" text="remove" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

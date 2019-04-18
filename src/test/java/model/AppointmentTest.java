@@ -9,7 +9,10 @@ public class AppointmentTest {
 	private Appointment appointment;
 	private Staff staffmember;
 	private Customer customer;
-
+	
+	/**
+	 * Creates appointment, staff and customer.
+	 */
 	@BeforeEach
 	public void setAppointment() {
 		appointment = new Appointment();
@@ -37,6 +40,9 @@ public class AppointmentTest {
 		}
 	}
 
+	/**
+	 * Tests the get and set methods.
+	 */
 	@Test
 	public void testGetSetID() {
 		appointment.setAppointmentID(1);

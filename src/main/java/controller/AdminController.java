@@ -1,12 +1,8 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.lambdaworks.crypto.SCryptUtil;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import model.Customer;
 import model.DAOManager;
 import model.DAOManager_IF;
@@ -59,17 +55,12 @@ public class AdminController implements AdminController_IF {
 		String ammatti = addstaff.getProfession();
 		String pw = encryptPassword(addstaff.getPassword());
 		
-		
 		String[] info = { etunimi, sukunimi, puhnro, email, ammatti, pw };
 		boolean success = true;
 		for (String string : info) {
 			if (string.isEmpty()) {
 				success = false;
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error");
-				alert.setHeaderText("Tiedot");
-				alert.setContentText("Tarkista tiedot");
-				alert.showAndWait();
+				addstaff.alert();
 				break;
 			}
 		}	
@@ -104,11 +95,8 @@ public class AdminController implements AdminController_IF {
 		for (String string : info) {
 			if (string.isEmpty()) {
 				success = false;
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error");
-				alert.setHeaderText("Tiedot");
-				alert.setContentText("Tarkista antamasi tiedot");
-				alert.showAndWait();
+				addcustomer.alert();
+				break;
 			}
 		}
 		if (success) {
@@ -127,9 +115,15 @@ public class AdminController implements AdminController_IF {
 	
 
 	
-	
-	public void updateStaff(Staff f) {
-		daoM.update(f);
+	/**
+	 * Method for updating the information of an employee.
+	 * 
+	 */
+	public boolean updateStaff(Staff f) {
+		if(daoM.update(f)) {
+			return true;
+		}
+		return false;
 	}
 	
 	public void updateCustomer(Customer customer) {

@@ -133,6 +133,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
+                              <Button fx:id="remove" mnemonicParsing="false" text="remove" />
                               <Button fx:id="confirmEdit" mnemonicParsing="false" onMouseClicked="#updateCustomerInfo" prefHeight="72.0" prefWidth="182.0" text="%saveButton.text">
                                  <font>
                                     <Font size="14.0" />

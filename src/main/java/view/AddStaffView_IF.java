@@ -8,4 +8,5 @@ public interface AddStaffView_IF {
 	public abstract String getStaffEmail();
 	public abstract String getProfession();
 	public abstract String getPassword();
+	public abstract void alert();
 }

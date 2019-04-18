@@ -91,7 +91,9 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		String title = "Login";
 		if (!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
 			if (c.checkLoginStaff()) {
-				fxml = FxmlEnum.STAFF.getFxml();
+				fxml = FxmlEnum.STAFFHOME.getFxml();
+				//bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
+
 				title = "Staff view";
 			} else {
 				fxml = FxmlEnum.LOGIN.getFxml();
@@ -167,10 +169,8 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		}
 	}
 
-	public void languageChangePhotos() {
-		
+	public void languageChangePhotos() {	
 		languageChange.setItems(HyteGUI.getSupportedLocales());
-
 		languageChange.setCellFactory(new Callback<ListView<Locale>, ListCell<Locale>>() {
 			@Override
 			public ListCell<Locale> call(ListView<Locale> param) {

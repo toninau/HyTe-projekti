@@ -45,21 +45,26 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	@FXML
 	private Button findButton;
 	@FXML
+	private Button remove;
+	@FXML
 	private Button logout;
 	@FXML
 	private Button toMenu;
 	
 	private ArrayList<String> resultSet;
 	private AdminController_IF c;
-	Customer customer;
+	private Customer customer;
 	
+	/**
+	 * 
+	 */
 	public EditCustomerView() {
 		c = new AdminController(this);
 		resultSet = new ArrayList<>();
 	}
 	
 	/**
-	 * Gets all customers from database.
+	 * Gets all customers from database for suggestion provider.
 	 */
 	public void allCustomers() {
 		Customer[] customers = c.findCustomerAll();
@@ -68,11 +73,11 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
         }
 	}
 
+	/**
+	 * Fills the text fields with chosen customer's information.
+	 */
 	public void showCustomerInfo() {
-		//String [] split = findCustomer.getText().split(",");
-		//int before = Integer.parseInt(split[0]);
 		customer = c.findCustomerWithID(customer.getCustomerID());
-		
 		firstname.setText(customer.getFirstName());
 		surname.setText(customer.getSurname());
 		email.setText(customer.getCustomerID());
@@ -82,6 +87,9 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 		address.setText(customer.getAddress());
 	}
 	
+	/**
+	 * Updates the customer's information with the text found in text fields.
+	 */
 	public void updateCustomerInfo() {
 		customer.setFirstName(getCustFirstname());
 		customer.setSurname(getCustSurname());
@@ -92,6 +100,12 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 		customer.setCustomerID(getCustEmail());
 		c.updateCustomer(customer);	
 	}
+	
+	
+	public void removeCustomer() {
+		
+	}
+	
 	/**
 	 * Changes scene back to Login view.
 	 * @param event Mouse clicked.

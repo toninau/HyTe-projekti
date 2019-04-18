@@ -12,7 +12,6 @@ public class LoginController implements LoginController_IF {
 
 	private DAOManager_IF daom;
 	private LoginView_IF view;
-	private CustomerController_IF customerController;
 
 	private boolean success = false;
 
@@ -27,7 +26,7 @@ public class LoginController implements LoginController_IF {
 
 	public boolean checkLoginCustomer() {
 		success = false;
-		customerController = new CustomerController();
+		CustomerController_IF customerController = new CustomerController();
 		String email = view.getUsernameCustomer();
 		String password = view.getPasswordCustomer();
 		Customer customer = getCustomerFromDatabase(email);

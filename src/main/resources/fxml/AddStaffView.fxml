@@ -45,7 +45,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="emailStaff" promptText="%surname.prompt" />
+                        <TextField fx:id="surnameStaff" promptText="%surname.prompt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -71,7 +71,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="sNameStaff" promptText="%email.prompt" />
+                        <TextField fx:id="emailStaff" promptText="%email.prompt" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
