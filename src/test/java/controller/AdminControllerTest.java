@@ -85,10 +85,10 @@ public class AdminControllerTest {
 	public void findCustomerAllLengthTest() {
 		System.out.println(adminController.findCustomerAll().length);
 
-		assertTrue(adminController.findCustomerAll().length == 3);
+		assertTrue(adminController.findCustomerAll().length == 1);
 		Customer newCustomer = new Customer("Mary", "Smith", "12345", "Homestead 5", "m@cust.com", "040124567", "0501234567", "password");
 		daom.getCustomerDAO().create(newCustomer);
-		assertTrue(adminController.findCustomerAll().length == 4);
+		assertTrue(adminController.findCustomerAll().length == 2);
 		
 	}
 	
@@ -109,10 +109,10 @@ public class AdminControllerTest {
 	 */
 	@Test
 	public void findStaffAllLengthTest() {
-		assertTrue(adminController.findStaffAll().length == 5);
+		assertTrue(adminController.findStaffAll().length == 1);
 		Staff newStaff = new Staff("m@sta.com","Mark", "Manson", "0401234568", "Nurse", "passowrd");
 		daom.getStaffDAO().create(newStaff);
-		assertTrue(adminController.findStaffAll().length == 6);
+		assertTrue(adminController.findStaffAll().length == 2);
 	}
 	
 	/**
