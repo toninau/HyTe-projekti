@@ -24,6 +24,10 @@ public class AdminController implements AdminController_IF {
 	private EditCustomerIF editcustomer;
 	private DAOManager_IF daoM;
 	
+	public AdminController() {
+		daoM = new DAOManager();
+	}
+	
 	public AdminController(AddStaffView addstaff) {
 		this.addstaff = addstaff;
 		daoM  = new DAOManager();

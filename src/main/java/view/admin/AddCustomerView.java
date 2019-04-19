@@ -194,7 +194,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	public String getPassword() {
 		return checkIfEmpty(this.password);
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());

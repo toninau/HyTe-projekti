@@ -64,6 +64,7 @@ public class AddCustomerViewTest extends ApplicationTest {
 	    release(new MouseButton[]{});
 	}
 	
+	
 	@Test
 	public void addCustomerName() {
 		TextField fname = lookup("#firstname").query();

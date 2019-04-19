@@ -24,11 +24,9 @@ public class LoginController implements LoginController_IF {
 		return (Customer) daom.readWithEmail("customer", email);
 	}
 
-	public boolean checkLoginCustomer() {
+	public boolean checkLoginCustomer(String email, String password) {
 		success = false;
 		CustomerController_IF customerController = new CustomerController();
-		String email = view.getUsernameCustomer();
-		String password = view.getPasswordCustomer();
 		Customer customer = getCustomerFromDatabase(email);
 		String pwFromDB = customer.getPassword();
 		String emailFromDB = customer.getCustomerID();
@@ -58,14 +56,12 @@ public class LoginController implements LoginController_IF {
 	}
 
 	@Override
-	public boolean checkLoginStaff() {
+	public boolean checkLoginStaff(String email, String password) {
 		success = false;
-		String password = view.getPasswordStaff();
-		String email = view.getUsernameStaff();
 		Staff staff = getStaffFromDatabase(email);
 		String pwFromDB = staff.getPassword();
 		String emailFromDB = staff.getStaffID();
-
+		
 		if (pwFromDB != null) {
 			if (checkUsername(email, emailFromDB)) {
 				if (checkPassword(password, pwFromDB)) {
