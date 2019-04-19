@@ -12,11 +12,15 @@ import controller.AdminController_IF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import model.Customer;
+import view.HyteGUI;
 import view.ViewChanger;
+import view.enums.Bundles;
 
 /**
  * Class for editing customers in database.
@@ -55,6 +59,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	private ArrayList<String> resultSet;
 	private AdminController_IF c;
 	private Customer customer;
+	private ResourceBundle bundle;
 	
 	/**
 	 * 
@@ -102,10 +107,50 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 		c.updateCustomer(customer);	
 	}
 	
-	
+	/**
+	 * Deletes the chosen customer from database.
+	 */
 	public void removeCustomer() {
-		
+		if(c.removeStaffFromDatabase(getEmail())){
+			clearFields();
+		}else {
+			alert("remove");
+		}
 	}
+	
+	public void clearFields() {
+		firstname.clear();
+		surname.clear();
+		email.clear();
+		phone.clear();
+		address.clear();
+		ice.clear();
+		ssn.clear();	
+	}
+	
+	public void alert(String msg) {
+		String title;
+		switch (msg) {
+		case "remove":
+			msg = bundle.getString("loginFailed.username");
+			title = bundle.getString("loginFailed.title");
+			break;
+		case "update":
+			msg = bundle.getString("loginFailed.password");
+			title = bundle.getString("loginFailed.title");
+			break;
+		default:
+			msg = "Login failed.";
+			title = "Login failed";
+			break;
+		}
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setContentText(msg);
+		alert.showAndWait();
+	}
+
 	
 	/**
 	 * Changes scene back to Login view.
@@ -130,6 +175,8 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+
 		allFromDatabase();
 		TextFields.bindAutoCompletion(findCustomer, SuggestionProvider.create(resultSet));
 	}

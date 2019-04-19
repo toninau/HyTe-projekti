@@ -12,11 +12,15 @@ import controller.AdminController_IF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import model.Staff;
+import view.HyteGUI;
 import view.ViewChanger;
+import view.enums.Bundles;
 
 /**
  * Class for editing staff members in database.
@@ -50,6 +54,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 
 	private AdminController_IF c;
 	private Staff staff;
+	ResourceBundle bundle;
 	
 	public EditStaffView() {
 		c = new AdminController(this);
@@ -88,16 +93,54 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		staff.setStaffID(getEmail());
 		staff.setPhoneNumber(getPhoneNumber());
 		if(c.updateStaff(staff)) {
-			firstName.clear();
-			surname.clear();
-			email.clear();
-			phoneNumber.clear();
+			clearFields();
+		}else {
+			alert("update");
+
 		}
 	}
 	
-	public void removeCustomer() {
-		
+	/**
+	 * Deletes the chosen employee from database.
+	 */
+	public void removeStaff() {
+		if(c.removeStaffFromDatabase(getEmail())){
+			clearFields();
+		}else {
+			alert("remove");
+		}
 	}
+	
+	public void clearFields() {
+		firstName.clear();
+		surname.clear();
+		email.clear();
+		phoneNumber.clear();
+	}
+	
+	public void alert(String msg) {
+		String title;
+		switch (msg) {
+		case "remove":
+			msg = bundle.getString("loginFailed.username");
+			title = bundle.getString("loginFailed.title");
+			break;
+		case "update":
+			msg = bundle.getString("loginFailed.password");
+			title = bundle.getString("loginFailed.title");
+			break;
+		default:
+			msg = "Login failed.";
+			title = "Login failed";
+			break;
+		}
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setContentText(msg);
+		alert.showAndWait();
+	}
+	
 	
 	/**
 	 * Changes scene back to Login view.
@@ -121,6 +164,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 		allFromDatabase();
 		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));	
 	}

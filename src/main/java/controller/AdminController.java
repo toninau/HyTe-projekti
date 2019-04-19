@@ -152,6 +152,14 @@ public class AdminController implements AdminController_IF {
 		return (Customer)daoM.readWithEmail("customer",id );
 	}
 	
+	public boolean removeStaffFromDatabase(String id) {
+		return daoM.getStaffDAO().delete(id);
+	}
+	
+	public boolean removeCustomerFromDatabase(String id) {
+		return daoM.getCustomerDAO().delete(id);
+	}
+	
 	public String encryptPassword(String password) {
 		String originalPassword = password;
 		return SCryptUtil.scrypt(originalPassword, 16, 16, 16);

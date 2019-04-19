@@ -12,4 +12,6 @@ public interface AdminController_IF {
 	public abstract Staff findStaffWithID(String id);
 	public abstract boolean updateStaff(Staff staff);
 	public abstract void updateCustomer(Customer customer);
+	public abstract boolean removeStaffFromDatabase(String id);
+	public abstract boolean removeCustomerFromDatabase(String id);
 }

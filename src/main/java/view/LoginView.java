@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -65,9 +66,9 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	private TextField usernameAsiakas;
 	@FXML
 	private Button loginBtnAsiakas;
-
 	@FXML
 	private ComboBox<Locale> languageChange;
+	
 	ObservableList<String> imageList;
 	private ResourceBundle bundle;
 	private LoginController_IF c;
@@ -156,6 +157,11 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		}
 	}
 	
+	/**
+	 * Fired when a key is pressed on the password field. Checks if the pressed key is enter.
+	 * @param event
+	 * @throws IOException
+	 */
 	public void checkIfEnterStaff(KeyEvent event) throws IOException {
 		if(event.getCode() == KeyCode.ENTER) {
 			loginStaff(event);
@@ -163,6 +169,11 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	}
 	
 
+	/**
+	 * Changes the current locale according to combo box value.
+	 * @param event Mouse clicked.
+	 * @throws IOException Loading the fxml file failed.
+	 */
 	public void changeLocale(ActionEvent event) throws IOException {
 		if (languageChange.getValue() != null) {
 			HyteGUI.setLocale(languageChange.getValue());
@@ -170,6 +181,9 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		}
 	}
 
+	/**
+	 * Set images for combo box.
+	 */
 	public void languageChangePhotos() {	
 		languageChange.setItems(HyteGUI.getSupportedLocales());
 		languageChange.setCellFactory(new Callback<ListView<Locale>, ListCell<Locale>>() {
@@ -188,27 +202,27 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 							switch (item.getCountry()) {
 							case "FI":
 								flag = new Image(getClass().getResourceAsStream("/pictures/finland_flag.png"));
-								text ="Finnish";
+								text = "Suomi";
 								break;
 							case "GB":
 								flag = new Image(getClass().getResourceAsStream("/pictures/uk_flag.png"));
-								text ="English";
+								text = "English";
 								break;
 							case "DE":
 								flag = new Image(getClass().getResourceAsStream("/pictures/german_flag.jpg"));
-								text ="German";
+								text = "Deutsch";
 								break;
 							case "FR":
 								flag = new Image(getClass().getResourceAsStream("/pictures/france_flag.png"));
-								text ="French";
+								text = "Français";
 								break;
 							case "SE":
 								flag = new Image(getClass().getResourceAsStream("/pictures/sweden_flag.png"));
-								text ="Swedish";
+								text = "Svenska";
 								break;
 							case "ES":
 								flag = new Image(getClass().getResourceAsStream("/pictures/spain_flag.png"));
-								text ="Spanish";
+								text = "Español";
 								break;
 							default:
 								flag = new Image(getClass().getResourceAsStream("/pictures/finland_flag.png"));
@@ -220,9 +234,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 							iconImageView.setFitWidth(30);
 							iconImageView.setPreserveRatio(true);
 							setGraphic(iconImageView);
-							setText(text);
-							setButton(flag, text);
-					
+							setText(text);					
 						}
 					}
 				};
@@ -231,28 +243,10 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		});
 	}
 
-
-	public void setButton(final Image flag, final String text) {
-		languageChange.setButtonCell(new ListCell<Locale>(){
-		    @Override
-		    protected void updateItem(Locale item, boolean btl){
-		        super.updateItem(item, btl);
-		        if(item != null) {
-		            Image img = flag;
-		            ImageView imgView = new ImageView(img);
-		            imgView.setFitHeight(20);
-		            imgView.setFitWidth(30);
-		            setGraphic(imgView);
-		            setText(text);
-		        }
-		    }
-		});
-	}
 	
 	/**
 	 * Create tooltips for components.
 	 */
-	
 	public void tooltips() {
 		Tooltip usernameTip = new Tooltip(bundle.getString("tooltip.username"));
 		Tooltip pwTip = new Tooltip(bundle.getString("tooltip.password"));
@@ -272,7 +266,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
 		tooltips();
 		languageChangePhotos();
-
+		languageChange.setPromptText("Choose a language");
 	}
 
 	/**
