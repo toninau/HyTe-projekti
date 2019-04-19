@@ -81,7 +81,7 @@ public class AdminControllerTest {
 	 * Tests the amount of customers in test database.
 	 * Should be 1 and 2 because the customers are deleted from test database after tests.
 	 */
-	@Test
+	/*@Test
 	public void findCustomerAllLengthTest() {
 		System.out.println(adminController.findCustomerAll().length);
 
@@ -90,7 +90,7 @@ public class AdminControllerTest {
 		daom.getCustomerDAO().create(newCustomer);
 		assertTrue(adminController.findCustomerAll().length == 2);
 		
-	}
+	}*/
 	
 	/**
 	 * Tests the names of the employees in database
