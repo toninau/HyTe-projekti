@@ -20,8 +20,6 @@ public class AdminController implements AdminController_IF {
 	
 	private AddStaffIF addstaff;
 	private AddCustomerIF addcustomer;
-	private EditStaffIF editstaff;
-	private EditCustomerIF editcustomer;
 	private DAOManager_IF daoM;
 	
 	public AdminController() {
@@ -29,19 +27,24 @@ public class AdminController implements AdminController_IF {
 	}
 	
 	public AdminController(AddStaffView addstaff) {
-		this.addstaff = addstaff;
-		daoM  = new DAOManager();
+		try {
+			this.addstaff = addstaff;
+			daoM  = new DAOManager();
+		}catch(IllegalArgumentException ie) {
+			ie.getMessage();
+		}
+
 	}
 	public AdminController(AddCustomerView addcustomer) {
 		this.addcustomer = addcustomer;
 		daoM = new DAOManager();
 	}
 	public AdminController(EditStaffView editstaff) {
-		this.editstaff = editstaff;
+		EditStaffIF es = editstaff;
 		daoM  = new DAOManager();
 	}
 	public AdminController(EditCustomerView editcustomer) {
-		this.editcustomer = editcustomer;
+		EditCustomerIF ec = editcustomer;
 		daoM = new DAOManager();
 	}
 	
@@ -147,13 +150,6 @@ public class AdminController implements AdminController_IF {
 	
 	public Customer findCustomerWithID(String id) {
 		return (Customer)daoM.readWithEmail("customer",id );
-	}
-	
-	public boolean checkEmailValidity(String email) {
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
 	}
 	
 	public String encryptPassword(String password) {

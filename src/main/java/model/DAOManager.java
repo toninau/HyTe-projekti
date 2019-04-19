@@ -76,7 +76,7 @@ public class DAOManager implements DAOManager_IF {
 		case "customer":
 			return getCustomerDAO().readAll();
 		default:
-			return null;
+			return new Object[0];
 		} 
 	}
 	

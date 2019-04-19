@@ -2,13 +2,10 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,7 +14,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import view.HyteGUI;
 /**
  * 
  * @author Jeremiaza
@@ -28,7 +24,7 @@ public class WeatherAPICall {
 	private double celsius;
 	private String state;
 	
-	public WeatherAPICall(String location) throws Exception{
+	public WeatherAPICall(String location) throws IOException{
 		
 		String url = "http://api.openweathermap.org/data/2.5/weather?q="+ location +"&APPID=aec9142965fb3ca48cf10cd6300423fc";
 		URL obj = new URL(url);

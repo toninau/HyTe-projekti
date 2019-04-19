@@ -48,7 +48,11 @@ public class AppointmentDAO {
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
-			transaction.rollback();
+			try {
+				transaction.rollback();
+			}catch(NullPointerException ne) {
+				ne.getMessage();
+			}
 		} finally {
 			session.close();
 		}
