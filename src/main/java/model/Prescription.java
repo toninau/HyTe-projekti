@@ -2,6 +2,8 @@ package model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 /**
  * Prescription entity
  * 
@@ -28,6 +30,16 @@ public class Prescription {
 
 	@Column(name = "prescriptionGuide")
 	private String prescriptionGuide;
+	
+	@Column(name = "timeToTake")
+	private String timeToTake;
+	
+	@Column(name = "dosage")
+	private String dosage;
+
+	@Column(name = "renewPrescription", nullable = false)
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	private boolean renewPrescription;
 
 	@ManyToOne
 	@JoinColumn(name = "customerID", nullable = false)
@@ -177,5 +189,30 @@ public class Prescription {
 	 */
 	public void setStaff(Staff staff) {
 		this.staff = staff;
+	}
+	
+	public String getTimeToTake() {
+		return timeToTake;
+	}
+
+	public void setTimeToTake(String timeToTake) {
+		this.timeToTake = timeToTake;
+	}
+
+	public boolean isRenewPrescription() {
+		return renewPrescription;
+	}
+
+	public void setRenewPrescription(boolean renewPrescription) {
+		this.renewPrescription = renewPrescription;
+	}
+	
+
+	public String getDosage() {
+		return dosage;
+	}
+
+	public void setDosage(String dosage) {
+		this.dosage = dosage;
 	}
 }

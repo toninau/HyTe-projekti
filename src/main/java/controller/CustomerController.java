@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Appointment;
 import model.BloodValue;
 import model.Customer;
 import model.DAOManager;
@@ -65,13 +66,14 @@ public class CustomerController implements CustomerController_IF {
 	public BloodValue[] bloodValueData() {
 		return daom.getBloodValueDAO().readCustomerBloodvalues(customer);
 	}
+	
 
 	public Customer getCustomer() {
 		return CustomerController.customer;
 	}
 	
-	public void customersAppointments() {
-		daom.getAppointmentDAO().readCustomerAppointments(customer);
+	public Appointment[] customersAppointments() {
+		return daom.getAppointmentDAO().readCustomerAppointments(customer);
 	}
 
 	@Override
