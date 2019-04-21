@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import model.Customer;
+import model.HibernateUtil;
 import model.Staff;
 
 import java.math.BigInteger;
@@ -45,13 +46,7 @@ public class CustomerDAO {
 		Transaction transaction = null;
 		boolean success = false;
 		try {
-			String sql = "SELECT COUNT(*) FROM customer WHERE customerID LIKE :id";
-			BigInteger result = (BigInteger) session.createSQLQuery(sql)
-					.setParameter("id", customer.getCustomerID() + "%").uniqueResult();
-			if (result.intValue() > 0) {
-				int number = result.intValue() + 1;
-				customer.setCustomerID(customer.getCustomerID() + number);
-			}
+			customer = createCustomerIDFromName(customer);
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(customer);
 			transaction.commit();
@@ -62,6 +57,32 @@ public class CustomerDAO {
 			session.close();
 		}
 		return success;
+	}
+
+	/**
+	 * Creates customerID using first name and surname of customer.
+	 * 
+	 * @param customer customer whose customerID is created
+	 * @return customer
+	 */
+	private Customer createCustomerIDFromName(Customer customer) {
+		Session session = sessionFactory.openSession();
+		String customerID = "";
+		String firstName = customer.getFirstName();
+		String surname = customer.getSurname();
+		customerID += firstName.toLowerCase().substring(0, Math.min(firstName.length(), 3));
+		customerID += surname.toLowerCase().substring(0, Math.min(surname.length(), 3));
+		String sql = "SELECT COUNT(*) FROM customer WHERE customerID LIKE :id";
+		BigInteger result = (BigInteger) session.createSQLQuery(sql).setParameter("id", customerID + "%")
+				.uniqueResult();
+		if (result.intValue() > 0) {
+			int number = result.intValue() + 1;
+			customer.setCustomerID(customerID + number);
+		} else {
+			customer.setCustomerID(customerID);
+		}
+		session.close();
+		return customer;
 	}
 
 	/**
@@ -186,5 +207,4 @@ public class CustomerDAO {
 		session.close();
 		return success;
 	}
-
 }

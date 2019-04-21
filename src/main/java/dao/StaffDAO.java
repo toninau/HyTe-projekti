@@ -44,13 +44,7 @@ public class StaffDAO {
 		Transaction transaction = null;
 		boolean success = false;
 		try {
-			String sql = "SELECT COUNT(*) FROM staff WHERE staffID LIKE :id";
-			BigInteger result = (BigInteger) session.createSQLQuery(sql).setParameter("id", staff.getStaffID() + "%")
-					.uniqueResult();
-			if (result.intValue() > 0) {
-				int number = result.intValue() + 1;
-				staff.setStaffID(staff.getStaffID() + number);
-			}
+			staff = createStaffIDFromName(staff);
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(staff);
 			transaction.commit();
@@ -61,6 +55,31 @@ public class StaffDAO {
 			session.close();
 		}
 		return success;
+	}
+
+	/**
+	 * Creates staffID using first name and surname of staff member.
+	 * 
+	 * @param staff staff member whose staffID is created
+	 * @return staff
+	 */
+	private Staff createStaffIDFromName(Staff staff) {
+		Session session = sessionFactory.openSession();
+		String staffID = "";
+		String firstName = staff.getFirstName();
+		String surname = staff.getSurname();
+		staffID += firstName.toLowerCase().substring(0, Math.min(firstName.length(), 3));
+		staffID += surname.toLowerCase().substring(0, Math.min(surname.length(), 3));
+		String sql = "SELECT COUNT(*) FROM staff WHERE staffID LIKE :id";
+		BigInteger result = (BigInteger) session.createSQLQuery(sql).setParameter("id", staffID + "%").uniqueResult();
+		if (result.intValue() > 0) {
+			int number = result.intValue() + 1;
+			staff.setStaffID(staffID + number);
+		} else {
+			staff.setStaffID(staffID);
+		}
+		session.close();
+		return staff;
 	}
 
 	/**

@@ -43,22 +43,21 @@ public class Main {
 		BloodValueDAO veriarvoDAO = new BloodValueDAO(istuntotehdas);
 		UserImageDAO imageDAO = new UserImageDAO(istuntotehdas);
 		
+		
 		for (int i = 1; i <= 3; i++) {
 			Customer customer = new Customer();
-			customer.setFirstName("Jarmo" + i);
+			customer.setFirstName("Jarmo");
 			customer.setSurname("Testi");
 			customer.setSSN("123456-7890");
 			customer.setIceNumber("12312145");
 			customer.setAddress("Testikuja 2");
 			customer.setPhoneNumber("12341235");
-			customer.setCustomerID("jartes");
 			customer.setPassword("test");
 			asiakasDAO.create(customer);
 		}
 		
 		for (int i = 1; i <= 3; i++) {
 			Staff staff = new Staff();
-			staff.setStaffID("testoh");
 			staff.setFirstName("test" + i);
 			staff.setSurname("tohtori");
 			staff.setPassword("test");
