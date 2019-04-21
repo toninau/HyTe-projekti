@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import model.Customer;
 import model.Staff;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -32,7 +33,8 @@ public class CustomerDAO {
 	}
 
 	/**
-	 * Create-method to save a customer object to the database
+	 * Create-method to save a customer object to the database. If given customerID
+	 * is already in use, identifying number is added to the end of the customerID.
 	 * 
 	 * @param customer object
 	 * @return <code>true</code> if customer was successfully saved <br>
@@ -43,6 +45,13 @@ public class CustomerDAO {
 		Transaction transaction = null;
 		boolean success = false;
 		try {
+			String sql = "SELECT COUNT(*) FROM customer WHERE customerID LIKE :id";
+			BigInteger result = (BigInteger) session.createSQLQuery(sql)
+					.setParameter("id", customer.getCustomerID() + "%").uniqueResult();
+			if (result.intValue() > 0) {
+				int number = result.intValue() + 1;
+				customer.setCustomerID(customer.getCustomerID() + number);
+			}
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(customer);
 			transaction.commit();

@@ -1,5 +1,6 @@
 package dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.ObjectNotFoundException;
@@ -31,7 +32,8 @@ public class StaffDAO {
 	}
 
 	/**
-	 * Saves staff member to the database.
+	 * Saves staff member to the database. If given staffID is already in use,
+	 * identifying number is added to the end of the staffID.
 	 * 
 	 * @param staff object
 	 * @return <code>true</code> if customer was successfully saved <br>
@@ -42,6 +44,13 @@ public class StaffDAO {
 		Transaction transaction = null;
 		boolean success = false;
 		try {
+			String sql = "SELECT COUNT(*) FROM staff WHERE staffID LIKE :id";
+			BigInteger result = (BigInteger) session.createSQLQuery(sql).setParameter("id", staff.getStaffID() + "%")
+					.uniqueResult();
+			if (result.intValue() > 0) {
+				int number = result.intValue() + 1;
+				staff.setStaffID(staff.getStaffID() + number);
+			}
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(staff);
 			transaction.commit();
