@@ -1,18 +1,24 @@
 package controller;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hsqldb.rights.User;
+
+import dao.UserImageDAO;
 import model.Appointment;
 import model.BloodValue;
 import model.Customer;
 import model.DAOManager;
 import model.DAOManager_IF;
 import model.Prescription;
+import model.UserImage;
 import view.HyteGUI;
 import view.customer.CustomerCalendarView;
 import view.customer.CustomerHealthView;
@@ -79,6 +85,33 @@ public class CustomerController implements CustomerController_IF {
 	@Override
 	public void loggedCustomer(Customer customer) {
 		CustomerController.customer = customer;	
+	}
+	
+	public void imageToDatabase(File file, int imageSlot) {
+		byte [] bfile = new byte[(int) file.length()];
+		try {
+			FileInputStream in = new FileInputStream(file);
+			in.read(bfile);
+			in.close();
+		}catch(Exception e) {
+			
+		}
+		UserImage image = new UserImage();
+		image.setCustomer(customer);
+		image.setImage(bfile);
+		image.setImageName(customer.getCustomerID() + imageSlot);
+		daom.getUserImageDAO().create(image);
+	}
+	
+	public void updateImage(File file, int imageSlot) {
+		UserImage image = daom.getUserImageDAO().read(imageSlot);
+		//image.setImage(bfile);
+		System.out.println(image.getImageID());
+		daom.getUserImageDAO().update(image);
+	}
+	
+	public UserImage[] imageFromDatabase() {
+		return daom.getUserImageDAO().readCustomerUserImages(customer);
 	}
 	
 	public List<String> locationSuggestions() {

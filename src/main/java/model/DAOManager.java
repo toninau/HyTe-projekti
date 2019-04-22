@@ -9,6 +9,7 @@ import dao.IllnessDAO;
 import dao.NotificationDAO;
 import dao.PrescriptionDAO;
 import dao.StaffDAO;
+import dao.UserImageDAO;
 
 /**
 *
@@ -24,6 +25,8 @@ public class DAOManager implements DAOManager_IF {
 	private BloodValueDAO bloodValueDAO = null;
 	private NotificationDAO notificationDAO = null;
 	private AppointmentDAO appointmentDAO = null;
+	private UserImageDAO userImageDAO = null;
+
 	private SessionFactory s;
 	
 	/**
@@ -188,5 +191,17 @@ public class DAOManager implements DAOManager_IF {
 			this.appointmentDAO = new AppointmentDAO(s);
 		}
 		return this.appointmentDAO;
+	}
+	
+	/**
+	 * Creates a new appointment data access object if it's null,
+	 * otherwise returns existing appointment data access object.
+	 * @return	AppointmentDAO
+	 */
+	public UserImageDAO getUserImageDAO() {
+		if (this.userImageDAO == null) {
+			this.userImageDAO = new UserImageDAO(s);
+		}
+		return this.userImageDAO;
 	}
 }

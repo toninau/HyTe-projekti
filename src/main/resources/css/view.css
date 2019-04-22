@@ -89,3 +89,8 @@
 	-fx-border-radius: 3px;
 }
 
+.checkListView{
+	-fx-background-color: black;
+	-fx-pref-width: 600px;
+}
+

@@ -7,6 +7,7 @@ import dao.IllnessDAO;
 import dao.NotificationDAO;
 import dao.PrescriptionDAO;
 import dao.StaffDAO;
+import dao.UserImageDAO;
 
 public interface DAOManager_IF {
 	public abstract void create(Object obj);
@@ -21,4 +22,5 @@ public interface DAOManager_IF {
 	public abstract BloodValueDAO getBloodValueDAO();
 	public abstract NotificationDAO getNotificationDAO();
 	public abstract AppointmentDAO getAppointmentDAO();
+	public abstract UserImageDAO getUserImageDAO();
 }
