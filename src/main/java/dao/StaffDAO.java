@@ -146,7 +146,7 @@ public class StaffDAO {
 	 * @return array of staff members customers
 	 */
 	@SuppressWarnings("unchecked")
-	public Customer[] readHenkilönAsiakkaat(Staff staff) {
+	public Customer[] readStaffMembersCustomers(Staff staff) {
 		Session session = sessionFactory.openSession();
 		List<Customer> result = null;
 		try {
