@@ -1,5 +1,5 @@
 package model;
-/*
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +27,7 @@ public class BloodValueTest {
 	@Test
 	public void testConstructorAll() {
 		try {
-			bloodValue = new BloodValue("12.12.2000", "12:12", 6.0, "120/120/120");
+			bloodValue = new BloodValue("Date", "Time", 6.0, 100, 140);
 		} catch (Exception e) {
 			fail("Failed to create bloodValue-object");
 		}
@@ -36,7 +36,7 @@ public class BloodValueTest {
 	@Test
 	public void testConstructorPressure() {
 		try {
-			bloodValue = new BloodValue("12.12.2000", "12:12", "120/120/100");
+			bloodValue = new BloodValue("Date", "Time", 100, 140);
 		} catch (Exception e) {
 			fail("Failed to create bloodValue-object");
 		}
@@ -71,8 +71,10 @@ public class BloodValueTest {
 
 	@Test
 	public void testGetSetPressure() {
-		bloodValue.setBloodpressure("100/100/100");
-		assertEquals("100/100/100", bloodValue.getBloodpressure(), "Failed to set and get bloodvalue pressure");
+		bloodValue.setLowPressure(100);
+		bloodValue.setHighPressure(140);
+		assertEquals(100, bloodValue.getLowPressure(), "Failed to set and get bloodvalue low pressure");
+		assertEquals(140, bloodValue.getHighPressure(), "Failed to set and get bloodvalue high pressure");
 	}
 
 	@Test
@@ -83,9 +85,8 @@ public class BloodValueTest {
 
 	@Test
 	public void testGetSetCustomer() {
-		customer.setCustomerID("testi@mail.com");
+		customer.setCustomerID("testi");
 		bloodValue.setCustomer(customer);
-		assertEquals("testi@mail.com", bloodValue.getCustomer().getCustomerID(), "Failed to set and get bloodvalue customer");
+		assertEquals("testi", bloodValue.getCustomer().getCustomerID(), "Failed to set and get bloodvalue customer");
 	}
 }
-*/
