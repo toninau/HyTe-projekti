@@ -21,15 +21,15 @@ public class StaffDAOTest {
 
 	@Test
 	public void testDAOmethods() {
-		staff = new Staff("test1", "test2", "test3", "test4", "test5", "test6");
+		staff = new Staff("firstname", "surname", "test4", "test5", "test6");
 		assertTrue(dao.create(staff), "create(): Failed to create a new staff member.");
-		staff = dao.read("test1");
-		assertEquals("test2", staff.getFirstName(), "read(): Failed to read firstname.");
+		staff = dao.read("firsur");
+		assertEquals("firstname", staff.getFirstName(), "read(): Failed to read firstname.");
 		staff.setFirstName("Update");
 		dao.update(staff);
-		staff = dao.read("test1");
+		staff = dao.read("firsur");
 		assertEquals("Update", staff.getFirstName(), "update(): Failed to update firstname.");
-		assertTrue(dao.delete("test1"), "delete(): Failed to delete staff member.");
+		assertTrue(dao.delete("firsur"), "delete(): Failed to delete staff member.");
 		Staff[] list = dao.readAll();
 		assertEquals(0, list.length, "readAll(): Failed to read all staff members");
 	}

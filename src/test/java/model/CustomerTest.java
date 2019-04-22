@@ -25,7 +25,7 @@ public class CustomerTest {
 	@Test
 	public void testConstructor() {
 		try {
-			customer = new Customer("Testi", "Testinen", "111111-111A", "Testitie 3", "testi@mail.com", "1234567890",
+			customer = new Customer("Testi", "Testinen", "111111-111A", "Testitie 3", "1234567890",
 					"0987654321", "password");
 		} catch (Exception e) {
 			fail("Failed to create customer-object");
@@ -34,8 +34,8 @@ public class CustomerTest {
 
 	@Test
 	public void testGetSetID() {
-		customer.setCustomerID("testi@mail.com");
-		assertEquals("testi@mail.com", customer.getCustomerID(), "Failed to set and get customerID");
+		customer.setCustomerID("testes");
+		assertEquals("testes", customer.getCustomerID(), "Failed to set and get customerID");
 	}
 
 	@Test

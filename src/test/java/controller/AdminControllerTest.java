@@ -34,18 +34,18 @@ public class AdminControllerTest {
 
 		adminController = new AdminController();
 		daom = new DAOManager();
-		customer = new Customer("John", "Smith", "12345", "Homestead 5", "j@cust.com", "040124567", "0501234567", "password");
+		customer = new Customer("John", "Smith", "12345", "Homestead 5", "040124567", "0501234567", "password");
 		daom.getCustomerDAO().create(customer);
-		staff = new Staff("j@sta.com","Jane", "Doe", "0401234568", "Doctor", "passowrd");
+		staff = new Staff("Jane", "Doe", "0401234568", "Doctor", "passowrd");
 		daom.getStaffDAO().create(staff);
 	}
 	
 	@AfterAll
 	public static void tearDown() {
-		daom.getCustomerDAO().delete("j@cust.com");
-		daom.getCustomerDAO().delete("m@cust.com");
-		daom.getStaffDAO().delete("j@sta.com");
-		daom.getStaffDAO().delete("m@sta.com");
+		daom.getCustomerDAO().delete("johsmi");
+		daom.getCustomerDAO().delete("marsmi");
+		daom.getStaffDAO().delete("jandoe");
+		daom.getStaffDAO().delete("marman");
 		daom.getCustomerDAO().delete("t@testi.com");
 	}
 	
@@ -71,7 +71,7 @@ public class AdminControllerTest {
 	 */
 	@Test
 	public void findCustomerAllTest() {
-		Customer newCustomer = new Customer("Mary", "Smith", "12345", "Homestead 5", "m@cust.com", "040124567", "0501234567", "password");
+		Customer newCustomer = new Customer("Mary", "Smith", "12345", "Homestead 5", "040124567", "0501234567", "password");
 		daom.getCustomerDAO().create(newCustomer);
 		assertTrue(adminController.findCustomerAll()[0].getFirstName().equals("John"));
 		assertTrue(adminController.findCustomerAll()[1].getFirstName().equals("Mary"));
@@ -95,7 +95,7 @@ public class AdminControllerTest {
 	 */
 	@Test
 	public void findStaffAllTest() {
-		Staff newStaff = new Staff("m@sta.com","Mark", "Manson", "0401234568", "Nurse", "passowrd");
+		Staff newStaff = new Staff("Mark", "Manson", "0401234568", "Nurse", "passowrd");
 		daom.getStaffDAO().create(newStaff);
 		assertTrue(adminController.findStaffAll()[0].getFirstName().equals("Jane"));
 		assertTrue(adminController.findStaffAll()[1].getFirstName().equals("Mark"));
@@ -108,7 +108,7 @@ public class AdminControllerTest {
 	@Test
 	public void findStaffAllLengthTest() {
 		assertTrue(adminController.findStaffAll().length == 1);
-		Staff newStaff = new Staff("m@sta.com","Mark", "Manson", "0401234568", "Nurse", "passowrd");
+		Staff newStaff = new Staff("Mark", "Manson", "0401234568", "Nurse", "passowrd");
 		daom.getStaffDAO().create(newStaff);
 		assertTrue(adminController.findStaffAll().length == 2);
 	}
@@ -118,7 +118,7 @@ public class AdminControllerTest {
 	 */
 	@Test
 	public void findCustomerWithIDTest() {
-		assertTrue(adminController.findCustomerWithID("j@cust.com").getFirstName().equals("John"));
+		assertTrue(adminController.findCustomerWithID("johsmi").getFirstName().equals("John"));
 	}
 	
 	/**
@@ -126,7 +126,7 @@ public class AdminControllerTest {
 	 */
 	@Test
 	public void findStaffWithIDTest() {
-		assertTrue(adminController.findStaffWithID("j@sta.com").getFirstName().equals("Jane"));
+		assertTrue(adminController.findStaffWithID("jandoe").getFirstName().equals("Jane"));
 	}
 	
 	@Test

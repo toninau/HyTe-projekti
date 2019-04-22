@@ -63,9 +63,8 @@ public class Staff {
 	 * @param password    Staff member's password
 	 * @see #Staff()
 	 */
-	public Staff(String staffID, String firstName, String surname, String phoneNumber, String accessLevel,
+	public Staff(String firstName, String surname, String phoneNumber, String accessLevel,
 			String password) {
-		this.staffID = staffID;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.phoneNumber = phoneNumber;

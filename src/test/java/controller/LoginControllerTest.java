@@ -29,27 +29,26 @@ public class LoginControllerTest {
 	public static void setUp() {
 		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
 
-		
 		daom = new DAOManager();
 		LoginView view = new LoginView();
 		loginController = new LoginController(view);
 		String pw1 = SCryptUtil.scrypt("passwordJohn", 16, 16, 16);
 		String pw2 = SCryptUtil.scrypt("passwordJane", 16, 16, 16);
-		customer = new Customer("John", "Smith", "12345", "Homestead 5", "j@cust.com", "040124567", "0501234567", pw1);
+		customer = new Customer("John", "Smith", "12345", "Homestead 5", "040124567", "0501234567", pw1);
 		daom.getCustomerDAO().create(customer);
-		staff = new Staff("j@sta.com","Jane", "Doe", "0401234568", "Doctor", pw2);
+		staff = new Staff("Jane", "Doe", "0401234568", "Doctor", pw2);
 		daom.getStaffDAO().create(staff);
 	}
 	
 	@AfterAll
 	public static void tearDown() {
-		daom.getCustomerDAO().delete("j@cust.com");
-		daom.getStaffDAO().delete("j@sta.com");
+		daom.getCustomerDAO().delete("johsmi");
+		daom.getStaffDAO().delete("jandoe");
 	}
 	
 	@Test
 	public void checkUsernameTest() {
-		assertTrue(loginController.checkUsername("j@sta.com", staff.getStaffID()));
+		assertTrue(loginController.checkUsername("jandoe", staff.getStaffID()));
 	}
 	
 	@Test
@@ -59,22 +58,22 @@ public class LoginControllerTest {
 	
 	@Test
 	public void checkLoginCustomerTest() {
-		assertTrue(loginController.checkLoginCustomer("j@cust.com", "passwordJohn"));
+		assertTrue(loginController.checkLoginCustomer("johsmi", "passwordJohn"));
 	}
 	
 	@Test
 	public void checkLoginStaffTest() {
-		assertTrue(loginController.checkLoginStaff("j@sta.com", "passwordJane"));
+		assertTrue(loginController.checkLoginStaff("jandoe", "passwordJane"));
 	}
 	
 	@Test
 	public void getStaffFromDatabaseTest() {
-		assertTrue(loginController.getStaffFromDatabase("j@sta.com").getFirstName().equals(staff.getFirstName()));
+		assertTrue(loginController.getStaffFromDatabase("jandoe").getFirstName().equals(staff.getFirstName()));
 	}
 	
 	@Test
 	public void getCustomerFromDatabaseTest() {
-		assertTrue(loginController.getCustomerFromDatabase("j@cust.com").getFirstName().equals(customer.getFirstName()));
+		assertTrue(loginController.getCustomerFromDatabase("johsmi").getFirstName().equals(customer.getFirstName()));
 	}
 	
 	@Test

@@ -82,9 +82,8 @@ public class Customer {
 	 * @param password Customer's password
 	 * @see #Customer()
 	 */
-	public Customer(String firstName, String surname, String ssn, String address, String email, String phoneNumber,
+	public Customer(String firstName, String surname, String ssn, String address, String phoneNumber,
 			String iceNumber, String password) {
-		this.customerID = email;
 		this.firstName = firstName;
 		this.surname = surname;
 		this.ssn = ssn;
