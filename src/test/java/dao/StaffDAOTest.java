@@ -65,7 +65,9 @@ public class StaffDAOTest {
 		//delete customer from staff member
 		assertTrue(sDAO.deleteCustomer(staff, customer), "deleteCustomer(staff, customer): Failed to delete customer from staff member.");
 		customers = sDAO.readStaffMembersCustomers(staff);
-		assertEquals(0, customers.length, "readStaffMembersCustomer(staff): Failed to read staff members customes after deleting customer");
+		assertEquals(0, customers.length, "readStaffMembersCustomer(staff): Failed to read staff members customes after deleting customer.");
+		//Delete customer
+		cDAO.delete("firsur");
 		//Delete staff member
 		assertTrue(sDAO.delete("firsur"), "delete(id): Failed to delete staff member.");
 		Staff[] list = sDAO.readAll();
