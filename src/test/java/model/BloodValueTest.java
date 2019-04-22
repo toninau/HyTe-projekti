@@ -27,7 +27,7 @@ public class BloodValueTest {
 	@Test
 	public void testConstructorAll() {
 		try {
-			bloodValue = new BloodValue("Date", "Time", 6.0, 100, 140);
+			bloodValue = new BloodValue("Date", "Time", 6.0, 100, 140, customer);
 		} catch (Exception e) {
 			fail("Failed to create bloodValue-object");
 		}
@@ -36,7 +36,7 @@ public class BloodValueTest {
 	@Test
 	public void testConstructorPressure() {
 		try {
-			bloodValue = new BloodValue("Date", "Time", 100, 140);
+			bloodValue = new BloodValue("Date", "Time", 100, 140, customer);
 		} catch (Exception e) {
 			fail("Failed to create bloodValue-object");
 		}
@@ -45,7 +45,7 @@ public class BloodValueTest {
 	@Test
 	public void testConstructorSugar() {
 		try {
-			bloodValue = new BloodValue("12.12.2000", "12:12", 6.0);
+			bloodValue = new BloodValue("12.12.2000", "12:12", 6.0, customer);
 		} catch (Exception e) {
 			fail("Failed to create bloodValue-object");
 		}

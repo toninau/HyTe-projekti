@@ -29,7 +29,7 @@ public class BloodValueDAOTest {
 		//Create customer
 		customer = createCustomer();
 		//Create bloodvalue
-		bv = new BloodValue("Date", "Time", 5.5, 100, 160);
+		bv = new BloodValue("Date", "Time", 5.5, 100, 160, customer);
 		assertTrue(bvDAO.create(bv), "create(bloodvalue): Failed to create bloodvalue");
 		//Read bloodvalue
 		BloodValue[] bvs = bvDAO.readCustomerBloodvalues(customer);

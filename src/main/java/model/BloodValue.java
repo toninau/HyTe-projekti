@@ -44,17 +44,19 @@ public class BloodValue {
 	 * @param bloodsugar blood sugar level
 	 * @param lowPressure low pressure level
 	 * @param highPressure high pressure level
+	 * @param customer customer's whose bloodvalues are being measured
 	 * 
 	 * @see #BloodValue()
-	 * @see #BloodValue(String, String, double)
-	 * @see #BloodValue(String, String, int, int)
+	 * @see #BloodValue(String, String, double, Customer)
+	 * @see #BloodValue(String, String, int, int, Customer)
 	 */
-	public BloodValue(String date, String time, double bloodsugar, int lowPressure, int highPressure) {
+	public BloodValue(String date, String time, double bloodsugar, int lowPressure, int highPressure, Customer customer) {
 		this.date = date;
 		this.time = time;
 		this.bloodsugar = bloodsugar;
 		this.lowPressure = lowPressure;
 		this.highPressure = highPressure;
+		this.customer = customer;
 	}
 
 	/**
@@ -63,11 +65,13 @@ public class BloodValue {
 	 * @param date       date of the blood sugar measure
 	 * @param time       time of the blood sugar measure
 	 * @param bloodsugar blood sugar level
+	 * @param customer customer's whose bloodvalues are being measured
+	 * 
 	 * @see #BloodValue()
-	 * @see #BloodValue(String, String, int, int)
-	 * @see #BloodValue(String, String, double, int, int)
+	 * @see #BloodValue(String, String, int, int, Customer)
+	 * @see #BloodValue(String, String, double, int, int, Customer)
 	 */
-	public BloodValue(String date, String time, double bloodsugar) {
+	public BloodValue(String date, String time, double bloodsugar, Customer customer) {
 		this.highPressure = -1;
 		this.lowPressure = -1;
 		this.date = date;
@@ -81,11 +85,13 @@ public class BloodValue {
 	 * @param time time of the blood pressure measure
 	 * @param highPressure high pressure level
 	 * @param lowPressure low pressure level
+	 * @param customer customer's whose bloodvalues are being measured
+	 * 
 	 * @see #BloodValue()
-	 * @see #BloodValue(String, String, double)
-	 * @see #BloodValue(String, String, double, int, int)
+	 * @see #BloodValue(String, String, double, Customer)
+	 * @see #BloodValue(String, String, double, int, int, Customer)
 	 */
-	public BloodValue(String date, String time, int highPressure, int lowPressure ) {
+	public BloodValue(String date, String time, int highPressure, int lowPressure, Customer customer) {
 		this.bloodsugar = -1;
 		this.date = date;
 		this.time = time;
@@ -96,9 +102,9 @@ public class BloodValue {
 	/**
 	 * Empty Bloodvalue constructor.
 	 * 
-	 * @see #BloodValue(String, String, double)
-	 * @see #BloodValue(String, String, int, int)
-	 * @see #BloodValue(String, String, double, int, int)
+	 * @see #BloodValue(String, String, double, Customer)
+	 * @see #BloodValue(String, String, int, int, Customer)
+	 * @see #BloodValue(String, String, double, int, int, Customer)
 	 */
 	public BloodValue() {
 		this.highPressure = -1;
