@@ -46,6 +46,7 @@ public class AdminControllerTest {
 		daom.getCustomerDAO().delete("marsmi");
 		daom.getStaffDAO().delete("jandoe");
 		daom.getStaffDAO().delete("marman");
+		daom.getStaffDAO().delete("marman2");
 		daom.getCustomerDAO().delete("t@testi.com");
 	}
 	
