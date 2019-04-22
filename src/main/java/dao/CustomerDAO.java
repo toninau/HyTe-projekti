@@ -7,7 +7,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import model.Customer;
-import model.HibernateUtil;
 import model.Staff;
 
 import java.math.BigInteger;

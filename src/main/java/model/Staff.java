@@ -47,14 +47,13 @@ public class Staff {
 	/**
 	 * Empty staff constructor. Values are given using set-methods.
 	 * 
-	 * @see #Staff(String, String, String, String, String, String)
+	 * @see #Staff(String, String, String, String, String)
 	 */
 	public Staff() {
 	}
 
 	/**
 	 * 
-	 * @param staffID     Staff member's staffID
 	 * @param firstName   Staff member's first name
 	 * @param surname     Staff member's surname
 	 * @param phoneNumber Staff member's phone number
@@ -63,8 +62,7 @@ public class Staff {
 	 * @param password    Staff member's password
 	 * @see #Staff()
 	 */
-	public Staff(String firstName, String surname, String phoneNumber, String accessLevel,
-			String password) {
+	public Staff(String firstName, String surname, String phoneNumber, String accessLevel, String password) {
 		this.firstName = firstName;
 		this.surname = surname;
 		this.phoneNumber = phoneNumber;

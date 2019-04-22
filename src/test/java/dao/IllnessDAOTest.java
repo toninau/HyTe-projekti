@@ -19,29 +19,35 @@ public class IllnessDAOTest {
 
 	@BeforeEach
 	public void setTest() {
-		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
-		iDAO = new IllnessDAO(istuntotehdas);
-		cDAO = new CustomerDAO(istuntotehdas);
+		SessionFactory sf = HibernateUtil.getSessionFactory(true);
+		iDAO = new IllnessDAO(sf);
+		cDAO = new CustomerDAO(sf);
 	}
 
 	@Test
 	public void testDAOmethods() {
+		//Create customer for illness
 		customer = new Customer();
-		customer.setFirstName("Jorma");
-		customer.setSurname("Testi");
-		customer.setSSN("123456-7890");
-		customer.setIceNumber("12312145");
-		customer.setAddress("Testikuja 2");
-		customer.setPhoneNumber("12341235");
-		//customer.setCustomerID("2");
+		customer.setFirstName("FirstName");
+		customer.setSurname("Surname");
+		customer.setSSN("SSN");
+		customer.setIceNumber("ICEnumber");
+		customer.setAddress("Address");
+		customer.setPhoneNumber("PhoneNumber");
 		cDAO.create(customer);
-		customer = cDAO.read("jortes");
-		illness = new Illness("illness", customer);
+		customer = cDAO.read("firsur");
+		//Create illnesses (2)
+		illness = new Illness("Illness", customer);
 		assertTrue(iDAO.create(illness), "create(): Failed to create a new illness.");
+		//Read illness
 		Illness[] i = iDAO.readCustomersIllnessess(customer);
-		assertEquals("illness", i[0].getIllnessName(), "read(): Failed to read customers illness.");
+		assertEquals("Illness", i[0].getIllnessName(), "read(): Failed to read customer's illness.");
+		//Delete illness
 		assertTrue(iDAO.delete(1), "delete(): Failed to delete illness.");
-		cDAO.delete("jortes");
+		i = iDAO.readCustomersIllnessess(customer);
+		assertEquals(0, i.length, "delete(): Failed to delete illness");
+		//Delete customer
+		cDAO.delete("firsur");
 	}
 }
 
