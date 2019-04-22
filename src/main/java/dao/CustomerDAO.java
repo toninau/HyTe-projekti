@@ -177,6 +177,7 @@ public class CustomerDAO {
 			a.setIceNumber(customer.getIceNumber());
 			a.setAddress(customer.getAddress());
 			a.setPhoneNumber(customer.getPhoneNumber());
+			a.setPassword(customer.getPassword());
 			success = true;
 		} else {
 			System.out.println("Nothing to update");

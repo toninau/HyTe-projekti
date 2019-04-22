@@ -239,6 +239,7 @@ public class StaffDAO {
 			s.setSurname(staff.getSurname());
 			s.setAccessLevel(staff.getAccessLevel());
 			s.setPhoneNumber(staff.getPhoneNumber());
+			s.setPassword(staff.getPassword());
 			success = true;
 		} else {
 			System.out.println("Nothing to update");
