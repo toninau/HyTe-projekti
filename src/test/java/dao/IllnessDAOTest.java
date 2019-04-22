@@ -36,7 +36,7 @@ public class IllnessDAOTest {
 		customer.setPhoneNumber("PhoneNumber");
 		cDAO.create(customer);
 		customer = cDAO.read("firsur");
-		//Create illnesses (2)
+		//Create illnesses
 		illness = new Illness("Illness", customer);
 		assertTrue(iDAO.create(illness), "create(): Failed to create a new illness.");
 		//Read illness

@@ -50,7 +50,7 @@ public class AppointmentDAO {
 		} catch (Exception e) {
 			try {
 				transaction.rollback();
-			}catch(NullPointerException ne) {
+			} catch (NullPointerException ne) {
 				ne.getMessage();
 			}
 		} finally {

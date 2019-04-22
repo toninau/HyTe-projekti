@@ -46,7 +46,9 @@ public class BloodValueDAO {
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
-			transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 		} finally {
 			session.close();
 		}

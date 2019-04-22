@@ -49,7 +49,9 @@ public class UserImageDAO {
 			transaction.commit();
 			success = true;
 		} catch (HibernateException e) {
-			transaction.rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 		} finally {
 			session.close();
 		}
