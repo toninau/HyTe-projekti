@@ -9,9 +9,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hsqldb.rights.User;
-
-import dao.UserImageDAO;
 import model.Appointment;
 import model.BloodValue;
 import model.Customer;
@@ -25,6 +22,12 @@ import view.customer.CustomerHealthView;
 import view.customer.CustomerHelpView;
 import view.customer.CustomerHomeView;
 
+/**
+ * Controller for customer view classes. 
+ * @author IdaKi
+ *
+ */
+
 public class CustomerController implements CustomerController_IF {
 
 	private CustomerCalendarView calendarview;
@@ -36,28 +39,60 @@ public class CustomerController implements CustomerController_IF {
 	
 	public CustomerController() {
 	}
+	
+	/**
+	 * A constructor for customer's calendar view.
+	 * @param calendarview Customer's calendar view.
+	 * @see view.customer.CustomerCalendarView#CustomerCalendarView()
+	 */
 	public CustomerController(CustomerCalendarView calendarview) {
 		this.calendarview = calendarview;
 		daom = new DAOManager();
 	}
+	
+	/**
+	 * A constructor for customer's home view.
+	 * @param homeview Customer's home view.
+	 * @see view.customer.CustomerHomeView#CustomerHomeView()
+	 */
 	public CustomerController(CustomerHomeView homeview) {
 		this.homeview = homeview;
 		daom = new DAOManager();
 	}
+	
+	/**
+	 * A constructor for customer's health view.
+	 * @param healthview Customer's health view.
+	 * @see view.customer.CustomerHealthView#CustomerHealthView()
+	 */
 	public CustomerController(CustomerHealthView healthview) {
 		this.healthview = healthview;
 		daom = new DAOManager();
 	}
 	
+	/**
+	 * A constructor for customer's help view. Creates a DAO manager.
+	 * @param helpview Customer's help view.
+	 * @see view.customer.CustomerHelpView#CustomerHelpView()
+	 */
 	public CustomerController(CustomerHelpView helpview) {
 		this.helpview = helpview;
 		daom = new DAOManager();
 	}
 	
+	/**
+	 * Gets all the logged in customer's prescriptions from database.
+	 * @return An array of customer's prescriptions.
+	 * @see view.customer.CustomerHealthView#prescriptionsList()
+	 * @see dao.PrescriptionDAO#readCustomersPrescriptions(Customer)
+	 */
 	public Prescription[] prescriptions() {
 		return daom.getPrescriptionDAO().readCustomersPrescriptions(customer);
 	}
 	
+	/**
+	 * This method creates a blood
+	 */
 	public boolean createBloodsugar() {
 		BloodValue bloodvalue = new BloodValue();
 		bloodvalue.setHighPressure(healthview.getHighPressure());
@@ -74,19 +109,38 @@ public class CustomerController implements CustomerController_IF {
 	}
 	
 
+	/**
+	 * Returns the current customer logged in.
+	 * @return Logged in customer.
+	 */
 	public Customer getCustomer() {
 		return CustomerController.customer;
 	}
 	
+	/**
+	 * Gets all the logged in customers appointments from database.
+	 * @return An array of customer's appointments.
+	 * @see view.customer.CustomerHomeView#appointmentList()
+	 */
 	public Appointment[] customersAppointments() {
 		return daom.getAppointmentDAO().readCustomerAppointments(customer);
 	}
 
+	/**
+	 * Sets the current logged customer.
+	 * @see view.LoginView#loginCustomer(javafx.event.Event)
+	 */
 	@Override
 	public void loggedCustomer(Customer customer) {
 		CustomerController.customer = customer;	
 	}
 	
+	/**
+	 * Creates an image to database.
+	 * @param file
+	 * @param imageSlot
+	 * @see dao.UserImageDAO#create(UserImage)
+	 */
 	public void imageToDatabase(File file, int imageSlot) {
 		byte [] bfile = new byte[(int) file.length()];
 		try {
@@ -110,6 +164,11 @@ public class CustomerController implements CustomerController_IF {
 		daom.getUserImageDAO().update(image);
 	}
 	
+	/**
+	 * Gets all the customer's images from database.
+	 * @return An array of images.
+	 * @see dao.UserImageDAO#readCustomerUserImages(Customer)
+	 */
 	public UserImage[] imageFromDatabase() {
 		return daom.getUserImageDAO().readCustomerUserImages(customer);
 	}

@@ -44,6 +44,11 @@ import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
 
+/**
+ * FXML controller class for customer's home view.
+ * @author IdaKi
+ *
+ */
 public class CustomerHomeView extends ViewChanger implements Initializable {
 
 	@FXML private Button homeButton;
@@ -72,6 +77,15 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		controller = new CustomerController(this);
 	}
 
+	/**
+	 * Opens the windows file explorer and sets the chosen image at the chosen image slot. 
+	 * Sends the image to database.
+	 * 
+	 * @param imageView The chosen image view. 
+	 * @param imageSlot This parameter is used to name the images accordingly.
+	 * @param action Decides whether the image is to be created or updated.
+	 * @see controller.CustomerController#imageToDatabase(File, int)
+	 */
 	public void selectImage(ImageView imageView, int imageSlot, String action) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select Profile Picture");
@@ -95,6 +109,10 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		}
 	}
 
+	/**
+	 * Event handler for adding and updating customer's profile image, which is the 
+	 * first image slot.
+	 */
 	public void selectImageMe() {
 		String action;
 		if(imageMe.getImage() != null) {
@@ -105,6 +123,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		selectImage(imageMe, 1, action);
 	}
 
+	/**
+	 * Event handler for the second image slot.
+	 */
 	public void selectSecondImage() {
 		String action;
 		if(imageSecond.getImage() != null) {
@@ -115,6 +136,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		selectImage(imageSecond, 2, action);
 	}
 
+	/**
+	 * Event handler for the third image slot.
+	 */
 	public void selectThirdImage() {
 		String action;
 		if(imageThird.getImage() != null) {
@@ -125,6 +149,11 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		selectImage(imageThird, 3, action);
 	}
 
+	/**
+	 * Sets all the customer's image from database to their appointed slots according 
+	 * to the images name.
+	 * @see controller.CustomerController#imageFromDatabase()
+	 */
 	public void showImage() {
 		UserImage[] a = controller.imageFromDatabase();
 		if(a != null) {
@@ -159,21 +188,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		}
 	}
 
-	/*
-	 * public void showImage() { byte[] imageMeFile =
-	 * controller.imageFromDatabase()[0].getImage(); if(imageMeFile != null) {
-	 * BufferedImage img = null; try { img = ImageIO.read(new
-	 * ByteArrayInputStream(imageMeFile)); Image image = SwingFXUtils.toFXImage(img,
-	 * null); imageMe.setImage(image); } catch (IOException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } }else {
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
-
 	/**
-	 * Generates a list view with check boxes.
+	 * Generates a list view with check boxes and populates the list view.
+	 * @see #prescriptionsList()
 	 */
 	public void showPrescription() {
 		checkListView = new CheckListView<>(prescriptionsList());
@@ -189,8 +206,11 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Checks the time when the medicine is supposed to be taken and adds them into
+	 * an observable list accordingly. 
+	 * e.g. if the medicine is supposed to be taken in the morning and the current
+	 * time is before noon, the prescription is added to the observable list.
+	 * @return An observable list of the prescriptions.
 	 */
 	public ObservableList<String> prescriptionsList() {
 		ObservableList<String> data = FXCollections.observableArrayList();
@@ -207,15 +227,23 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		return data;
 	}
 
+	/**
+	 * Sets the customer's appointments for today.
+	 * @see #appointmentList()
+	 */
 	public void showAppointments() {
 		appointmentReminder.getItems().addAll(appointmentList());
 	}
 
+	/**
+	 * Checks the date of the appointments and adds appointments marked with the current
+	 * date.
+	 * @return Observable list of today's appointments
+	 */
 	public ObservableList<String> appointmentList() {
 		ObservableList<String> data = FXCollections.observableArrayList();
 		Appointment[] appointments = controller.customersAppointments();
 		for (Appointment a : appointments) {
-			System.out.println(LocalDate.now().toString());
 			if (a.getDate().equalsIgnoreCase(getDate())) {
 				data.add(a.getInfo() + " kello " + a.getTime());
 			} else {
@@ -248,7 +276,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 	/**
 	 * Method for showing current weather of the wanted location.
-	 * 
+	 * Also sets an icon showing the weather's state.
 	 * @param location Wanted location for weather.
 	 */
 	public void showWeather(String location) {
@@ -288,6 +316,12 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		weatherImageView.setFitWidth(50);
 	}
 
+	/**
+	 * Sets the right bundle. Calls the needed methods.
+	 * @see #showWeather(String)
+	 * @see #showAppointments()
+	 * @see #showImage()
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
@@ -299,7 +333,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		showPrescription();
 		showAppointments();
 		showImage();
-
 	}
 
 	/**
@@ -357,6 +390,10 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		logoutForAll(event);
 	}
 
+	/**
+	 * Formats and returns the current date.
+	 * @return Formatted date.
+	 */
 	public String getDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.YYYY");
 		LocalDate localDate = LocalDate.now();

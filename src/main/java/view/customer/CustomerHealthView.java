@@ -36,54 +36,33 @@ import view.ViewChanger;
 import view.enums.Bundles;
 
 public class CustomerHealthView extends ViewChanger implements Initializable {
-	@FXML
-	Button homeButton;
-	@FXML
-	Button calendarButton;
-	@FXML
-	Button helpButton;
-	@FXML
-	Button myHealthButton;
-	@FXML
-	Button sendblood;
-	@FXML
-	TextField bloodsugar;
-	@FXML
-	TextField lowPressure;
-	@FXML
-	TextField highPressure;
-	@FXML
-	DatePicker datePicker;
-	@FXML
-	LineChart<String, Double> bloodSugarChart;
-	@FXML
-	NumberAxis yAxis;
-	@FXML
-	CategoryAxis xAxis;
-	@FXML
-	LineChart<String, Integer> bloodPressureChart;
-	@FXML
-	NumberAxis yAxisPressure;
-	@FXML
-	CategoryAxis xAxisPressure;
-	@FXML
-	TableView<Prescription> prescriptonsTable;
-	@FXML
-	TableColumn<Prescription, String> medicineName;
-	@FXML
-	TableColumn<Prescription, String> medicineDosage;
-	@FXML
-	TableColumn<Prescription, String> medicineDescription;
-	@FXML
-	TableColumn<Prescription, String> medicineTime;
-	@FXML
-	TableColumn<Prescription, Void> medicineRenew;
+	@FXML private Button homeButton;
+	@FXML private Button calendarButton;
+	@FXML private Button helpButton;
+	@FXML private Button myHealthButton;
+	@FXML private Button sendblood;
+	@FXML private TextField bloodsugar;
+	@FXML private TextField lowPressure;
+	@FXML private TextField highPressure;
+	@FXML private DatePicker datePicker;
+	@FXML private LineChart<String, Double> bloodSugarChart;
+	@FXML private NumberAxis yAxis;
+	@FXML private CategoryAxis xAxis;
+	@FXML private LineChart<String, Integer> bloodPressureChart;
+	@FXML private NumberAxis yAxisPressure;
+	@FXML private CategoryAxis xAxisPressure;
+	@FXML private TableView<Prescription> prescriptonsTable;
+	@FXML private TableColumn<Prescription, String> medicineName;
+	@FXML private TableColumn<Prescription, String> medicineDosage;
+	@FXML private TableColumn<Prescription, String> medicineDescription;
+	@FXML private TableColumn<Prescription, String> medicineTime;
+	@FXML private TableColumn<Prescription, Void> medicineRenew;
 
-	ResourceBundle bundle;
+	private ResourceBundle bundle;
 
-	Series<String, Double> seriesBloodSugar;
-	Series<String, Integer> seriesHighPressure;
-	Series<String, Integer> seriesLowPressure;
+	private Series<String, Double> seriesBloodSugar;
+	private Series<String, Integer> seriesHighPressure;
+	private Series<String, Integer> seriesLowPressure;
 
 	private CustomerController_IF controller;
 
@@ -142,6 +121,12 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 
+	/**
+	 * Populates the table with an observable list and sets the columns.
+	 * Add's a button so the customer can send a renew request of their prescriptions.
+	 * @see #prescriptionsList()
+	 * @see #addButtonToTable()
+	 */
 	@SuppressWarnings("unchecked")
 	public void populateListView() {
 		prescriptonsTable.getColumns().clear();
@@ -157,16 +142,25 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		addButtonToTable();
 	}
 
+	/**
+	 * Adds all the customer's prescription to an observable list.
+	 * @return Observable list of the customer's prescriptions.
+	 * @see controller.CustomerController#prescriptions()
+	 */
 	public ObservableList<Prescription> prescriptionsList() {
 		ObservableList<Prescription> data = FXCollections.observableArrayList();
 		Prescription [] a = controller.prescriptions();
 		for (Prescription prescription : a) {
 			data.add(prescription);
 		}
-		
 		return data;
 	}
 
+	/**
+	 * Adds a button to the renew column of the prescriptions table.
+	 * Sets an event handler to the button.
+	 * @see #sendRenewRequest(Prescription)
+	 */
 	private void addButtonToTable() {
         Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>> cellFactory = new Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>>() {
             @Override
@@ -201,6 +195,11 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
         prescriptonsTable.getColumns().add(medicineRenew);
     }
 	
+	/**
+	 * Sets the renew request true.
+	 * @param prescription The prescription to be renewed.
+	 * @see model.Prescription#setRenewPrescription(boolean)
+	 */
 	public void sendRenewRequest(Prescription p) {
 		p.setRenewPrescription(true);
 	}
