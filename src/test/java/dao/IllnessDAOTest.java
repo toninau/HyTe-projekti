@@ -33,15 +33,15 @@ public class IllnessDAOTest {
 		customer.setIceNumber("12312145");
 		customer.setAddress("Testikuja 2");
 		customer.setPhoneNumber("12341235");
-		customer.setCustomerID("2");
+		//customer.setCustomerID("2");
 		cDAO.create(customer);
-		customer = cDAO.read("2");
+		customer = cDAO.read("jortes");
 		illness = new Illness("illness", customer);
 		assertTrue(iDAO.create(illness), "create(): Failed to create a new illness.");
 		Illness[] i = iDAO.readCustomersIllnessess(customer);
 		assertEquals("illness", i[0].getIllnessName(), "read(): Failed to read customers illness.");
 		assertTrue(iDAO.delete(1), "delete(): Failed to delete illness.");
-		cDAO.delete("2");
+		cDAO.delete("jortes");
 	}
 }
 
