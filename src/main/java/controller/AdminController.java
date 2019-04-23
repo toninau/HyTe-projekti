@@ -12,9 +12,9 @@ import view.admin.AddCustomerIF;
 import view.admin.AddStaffView;
 import view.admin.AddStaffIF;
 import view.admin.EditCustomerView;
-import view.admin.EditCustomerIF;
+//import view.admin.EditCustomerIF;
 import view.admin.EditStaffView;
-import view.admin.EditStaffIF;
+//import view.admin.EditStaffIF;
 
 public class AdminController implements AdminController_IF {
 	
@@ -40,11 +40,11 @@ public class AdminController implements AdminController_IF {
 		daoM = new DAOManager();
 	}
 	public AdminController(EditStaffView editstaff) {
-		EditStaffIF es = editstaff;
+		//EditStaffIF es = editstaff;
 		daoM  = new DAOManager();
 	}
 	public AdminController(EditCustomerView editcustomer) {
-		EditCustomerIF ec = editcustomer;
+		//EditCustomerIF ec = editcustomer;
 		daoM = new DAOManager();
 	}
 	
