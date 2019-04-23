@@ -21,7 +21,7 @@ import view.enums.FxmlEnum;
  *
  */
 public class ViewChanger {
-	
+		
 	/**
 	 * Changes scene's content according to given parameters.
 	 * @param fxml Given fxml file.

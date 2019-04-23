@@ -210,7 +210,6 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		showBloodsugarChart();
 		showBloodpressureChart();
 		populateListView();
-
 	}
 
 	/**
