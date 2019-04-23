@@ -132,7 +132,14 @@
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label fx:id="welcome" text="Label" />
-                  <ImageView fx:id="imageMe" fitHeight="150.0" fitWidth="132.0" onMouseClicked="#toCalendar" pickOnBounds="true" preserveRatio="true" />
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="198.0" prefWidth="294.0" style="-fx-border-color: black;" VBox.vgrow="NEVER">
+                     <children>
+                        <ImageView fx:id="imageMe" fitHeight="150.0" fitWidth="132.0" onMouseClicked="#toCalendar" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="100.0" right="100.0" />
+                     </VBox.margin>
+                  </VBox>
                   <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectImageMe" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pictures/editPicture.png" />
