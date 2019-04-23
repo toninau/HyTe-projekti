@@ -46,6 +46,7 @@ import view.enums.Bundles;
 
 /**
  * FXML controller class for customer's home view.
+ * 
  * @author IdaKi
  *
  */
@@ -78,12 +79,12 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	}
 
 	/**
-	 * Opens the windows file explorer and sets the chosen image at the chosen image slot. 
-	 * Sends the image to database.
+	 * Opens the windows file explorer and sets the chosen image at the chosen image
+	 * slot. Sends the image to database.
 	 * 
-	 * @param imageView The chosen image view. 
+	 * @param imageView The chosen image view.
 	 * @param imageSlot This parameter is used to name the images accordingly.
-	 * @param action Decides whether the image is to be created or updated.
+	 * @param action    Decides whether the image is to be created or updated.
 	 * @see controller.CustomerController#imageToDatabase(File, int)
 	 */
 	public void selectImage(ImageView imageView, int imageSlot, String action) {
@@ -98,7 +99,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 				url = f.toURI().toURL().toString();
 				imageView.setImage(new Image(url));
 				if (action.equals("update")) {
-				
 					controller.updateImage(selectedFile, imageSlot);
 				} else {
 					controller.imageToDatabase(selectedFile, imageSlot);
@@ -110,14 +110,14 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	}
 
 	/**
-	 * Event handler for adding and updating customer's profile image, which is the 
+	 * Event handler for adding and updating customer's profile image, which is the
 	 * first image slot.
 	 */
 	public void selectImageMe() {
 		String action;
-		if(imageMe.getImage() != null) {
+		if (imageMe.getImage() != null) {
 			action = "update";
-		}else {
+		} else {
 			action = "create";
 		}
 		selectImage(imageMe, 1, action);
@@ -128,9 +128,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 */
 	public void selectSecondImage() {
 		String action;
-		if(imageSecond.getImage() != null) {
+		if (imageSecond.getImage() != null) {
 			action = "update";
-		}else {
+		} else {
 			action = "create";
 		}
 		selectImage(imageSecond, 2, action);
@@ -141,26 +141,29 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 */
 	public void selectThirdImage() {
 		String action;
-		if(imageThird.getImage() != null) {
+		if (imageThird.getImage() != null) {
 			action = "update";
-		}else {
+		} else {
 			action = "create";
 		}
 		selectImage(imageThird, 3, action);
 	}
 
+
 	/**
-	 * Sets all the customer's image from database to their appointed slots according 
-	 * to the images name.
+	 * Sets all the customer's image from database to their appointed slots
+	 * according to the images name.
+	 * 
 	 * @see controller.CustomerController#imageFromDatabase()
 	 */
 	public void showImage() {
-		UserImage[] a = controller.imageFromDatabase();
-		if(a != null) {
+		 UserImage[] a = controller.imageFromDatabase();
+
+		if (a != null) {
 			BufferedImage img = null;
-			ImageView imagev ;
+			ImageView imagev;
 			for (UserImage userImage : a) {
-				switch (userImage.getImageName().charAt(userImage.getImageName().length()-1)) {
+				switch (userImage.getImageName().charAt(userImage.getImageName().length() - 1)) {
 				case '1':
 					imagev = imageMe;
 					break;
@@ -183,13 +186,14 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 					e.printStackTrace();
 				}
 			}
-		}else {
-			
+		} else {
+
 		}
 	}
 
 	/**
 	 * Generates a list view with check boxes and populates the list view.
+	 * 
 	 * @see #prescriptionsList()
 	 */
 	public void showPrescription() {
@@ -207,9 +211,10 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 	/**
 	 * Checks the time when the medicine is supposed to be taken and adds them into
-	 * an observable list accordingly. 
-	 * e.g. if the medicine is supposed to be taken in the morning and the current
-	 * time is before noon, the prescription is added to the observable list.
+	 * an observable list accordingly. e.g. if the medicine is supposed to be taken
+	 * in the morning and the current time is before noon, the prescription is added
+	 * to the observable list.
+	 * 
 	 * @return An observable list of the prescriptions.
 	 */
 	public ObservableList<String> prescriptionsList() {
@@ -229,6 +234,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 	/**
 	 * Sets the customer's appointments for today.
+	 * 
 	 * @see #appointmentList()
 	 */
 	public void showAppointments() {
@@ -236,8 +242,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	}
 
 	/**
-	 * Checks the date of the appointments and adds appointments marked with the current
-	 * date.
+	 * Checks the date of the appointments and adds appointments marked with the
+	 * current date.
+	 * 
 	 * @return Observable list of today's appointments
 	 */
 	public ObservableList<String> appointmentList() {
@@ -275,8 +282,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	}
 
 	/**
-	 * Method for showing current weather of the wanted location.
-	 * Also sets an icon showing the weather's state.
+	 * Method for showing current weather of the wanted location. Also sets an icon
+	 * showing the weather's state.
+	 * 
 	 * @param location Wanted location for weather.
 	 */
 	public void showWeather(String location) {
@@ -318,6 +326,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 	/**
 	 * Sets the right bundle. Calls the needed methods.
+	 * 
 	 * @see #showWeather(String)
 	 * @see #showAppointments()
 	 * @see #showImage()
@@ -330,6 +339,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		welcome.setText(welcomeText + " " + controller.getCustomer().getFirstName());
 		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(controller.locationSuggestions()));
 		// showWeather(loc);
+
 		showPrescription();
 		showAppointments();
 		showImage();
@@ -392,6 +402,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 	/**
 	 * Formats and returns the current date.
+	 * 
 	 * @return Formatted date.
 	 */
 	public String getDate() {

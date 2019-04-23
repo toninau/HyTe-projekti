@@ -31,6 +31,7 @@ import javafx.util.Callback;
 import model.BloodValue;
 import model.DAOManager;
 import model.Prescription;
+import net.bytebuddy.asm.Advice.This;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
@@ -203,6 +204,8 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	public void sendRenewRequest(Prescription p) {
 		p.setRenewPrescription(true);
 	}
+	
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

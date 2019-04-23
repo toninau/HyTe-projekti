@@ -20,6 +20,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -36,24 +37,28 @@ public class HyteGUI extends Application {
 	private Stage primaryStage;
 	private ResourceBundle bundle;
 	static Locale currentLocale = new Locale("fi", "FI");
+	AnchorPane rootLayout;
 
+	@SuppressWarnings("restriction")
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
+		LauncherImpl.launchApplication(HyteGUI.class, PreloaderView.class, args);
 	}
 
 	@Override
 	public void init() throws IOException {
-		// initPreload();
 		initLocale();
 		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), currentLocale);
+		rootLayout = FXMLLoader.load(getClass().getResource(FxmlEnum.LOGIN.getFxml()), bundle);
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Login");
-		AnchorPane rootLayout = FXMLLoader.load(getClass().getResource(FxmlEnum.LOGIN.getFxml()), bundle);
+		//AnchorPane rootLayout = FXMLLoader.load(getClass().getResource(FxmlEnum.LOGIN.getFxml()), bundle);
 		Scene scene = new Scene(rootLayout);
+		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/finland_flag.png")));
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
