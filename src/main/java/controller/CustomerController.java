@@ -47,7 +47,8 @@ public class CustomerController implements CustomerController_IF {
 	 */
 	public CustomerController(CustomerCalendarView calendarview) {
 		this.calendarview = calendarview;
-		daom = new DAOManager();
+		if(daom==null)
+			daom = new DAOManager();
 	}
 	
 	/**
@@ -57,7 +58,8 @@ public class CustomerController implements CustomerController_IF {
 	 */
 	public CustomerController(CustomerHomeView homeview) {
 		this.homeview = homeview;
-		daom = new DAOManager();
+		if(daom==null)
+			daom = new DAOManager();
 	}
 	
 	/**
@@ -67,7 +69,8 @@ public class CustomerController implements CustomerController_IF {
 	 */
 	public CustomerController(CustomerHealthView healthview) {
 		this.healthview = healthview;
-		daom = new DAOManager();
+		if(daom==null)
+			daom = new DAOManager();
 	}
 	
 	/**
@@ -77,7 +80,8 @@ public class CustomerController implements CustomerController_IF {
 	 */
 	public CustomerController(CustomerHelpView helpview) {
 		this.helpview = helpview;
-		daom = new DAOManager();
+		if(daom==null)
+			daom = new DAOManager();
 	}
 	
 	/**

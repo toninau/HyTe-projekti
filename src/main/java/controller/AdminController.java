@@ -1,6 +1,5 @@
 package controller;
 
-
 import com.lambdaworks.crypto.SCryptUtil;
 
 import model.Customer;
@@ -17,37 +16,40 @@ import view.admin.EditStaffView;
 //import view.admin.EditStaffIF;
 
 public class AdminController implements AdminController_IF {
-	
+
 	private AddStaffIF addstaff;
 	private AddCustomerIF addcustomer;
 	private DAOManager_IF daoM;
-	
+
 	public AdminController() {
 		daoM = new DAOManager();
 	}
-	
+
 	public AdminController(AddStaffView addstaff) {
-		try {
-			this.addstaff = addstaff;
-			daoM  = new DAOManager();
-		}catch(IllegalArgumentException ie) {
-			ie.getMessage();
-		}
+
+		this.addstaff = addstaff;
+		if (daoM == null)
+			daoM = new DAOManager();
 
 	}
+
 	public AdminController(AddCustomerView addcustomer) {
 		this.addcustomer = addcustomer;
-		daoM = new DAOManager();
+		if (daoM == null)
+			daoM = new DAOManager();
 	}
+
 	public AdminController(EditStaffView editstaff) {
-		//EditStaffIF es = editstaff;
-		daoM  = new DAOManager();
+		// EditStaffIF es = editstaff;
+		if (daoM == null)
+			daoM = new DAOManager();
 	}
+
 	public AdminController(EditCustomerView editcustomer) {
-		//EditCustomerIF ec = editcustomer;
-		daoM = new DAOManager();
+		// EditCustomerIF ec = editcustomer;
+		if (daoM == null)
+			daoM = new DAOManager();
 	}
-	
 
 	/**
 	 * Method for adding an employee to database.
@@ -60,7 +62,7 @@ public class AdminController implements AdminController_IF {
 		String email = addstaff.getEmail();
 		String ammatti = addstaff.getProfession();
 		String pw = encryptPassword(addstaff.getPassword());
-		
+
 		String[] info = { etunimi, sukunimi, puhnro, email, ammatti, pw };
 		boolean success = true;
 		for (String string : info) {
@@ -69,7 +71,7 @@ public class AdminController implements AdminController_IF {
 				addstaff.alert();
 				break;
 			}
-		}	
+		}
 		if (success) {
 			hkunta.setFirstName(etunimi);
 			hkunta.setSurname(sukunimi);
@@ -81,14 +83,14 @@ public class AdminController implements AdminController_IF {
 		}
 		return success;
 	}
-	
+
 	/**
 	 * Method for adding a customer to database.
 	 */
 	public boolean addCustomer() {
 		Customer customer = new Customer();
 		boolean success = true;
-		
+
 		String hetu = addcustomer.getSSN();
 		String etunimi = addcustomer.getFirstName();
 		String sukunimi = addcustomer.getSurname();
@@ -118,52 +120,49 @@ public class AdminController implements AdminController_IF {
 		}
 		return success;
 	}
-	
 
-	
 	/**
 	 * Method for updating the information of an employee.
 	 * 
 	 */
 	public boolean updateStaff(Staff f) {
-		if(daoM.update(f)) {
+		if (daoM.update(f)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public void updateCustomer(Customer customer) {
 		daoM.update(customer);
 	}
-	
+
 	public Staff[] findStaffAll() {
-		return (Staff[])daoM.readAll("staff");
+		return (Staff[]) daoM.readAll("staff");
 	}
-	
+
 	public Customer[] findCustomerAll() {
-		return(Customer[]) daoM.readAll("customer");
+		return (Customer[]) daoM.readAll("customer");
 	}
-	
+
 	public Staff findStaffWithID(String id) {
-		return (Staff)daoM.readWithEmail("staff", id);
+		return (Staff) daoM.readWithEmail("staff", id);
 	}
-	
+
 	public Customer findCustomerWithID(String id) {
-		return (Customer)daoM.readWithEmail("customer",id );
+		return (Customer) daoM.readWithEmail("customer", id);
 	}
-	
+
 	public boolean removeStaffFromDatabase(String id) {
 		return daoM.getStaffDAO().delete(id);
 	}
-	
+
 	public boolean removeCustomerFromDatabase(String id) {
 		return daoM.getCustomerDAO().delete(id);
 	}
-	
+
 	public String encryptPassword(String password) {
 		String originalPassword = password;
 		return SCryptUtil.scrypt(originalPassword, 16, 16, 16);
 	}
 
-	
 }

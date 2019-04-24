@@ -34,8 +34,6 @@ public class StaffHomeView extends ViewChanger implements Initializable{
 		controller = new StaffController(this);
 	}
 	
-		
-	
 	public void todaysAppointments() {
 		Appointment[] appointments = controller.allAppointments();
 		for (Appointment appointment : appointments) {
@@ -44,6 +42,8 @@ public class StaffHomeView extends ViewChanger implements Initializable{
 			}
 		}
 	}
+	
+
 	
 	public void logout(MouseEvent event) throws IOException {
 		logoutForAll(event);
@@ -54,6 +54,7 @@ public class StaffHomeView extends ViewChanger implements Initializable{
 		bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());	
 		todaysAppointments();
 	}
+	
 	
 	/**
 	 * Formats and returns the current date.
