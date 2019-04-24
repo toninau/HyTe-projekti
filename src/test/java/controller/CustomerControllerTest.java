@@ -60,6 +60,7 @@ public class CustomerControllerTest {
 		daom.getPrescriptionDAO().delete(1);
 		daom.getAppointmentDAO().delete(1);
 		daom.getUserImageDAO().delete(1);
+		assertTrue(daom.getAppointmentDAO().readCustomerAppointments(customer).length == 0);
 	}
 	
 	/**
