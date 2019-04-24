@@ -23,7 +23,7 @@ public class AppointmentDAOTest {
 	
 	@BeforeEach
 	public void setTest() {
-		SessionFactory sf = HibernateUtil.getSessionFactory(false);
+		SessionFactory sf = HibernateUtil.getSessionFactory(true);
 		cDAO = new CustomerDAO(sf);
 		sDAO = new StaffDAO(sf);
 		aDAO = new AppointmentDAO(sf);
