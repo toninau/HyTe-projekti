@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +12,18 @@ import model.Customer;
 import model.HibernateUtil;
 
 public class CustomerDAOTest {
-	private CustomerDAO dao;
+	private static CustomerDAO dao;
 	private Customer customer;
 
 	@BeforeEach
 	public void setTest() {
 		SessionFactory sf = HibernateUtil.getSessionFactory(true);
 		dao = new CustomerDAO(sf);
+	}
+	
+	@AfterAll
+	public static void tearDown() {
+		dao.delete("firsur");
 	}
 
 	@Test

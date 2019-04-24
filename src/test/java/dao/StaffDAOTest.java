@@ -3,6 +3,7 @@ package dao;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,16 +12,22 @@ import model.HibernateUtil;
 import model.Staff;
 
 public class StaffDAOTest {
-	private StaffDAO sDAO;
+	private static StaffDAO sDAO;
 	private Staff staff;
 	private Customer customer;
-	private CustomerDAO cDAO;
+	private static CustomerDAO cDAO;
 
 	@BeforeEach
 	public void setTest() {
 		SessionFactory sf = HibernateUtil.getSessionFactory(true);
 		sDAO = new StaffDAO(sf);
 		cDAO = new CustomerDAO(sf);
+	}
+	
+	@AfterAll
+	public static void tearDown() {
+		cDAO.delete("firsur");
+		sDAO.delete("firsur");
 	}
 
 	@Test
