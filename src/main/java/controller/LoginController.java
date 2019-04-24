@@ -57,6 +57,7 @@ public class LoginController implements LoginController_IF {
 
 	@Override
 	public boolean checkLoginStaff(String email, String password) {
+		StaffController staffController = new StaffController();
 		success = false;
 		Staff staff = getStaffFromDatabase(email);
 		String pwFromDB = staff.getPassword();
@@ -66,6 +67,7 @@ public class LoginController implements LoginController_IF {
 			if (checkUsername(email, emailFromDB)) {
 				if (checkPassword(password, pwFromDB)) {
 					success = true;
+					staffController.loggedStaff(staff);
 				} else {
 					success = false;
 					view.loginFailed("password");

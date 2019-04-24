@@ -252,7 +252,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		Appointment[] appointments = controller.customersAppointments();
 		for (Appointment a : appointments) {
 			if (a.getDate().equalsIgnoreCase(getDate())) {
-				data.add(a.getInfo() + " kello " + a.getTime());
+				data.add(a.toStringCustomer());
 			} else {
 				data.add("no appointments for today");
 			}

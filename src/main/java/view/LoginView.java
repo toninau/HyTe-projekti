@@ -94,8 +94,8 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		if (!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
 			if (c.checkLoginStaff(getUsernameStaff(), getPasswordStaff())) {
 				fxml = FxmlEnum.STAFFHOME.getFxml();
-				//bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
-
+				bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
+				
 				title = "Staff view";
 			} else {
 				fxml = FxmlEnum.LOGIN.getFxml();

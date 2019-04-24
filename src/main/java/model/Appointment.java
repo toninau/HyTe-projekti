@@ -169,4 +169,13 @@ public class Appointment {
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
+	
+	public String toStringCustomer() {
+		return getStaff().getSurname() + " " + getStaff().getFirstName() + " " + getInfo() + " " + getDate() + " " + getTime();
+	}
+	
+	public String toStringStaff() {
+		return getCustomer().getSurname() + " " + getCustomer().getFirstName() + " " + getInfo() + " " + getDate() + " " + getTime();
+
+	}
 }
