@@ -19,11 +19,11 @@ public class AppointmentDAOTest {
 	private Appointment appointment;
 	private static CustomerDAO cDAO;
 	private static StaffDAO sDAO;
-	private AppointmentDAO aDAO;
+	private static AppointmentDAO aDAO;
 	
 	@BeforeEach
 	public void setTest() {
-		SessionFactory sf = HibernateUtil.getSessionFactory(true);
+		SessionFactory sf = HibernateUtil.getSessionFactory(false);
 		cDAO = new CustomerDAO(sf);
 		sDAO = new StaffDAO(sf);
 		aDAO = new AppointmentDAO(sf);
@@ -33,7 +33,10 @@ public class AppointmentDAOTest {
 	public static void tearDown() {
 		cDAO.delete("firsur");
 		sDAO.delete("firsur");
+		aDAO.delete(1);
+		
 	}
+	
 	
 	@Test
 	public void testDAOMethdods() {

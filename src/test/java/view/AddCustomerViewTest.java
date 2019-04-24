@@ -49,7 +49,7 @@ public class AddCustomerViewTest extends ApplicationTest {
 	@BeforeAll
 	  public static void setUp () throws Exception {
 		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
-
+		
 		System.setProperty("testfx.robot", "glass"); 
 		System.setProperty("testfx.headless", "true"); 
 		System.setProperty("prism.order", "sw"); 
@@ -63,7 +63,6 @@ public class AddCustomerViewTest extends ApplicationTest {
 	    release(new KeyCode[]{});
 	    release(new MouseButton[]{});
 	}
-	
 	
 	@Test
 	public void addCustomerName() {

@@ -1,14 +1,17 @@
 package view;
 
-/*
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import model.HibernateUtil;
+import view.enums.Bundles;
 
 import org.junit.After;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,25 +29,23 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.hamcrest.Matchers;
+import org.hibernate.SessionFactory;
 
 /**
  * 
  * @author IdaKi
  *
  */
-/*
-public class HyteGUITest extends ApplicationTest{
 
+public class LoginViewTest extends ApplicationTest{
+	
 	Stage stage;
 	@Override
-	  public void start (Stage stage) throws Exception {
-		String language = "fi";
-		String country = "FI";		
-		Locale currentLocale = new Locale(language, country);
-		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), currentLocale);	
-
+	  public void start (Stage stage) throws Exception {		
+		Locale fi = new Locale("fi", "FI");
+		ResourceBundle bundle = ResourceBundle.getBundle("properties.LoginProperties", fi);	
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(HyteGUI.class.getResource("/fxml/LoginView.fxml"), bundle);
+	    Parent mainNode = FXMLLoader.load(LoginView.class.getResource("/fxml/LoginView.fxml"), bundle);
 	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
@@ -54,6 +55,7 @@ public class HyteGUITest extends ApplicationTest{
 	
 	@BeforeAll
 	  public static void setUp () throws Exception {
+		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
 		System.setProperty("testfx.robot", "glass"); 
 		System.setProperty("testfx.headless", "true"); 
 		System.setProperty("prism.order", "sw"); 
@@ -73,7 +75,7 @@ public class HyteGUITest extends ApplicationTest{
     	TextField u = lookup("#usernameAsiakas").query();
         clickOn("#usernameAsiakas");
         write("name");
-        assertTrue(u.getText().equals("name"));             
+        assertTrue(u.getText().equals("name"));  
     }
 
     @Test
@@ -83,6 +85,8 @@ public class HyteGUITest extends ApplicationTest{
         write("password");
         assertTrue(u.getText().equals("password"));             
     }
+    
+    
     
     @Test
     public void testAdminLogin() {
@@ -95,5 +99,5 @@ public class HyteGUITest extends ApplicationTest{
     	assertTrue(stage.getTitle().equals("Menu"));
     }
     
+    
 }
-*/

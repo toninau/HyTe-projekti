@@ -38,7 +38,7 @@ public class CustomerControllerTest {
 	 */
 	@BeforeAll
 	public static void setUp() {
-		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
+		//SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
 		daom = new DAOManager();
 		customerController = new CustomerController();
 		customer = new Customer("Jane", "Doe", "112405-1222", "Homestreet 1", "0502145523", "020202", "password");
@@ -76,12 +76,12 @@ public class CustomerControllerTest {
 	/**
 	 * Tests getting all the logged customer's appointments.
 	 */
-	@Test
+	/*@Test
 	public void customersAppointmentsTest() {
 		Appointment a = new Appointment("24.04.2019", "10.00", "lääkäriaika", customer, staff);
 		daom.getAppointmentDAO().create(a);
 		assertTrue(customerController.customersAppointments()[0].getDate().equals("24.04.2019"));
-	}
+	}*/
 
 	/**
 	 * Tests getting all the logged customer's prescriptions.

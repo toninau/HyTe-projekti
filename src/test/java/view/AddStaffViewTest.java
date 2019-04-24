@@ -1,16 +1,19 @@
 package view;
-/*
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import model.HibernateUtil;
+import view.admin.AddCustomerView;
 
 import org.junit.After;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,29 +29,35 @@ import static org.junit.Assert.assertTrue;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.hamcrest.Matchers;
+import org.hibernate.SessionFactory;
 
 /**
  * 
  * @author IdaKi
  *
  */
-/*
+
 public class AddStaffViewTest extends ApplicationTest{
 	
 	Stage stage;
 	@Override
 	  public void start (Stage stage) throws Exception {
 		this.stage = stage;
-	    Parent mainNode = FXMLLoader.load(AdminView.class.getResource("/fxml/AddStaffView.fxml"));
-	    stage.setScene(new Scene(mainNode));
+		Locale fi = new Locale("fi", "FI");
+		ResourceBundle bundle = ResourceBundle.getBundle("properties.Admin", fi);
+	    Parent mainNode = FXMLLoader.load(AddCustomerView.class.getResource("/fxml/AddStaffView.fxml"), bundle);	    stage.setScene(new Scene(mainNode));
 	    stage.show();
 	    stage.toFront();
 	}
 	
 	@BeforeAll
 	  public static void setUp () throws Exception {
+		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
+
 		System.setProperty("testfx.robot", "glass"); 
 		System.setProperty("testfx.headless", "true"); 
 		System.setProperty("prism.order", "sw"); 
@@ -67,11 +76,11 @@ public class AddStaffViewTest extends ApplicationTest{
 	@Test
 	public void addStaffName() {
 		TextField fname = lookup("#fNameStaff").query();
-		TextField surname = lookup("#sNameStaff").query();
+		TextField surname = lookup("#surnameStaff").query();
 
         clickOn("#fNameStaff");
         write("firstname");
-        clickOn("#sNameStaff");
+        clickOn("#surnameStaff");
         write("surname");
         
         verifyThat(fname.getText(), Matchers.is("firstname"));
@@ -80,11 +89,11 @@ public class AddStaffViewTest extends ApplicationTest{
 	
 	@Test
 	public void addStaffProfession() {
-		ChoiceBox<String> profession = lookup("#profession").query();
+		ComboBox<String> profession = lookup("#profession").query();
         clickOn("#profession");
         type(KeyCode.DOWN);
         type(KeyCode.ENTER);
-        assertTrue(profession.getItems().contains("Hoitaja"));
+        assertTrue(profession.getItems().contains("Lääkäri"));
 	}
 	
 	@Test
@@ -112,4 +121,4 @@ public class AddStaffViewTest extends ApplicationTest{
         assertTrue(SCryptUtil.check(pw.getText(), hashed));
 	}
 }
-*/
+
