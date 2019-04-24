@@ -64,16 +64,22 @@ public class Prescription {
 	 * @param endDate           Prescription ending date
 	 * @param prescriptionName  Prescription's name
 	 * @param prescriptionGuide Prescription's guide
+	 * @param timeToTake		Prescription's when to take medicine.
+	 * @param dosage			Prescription's dosage guide.
+	 * @param renewPrescription	If prescription should be renewed.
 	 * @param customer          Prescription's customer
 	 * @param staff             Prescription's staff member
 	 * @see #Prescription()
 	 */
-	public Prescription(String startDate, String endDate, String prescriptionName, String prescriptionGuide,
-			Customer customer, Staff staff) {
+	public Prescription(String startDate, String endDate, String prescriptionName, String prescriptionGuide, String timeToTake, String dosage,
+			boolean renewPrescription, Customer customer, Staff staff) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.prescriptionName = prescriptionName;
 		this.prescriptionGuide = prescriptionGuide;
+		this.timeToTake = timeToTake;
+		this.dosage = dosage;
+		this.renewPrescription = renewPrescription;
 		this.customer = customer;
 		this.staff = staff;
 	}

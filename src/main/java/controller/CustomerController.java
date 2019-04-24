@@ -113,7 +113,7 @@ public class CustomerController implements CustomerController_IF {
 	 * Returns the current customer logged in.
 	 * @return Logged in customer.
 	 */
-	public Customer getCustomer() {
+	public Customer getLoggedCustomer() {
 		return CustomerController.customer;
 	}
 	

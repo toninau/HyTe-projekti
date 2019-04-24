@@ -31,7 +31,7 @@ public class PrescriptionTest {
 		customer = new Customer();
 		staffmember = new Staff();
 		try {
-			prescription = new Prescription("12.12.2000", "12.20.2001", "testi", "testi-ohje" ,customer, staffmember);
+			prescription = new Prescription("12.12.2000", "12.20.2001", "testi", "testi-ohje", "aika", "2x400mg", false ,customer, staffmember);
 		} catch (Exception e) {
 			fail("Failed to create prescription-object");
 		}

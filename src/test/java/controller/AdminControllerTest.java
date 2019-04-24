@@ -171,7 +171,7 @@ public class AdminControllerTest {
 			 addStaffView = new AddStaffView();
 			 adminController = new AdminController(addStaffView);
 		} catch (Exception e) {
-			fail("Failed to create appointment-object");
+			fail("Failed to create add staff view");
 		}
 	}
 	

@@ -11,7 +11,7 @@ import model.UserImage;
 
 public interface CustomerController_IF {
 	public abstract void loggedCustomer(Customer customer);
-	public abstract Customer getCustomer();
+	public abstract Customer getLoggedCustomer();
 	public abstract BloodValue[] bloodValueData();
 	public abstract boolean createBloodsugar();
 	public abstract Prescription[] prescriptions();

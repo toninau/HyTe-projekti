@@ -336,7 +336,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		String loc = bundle.getString("weather.defaultLocation");
 		String welcomeText = bundle.getString("welcome.morning");
-		welcome.setText(welcomeText + " " + controller.getCustomer().getFirstName());
+		welcome.setText(welcomeText + " " + controller.getLoggedCustomer().getFirstName());
 		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(controller.locationSuggestions()));
 		// showWeather(loc);
 
