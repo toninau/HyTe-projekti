@@ -1,5 +1,10 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import javax.persistence.*;
 
 /**
@@ -18,10 +23,10 @@ public class Appointment {
 	private int appointmentID;
 
 	@Column(name = "date")
-	private String date;
+	private LocalDate date;
 
 	@Column(name = "time")
-	private String time;
+	private LocalTime time;
 
 	@Column(name = "info")
 	private String info;
@@ -45,8 +50,9 @@ public class Appointment {
 	 * @see #Appointment()
 	 */
 	public Appointment(String date, String time, String info, Customer customer, Staff staff) {
-		this.date = date;
-		this.time = time;
+
+		this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		this.time = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
 		this.info = info;
 		this.customer = customer;
 		this.staff = staff;
@@ -85,7 +91,7 @@ public class Appointment {
 	 * 
 	 * @return date
 	 */
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
@@ -95,7 +101,8 @@ public class Appointment {
 	 * @param date date to set
 	 */
 	public void setDate(String date) {
-		this.date = date;
+		LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		this.date = localDate;
 	}
 
 	/**
@@ -103,7 +110,7 @@ public class Appointment {
 	 * 
 	 * @return time
 	 */
-	public String getTime() {
+	public LocalTime getTime() {
 		return time;
 	}
 
@@ -113,7 +120,8 @@ public class Appointment {
 	 * @param time appointment time to set
 	 */
 	public void setTime(String time) {
-		this.time = time;
+		LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH.mm"));
+		this.time = localTime;
 	}
 
 	/**
@@ -169,13 +177,16 @@ public class Appointment {
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
-	
-	public String toStringCustomer() {
-		return getStaff().getSurname() + " " + getStaff().getFirstName() + " " + getInfo() + " " + getDate() + " " + getTime();
-	}
-	
-	public String toStringStaff() {
-		return getCustomer().getSurname() + " " + getCustomer().getFirstName() + " " + getInfo() + " " + getDate() + " " + getTime();
 
+	public String toStringCustomer() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String date = getDate().format(formatter);
+		return getTime().truncatedTo(ChronoUnit.MINUTES) +   "  " + date + "  " + getInfo() + ". " + getStaff().getAccessLevel() + " " + getStaff().getSurname() + ", " + getStaff().getFirstName();
+	}
+
+	public String toStringStaff() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String date = getDate().format(formatter);
+		return getTime().truncatedTo(ChronoUnit.MINUTES) + "  " + date + " " + getCustomer().getSurname() + " " + getCustomer().getFirstName() + " " + getInfo();
 	}
 }

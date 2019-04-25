@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -44,7 +46,7 @@ public class Main {
 		UserImageDAO imageDAO = new UserImageDAO(istuntotehdas);
 		
 		
-		for (int i = 1; i <= 3; i++) {
+		/*for (int i = 1; i <= 3; i++) {
 			Customer customer = new Customer();
 			customer.setFirstName("Jarmo");
 			customer.setSurname("Testi");
@@ -64,8 +66,26 @@ public class Main {
 			staff.setPhoneNumber("112");
 			staff.setAccessLevel("Lääkäri");
 			henkilöDAO.create(staff);
-		}
+		}*/
 		
+		Customer customer = asiakasDAO.read("aa");
+		
+		Staff staff = new Staff();
+		staff.setFirstName("test");
+		staff.setSurname("tohtori");
+		staff.setPassword("test");
+		staff.setPhoneNumber("112");
+		staff.setAccessLevel("Lääkäri");
+		henkilöDAO.create(staff);
+		
+		Appointment appointment = new Appointment();
+		appointment.setCustomer(customer);
+		appointment.setStaff(staff);
+		appointment.setDate("24.04.2019");
+		appointment.setTime("20.00");
+		appointment.setInfo("tarkastustaas");
+		
+		varausDAO.create(appointment);
 		// Luo ensimmäinen henkilökunnan jäsen
 		/*Staff staff = new Staff();
 		staff.setStaffID("1");

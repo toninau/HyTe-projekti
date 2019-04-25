@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Appointment;
 import model.DAOManager;
 import model.DAOManager_IF;
@@ -39,8 +41,13 @@ public class StaffController {
 	}
 	
 		
-	public Appointment[] allAppointments() {
-		return daom.getAppointmentDAO().readStaffAppointments(staff);
+	public ObservableList<Appointment> allAppointments() {
+		ObservableList<Appointment> list = FXCollections.observableArrayList();
+		Appointment[] appointments = daom.getAppointmentDAO().readStaffAppointments(staff);	
+		for (Appointment appointment : appointments) {
+			list.add(appointment);
+		}		
+		return list;
 	}
 	
 	/**

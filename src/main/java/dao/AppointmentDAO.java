@@ -1,5 +1,6 @@
 package dao;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.hibernate.ObjectNotFoundException;
@@ -146,6 +147,9 @@ public class AppointmentDAO {
 	 *         <code>false</code> if appointment was not updated
 	 */
 	public boolean update(Appointment appointment) {
+		DateTimeFormatter dformatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		DateTimeFormatter tformatter = DateTimeFormatter.ofPattern("HH.mm");
+
 		boolean success = false;
 		Session session = sessionfactory.openSession();
 		session.beginTransaction();
@@ -154,8 +158,8 @@ public class AppointmentDAO {
 			a.setCustomer(appointment.getCustomer());
 			a.setStaff(appointment.getStaff());
 			a.setInfo(appointment.getInfo());
-			a.setTime(appointment.getTime());
-			a.setDate(appointment.getDate());
+			a.setTime(appointment.getTime().format(tformatter));
+			a.setDate(appointment.getDate().format(dformatter));
 			success = true;
 		} else {
 			System.out.println("Nothing to update");

@@ -5,6 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class AppointmentTest {
 	private Appointment appointment;
 	private Staff staffmember;
@@ -52,13 +56,13 @@ public class AppointmentTest {
 	@Test
 	public void testGetSetDate() {
 		appointment.setDate("12.12.2020");
-		assertEquals("12.12.2020", appointment.getDate(), "Failed to set and get appointment date");
+		assertEquals(LocalDate.of(2020, 12, 12), appointment.getDate(), "Failed to set and get appointment date");
 	}
 
 	@Test
 	public void testGetSetTime() {
-		appointment.setTime("12:12");
-		assertEquals("12:12", appointment.getTime(), "Failed to set and get appointment time");
+		appointment.setTime("12.12");
+		assertEquals(LocalTime.of(12, 12), appointment.getTime(), "Failed to set and get appointment time");
 	}
 
 	@Test

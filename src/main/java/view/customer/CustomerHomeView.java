@@ -251,7 +251,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		ObservableList<String> data = FXCollections.observableArrayList();
 		Appointment[] appointments = controller.customersAppointments();
 		for (Appointment a : appointments) {
-			if (a.getDate().equalsIgnoreCase(getDate())) {
+			if (a.getDate().isEqual(LocalDate.now())) {
 				data.add(a.toStringCustomer());
 			} else {
 				data.add("no appointments for today");
