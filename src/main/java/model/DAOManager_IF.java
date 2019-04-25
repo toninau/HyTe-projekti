@@ -23,4 +23,6 @@ public interface DAOManager_IF {
 	public abstract NotificationDAO getNotificationDAO();
 	public abstract AppointmentDAO getAppointmentDAO();
 	public abstract UserImageDAO getUserImageDAO();
+	public abstract void writeAllCustomerInformation(Customer customer);
+	public abstract UserImage[] readCustomerImages();
 }

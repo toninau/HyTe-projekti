@@ -14,6 +14,7 @@ import model.BloodValue;
 import model.Customer;
 import model.DAOManager;
 import model.DAOManager_IF;
+import model.ImageLoader;
 import model.Prescription;
 import model.UserImage;
 import view.HyteGUI;
@@ -174,7 +175,7 @@ public class CustomerController implements CustomerController_IF {
 	 * @see dao.UserImageDAO#readCustomerUserImages(Customer)
 	 */
 	public UserImage[] imageFromDatabase() {
-		return daom.getUserImageDAO().readCustomerUserImages(customer);
+		return daom.readCustomerImages();
 	}
 	
 	public List<String> locationSuggestions() {

@@ -1,5 +1,16 @@
 package model;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+
+import javax.imageio.ImageIO;
+
 import org.hibernate.SessionFactory;
 
 import dao.AppointmentDAO;
@@ -12,12 +23,12 @@ import dao.StaffDAO;
 import dao.UserImageDAO;
 
 /**
-*
+ *
  * This manager class manages all DAO-classes in the project.
-*
+ *
  */
 public class DAOManager implements DAOManager_IF {
-	
+
 	private CustomerDAO customerDAO = null;
 	private StaffDAO staffDAO = null;
 	private PrescriptionDAO prescriptionDAO = null;
@@ -28,51 +39,71 @@ public class DAOManager implements DAOManager_IF {
 	private UserImageDAO userImageDAO = null;
 
 	private SessionFactory s;
-	
+	private ImageLoader i;
+	File file;
+
 	/**
 	 * Class constructor to get the SessionFactory.
 	 */
 	public DAOManager() {
-		s =HibernateUtil.getSessionFactory(false);
+		s = HibernateUtil.getSessionFactory(false);
+		i = ImageLoader.getImageLoader();
 	}
+
+	public void writeAllCustomerInformation(Customer customer) {
+
+		// Appointment [] appointments =
+		// appointmentDAO.readCustomerAppointments(customer);
+		// Prescription [] prescriptions =
+		// prescriptionDAO.readCustomersPrescriptions(customer);
+		i.writeImagesToFile(customer);
+		
+	}
+
+	public UserImage[] readCustomerImages() {
+		return i.readCustomerImages();
+	}
+
 
 	/**
 	 * 
-	 * @param obj 
+	 * @param obj
 	 */
 	public void create(Object obj) {
-		if(obj instanceof Staff) {
-			getStaffDAO().create((Staff)obj);
+		if (obj instanceof Staff) {
+			getStaffDAO().create((Staff) obj);
 		} else if (obj instanceof Customer) {
-			getCustomerDAO().create((Customer)obj);
+			getCustomerDAO().create((Customer) obj);
 		} else if (obj instanceof Illness) {
-			getIllnessDAO().create((Illness)obj);
+			getIllnessDAO().create((Illness) obj);
 		} else if (obj instanceof Prescription) {
-			getPrescriptionDAO().create((Prescription)obj);
+			getPrescriptionDAO().create((Prescription) obj);
 		} else if (obj instanceof Notification) {
-			getNotificationDAO().create((Notification)obj);
+			getNotificationDAO().create((Notification) obj);
 		} else if (obj instanceof BloodValue) {
-			getBloodValueDAO().create((BloodValue)obj);
-		} else { System.out.println("ei ole"); }	
+			getBloodValueDAO().create((BloodValue) obj);
+		} else {
+			System.out.println("ei ole");
+		}
 	}
-	
+
 	public boolean update(Object obj) {
-		if(obj instanceof Staff) 
-			 return getStaffDAO().update((Staff)obj);
-		else if (obj instanceof Customer) 
-			 return getCustomerDAO().update((Customer)obj);
-		else if (obj instanceof Notification) 
-			return getNotificationDAO().update((Notification)obj);
-		else 
+		if (obj instanceof Staff)
+			return getStaffDAO().update((Staff) obj);
+		else if (obj instanceof Customer)
+			return getCustomerDAO().update((Customer) obj);
+		else if (obj instanceof Notification)
+			return getNotificationDAO().update((Notification) obj);
+		else
 			return false;
 	}
-	
+
 	/**
 	 * 
 	 * @param obj Name of the wanted object.
 	 * @return
 	 */
-	public Object[] readAll(String obj){
+	public Object[] readAll(String obj) {
 		switch (obj) {
 		case "staff":
 			return getStaffDAO().readAll();
@@ -80,14 +111,14 @@ public class DAOManager implements DAOManager_IF {
 			return getCustomerDAO().readAll();
 		default:
 			return new Object[0];
-		} 
+		}
 	}
-	
+
 	/**
 	 * 
-	 * @param id Id of the object to be read.
+	 * @param id  Id of the object to be read.
 	 * @param obj Name of the wanted object.
-	 * @return 
+	 * @return
 	 */
 	public Object readWithID(int id, String obj) {
 		switch (obj) {
@@ -99,9 +130,9 @@ public class DAOManager implements DAOManager_IF {
 			return getPrescriptionDAO().read(id);
 		default:
 			return null;
-		}	
+		}
 	}
-	
+
 	public Object readWithEmail(String key, String email) {
 		switch (key) {
 		case "staff":
@@ -112,12 +143,11 @@ public class DAOManager implements DAOManager_IF {
 			return null;
 		}
 	}
-	
-	
+
 	/**
 	 * Creates a Customer Data Access Object. If it exists, return the existing one.
 	 * 
-	 * @return	CustomerDAO.
+	 * @return CustomerDAO.
 	 */
 	public CustomerDAO getCustomerDAO() {
 		if (this.customerDAO == null) {
@@ -128,7 +158,8 @@ public class DAOManager implements DAOManager_IF {
 
 	/**
 	 * Creates a Staff Data Access Object. If it exists, return the existing one.
-	 * @return	StaffDAO
+	 * 
+	 * @return StaffDAO
 	 */
 	public StaffDAO getStaffDAO() {
 		if (staffDAO == null) {
@@ -138,8 +169,10 @@ public class DAOManager implements DAOManager_IF {
 	}
 
 	/**
-	 * Creates a Prescription Data Access Object. If it exists, return the existing one.
-	 * @return	PrescriptionDAO.
+	 * Creates a Prescription Data Access Object. If it exists, return the existing
+	 * one.
+	 * 
+	 * @return PrescriptionDAO.
 	 */
 	public PrescriptionDAO getPrescriptionDAO() {
 		if (this.prescriptionDAO == null) {
@@ -150,7 +183,8 @@ public class DAOManager implements DAOManager_IF {
 
 	/**
 	 * Creates an Illness Data Access Object. If it exists, return the existing one.
-	 * @return	IllnessDAO.
+	 * 
+	 * @return IllnessDAO.
 	 */
 	public IllnessDAO getIllnessDAO() {
 		if (this.illnessDAO == null) {
@@ -160,8 +194,10 @@ public class DAOManager implements DAOManager_IF {
 	}
 
 	/**
-	 * Creates a BloodValue Data Access Object. If it exists, return the existing one.
-	 * @return	BloodValueDAO
+	 * Creates a BloodValue Data Access Object. If it exists, return the existing
+	 * one.
+	 * 
+	 * @return BloodValueDAO
 	 */
 	public BloodValueDAO getBloodValueDAO() {
 		if (this.bloodValueDAO == null) {
@@ -171,8 +207,10 @@ public class DAOManager implements DAOManager_IF {
 	}
 
 	/**
-	 * Creates a Notification Data Access Object. If it exists, return the existing one.
-	 * @return	NotificationDAO
+	 * Creates a Notification Data Access Object. If it exists, return the existing
+	 * one.
+	 * 
+	 * @return NotificationDAO
 	 */
 	public NotificationDAO getNotificationDAO() {
 		if (this.notificationDAO == null) {
@@ -180,11 +218,12 @@ public class DAOManager implements DAOManager_IF {
 		}
 		return this.notificationDAO;
 	}
-	
+
 	/**
-	 * Creates a new appointment data access object if it's null,
-	 * otherwise returns existing appointment data access object.
-	 * @return	AppointmentDAO
+	 * Creates a new appointment data access object if it's null, otherwise returns
+	 * existing appointment data access object.
+	 * 
+	 * @return AppointmentDAO
 	 */
 	public AppointmentDAO getAppointmentDAO() {
 		if (this.appointmentDAO == null) {
@@ -192,11 +231,12 @@ public class DAOManager implements DAOManager_IF {
 		}
 		return this.appointmentDAO;
 	}
-	
+
 	/**
-	 * Creates a new appointment data access object if it's null,
-	 * otherwise returns existing appointment data access object.
-	 * @return	AppointmentDAO
+	 * Creates a new appointment data access object if it's null, otherwise returns
+	 * existing appointment data access object.
+	 * 
+	 * @return AppointmentDAO
 	 */
 	public UserImageDAO getUserImageDAO() {
 		if (this.userImageDAO == null) {

@@ -30,11 +30,11 @@ public class LoginController implements LoginController_IF {
 		Customer customer = getCustomerFromDatabase(email);
 		String pwFromDB = customer.getPassword();
 		String emailFromDB = customer.getCustomerID();
-
 		if (pwFromDB != null) {
 			if (checkUsername(email, emailFromDB)) {
 				if (checkPassword(password, pwFromDB)) {
 					success = true;
+					getAllCustomerInformation(customer);
 					customerController.loggedCustomer(customer);
 				} else {
 					success = false;
@@ -49,6 +49,11 @@ public class LoginController implements LoginController_IF {
 			view.loginFailed("user");
 		}
 		return success;
+	}
+	
+	public void getAllCustomerInformation(Customer customer) {
+		daom.writeAllCustomerInformation(customer);
+		
 	}
 
 	public Staff getStaffFromDatabase(String email) {
