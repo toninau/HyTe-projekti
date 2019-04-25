@@ -7,6 +7,7 @@ import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 import model.Customer;
 import model.Staff;
@@ -44,18 +45,19 @@ public class StaffDAO {
 		Transaction transaction = null;
 		boolean success = false;
 		try {
-			staff = createStaffIDFromName(staff);
+			if (staff.getStaffID() == null || staff.getStaffID().isEmpty()) {
+				staff = createStaffIDFromName(staff);
+			}
 			transaction = session.beginTransaction();
-			session.saveOrUpdate(staff);
+			session.save(staff);
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-		} finally {
-			session.close();
 		}
+		session.close();
 		return success;
 	}
 
@@ -74,11 +76,23 @@ public class StaffDAO {
 		staffID += surname.toLowerCase().substring(0, Math.min(surname.length(), 3));
 		String sql = "SELECT COUNT(*) FROM staff WHERE staffID LIKE :id";
 		BigInteger result = (BigInteger) session.createSQLQuery(sql).setParameter("id", staffID + "%").uniqueResult();
-		if (result.intValue() > 0) {
-			int number = result.intValue() + 1;
-			staff.setStaffID(staffID + number);
-		} else {
-			staff.setStaffID(staffID);
+		int number = result.intValue() + 1;
+		String numberString = "";
+		if (number > 1) {
+			numberString += number;
+		}
+		while (true) {
+			Staff s = (Staff) session.get(Staff.class, staffID + numberString);
+			if (s == null) {
+				staff.setStaffID(staffID + numberString);
+				break;
+			}
+			number--;
+			if (number == 1) {
+				numberString = "";
+			} else {
+				numberString = "" + number;
+			}
 		}
 		session.close();
 		return staff;

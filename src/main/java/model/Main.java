@@ -46,7 +46,7 @@ public class Main {
 		UserImageDAO imageDAO = new UserImageDAO(istuntotehdas);
 		
 		
-		/*for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 7; i++) {
 			Customer customer = new Customer();
 			customer.setFirstName("Jarmo");
 			customer.setSurname("Testi");
@@ -58,7 +58,7 @@ public class Main {
 			asiakasDAO.create(customer);
 		}
 		
-		for (int i = 1; i <= 3; i++) {
+		for (int i = 1; i <= 7; i++) {
 			Staff staff = new Staff();
 			staff.setFirstName("test" + i);
 			staff.setSurname("tohtori");
@@ -66,26 +66,35 @@ public class Main {
 			staff.setPhoneNumber("112");
 			staff.setAccessLevel("Lääkäri");
 			henkilöDAO.create(staff);
-		}*/
+		}
 		
-		Customer customer = asiakasDAO.read("aa");
+		henkilöDAO.delete("testoh3");
+		henkilöDAO.delete("testoh");
+		asiakasDAO.delete("jartes");
+		asiakasDAO.delete("jartes3");
 		
-		Staff staff = new Staff();
-		staff.setFirstName("test");
-		staff.setSurname("tohtori");
-		staff.setPassword("test");
-		staff.setPhoneNumber("112");
-		staff.setAccessLevel("Lääkäri");
-		henkilöDAO.create(staff);
+		for (int i = 1; i <= 3; i++) {
+			Staff staff = new Staff();
+			staff.setFirstName("test_uusi");
+			staff.setSurname("tohtori");
+			staff.setPassword("test");
+			staff.setPhoneNumber("112");
+			staff.setAccessLevel("Lääkäri");
+			henkilöDAO.create(staff);
+		}
 		
-		Appointment appointment = new Appointment();
-		appointment.setCustomer(customer);
-		appointment.setStaff(staff);
-		appointment.setDate("24.04.2019");
-		appointment.setTime("20.00");
-		appointment.setInfo("tarkastustaas");
-		
-		varausDAO.create(appointment);
+		for (int i = 1; i <= 3; i++) {
+			Customer customer = new Customer();
+			customer.setFirstName("Jarmo_UUSI");
+			customer.setSurname("Testi");
+			customer.setSSN("123456-7890");
+			customer.setIceNumber("12312145");
+			customer.setAddress("Testikuja 2");
+			customer.setPhoneNumber("12341235");
+			customer.setPassword("test");
+			asiakasDAO.create(customer);
+		}
+
 		// Luo ensimmäinen henkilökunnan jäsen
 		/*Staff staff = new Staff();
 		staff.setStaffID("1");

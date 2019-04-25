@@ -45,18 +45,19 @@ public class CustomerDAO {
 		Transaction transaction = null;
 		boolean success = false;
 		try {
-			customer = createCustomerIDFromName(customer);
+			if (customer.getCustomerID() == null || customer.getCustomerID().isEmpty()) {
+				customer = createCustomerIDFromName(customer);
+			}
 			transaction = session.beginTransaction();
-			session.saveOrUpdate(customer);
+			session.save(customer);
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-		} finally {
-			session.close();
 		}
+		session.close();
 		return success;
 	}
 
@@ -76,11 +77,23 @@ public class CustomerDAO {
 		String sql = "SELECT COUNT(*) FROM customer WHERE customerID LIKE :id";
 		BigInteger result = (BigInteger) session.createSQLQuery(sql).setParameter("id", customerID + "%")
 				.uniqueResult();
-		if (result.intValue() > 0) {
-			int number = result.intValue() + 1;
-			customer.setCustomerID(customerID + number);
-		} else {
-			customer.setCustomerID(customerID);
+		int number = result.intValue() + 1;
+		String numberString = "";
+		if (number > 1) {
+			numberString += number;
+		}
+		while (true) {
+			Customer c = (Customer) session.get(Customer.class, customerID + numberString);
+			if (c == null) {
+				customer.setCustomerID(customerID + numberString);
+				break;
+			}
+			number--;
+			if (number == 1) {
+				numberString = "";
+			} else {
+				numberString = "" + number;
+			}
 		}
 		session.close();
 		return customer;
