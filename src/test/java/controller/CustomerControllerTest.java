@@ -70,7 +70,7 @@ public class CustomerControllerTest {
 	public void imageDatabaseTest() {
 		File file = new File(getClass().getResource("/pictures/finland_flag.png").getFile());
 		customerController.imageToDatabase(file, 1);
-		assertTrue(customerController.imageFromDatabase()[0].getImageName().equals("jandoe1"));
+		assertTrue(daom.getUserImageDAO().readCustomerUserImages(customer)[0].getImageName().equals("jandoe1"));
 	}
 
 	/**

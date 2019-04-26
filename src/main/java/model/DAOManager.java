@@ -53,7 +53,6 @@ public class DAOManager implements DAOManager_IF {
 
 	public void writeAllCustomerInformation(Customer customer) {
 
-		//info.writeAppointmentsToFile(customer);
 		// Appointment [] appointments =
 		// appointmentDAO.readCustomerAppointments(customer);
 		// Prescription [] prescriptions =

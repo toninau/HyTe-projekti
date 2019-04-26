@@ -178,6 +178,7 @@ public class CustomerController implements CustomerController_IF {
 		return daom.readCustomerImages();
 	}
 	
+	
 	public List<String> locationSuggestions() {
 		ArrayList<String> locations = new ArrayList<>();
 		InputStream csvFile = null;
