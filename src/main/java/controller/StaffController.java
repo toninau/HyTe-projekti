@@ -2,10 +2,7 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Appointment;
-import model.DAOManager;
-import model.DAOManager_IF;
-import model.Staff;
+import model.*;
 import view.staff.StaffAppointmentView;
 import view.staff.StaffHomeView;
 import view.staff.StaffPrescriptionView;
@@ -13,6 +10,7 @@ import view.staff.StaffPrescriptionView;
 public class StaffController {
 	
 	static Staff staff;
+	private Customer[] staffCustomers;
 	private DAOManager_IF daom;
 	private StaffHomeView staffHomeView;
 	private StaffAppointmentView appointmentView;
@@ -61,4 +59,9 @@ public class StaffController {
 	public Staff getLoggedStaff() {
 		return StaffController.staff;
 	}
+
+	public boolean sendNotification(Notification notification) {
+	    //daom.getNotificationDAO().create(notification);
+	    return true;
+    }
 }
