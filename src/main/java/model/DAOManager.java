@@ -40,6 +40,7 @@ public class DAOManager implements DAOManager_IF {
 
 	private SessionFactory s;
 	private ImageLoader i;
+	private InfoLoader info;
 	File file;
 
 	/**
@@ -52,6 +53,7 @@ public class DAOManager implements DAOManager_IF {
 
 	public void writeAllCustomerInformation(Customer customer) {
 
+		//info.writeAppointmentsToFile(customer);
 		// Appointment [] appointments =
 		// appointmentDAO.readCustomerAppointments(customer);
 		// Prescription [] prescriptions =
@@ -64,6 +66,9 @@ public class DAOManager implements DAOManager_IF {
 		return i.readCustomerImages();
 	}
 
+	public Appointment[] readCustomerAppointments() {
+		return info.readAppointmentsFromFile();
+	}
 
 	/**
 	 * 

@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -11,7 +13,12 @@ import java.util.*;
  */
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "customerID", length = 11)

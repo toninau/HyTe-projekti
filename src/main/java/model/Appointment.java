@@ -1,6 +1,8 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -15,7 +17,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "appointment")
-public class Appointment {
+public class Appointment implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

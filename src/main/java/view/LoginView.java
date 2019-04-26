@@ -95,7 +95,6 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 			if (c.checkLoginStaff(getUsernameStaff(), getPasswordStaff())) {
 				fxml = FxmlEnum.STAFFHOME.getFxml();
 				bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
-				
 				title = "Staff view";
 			} else {
 				fxml = FxmlEnum.LOGIN.getFxml();
@@ -119,8 +118,8 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	public void loginCustomer(Event event) throws IOException {
 		String fxml = FxmlEnum.LOGIN.getFxml();
 		String title = "Welcome!";
-		
-		if (c.checkLoginCustomer(getUsernameCustomer(), getPasswordCustomer())) {
+		loading();
+		if (c.checkLoginCustomer(getUsernameCustomer(), getPasswordCustomer())) {	
 			bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 			fxml = FxmlEnum.CUSTOMERHOME.getFxml();
 			title = "Welcome!";

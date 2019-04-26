@@ -39,7 +39,6 @@ public class ViewChanger {
 	 */
 	public void sceneContent(String fxml, Event event, String title, ResourceBundle bundle) {
 		try {
-			loading();
 			Pane p = FXMLLoader.load(getClass().getResource(fxml), bundle);
 			Scene scene = new Scene(p);
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -60,15 +59,15 @@ public class ViewChanger {
 		BorderPane p = new BorderPane();
 		p.setStyle("-fx-background-color: white");
 		p.setCenter(iv);
-		Scene scene = new Scene(p);
+		Scene scene = new Scene(p, 1280, 720);
 		loadStage = new Stage();
 		loadStage.setScene(scene);
 		loadStage.show();
-
 	}
 
 	public void loaded() {
-		loadStage.hide();
+		if(loadStage!=null)
+			loadStage.hide();
 	}
 
 	/**
