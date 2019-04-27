@@ -103,7 +103,6 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	public CustomerCalendarView() {
 		controller = new CustomerController(this);
-		appointments = controller.customersAppointments();
 
 	}
 
@@ -247,6 +246,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		month = LocalDate.now().getMonth();
 		year = LocalDate.now().getYear();
+		appointments = controller.customersAppointments();
 
 		createHashMap();
 		populateGridPane(month, year);
