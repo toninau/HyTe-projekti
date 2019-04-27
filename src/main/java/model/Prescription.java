@@ -1,5 +1,11 @@
 package model;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.Type;
@@ -12,7 +18,12 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name = "prescription")
-public class Prescription {
+public class Prescription implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +31,10 @@ public class Prescription {
 	private int prescriptionID;
 
 	@Column(name = "startDate")
-	private String startDate;
+	private LocalDate startDate;
 
 	@Column(name = "endDate")
-	private String endDate;
+	private LocalDate endDate;
 
 	@Column(name = "prescriptionName")
 	private String prescriptionName;
@@ -36,6 +47,9 @@ public class Prescription {
 	
 	@Column(name = "dosage")
 	private String dosage;
+	
+	@Column(name = "takenAt")
+	private LocalDateTime takenAt;
 
 	@Column(name = "renewPrescription", nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
@@ -73,8 +87,8 @@ public class Prescription {
 	 */
 	public Prescription(String startDate, String endDate, String prescriptionName, String prescriptionGuide, String timeToTake, String dosage,
 			boolean renewPrescription, Customer customer, Staff staff) {
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.startDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));;
+		this.endDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));;
 		this.prescriptionName = prescriptionName;
 		this.prescriptionGuide = prescriptionGuide;
 		this.timeToTake = timeToTake;
@@ -105,7 +119,7 @@ public class Prescription {
 	 * Returns prescription start date.
 	 * @return startDate
 	 */
-	public String getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 	
@@ -114,14 +128,15 @@ public class Prescription {
 	 * @param startDate date when prescription started
 	 */
 	public void setStartDate(String startDate) {
-		this.startDate = startDate;
+		LocalDate localDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		this.startDate = localDate;
 	}
 	
 	/**
 	 * Returns prescription end date.
 	 * @return endDate
 	 */
-	public String getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 	
@@ -130,7 +145,8 @@ public class Prescription {
 	 * @param endDate date when prescription is going to end
 	 */
 	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+		LocalDate localDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		this.endDate = localDate;
 	}
 	
 	/**
@@ -213,12 +229,24 @@ public class Prescription {
 		this.renewPrescription = renewPrescription;
 	}
 	
-
 	public String getDosage() {
 		return dosage;
 	}
 
 	public void setDosage(String dosage) {
 		this.dosage = dosage;
+	}
+	
+	public LocalDateTime getTakenAt() {
+		return takenAt;
+	}
+
+	public void setTakenAt(String takenAt) {
+		LocalDateTime localDateTime = LocalDateTime.parse(takenAt, DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm"));
+		this.takenAt = localDateTime;
+	}
+	
+	public String toStringAllInfo() {
+		return getStartDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " - " + getEndDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " " + getPrescriptionGuide() + ". " + getStaff().getAccessLevel() + " " + getStaff().getSurname() + ", " + getStaff().getFirstName();
 	}
 }

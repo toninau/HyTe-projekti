@@ -92,7 +92,8 @@ public class CustomerController implements CustomerController_IF {
 	 * @see dao.PrescriptionDAO#readCustomersPrescriptions(Customer)
 	 */
 	public Prescription[] prescriptions() {
-		return daom.getPrescriptionDAO().readCustomersPrescriptions(customer);
+		//return daom.getPrescriptionDAO().readCustomersPrescriptions(customer);
+		return daom.readCustomerPrescriptions();
 	}
 	
 	/**
@@ -128,7 +129,8 @@ public class CustomerController implements CustomerController_IF {
 	 * @see view.customer.CustomerHomeView#appointmentList()
 	 */
 	public Appointment[] customersAppointments() {
-		return daom.getAppointmentDAO().readCustomerAppointments(customer);
+		//return daom.getAppointmentDAO().readCustomerAppointments(customer);
+		return daom.readCustomerAppointments();
 	}
 
 	/**
@@ -176,6 +178,10 @@ public class CustomerController implements CustomerController_IF {
 	 */
 	public UserImage[] imageFromDatabase() {
 		return daom.readCustomerImages();
+	}
+	
+	public void updateMedicineTaken(Prescription prescription) {
+		daom.getPrescriptionDAO().update(prescription);
 	}
 	
 	

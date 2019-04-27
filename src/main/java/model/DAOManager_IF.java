@@ -25,4 +25,6 @@ public interface DAOManager_IF {
 	public abstract UserImageDAO getUserImageDAO();
 	public abstract void writeAllCustomerInformation(Customer customer);
 	public abstract UserImage[] readCustomerImages();
+	public abstract Appointment[] readCustomerAppointments();
+	public abstract Prescription[] readCustomerPrescriptions();
 }

@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.StaffAppointmentView">
    <children>
       <HBox prefHeight="68.0" prefWidth="1280.0">
          <children>
@@ -72,7 +81,7 @@
                                  <children>
                                     <HBox layoutX="14.0" layoutY="44.0" prefHeight="272.0" prefWidth="823.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
                                        <children>
-                                          <ListView fx:id="appointmentList" prefHeight="302.0" prefWidth="305.0" />
+                                          <ListView fx:id="appointmentList" prefHeight="302.0" prefWidth="305.0" stylesheets="@../css/view.css" />
                                           <VBox minHeight="300.0" prefHeight="300.0" prefWidth="394.0">
                                              <children>
                                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose the appointment to modify" wrappingWidth="384.0126953125">
@@ -125,7 +134,7 @@
             </HBox>
          </children>
       </HBox>
-      <ListView fx:id="CustomerAppointmentList" layoutX="6.0" layoutY="83.0" prefHeight="130.0" prefWidth="320.0" AnchorPane.bottomAnchor="509.0" AnchorPane.rightAnchor="962.0" AnchorPane.topAnchor="83.0" />
+      <ListView fx:id="customerListView" layoutX="6.0" layoutY="83.0" prefHeight="130.0" prefWidth="320.0" AnchorPane.bottomAnchor="509.0" AnchorPane.rightAnchor="962.0" AnchorPane.topAnchor="83.0" />
       <Text fill="WHITE" layoutX="352.0" layoutY="99.1865234375" strokeType="OUTSIDE" strokeWidth="0.0" text="Load your customer" wrappingWidth="288.1650390625" AnchorPane.leftAnchor="352.0" AnchorPane.topAnchor="83.0" />
       <Button layoutX="352.0" layoutY="148.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" text="Load">
          <font>
