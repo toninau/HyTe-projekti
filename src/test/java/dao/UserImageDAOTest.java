@@ -11,7 +11,7 @@ import model.Customer;
 import model.HibernateUtil;
 import model.UserImage;
 
-public class UserImageDAOTest {
+/*public class UserImageDAOTest {
 	private Customer customer;
 	private CustomerDAO cDAO;
 	private UserImage image;
@@ -70,4 +70,4 @@ public class UserImageDAOTest {
 		image.setImageName("test_image");
 		return image;
 	}
-}
+}*/
