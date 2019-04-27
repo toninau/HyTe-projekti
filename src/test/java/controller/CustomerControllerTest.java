@@ -38,7 +38,7 @@ public class CustomerControllerTest {
 	 */
 	@BeforeAll
 	public static void setUp() {
-		//SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
+		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
 		daom = new DAOManager();
 		customerController = new CustomerController();
 		customer = new Customer("Jane", "Doe", "112405-1222", "Homestreet 1", "0502145523", "020202", "password");
