@@ -26,6 +26,7 @@ public class NotificationDAOTest {
 	public void setTest() {
 		SessionFactory sf = HibernateUtil.getSessionFactory(true);
 		cDAO = new CustomerDAO(sf);
+		sDAO = new StaffDAO(sf);
 		nDAO = new NotificationDAO(sf);
 	}
 	
@@ -55,7 +56,7 @@ public class NotificationDAOTest {
 		assertEquals("Update", n.getText(), "read(id): Failed to read updated notification text");
 		assertTrue(n.isRead(), "read(id): Failed to read updated notification read");
 		//Delete notification
-		nDAO.delete(1);
+		assertTrue(nDAO.delete(1), "delete(id): Failed to delete notification");
 		notifications = nDAO.readCustomersNotifications(customer);
 		assertEquals(0, notifications.length, "readCustomersNotifications(customer): Failed to read all customer's notifications after deleting notification");
 		//Delete customer and staff
