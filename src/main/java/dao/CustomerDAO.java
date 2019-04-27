@@ -83,16 +83,14 @@ public class CustomerDAO {
 			numberString += number;
 		}
 		while (true) {
-			Customer c = (Customer) session.get(Customer.class, customerID + numberString);
+			Customer c  = (Customer) session.get(Customer.class, customerID + numberString);
 			if (c == null) {
 				customer.setCustomerID(customerID + numberString);
 				break;
 			}
-			number--;
-			if (number == 1) {
-				numberString = "";
-			} else {
-				numberString = "" + number;
+			numberString = "";
+			if (--number > 1) {
+				numberString += number;
 			}
 		}
 		session.close();

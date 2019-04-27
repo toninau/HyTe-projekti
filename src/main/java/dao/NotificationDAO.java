@@ -81,14 +81,14 @@ public class NotificationDAO {
 	}
 
 	/**
-	 * Lukee tietokannasta listana kaikki asiakkaan ilmoitukset
+	 * Reads customer's all notifications from database.
 	 * 
-	 * @param customer asiakas, jonka ilmoituksia luetaan
+	 * @param customer customer whose notifications are read
 	 *
-	 * @return lista, joka sisältää arvot
+	 * @return array of notifications
 	 */
 	@SuppressWarnings("unchecked")
-	public Notification[] readAsiakkaanIlmoitukset(Customer customer) {
+	public Notification[] readCustomersNotifications(Customer customer) {
 		Session session = sessionFactory.openSession();
 		List<Notification> result = null;
 		try {
@@ -109,10 +109,11 @@ public class NotificationDAO {
 	}
 
 	/**
-	 * Metodi päivittää ilmoituksen tietokantaan
+	 * Updates notification
 	 * 
-	 * @param notification Päivitettävä ilmoitus
-	 * @return true, mikäli operaatio onnistui, muuten false
+	 * @param notification notification to be updated
+	 * @return <code>true</code> if notification was successfully updated<br>
+	 *         <code>false</code> if notification was not updated
 	 */
 	public boolean update(Notification notification) {
 		boolean success = false;
@@ -124,7 +125,7 @@ public class NotificationDAO {
 			i.setText(notification.getText());
 			success = true;
 		} else {
-			System.out.println("Ei löytynyt päivitettävää");
+			System.out.println("Nothing to update");
 		}
 		session.getTransaction().commit();
 		session.close();
@@ -132,10 +133,11 @@ public class NotificationDAO {
 	}
 
 	/**
-	 * Metodi poistaa halutun ilmoituksen
+	 * Deletes notification from database.
 	 * 
-	 * @param id Poistettavan ilmoituksen id
-	 * @return true, mikäli operaatio onnistui, muuten false
+	 * @param id id of the notification
+	 * @return <code>true</code> if notification was successfully deleted<br>
+	 *         <code>false</code> if notification was not deleted
 	 */
 	public boolean delete(int id) {
 		boolean success = false;

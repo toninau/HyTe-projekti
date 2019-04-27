@@ -7,7 +7,6 @@ import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 import model.Customer;
 import model.Staff;
@@ -87,11 +86,9 @@ public class StaffDAO {
 				staff.setStaffID(staffID + numberString);
 				break;
 			}
-			number--;
-			if (number == 1) {
-				numberString = "";
-			} else {
-				numberString = "" + number;
+			numberString = "";
+			if (--number > 1) {
+				numberString += number;
 			}
 		}
 		session.close();
