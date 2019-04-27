@@ -18,13 +18,13 @@ public class UserImageDAOTest {
 	private Customer customer;
 	private CustomerDAO cDAO;
 	private UserImage image;
-	private UserImageDAO uiDAO;
+	private UserImageDAO iDAO;
 
 	@BeforeEach
 	public void setTest() {
 		SessionFactory sf = HibernateUtil.getSessionFactory(true);
 		cDAO = new CustomerDAO(sf);
-		uiDAO = new UserImageDAO(sf);
+		iDAO = new UserImageDAO(sf);
 	}
 
 	@Test
@@ -32,20 +32,20 @@ public class UserImageDAOTest {
 		// Create customer
 		customer = createCustomer();
 		//Create image
-		image = createUserImage();
-		assertTrue(uiDAO.create(image), "create(UserImage): Failed to create image");
+		image = createUserImage(customer);
+		assertTrue(iDAO.create(image), "create(UserImage): Failed to create image");
 		//Read image
-		image = uiDAO.read(1);
+		image = iDAO.read(1);
 		assertEquals("test_image", image.getImageName(), "read(id): Failed to read image name");
 		//Read customer's all images
-		UserImage[] images = uiDAO.readCustomerUserImages(customer);
+		UserImage[] images = iDAO.readCustomerUserImages(customer);
 		assertEquals(1, images.length, "readCustomerUserImages(customer): Failed to read all customer's images");
 		//Update image
 		image.setImageName("update");
-		assertTrue(uiDAO.update(image), "update(UserImage): Failed to update image");
+		assertTrue(iDAO.update(image), "update(UserImage): Failed to update image");
 		//Delete image
-		assertTrue(uiDAO.delete(1), "delete(id): Failed to delete image");
-		images = uiDAO.readCustomerUserImages(customer);
+		assertTrue(iDAO.delete(1), "delete(id): Failed to delete image");
+		images = iDAO.readCustomerUserImages(customer);
 		assertEquals(0, images.length, "readCustomerUserImages(customer): Failed to read all customer's images after deleting image");
 		//Delete customer
 		cDAO.delete("firsur");
@@ -65,8 +65,8 @@ public class UserImageDAOTest {
 		return customer;
 	}
 	
-	private UserImage createUserImage() {
-		File file = new File(UserImageDAOTest.class.getResource("/pictures/finland_flag.png").getFile());
+	private UserImage createUserImage(Customer customer) {
+		File file = new File(getClass().getResource("/pictures/finland_flag.png").getFile());
 		byte[] bFile = new byte[(int) file.length()];
 		try {
 			FileInputStream in = new FileInputStream(file);
