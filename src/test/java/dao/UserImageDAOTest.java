@@ -3,9 +3,6 @@ package dao;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -66,15 +63,7 @@ public class UserImageDAOTest {
 	}
 	
 	private UserImage createUserImage(Customer customer) {
-		File file = new File(getClass().getClassLoader().getResource("/pictures/finland_flag.png").getFile());
-		byte[] bFile = new byte[(int) file.length()];
-		try {
-			FileInputStream in = new FileInputStream(file);
-			in.read(bFile);
-			in.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		byte[] bFile = new byte[(int) 10];
 		UserImage image = new UserImage();
 		image.setCustomer(customer);
 		image.setImage(bFile);
