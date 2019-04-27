@@ -11,7 +11,7 @@
 			com.mysql.jdbc.Driver
 		</property>
 		<property name="hibernate.connection.url">
-			jdbc:mysql://localhost:2206/hyte
+			jdbc:mysql://localhost:2206/hyte?zeroDateTimeBehavior=convertToNull
 		</property>
 		<property name="hibernate.connection.username">
 			mikkopuu

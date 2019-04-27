@@ -250,6 +250,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 		createHashMap();
 		populateGridPane(month, year);
+		showDayAppointments(LocalDate.now());
 	}
 
 	/**

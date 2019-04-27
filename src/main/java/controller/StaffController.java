@@ -7,7 +7,7 @@ import view.staff.StaffAppointmentView;
 import view.staff.StaffHomeView;
 import view.staff.StaffPrescriptionView;
 
-public class StaffController {
+public class StaffController implements StaffController_IF {
 	
 	static Staff staff;
 	private Customer[] staffCustomers;
@@ -64,4 +64,28 @@ public class StaffController {
 	    //daom.getNotificationDAO().create(notification);
 	    return true;
     }
+
+	@Override
+	public ObservableList<Customer> getStaffCustomers() {
+		ObservableList<Customer> customerList = FXCollections.observableArrayList();
+		Customer[] customers = daom.getStaffDAO().readStaffMembersCustomers(staff);
+		
+		for (Customer customer : customers) {
+			customerList.add(customer);
+			System.out.println(customer.getCustomerID());
+		}
+		return customerList;
+	}
+
+	@Override
+	public Appointment[] customersAppointments() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean sendNotification(String data) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

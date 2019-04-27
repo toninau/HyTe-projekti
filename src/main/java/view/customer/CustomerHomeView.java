@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -29,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -52,23 +55,31 @@ import view.enums.Bundles;
  */
 public class CustomerHomeView extends ViewChanger implements Initializable {
 
-	@FXML private Button homeButton;
-	@FXML private Button calendarButton;
-	@FXML private Button helpButton;
-	@FXML private Button myHealthButton;
-	@FXML private Label weatherCelsius;
-	@FXML private TextField locationField;
-	@FXML private ImageView weatherImageView;
-	@FXML private Label weatherState;
-	@FXML private Slider happinessSlider;
-	@FXML private Label welcome;
-	@FXML private ListView<String> appointmentReminder;
-	@FXML private HBox prescriptionBox;
-	@FXML private ImageView imageMe;
-	@FXML private ImageView imageSecond;
-	@FXML private ImageView imageThird;
 
-	private CheckListView<String> checkListView;
+	@FXML
+	private Label weatherCelsius;
+	@FXML
+	private TextField locationField;
+	@FXML
+	private ImageView weatherImageView;
+	@FXML
+	private Label weatherState;
+	@FXML
+	private Slider happinessSlider;
+	@FXML
+	private Label welcome;
+	@FXML
+	private ListView<String> appointmentReminder;
+	@FXML
+	private HBox prescriptionBox;
+	@FXML
+	private ImageView imageMe;
+	@FXML
+	private ImageView imageSecond;
+	@FXML
+	private ImageView imageThird;
+
+	private CheckListView<Prescription> checkListView;
 
 	private WeatherAPICall weather;
 	private ResourceBundle bundle;
@@ -149,7 +160,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		selectImage(imageThird, 3, action);
 	}
 
-
 	/**
 	 * Sets all the customer's image from database to their appointed slots
 	 * according to the images name.
@@ -157,7 +167,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 * @see controller.CustomerController#imageFromDatabase()
 	 */
 	public void showImage() {
-		 UserImage[] a = controller.imageFromDatabase();
+		UserImage[] a = controller.imageFromDatabase();
 
 		if (a != null) {
 			BufferedImage img = null;
@@ -197,14 +207,30 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 * @see #prescriptionsList()
 	 */
 	public void showPrescription() {
-		checkListView = new CheckListView<>(prescriptionsList());
+		checkListView = new CheckListView<Prescription>();
 		checkListView.getStylesheets().add(getClass().getResource("/css/view.css").toExternalForm());
 		checkListView.getStyleClass().add("checkListView");
 		prescriptionBox.getChildren().add(checkListView);
-		checkListView.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
-			public void onChanged(ListChangeListener.Change<? extends String> c) {
-				System.out.println(checkListView.getCheckModel().getCheckedItems());
+		checkListView.setItems(prescriptionsList());
 
+		checkListView.setCellFactory(lv -> {
+			CheckBoxListCell<Prescription> cell = new CheckBoxListCell<Prescription>(
+					checkListView::getItemBooleanProperty) {
+				@Override
+				public void updateItem(Prescription p, boolean empty) {
+					super.updateItem(p, empty);
+					setText(p == null ? ""
+							: p.getPrescriptionName() + " " + p.getDosage() + " " + p.getPrescriptionGuide());
+				}
+			};
+			return cell;
+		});
+		checkListView.getCheckModel().getCheckedItems().addListener(new ListChangeListener<Prescription>() {
+			public void onChanged(ListChangeListener.Change<? extends Prescription> c) {
+				String takenAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm"));
+				Prescription p = checkListView.getCheckModel().getCheckedItems().get(0);
+				p.setTakenAt(takenAt);
+				controller.updateMedicineTaken(p);
 			}
 		});
 	}
@@ -217,17 +243,18 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 * 
 	 * @return An observable list of the prescriptions.
 	 */
-	public ObservableList<String> prescriptionsList() {
-		ObservableList<String> data = FXCollections.observableArrayList();
+	public ObservableList<Prescription> prescriptionsList() {
+		ObservableList<Prescription> data = FXCollections.observableArrayList();
 		Prescription[] a = controller.prescriptions();
 		for (Prescription prescription : a) {
 			if (prescription.getTimeToTake().equalsIgnoreCase("aamu")) {
-				// && LocalTime.now().isBefore(LocalTime.NOON)
-				data.add(prescription.getTimeToTake() + ", " + prescription.getDosage() + ", "
-						+ prescription.getPrescriptionName());
-			} else {
-				data.add("eilääkkeit");
+				data.add(prescription);
+			} else if (prescription.getTimeToTake().equalsIgnoreCase("ilta") && LocalTime.now().isAfter(LocalTime.NOON)
+					&& LocalTime.now().isBefore(LocalTime.MIDNIGHT)) {
+				data.add(prescription);
 			}
+			//data.add(prescription);
+
 		}
 		return data;
 	}

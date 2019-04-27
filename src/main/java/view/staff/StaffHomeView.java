@@ -38,7 +38,8 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 	ListView<String> appointmentList;
 	@FXML
 	private Button logout;
-
+	@FXML private Button appointmentButton;
+	
 	private StaffController controller;
 	private ResourceBundle bundle;
 
@@ -59,6 +60,12 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 		}
 	}
 
+	
+	
+	public void toStaffAppointmentView(MouseEvent event) {
+		toStaffAppointment(event);
+	}
+	
 	public void logout(MouseEvent event) throws IOException {
 		logoutForAll(event);
 	}

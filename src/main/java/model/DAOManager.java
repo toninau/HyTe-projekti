@@ -49,10 +49,12 @@ public class DAOManager implements DAOManager_IF {
 	public DAOManager() {
 		s = HibernateUtil.getSessionFactory(false);
 		i = ImageLoader.getImageLoader();
+		info = InfoLoader.getInfoLoader();
 	}
 
 	public void writeAllCustomerInformation(Customer customer) {
-
+		info.writeAppointmentsToFile(customer);
+		info.writePrescriptionsToFile(customer);
 		// Appointment [] appointments =
 		// appointmentDAO.readCustomerAppointments(customer);
 		// Prescription [] prescriptions =
@@ -67,6 +69,10 @@ public class DAOManager implements DAOManager_IF {
 
 	public Appointment[] readCustomerAppointments() {
 		return info.readAppointmentsFromFile();
+	}
+	
+	public Prescription[] readCustomerPrescriptions() {
+		return info.readPrescriptionsFromFile();
 	}
 
 	/**

@@ -19,41 +19,22 @@
 
 <AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHomeView">
    <children>
-      <HBox styleClass="customerMenuWrapper" AnchorPane.bottomAnchor="630.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button fx:id="homeButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.frontpage">
-               <tooltip>
-                  <Tooltip text="%menuButton.frontpage.tt" />
-               </tooltip></Button>
-            <Button fx:id="calendarButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.calendar">
-               <tooltip>
-                  <Tooltip text="%menuButton.calendar.tt" />
-               </tooltip></Button>
-            <Button fx:id="myHealthButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHealth" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.myHealth">
-               <tooltip>
-                  <Tooltip text="%menuButton.myHealth.tt" />
-               </tooltip></Button>
-            <Button fx:id="helpButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.help">
-               <tooltip>
-                  <Tooltip text="%menuButton.help.tt" />
-               </tooltip></Button>
-         </children>
-      </HBox>
-      <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="83.0">
+      <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="549.33330078125" minWidth="10.0" prefWidth="547.2" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.5999755859375" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="574.6666259765625" minWidth="10.0" prefWidth="572.5333251953125" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="549.33330078125" minWidth="10.0" prefWidth="480.13334960937505" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="446.5999755859375" minWidth="10.0" prefWidth="202.53328857421872" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="574.6666259765625" minWidth="10.0" prefWidth="199.8667114257812" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="574.6666259765625" minWidth="10.0" prefWidth="328.86665039062495" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="248.33334350585938" minHeight="10.0" prefHeight="233.4000244140625" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="380.7333129882812" minHeight="10.0" prefHeight="181.1333740234375" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="219.66669311523435" minHeight="10.0" prefHeight="165.6666259765625" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="248.33334350585938" minHeight="10.0" prefHeight="233.4000244140625" valignment="CENTER" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="380.7333129882812" minHeight="10.0" prefHeight="181.1333740234375" valignment="CENTER" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="219.66669311523435" minHeight="10.0" prefHeight="165.6666259765625" valignment="CENTER" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
             <VBox prefHeight="88.0" prefWidth="472.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <children>
-                  <Label alignment="CENTER" prefHeight="59.0" prefWidth="472.0" text="%health.happiness">
+                  <Label alignment="CENTER" prefHeight="59.0" prefWidth="633.0" text="%health.happiness">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -65,7 +46,7 @@
                               <Image url="@../pictures/unhappy.png" />
                            </image>
                         </ImageView>
-                        <Slider fx:id="happinessSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="58.0" prefWidth="360.0" showTickMarks="true" snapToTicks="true" value="5.0" />
+                        <Slider fx:id="happinessSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="58.0" prefWidth="537.0" showTickMarks="true" snapToTicks="true" value="5.0" />
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../pictures/happy.png" />
@@ -81,17 +62,14 @@
             <VBox alignment="CENTER" prefHeight="240.0" prefWidth="449.0" GridPane.rowIndex="1">
                <children>
                   <Label text="Muistahan ottaa lääkkeet!" />
-                  <HBox fx:id="prescriptionBox" prefHeight="160.0" prefWidth="600.0" />
+                  <HBox fx:id="prescriptionBox" prefHeight="164.0" prefWidth="458.0" VBox.vgrow="ALWAYS" />
                </children>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
             </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="190.0" prefWidth="575.0" style="-fx-border-color: black;" GridPane.columnIndex="2">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="190.0" prefWidth="575.0" style="-fx-border-color: black;" GridPane.columnIndex="3">
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="183.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="279.0">
                      <children>
-                        <TextField fx:id="locationField" onKeyPressed="#updateLocation" prefHeight="30.0" prefWidth="140.0">
+                        <TextField fx:id="locationField" onKeyPressed="#updateLocation" prefHeight="30.0" prefWidth="220.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -119,7 +97,7 @@
                   <Insets bottom="20.0" />
                </GridPane.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="160.0" prefWidth="600.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <VBox alignment="CENTER" prefHeight="160.0" prefWidth="600.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <children>
                   <Label alignment="CENTER" text="Päivän tapahtumat" />
                   <ListView fx:id="appointmentReminder" prefHeight="130.0" prefWidth="546.0">
@@ -147,15 +125,19 @@
                   </ImageView>
                </children>
             </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <HBox prefHeight="232.0" prefWidth="173.0" GridPane.columnIndex="1">
                <children>
-                  <ImageView fx:id="imageSecond" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imageThird" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageSecond" fitHeight="150.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectSecondImage" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pictures/editPicture.png" />
                      </image>
                   </ImageView>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <children>
+                  <ImageView fx:id="imageThird" fitHeight="150.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectThirdImage" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pictures/editPicture.png" />
@@ -167,6 +149,60 @@
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
+      </GridPane>
+      <GridPane maxHeight="100.0" prefHeight="90.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="179.5333251953125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="195.5333251953125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="174.800048828125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.halignment="LEFT">
+               <image>
+                  <Image url="@../pictures/contactIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="79.0" fitWidth="126.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.halignment="RIGHT">
+               <image>
+                  <Image url="@../pictures/logoutIcon.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </ImageView>
+            <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="81.0" styleClass="customerMenuBar" text="%menuButton.frontpage" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="%%menuButton.frontpage.tt" />
+               </tooltip>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.calendar" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="%menuButton.calendar.tt" />
+               </tooltip>
+            </Button>
+            <Button fx:id="myHealthButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toHealth" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.myHealth" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="%menuButton.myHealth.tt" />
+               </tooltip>
+            </Button>
+            <Button fx:id="helpButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.help" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="%menuButton.help.tt" />
+               </tooltip>
+            </Button>
+         </children>
       </GridPane>
    </children>
 </AnchorPane>

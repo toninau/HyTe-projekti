@@ -1,5 +1,6 @@
 package dao;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.hibernate.ObjectNotFoundException;
@@ -8,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import model.Appointment;
 import model.Customer;
 import model.Prescription;
 import model.Staff;
@@ -149,6 +151,34 @@ public class PrescriptionDAO {
 		if (r != null) {
 			session.delete(r);
 			success = true;
+		}
+		session.getTransaction().commit();
+		session.close();
+		return success;
+	}
+	
+	public boolean update(Prescription prescription) {
+		DateTimeFormatter dformatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm");
+		
+		boolean success = false;
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Prescription p = (Prescription) session.get(Prescription.class, prescription.getPrescriptionID());
+		if (p != null) {
+			p.setCustomer(prescription.getCustomer());
+			p.setStaff(prescription.getStaff());
+			p.setDosage(prescription.getDosage());
+			p.setEndDate(prescription.getEndDate().format(dformatter));
+			p.setPrescriptionGuide(prescription.getPrescriptionGuide());
+			p.setPrescriptionName(prescription.getPrescriptionName());
+			p.setTimeToTake(prescription.getTimeToTake());
+			p.setRenewPrescription(prescription.isRenewPrescription());
+			p.setStartDate(prescription.getStartDate().format(dformatter));
+			p.setTakenAt(prescription.getTakenAt().format(dtFormatter));
+			success = true;
+		} else {
+			System.out.println("Nothing to update");
 		}
 		session.getTransaction().commit();
 		session.close();

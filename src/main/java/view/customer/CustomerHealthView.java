@@ -21,8 +21,10 @@ import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -58,6 +60,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	@FXML private TableColumn<Prescription, String> medicineDescription;
 	@FXML private TableColumn<Prescription, String> medicineTime;
 	@FXML private TableColumn<Prescription, Void> medicineRenew;
+	@FXML private Label prescriptionInfoLabel;
 
 	private ResourceBundle bundle;
 
@@ -129,7 +132,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	 * @see #addButtonToTable()
 	 */
 	@SuppressWarnings("unchecked")
-	public void populateListView() {
+	public void populateTableView() {
 		prescriptonsTable.getColumns().clear();
 		medicineName.setCellValueFactory(new PropertyValueFactory<Prescription, String>("prescriptionName"));
 		medicineDosage.setCellValueFactory(new PropertyValueFactory<Prescription, String>("dosage"));
@@ -137,6 +140,17 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		medicineTime.setCellValueFactory(new PropertyValueFactory<Prescription, String>("timeToTake"));
 		medicineRenew.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
 
+		prescriptonsTable.setRowFactory( tv -> {
+		    TableRow<Prescription> row = new TableRow<>();
+		    row.setOnMouseClicked(event -> {
+		        if (! row.isEmpty() ) {
+		            Prescription rowData = row.getItem();
+		            prescriptionInfoLabel.setText(rowData.toStringAllInfo());
+		        }
+		    });
+		    return row ;
+		});
+		
 		ObservableList<Prescription> list = prescriptionsList();
 		prescriptonsTable.setItems(list);
 		prescriptonsTable.getColumns().addAll(medicineName, medicineDosage, medicineDescription, medicineTime);
@@ -212,7 +226,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		showBloodsugarChart();
 		showBloodpressureChart();
-		populateListView();
+		populateTableView();
 	}
 
 	/**

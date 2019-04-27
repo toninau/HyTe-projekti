@@ -20,4 +20,5 @@ public interface CustomerController_IF {
 	public abstract void imageToDatabase(File file, int imageSlot);
 	public abstract UserImage[] imageFromDatabase();
 	public abstract void updateImage(File selectedFile, int imageSlot);
+	public abstract void updateMedicineTaken(Prescription p);
 }

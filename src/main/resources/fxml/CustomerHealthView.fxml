@@ -12,39 +12,73 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHealthView">
    <children>
-      <HBox prefHeight="100.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane maxHeight="100.0" prefHeight="90.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="179.5333251953125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="195.5333251953125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="174.800048828125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Button fx:id="homeButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.frontpage">
+            <ImageView fitHeight="80.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.halignment="LEFT">
+               <image>
+                  <Image url="@../pictures/contactIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="79.0" fitWidth="126.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.halignment="RIGHT">
+               <image>
+                  <Image url="@../pictures/logoutIcon.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </ImageView>
+            <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="81.0" styleClass="customerMenuBar" text="%menuButton.frontpage" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%%menuButton.frontpage.tt" />
-               </tooltip></Button>
-            <Button fx:id="calendarButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.calendar">
+               </tooltip>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></Button>
+            <Button fx:id="calendarButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.calendar" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%menuButton.calendar.tt" />
                </tooltip></Button>
-            <Button fx:id="myHealthButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.myHealth">
+            <Button fx:id="myHealthButton" alignment="CENTER" mnemonicParsing="false" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.myHealth" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%menuButton.myHealth.tt" />
                </tooltip></Button>
-            <Button fx:id="helpButton" alignment="CENTER" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.help">
+            <Button fx:id="helpButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.help" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%menuButton.help.tt" />
                </tooltip></Button>
          </children>
-      </HBox>
-      <TabPane layoutX="71.0" layoutY="126.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="80.0" tabMaxWidth="200.0" tabMinHeight="80.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+      </GridPane>
+      <TabPane layoutX="71.0" layoutY="126.0" prefHeight="628.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="80.0" tabMaxWidth="200.0" tabMinHeight="80.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <tabs>
             <Tab text="prescriptions">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="prescriptonsTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="prescriptonsTable" prefHeight="540.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                           <columns>
                             <TableColumn fx:id="medicineName" prefWidth="250.0" text="lääke" />
                             <TableColumn fx:id="medicineDosage" prefWidth="250.0" text="annostus" />
@@ -56,6 +90,12 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="480.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label prefHeight="35.0" prefWidth="1279.0" text="paina haluamaasi reseptiä nähdäksesi lisäinfoa" />
+                              <Label fx:id="prescriptionInfoLabel" prefHeight="49.0" prefWidth="1280.0" />
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
               </content>

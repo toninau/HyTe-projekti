@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.time.LocalDate;
+
 public class PrescriptionTest {
 	private Prescription prescription;
 	private Staff staffmember;
@@ -31,7 +33,7 @@ public class PrescriptionTest {
 		customer = new Customer();
 		staffmember = new Staff();
 		try {
-			prescription = new Prescription("12.12.2000", "12.20.2001", "testi", "testi-ohje", "aika", "2x400mg", false ,customer, staffmember);
+			prescription = new Prescription("12.12.2000", "12.12.2001", "testi", "testi-ohje", "aika", "2x400mg", false ,customer, staffmember);
 		} catch (Exception e) {
 			fail("Failed to create prescription-object");
 		}
@@ -46,13 +48,13 @@ public class PrescriptionTest {
 	@Test
 	public void testGetSetStartDate() {
 		prescription.setStartDate("12.12.2012");
-		assertEquals("12.12.2012", prescription.getStartDate(), "Failed to set and get prescription's start date");
+		assertEquals(LocalDate.of(2012, 12, 12), prescription.getStartDate(), "Failed to set and get prescription's start date");
 	}
 	
 	@Test
 	public void testGetSetEndDate() {
-		prescription.setEndDate("20.20.2020");
-		assertEquals("20.20.2020", prescription.getEndDate(), "Failed to set and get prescription's end date");
+		prescription.setEndDate("20.12.2020");
+		assertEquals(LocalDate.of(2020, 12, 20), prescription.getEndDate(), "Failed to set and get prescription's end date");
 	}
 	
 	@Test

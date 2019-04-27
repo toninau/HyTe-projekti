@@ -149,5 +149,19 @@ public class ViewChanger {
 		String title = "Health";
 		sceneContent(fxml, event, title, bundle);
 	}
+	
+	public void toStaffHome(Event event) {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
+		String fxml = FxmlEnum.STAFFHOME.getFxml();
+		String title = "Home";
+		sceneContent(fxml, event, title, bundle);
+	}
+	
+	public void toStaffAppointment(Event event) {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
+		String fxml = FxmlEnum.STAFFAPPOINTMENT.getFxml();
+		String title = "Appointment";
+		sceneContent(fxml, event, title, bundle);
+	}
 
 }
