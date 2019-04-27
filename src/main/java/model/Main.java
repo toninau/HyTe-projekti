@@ -96,8 +96,7 @@ public class Main {
 		}
 
 		// Luo ensimmäinen henkilökunnan jäsen
-		/*Staff staff = new Staff();
-		staff.setStaffID("1");
+		Staff staff = new Staff();
 		staff.setFirstName("test");
 		staff.setSurname("tohtori");
 		staff.setPassword("test");
@@ -165,6 +164,5 @@ public class Main {
 		
 		//Kuvan poisto tietokannasta
 		//imageDAO.delete(1);
-		*/
 	}
 }

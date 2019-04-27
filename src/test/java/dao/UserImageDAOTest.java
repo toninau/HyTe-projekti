@@ -66,7 +66,7 @@ public class UserImageDAOTest {
 	}
 	
 	private UserImage createUserImage(Customer customer) {
-		File file = new File(getClass().getResource("/pictures/finland_flag.png").getFile());
+		File file = new File(getClass().getClassLoader().getResource("/pictures/finland_flag.png").getFile());
 		byte[] bFile = new byte[(int) file.length()];
 		try {
 			FileInputStream in = new FileInputStream(file);
