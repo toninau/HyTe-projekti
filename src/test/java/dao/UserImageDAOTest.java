@@ -36,7 +36,7 @@ public class UserImageDAOTest {
 		image.setImageName("test_image");
 		assertTrue(iDAO.create(image), "create(UserImage): Failed to create image");
 		//Read image
-		image = iDAO.read(1);
+		image = iDAO.read(2);
 		assertEquals("test_image", image.getImageName(), "read(id): Failed to read image name");
 		assertEquals(10, image.getImage().length, "read(id): Failed to read image file");
 		assertEquals("ImageFirstName", image.getCustomer().getFirstName(), "read(id): Failed to read image customer");
@@ -47,17 +47,17 @@ public class UserImageDAOTest {
 		assertEquals(10, images[0].getImage().length, "read(id): Failed to read image file");
 		assertEquals("ImageFirstName", images[0].getCustomer().getFirstName(), "read(id): Failed to read image customer");
 		//Update image
-		image = iDAO.read(1);
+		image = iDAO.read(2);
 		image.setImageName("update");
 		assertTrue(iDAO.update(image), "update(UserImage): Failed to update image");
-		image = iDAO.read(1);
+		image = iDAO.read(2);
 		assertEquals("update", image.getImageName(), "read(id): Failed read image name after update");
 		//Delete image
-		//assertTrue(iDAO.delete(1), "delete(id): Failed to delete image");
-		//images = iDAO.readCustomerUserImages(customer);
-		//assertEquals(0, images.length, "readCustomerUserImages(customer): Failed to read all customer's images after deleting image");
+		assertTrue(iDAO.delete(2), "delete(id): Failed to delete image");
+		images = iDAO.readCustomerUserImages(customer);
+		assertEquals(0, images.length, "readCustomerUserImages(customer): Failed to read all customer's images after deleting image");
 		//Delete customer
-		//cDAO.delete("firsur");
+		cDAO.delete("imasur");
 	}
 
 	private Customer createCustomer() {
