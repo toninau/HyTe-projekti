@@ -31,7 +31,6 @@ public class UserImageDAOTest {
 		//Create image
 		image = new UserImage();
 		byte[] bFile = new byte[10];
-		image.setImageID(1);
 		image.setCustomer(customer);
 		image.setImage(bFile);
 		image.setImageName("test_image");
@@ -58,7 +57,7 @@ public class UserImageDAOTest {
 
 	private Customer createCustomer() {
 		Customer customer = new Customer();
-		customer.setFirstName("FirstName");
+		customer.setFirstName("ImageFirstName");
 		customer.setSurname("Surname");
 		customer.setSSN("SSN");
 		customer.setIceNumber("ICEnumber");
@@ -66,7 +65,7 @@ public class UserImageDAOTest {
 		customer.setPhoneNumber("PhoneNumber");
 		customer.setPassword("Password");
 		cDAO.create(customer);
-		customer = cDAO.read("firsur");
+		customer = cDAO.read("imasur");
 		return customer;
 	}
 }
