@@ -48,7 +48,27 @@ public class PrescriptionDAOTest {
 		//Read prescription
 		prescription = pDAO.read(1);
 		assertEquals("Dosage", prescription.getDosage(), "read(id): Failed to read prescription dosage");
-		
+		//Update
+		prescription.setDosage("Update 1");
+		assertTrue(pDAO.update(prescription), "update(prescription): Failed to update prescription");
+		prescription = pDAO.read(1);
+		assertEquals("Update 1", prescription.getDosage(), "read(id): Failed to read prescription dosage after update");
+		//Read all customer's prescriptions
+		Prescription[] prescriptions = pDAO.readCustomersPrescriptions(customer);
+		assertEquals(1, prescriptions.length, "readCustomersPrescriptions(customer): Failed to customer's prescriptions");
+		//Read all staff member's prescriptions
+		prescriptions = pDAO.readStaffsPrescriptions(staff);
+		assertEquals(1, prescriptions.length, "readStaffsPrescriptions(staff): Failed to staff member's prescriptions");
+		//Delete prescription
+		assertTrue(pDAO.delete(1), "delete(id): Failed to delete prescription");
+		prescriptions = pDAO.readCustomersPrescriptions(customer);
+		assertEquals(0, prescriptions.length, "readCustomersPrescriptions(customer): Failed to customer's prescriptions");
+		//Read all staff member's prescriptions
+		prescriptions = pDAO.readStaffsPrescriptions(staff);
+		assertEquals(0, prescriptions.length, "readStaffsPrescriptions(staff): Failed to staff member's prescriptions");
+		//Delete customer and staff
+		cDAO.delete("presur");
+		sDAO.delete("presur");
 	}
 	
 	private Customer createCustomer() {
