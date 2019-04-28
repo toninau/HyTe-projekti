@@ -52,7 +52,7 @@ public class UserImageDAOTest {
 		//images = iDAO.readCustomerUserImages(customer);
 		//assertEquals(0, images.length, "readCustomerUserImages(customer): Failed to read all customer's images after deleting image");
 		//Delete customer
-		cDAO.delete("firsur");
+		//cDAO.delete("firsur");
 	}
 
 	private Customer createCustomer() {
