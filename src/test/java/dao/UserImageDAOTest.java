@@ -11,7 +11,7 @@ import model.Customer;
 import model.HibernateUtil;
 import model.UserImage;
 
-/*public class UserImageDAOTest {
+public class UserImageDAOTest {
 	private Customer customer;
 	private CustomerDAO cDAO;
 	private UserImage image;
@@ -29,17 +29,25 @@ import model.UserImage;
 		// Create customer
 		customer = createCustomer();
 		//Create image
-		image = createUserImage(customer);
+		image = new UserImage();
+		byte[] bFile = new byte[10];
+		image.setCustomer(customer);
+		image.setImage(bFile);
+		image.setImageName("test_image");
 		assertTrue(iDAO.create(image), "create(UserImage): Failed to create image");
 		//Read image
 		image = iDAO.read(1);
 		assertEquals("test_image", image.getImageName(), "read(id): Failed to read image name");
+		assertEquals(10, image.getImage().length, "read(id): Failed to read image file");
+		assertEquals("FirstName", image.getCustomer().getFirstName(), "read(id): Failed to read image customer");
 		//Read customer's all images
 		UserImage[] images = iDAO.readCustomerUserImages(customer);
 		assertEquals(1, images.length, "readCustomerUserImages(customer): Failed to read all customer's images");
 		//Update image
 		image.setImageName("update");
 		assertTrue(iDAO.update(image), "update(UserImage): Failed to update image");
+		image = iDAO.read(1);
+		assertEquals("update", image.getImageName(), "read(id): Failed read image name after update");
 		//Delete image
 		assertTrue(iDAO.delete(1), "delete(id): Failed to delete image");
 		images = iDAO.readCustomerUserImages(customer);
@@ -61,13 +69,4 @@ import model.UserImage;
 		customer = cDAO.read("firsur");
 		return customer;
 	}
-	
-	private UserImage createUserImage(Customer customer) {
-		byte[] bFile = new byte[(int) 10];
-		UserImage image = new UserImage();
-		image.setCustomer(customer);
-		image.setImage(bFile);
-		image.setImageName("test_image");
-		return image;
-	}
-}*/
+}
