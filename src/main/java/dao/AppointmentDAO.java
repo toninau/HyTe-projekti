@@ -1,6 +1,7 @@
 package dao;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.ObjectNotFoundException;
@@ -49,10 +50,8 @@ public class AppointmentDAO {
 			transaction.commit();
 			success = true;
 		} catch (Exception e) {
-			try {
+			if (transaction != null) {
 				transaction.rollback();
-			} catch (NullPointerException ne) {
-				ne.getMessage();
 			}
 		} finally {
 			session.close();
@@ -93,7 +92,7 @@ public class AppointmentDAO {
 	@SuppressWarnings("unchecked")
 	public Appointment[] readCustomerAppointments(Customer customer) {
 		Session session = sessionfactory.openSession();
-		List<Appointment> result = null;
+		List<Appointment> result = new ArrayList<>();
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM appointment INNER JOIN customer on appointment.customerID = customer.customerID WHERE customer.customerID = :id";
@@ -120,7 +119,7 @@ public class AppointmentDAO {
 	@SuppressWarnings("unchecked")
 	public Appointment[] readStaffAppointments(Staff staff) {
 		Session session = sessionfactory.openSession();
-		List<Appointment> result = null;
+		List<Appointment> result = new ArrayList<>();
 		try {
 			session = sessionfactory.openSession();
 			session.beginTransaction();
