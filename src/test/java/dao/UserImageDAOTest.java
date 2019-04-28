@@ -31,6 +31,7 @@ public class UserImageDAOTest {
 		//Create image
 		image = new UserImage();
 		byte[] bFile = new byte[10];
+		image.setImageID(1);
 		image.setCustomer(customer);
 		image.setImage(bFile);
 		image.setImageName("test_image");
@@ -42,11 +43,11 @@ public class UserImageDAOTest {
 		assertEquals(10, images[0].getImage().length, "read(id): Failed to read image file");
 		assertEquals("FirstName", images[0].getCustomer().getFirstName(), "read(id): Failed to read image customer");
 		//Update image
-		//image = iDAO.read(1);
-		//image.setImageName("update");
-		//assertTrue(iDAO.update(image), "update(UserImage): Failed to update image");
-		//image = iDAO.read(1);
-		//assertEquals("update", image.getImageName(), "read(id): Failed read image name after update");
+		image = iDAO.read(1);
+		image.setImageName("update");
+		assertTrue(iDAO.update(image), "update(UserImage): Failed to update image");
+		image = iDAO.read(1);
+		assertEquals("update", image.getImageName(), "read(id): Failed read image name after update");
 		//Delete image
 		//assertTrue(iDAO.delete(1), "delete(id): Failed to delete image");
 		//images = iDAO.readCustomerUserImages(customer);
