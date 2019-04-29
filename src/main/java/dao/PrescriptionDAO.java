@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * 
@@ -90,21 +89,20 @@ public class PrescriptionDAO {
 	@SuppressWarnings("unchecked")
 	public Prescription[] readCustomersPrescriptions(Customer customer) {
 		Session session = sessionFactory.openSession();
-		List<Prescription> result = null;
+		Prescription[] result = new Prescription[0];
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM prescription INNER JOIN customer on prescription.customerID = customer.customerID WHERE customer.customerID = :id";
 			Query<Prescription> query = session.createSQLQuery(sql).addEntity(Prescription.class);
 			query.setParameter("id", customer.getCustomerID());
-			result = query.list();
+			result = query.list().toArray(new Prescription[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		Prescription[] returnArray = new Prescription[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**
@@ -117,21 +115,20 @@ public class PrescriptionDAO {
 	@SuppressWarnings("unchecked")
 	public Prescription[] readStaffsPrescriptions(Staff staff) {
 		Session session = sessionFactory.openSession();
-		List<Prescription> result = null;
+		Prescription[] result = new Prescription[0];
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM prescription INNER JOIN staff on prescription.staffID = staff.staffID WHERE staff.staffID = :id";
 			Query<Prescription> query = session.createSQLQuery(sql).addEntity(Prescription.class);
 			query.setParameter("id", staff.getStaffID());
-			result = query.list();
+			result = query.list().toArray(new Prescription[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		Prescription[] returnArray = new Prescription[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**

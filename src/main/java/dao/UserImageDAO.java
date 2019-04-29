@@ -5,8 +5,6 @@ import model.UserImage;
 import org.hibernate.*;
 import org.hibernate.query.Query;
 
-import java.util.List;
-
 /**
  * DataAccessObject for customers images
  * 
@@ -86,21 +84,20 @@ public class UserImageDAO {
 	@SuppressWarnings("unchecked")
 	public UserImage[] readCustomerUserImages(Customer customer) {
 		Session session = sessionFactory.openSession();
-		List<UserImage> result = null;
+		UserImage[] result = new UserImage[0];
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM userImage INNER JOIN customer on userImage.customerID = customer.customerID WHERE customer.customerID = :id";
 			Query<UserImage> query = session.createSQLQuery(sql).addEntity(UserImage.class);
 			query.setParameter("id", customer.getCustomerID());
-			result = query.list();
+			result = query.list().toArray(new UserImage[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		UserImage[] returnArray = new UserImage[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**

@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.List;
 
 /**
  * 
@@ -65,21 +64,20 @@ public class IllnessDAO {
 	@SuppressWarnings("unchecked")
 	public Illness[] readCustomersIllnessess(Customer customer) {
 		Session session = sessionFactory.openSession();
-		List<Illness> result = null;
+		Illness[] result = new Illness[0];
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM illness INNER JOIN customer on illness.customerID = customer.customerID WHERE customer.customerID = :id";
 			Query<Illness> query = session.createSQLQuery(sql).addEntity(Illness.class);
 			query.setParameter("id", customer.getCustomerID());
-			result = query.list();
+			result = query.list().toArray(new Illness[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		Illness[] returnArray = new Illness[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**

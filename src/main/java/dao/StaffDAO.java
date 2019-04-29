@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -161,21 +162,20 @@ public class StaffDAO {
 	@SuppressWarnings("unchecked")
 	public Customer[] readStaffMembersCustomers(Staff staff) {
 		Session session = sessionFactory.openSession();
-		List<Customer> result = null;
+		Customer[] result = new Customer[0];
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM customer INNER JOIN customersStaff on customersStaff.customerID = customer.customerID WHERE customersStaff.staffID = :id";
 			Query<Customer> query = session.createSQLQuery(sql).addEntity(Customer.class);
 			query.setParameter("id", staff.getStaffID());
-			result = query.list();
+			result = query.list().toArray(new Customer[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		Customer[] returnArray = new Customer[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**
@@ -201,18 +201,6 @@ public class StaffDAO {
 		return staff;
 	}
 
-	public Staff readEmail(String emaila) {
-		Session session = sessionFactory.openSession();
-		String a = emaila;
-		String sql = "select id from Staff where email = :emailp";
-
-		// List<Customer> result = session.createQuery(sql).setParameter("emailp",
-		// a).list();
-		String id = (String) session.createQuery(sql).setParameter("emailp", a).getSingleResult();
-		System.out.println(id);
-		return read(id);
-	}
-
 	/**
 	 * Retrieves all staff members from the database.
 	 * 
@@ -221,7 +209,7 @@ public class StaffDAO {
 	@SuppressWarnings("unchecked")
 	public Staff[] readAll() {
 		Session session = sessionFactory.openSession();
-		List<Staff> result = null;
+		List<Staff> result = new ArrayList<>();
 		try {
 			session.beginTransaction();
 			result = session.createQuery("from Staff").list();

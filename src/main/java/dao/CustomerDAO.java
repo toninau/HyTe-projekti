@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -129,7 +130,7 @@ public class CustomerDAO {
 	@SuppressWarnings("unchecked")
 	public Customer[] readAll() {
 		Session session = sessionFactory.openSession();
-		List<Customer> result = null;
+		List<Customer> result = new ArrayList<>();
 		try {
 			session.beginTransaction();
 			result = session.createQuery("from Customer").list();
@@ -152,21 +153,20 @@ public class CustomerDAO {
 	@SuppressWarnings("unchecked")
 	public Staff[] readAsiakkaanHenkilökunta(Customer customer) {
 		Session session = sessionFactory.openSession();
-		List<Staff> result = null;
+		Staff[] result = new Staff[0];
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM staff INNER JOIN customersStaff on customersStaff.staffID = staff.staffID WHERE customersStaff.customerID = :id";
 			Query<Staff> query = session.createSQLQuery(sql).addEntity(Staff.class);
 			query.setParameter("id", customer.getCustomerID());
-			result = query.list();
+			result = query.list().toArray(new Staff[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		Staff[] returnArray = new Staff[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**

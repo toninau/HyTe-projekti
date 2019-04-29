@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.List;
 
 /**
  * 
@@ -90,22 +89,21 @@ public class NotificationDAO {
 	@SuppressWarnings("unchecked")
 	public Notification[] readCustomersNotifications(Customer customer) {
 		Session session = sessionFactory.openSession();
-		List<Notification> result = null;
+		Notification[] result = new Notification[0];
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			String sql = "SELECT * FROM notification INNER JOIN customer on notification.customerID = customer.customerID WHERE customer.customerID = :id";
-			Query<Notification> kysely = session.createSQLQuery(sql).addEntity(Notification.class);
-			kysely.setParameter("id", customer.getCustomerID());
-			result = kysely.list();
+			Query<Notification> query = session.createSQLQuery(sql).addEntity(Notification.class);
+			query.setParameter("id", customer.getCustomerID());
+			result = query.list().toArray(new Notification[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		Notification[] returnArray = new Notification[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**

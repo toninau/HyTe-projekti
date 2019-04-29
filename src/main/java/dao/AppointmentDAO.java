@@ -10,8 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 
@@ -92,21 +90,20 @@ public class AppointmentDAO {
 	@SuppressWarnings("unchecked")
 	public Appointment[] readCustomerAppointments(Customer customer) {
 		Session session = sessionfactory.openSession();
-		List<Appointment> result = new ArrayList<>();
+		Appointment[] result = new Appointment[0];
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM appointment INNER JOIN customer on appointment.customerID = customer.customerID WHERE customer.customerID = :id";
 			Query<Appointment> query = session.createSQLQuery(sql).addEntity(Appointment.class);
 			query.setParameter("id", customer.getCustomerID());
-			result = query.list();
+			result = query.list().toArray(new Appointment[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		Appointment[] returnArray = new Appointment[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**
@@ -119,7 +116,7 @@ public class AppointmentDAO {
 	@SuppressWarnings("unchecked")
 	public Appointment[] readStaffAppointments(Staff staff) {
 		Session session = sessionfactory.openSession();
-		List<Appointment> result = new ArrayList<>();
+		Appointment[] result = new Appointment[0];
 		try {
 			session = sessionfactory.openSession();
 			session.beginTransaction();
@@ -127,15 +124,14 @@ public class AppointmentDAO {
 					+ "staffID = staff.staffID WHERE staff.staffID = :id";
 			Query<Appointment> query = session.createSQLQuery(sql).addEntity(Appointment.class);
 			query.setParameter("id", staff.getStaffID());
-			result = query.list();
+			result = query.list().toArray(new Appointment[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		Appointment[] returnArray = new Appointment[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**
