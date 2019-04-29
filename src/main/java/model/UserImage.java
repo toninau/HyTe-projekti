@@ -7,9 +7,8 @@ import javax.persistence.*;
 public class UserImage {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "imageID")
-	private int imageID;
+	private String imageID;
 
 	@Column(name = "imageName", nullable = false)
 	private String imageName;
@@ -47,7 +46,7 @@ public class UserImage {
 	 * Returns the imageID. The value is defined automatically in the database.
 	 * @return imageID
 	 */
-	public int getImageID() {
+	public String getImageID() {
 		return imageID;
 	}
 	
@@ -56,7 +55,7 @@ public class UserImage {
 	 * used in the creation of an userImage object.
 	 * @param imageID imageID to set
 	 */
-	public void setImageID(int imageID) {
+	public void setImageID(String imageID) {
 		this.imageID = imageID;
 	}
 	

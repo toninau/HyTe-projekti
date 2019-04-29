@@ -164,11 +164,10 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 * Sets all the customer's image from database to their appointed slots
 	 * according to the images name.
 	 * 
-	 * @see controller.CustomerController#imageFromDatabase()
+	 * @see controller.CustomerController#imageFromTempFile()
 	 */
 	public void showImage() {
-		UserImage[] a = controller.imageFromDatabase();
-
+		UserImage[] a = controller.imageFromTempFile();
 		if (a != null) {
 			BufferedImage img = null;
 			ImageView imagev;
@@ -275,14 +274,17 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 * @return Observable list of today's appointments
 	 */
 	public ObservableList<String> appointmentList() {
+		boolean isEmpty = false;
 		ObservableList<String> data = FXCollections.observableArrayList();
 		Appointment[] appointments = controller.customersAppointments();
 		for (Appointment a : appointments) {
 			if (a.getDate().isEqual(LocalDate.now())) {
 				data.add(a.toStringCustomer());
-			} else {
-				data.add("no appointments for today");
-			}
+				isEmpty = true;
+			} 
+		}
+		if(isEmpty) {
+			data.add("No appointments today");
 		}
 		return data;
 	}
@@ -366,7 +368,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		welcome.setText(welcomeText + " " + controller.getLoggedCustomer().getFirstName());
 		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(controller.locationSuggestions()));
 		// showWeather(loc);
-
 		showPrescription();
 		showAppointments();
 		showImage();

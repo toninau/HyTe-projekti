@@ -4,9 +4,9 @@
 	-fx-background-color: #828282;
 	-fx-alignment: CENTER;
     -fx-text-fill: white;
-    -fx-font-size: 20px;
+    -fx-font-size: 20.0px;
     -fx-font-weight: bold;
-    -fx-padding: 1em;
+    -fx-padding: 1.0em;
 }
 
 .tab{
@@ -14,21 +14,21 @@
 }
 
 .calendarTab{
-	-fx-rotate: 90;	    
+	-fx-rotate: 90.0;	    
 }
 
 .calendarTabPane{
-	-fx-tab-min-width:100px;
-	-fx-tab-max-width:100px;
-  	-fx-tab-min-height:100px;
- 	-fx-tab-max-height:100px;
+	-fx-tab-min-width:100.0px;
+	-fx-tab-max-width:100.0px;
+  	-fx-tab-min-height:100.0px;
+ 	-fx-tab-max-height:100.0px;
 }
 
 .loginTabPane{
-	-fx-tab-min-width:300px;
-	-fx-tab-max-width:300px;
-  	-fx-tab-min-height:60px;
- 	-fx-tab-max-height:60px;
+	-fx-tab-min-width:300.0px;
+	-fx-tab-max-width:300.0px;
+  	-fx-tab-min-height:60.0px;
+ 	-fx-tab-max-height:60.0px;
 }
 
 .tab-pane{
@@ -37,13 +37,13 @@
 }
 
 .tab-pane .tab-header-area .tab-header-background {
-    -fx-opacity: 0;
+    -fx-opacity: 0.0;
 }
 
 .tab .tab-label { 
     -fx-alignment: CENTER;
     -fx-text-fill: #828282;
-    -fx-font-size: 25px;
+    -fx-font-size: 25.0px;
     -fx-font-weight: bold;
     -fx-padding: 0.2em;
 
@@ -76,40 +76,59 @@
 
 .adminMenuButton{
 	-fx-font-size: 1.5em ;
-	-fx-max-width: 300px;
-	-fx-min-width: 300px;
+	-fx-max-width: 300.0px;
+	-fx-min-width: 300.0px;
 	-fx-background-color: #88b4fc;
 }
 
 .customerMenuBar{
-	-fx-padding: 10px;
+	-fx-padding: 10.0px;
 	-fx-background-color: #88b4fc;
 	-fx-border-color: #2654a0;
-	-fx-border-width: 4px;
-	-fx-border-radius: 3px;
+	-fx-border-width: 4.0px;
+	-fx-border-radius: 3.0px;
 }
 
 .checkListView{
-	-fx-pref-width: 600px;
+	-fx-pref-width: 600.0px;
 }
 
 .stackpane{
 	-fx-border-color: black;
-	-fx-border-width: 2px;
-    -fx-background-insets: 0, 0 0 1 1 ;
+	-fx-border-width: 2.0px;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 1.0 ;
 }
 
 .gridPane{
 	-fx-border-color: black;
-	-fx-border-width: 2px;
-    -fx-background-insets: 0, 0 0 1 1 ;
+	-fx-border-width: 2.0px;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 1.0 ;
 }
 
 .currentDate{
 	-fx-border-color: yellow;
-	-fx-border-width: 2px;
-    -fx-background-insets: 0, 0 0 1 1 ;
+	-fx-border-width: 2.0px;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 1.0 ;
     -fx-background-color: #1f4b93;
+}
+
+.nextButton{
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-background-image: url("../pictures/previous.png"); 
+	-fx-rotate: 180.0;
+	-fx-background-size: 50.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90.0%;
+}
+
+.previousButton{
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+	-fx-background-image: url("../pictures/previous.png");
+	-fx-background-size: 50.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90.0%; 
 }
 
 

@@ -17,7 +17,7 @@ import dao.PrescriptionDAO;
 public class InfoLoader {
 
 	private File fileP, fileA;
-	Appointment[] appointments;
+	private Appointment[] appointments;
 	static InfoLoader infoloader;
 	
 	private InfoLoader() {

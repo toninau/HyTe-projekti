@@ -1,5 +1,7 @@
 package model;
 
+import java.io.File;
+
 import dao.*;
 
 public interface DAOManager_IF {
@@ -20,4 +22,6 @@ public interface DAOManager_IF {
 	UserImage[] readCustomerImages();
 	Appointment[] readCustomerAppointments();
 	Prescription[] readCustomerPrescriptions();
+	
+	void writeImageToFileDuringSession(Customer customer);
 }

@@ -150,10 +150,8 @@ public class CustomerController implements CustomerController_IF {
 	 */
 	public void imageToDatabase(File file, int imageSlot) {
 		byte [] bfile = new byte[(int) file.length()];
-		try {
-			FileInputStream in = new FileInputStream(file);
+		try (FileInputStream in  = new FileInputStream(file)){
 			in.read(bfile);
-			in.close();
 		}catch(Exception e) {
 			
 		}
@@ -161,14 +159,28 @@ public class CustomerController implements CustomerController_IF {
 		image.setCustomer(customer);
 		image.setImage(bfile);
 		image.setImageName(customer.getCustomerID() + imageSlot);
+		image.setImageID(customer.getCustomerID() + imageSlot);
 		daom.getUserImageDAO().create(image);
+		daom.writeImageToFileDuringSession(customer);
+
+	
 	}
 	
 	public void updateImage(File file, int imageSlot) {
-		UserImage image = daom.getUserImageDAO().read(imageSlot);
-		//image.setImage(bfile);
-		System.out.println(image.getImageID());
+		UserImage image = daom.getUserImageDAO().read(customer.getCustomerID() + imageSlot);
+		byte [] bfile = new byte[(int) file.length()];
+		try (FileInputStream in  = new FileInputStream(file)){
+			in.read(bfile);
+		}catch(Exception e) {
+			
+		}
+		image.setImage(bfile);
 		daom.getUserImageDAO().update(image);
+		daom.writeImageToFileDuringSession(customer);
+	}
+	
+	public void deleteImage(int imageSlot) {
+		daom.getUserImageDAO().delete(customer.getCustomerID() + imageSlot);
 	}
 	
 	/**
@@ -176,7 +188,7 @@ public class CustomerController implements CustomerController_IF {
 	 * @return An array of images.
 	 * @see dao.UserImageDAO#readCustomerUserImages(Customer)
 	 */
-	public UserImage[] imageFromDatabase() {
+	public UserImage[] imageFromTempFile() {
 		return daom.readCustomerImages();
 	}
 	

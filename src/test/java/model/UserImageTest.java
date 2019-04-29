@@ -37,8 +37,8 @@ public class UserImageTest {
 	
 	@Test
 	public void testGetSetID() {
-		image.setImageID(1);
-		assertEquals(1, image.getImageID(), "Failed to set and get imageID");
+		image.setImageID("1");
+		assertEquals("1", image.getImageID(), "Failed to set and get imageID");
 	}
 	
 	@Test

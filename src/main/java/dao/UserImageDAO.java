@@ -58,7 +58,7 @@ public class UserImageDAO {
 	 * @param id imageID of the wanted image
 	 * @return UserImage object
 	 */
-	public UserImage read(int id) {
+	public UserImage read(String id) {
 		Session session = sessionFactory.openSession();
 		UserImage image = new UserImage();
 		try {
@@ -128,15 +128,15 @@ public class UserImageDAO {
 	/**
 	 * Deletes image from the database
 	 * 
-	 * @param id imageID of the image to be deleted
+	 * @param string imageID of the image to be deleted
 	 * @return <code>true</code> if image was successfully deleted<br>
 	 *         <code>false</code> if image was not deleted
 	 */
-	public boolean delete(int id) {
+	public boolean delete(String string) {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		UserImage img = session.get(UserImage.class, id);
+		UserImage img = session.get(UserImage.class, string);
 		if (img != null) {
 			session.delete(img);
 			success = true;

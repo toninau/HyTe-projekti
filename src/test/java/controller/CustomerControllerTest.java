@@ -38,7 +38,7 @@ public class CustomerControllerTest {
 	 */
 	@BeforeAll
 	public static void setUp() {
-		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
+		//SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
 		daom = new DAOManager();
 		customerController = new CustomerController();
 		customer = new Customer("Jane", "Doe", "112405-1222", "Homestreet 1", "0502145523", "020202", "password");
@@ -59,7 +59,7 @@ public class CustomerControllerTest {
 		daom.getStaffDAO().delete("marman");
 		daom.getPrescriptionDAO().delete(1);
 		daom.getAppointmentDAO().delete(1);
-		daom.getUserImageDAO().delete(1);
+		daom.getUserImageDAO().delete("jandoe1");
 		assertTrue(daom.getAppointmentDAO().readCustomerAppointments(customer).length == 0);
 	}
 	

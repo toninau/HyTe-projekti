@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,11 +19,10 @@ import dao.UserImageDAO;
 public class ImageLoader {
 
 	private File[] files;
-	UserImageDAO userImageDAO;
-	UserImage[] userImages;
-	Customer customer;
+	private UserImageDAO userImageDAO;
+	private UserImage[] userImages;
 	private static ImageLoader imageLoader;
-	String[] imageNames;
+	private String[] imageNames;
 
 	private ImageLoader() {
 		userImageDAO = new UserImageDAO(HibernateUtil.getSessionFactory(false));
@@ -52,7 +52,7 @@ public class ImageLoader {
 		}
 
 	}
-
+	
 	public UserImage[] readCustomerImages() {
 		UserImage[] userImages1 = new UserImage[userImages.length];
 		for (int i = 0; i < userImages.length; i++) {
@@ -70,4 +70,6 @@ public class ImageLoader {
 		}
 		return userImages1;
 	}
+	
+
 }

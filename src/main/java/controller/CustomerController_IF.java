@@ -14,7 +14,7 @@ public interface CustomerController_IF {
 	List<String> locationSuggestions();
 	Appointment[] customersAppointments();
 	void imageToDatabase(File file, int imageSlot);
-	UserImage[] imageFromDatabase();
+	UserImage[] imageFromTempFile();
 	void updateImage(File selectedFile, int imageSlot);
 	void updateMedicineTaken(Prescription p);
 }
