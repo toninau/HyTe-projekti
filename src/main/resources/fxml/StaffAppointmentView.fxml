@@ -8,13 +8,12 @@
    <children>
       <HBox prefHeight="68.0" prefWidth="1280.0">
          <children>
-            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="News">
+            <Button fx:id="newsTab" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="%menuButton.home">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Appointments" wrapText="true" />
-            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Send notification" />
+            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="%menuButton.appointments" wrapText="true" />
             <Button disable="true" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Add prescription" />
          </children>
       </HBox>
@@ -133,5 +132,6 @@
             <Font size="13.0" />
          </font>
       </Button>
+      <Button layoutX="1128.0" layoutY="83.0" mnemonicParsing="false" text="%button.logout" />
    </children>
 </AnchorPane>
