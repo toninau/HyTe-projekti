@@ -1,11 +1,12 @@
 package model;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class PrescriptionTest {
 	private Prescription prescription;
@@ -81,6 +82,16 @@ public class PrescriptionTest {
 		staffmember.setStaffID("testi@mail.com");
 		prescription.setStaff(staffmember);
 		assertEquals("testi@mail.com", prescription.getStaff().getStaffID(), "Failed to set and get prescription's staff member");
+	}
+
+	@Test
+	public void testToStringAllInfo() {
+		testConstructor();
+		staffmember.setFirstName("Mahti");
+		staffmember.setSurname("Ahtisaari");
+		staffmember.setAccessLevel("Doctor");
+
+		assertEquals("12.12.2000 - 12.12.2001 testi-ohje. Doctor Ahtisaari, Mahti", prescription.toStringAllInfo(), "Prescription toString-method is not working correctly");
 	}
 
 }

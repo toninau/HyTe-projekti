@@ -1,13 +1,13 @@
 package model;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class AppointmentTest {
 	private Appointment appointment;
@@ -83,5 +83,24 @@ public class AppointmentTest {
 		staffmember.setStaffID("testi@mail.com");
 		appointment.setStaff(staffmember);
 		assertEquals("testi@mail.com", appointment.getStaff().getStaffID(), "Failed to set and get appointment staff");
+	}
+
+	@Test
+	public void testToStringCustomer()  {
+		staffmember.setFirstName("mahti");
+		staffmember.setSurname("ahtisaari");
+		staffmember.setAccessLevel("doctor");
+		Appointment appointment = new Appointment("15.04.1995", "13:00", "appointment info", customer, staffmember);
+		assertEquals("13:00  15.04.1995  appointment info. doctor ahtisaari, mahti", appointment.toStringCustomer(), "Appointment toStringCustomer-method is not right");
+
+	}
+
+	@Test
+	public void testToStringStaff() {
+		customer.setSurname("Jokunen");
+		customer.setFirstName("Jaska");
+		Appointment appointment = new Appointment("15.04.1995", "13:00", "appointment info", customer, staffmember);
+		assertEquals("13:00  15.04.1995 Jokunen Jaska appointment info", appointment.toStringStaff(), "Appointment toStringStaff-method is not right");
+
 	}
 }

@@ -1,13 +1,11 @@
 package model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-
-import javax.persistence.*;
 
 /**
  * Appointment entity
@@ -108,8 +106,7 @@ public class Appointment implements Serializable{
 	 * @param date date to set
 	 */
 	public void setDate(String date) {
-		LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-		this.date = localDate;
+		this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 	}
 
 	/**
@@ -127,8 +124,7 @@ public class Appointment implements Serializable{
 	 * @param time appointment time to set
 	 */
 	public void setTime(String time) {
-		LocalTime localTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH.mm"));
-		this.time = localTime;
+		this.time = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH.mm"));
 	}
 
 	/**
