@@ -88,4 +88,10 @@ public class StaffController implements StaffController_IF {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public String getDailyHappenings() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
