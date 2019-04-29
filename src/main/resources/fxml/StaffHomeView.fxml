@@ -13,7 +13,7 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button fx:id="appointmentButton" maxWidth="480.0" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toStaffAppointmentView" text="%menuButton.appointments" />
+            <Button fx:id="appointmentTab" maxWidth="480.0" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toStaffAppointmentView" text="%menuButton.appointments" />
             <Button disable="true" maxWidth="480.0" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="%menuButton.prescription" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="hmm oisko logo tähän tms?" />
          </children>

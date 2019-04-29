@@ -127,7 +127,7 @@
       </HBox>
       <ListView fx:id="customerListView" layoutX="6.0" layoutY="83.0" prefHeight="130.0" prefWidth="320.0" AnchorPane.bottomAnchor="509.0" AnchorPane.rightAnchor="962.0" AnchorPane.topAnchor="83.0" />
       <Text fill="WHITE" layoutX="352.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%appointment.LoadYourCustomer" wrappingWidth="288.1650390625" AnchorPane.leftAnchor="352.0" AnchorPane.topAnchor="122.576171875" />
-      <Button layoutX="352.0" layoutY="148.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" text="appointment.LoadCustomerButton">
+      <Button layoutX="352.0" layoutY="148.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" text="%appointment.LoadCustomerButton">
          <font>
             <Font size="13.0" />
          </font>
