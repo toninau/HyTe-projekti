@@ -5,6 +5,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -62,6 +64,10 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	@FXML
 	Label monthLabel;
 	@FXML
+	Label dateLabel;
+	@FXML Button nextDay;
+	@FXML Button previousDay;
+	@FXML
 	Button mondaybutton;
 	@FXML
 	Button tuesdaybutton;
@@ -90,15 +96,16 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	@FXML
 	HBox sundaytextarea;
 	@FXML
-	private ListView<Appointment> appointmentListView;
-	@FXML
-	private VBox timeBox;
+	private ListView<String> appointmentListView;
+
 
 	private CustomerController controller;
 	private String previoustextarea = "jotain";
 	private HashMap<Button, HBox> map = new HashMap<Button, HBox>();
 	private Month month;
 	private int year;
+	private int day;
+
 	private Appointment[] appointments;
 
 	public CustomerCalendarView() {
@@ -106,55 +113,126 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	}
 
-
 	public void showDayAppointments(LocalDate date) {
-		for (int i = 1; i <= 24; i++) {
-			if(i<10) {
-				timeBox.getChildren().add(new Label("0"+Integer.toString(i)+".00"));
-			}else {
-				timeBox.getChildren().add(new Label(Integer.toString(i)+".00"));
+		dateLabel.setText(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+		
+		ObservableList<String> noContent= FXCollections.observableArrayList();
+		ObservableList<Appointment> todaysAppointments = appointmentsList(date);
+		if(appointmentListView.getItems().size() > 0) {
+			appointmentListView.getItems().clear();
+		}
+		for (int i = 0; i < 24; i++) {
+			if (i < 10) {
+				noContent.add("0" + Integer.toString(i) + ".00");
+			} else {
+				noContent.add(Integer.toString(i) + ".00");
 			}
 		}
-		appointmentListView.getItems().addAll(appointmentsList(date));
+		appointmentListView.getItems().addAll(noContent);
+
+		
+		for (Appointment appointment : todaysAppointments) {
+			int index = appointment.getTime().getHour();
+			appointmentListView.getItems().set(index, index + ".00   " + appointment.getInfo());
+		}
+		appointmentListView.scrollTo(LocalTime.now().getHour());
+	}
+	
+	public void nextDay() {
+		if(day == month.maxLength()) {
+			month.plus(1);
+			day = 0;
+		}
+		day++;
+		showDayAppointments(LocalDate.of(year, month, day));
+		
+	}
+	public void previousDay() {
+		if(day == 1) {
+			month.minus(1);
+			day = month.maxLength();
+		}
+		day--;
+		showDayAppointments(LocalDate.of(year, month, day));
 	}
 
 	public ObservableList<Appointment> appointmentsList(LocalDate date) {
 		ObservableList<Appointment> data = FXCollections.observableArrayList();
+		if(!data.isEmpty()) {
+			data.clear();
+		}
 		for (Appointment appointment : appointments) {
 			if (appointment.getDate().isEqual(date))
 				data.add(appointment);
 		}
 		return data;
 	}
-	
 
 	public void populateGridPane(Month month, int year) {
-		int day = 0;
+		int row = 1;
+		int column = 0;
+		day = 0;
 		monthLabel.setText(month.toString() + " " + year);
 
 		if (grid.getChildren().size() > 0) {
 			grid.getChildren().clear();
 		}
 		loadGridPaneFirstRow();
-		for (int i = 1; i <= 6; i++) {
-			for (int j = 0; j <= 6; j++) {
-				day++;
-				StackPane p = createGridCell();
-				Label dayLabel = new Label(Integer.toString(day));
-				p.getChildren().add(dayLabel);
-				GridPane.setHalignment(p, HPos.CENTER);
-				grid.add(p, j, i);
-				if (day == month.maxLength()) {
-					day = 0;
-				}
-				if (checkAppointments(day, month.getValue(), year)) {
-					p.setStyle("-fx-background-color: red");
-					p.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-						calendarTabPane.getSelectionModel().select(dayTab);
-					});
-				}
+
+		while (day < month.maxLength()) {
+			day++;
+			StackPane p = createGridCell();
+			Label dayLabel = new Label(Integer.toString(day));
+			p.getChildren().add(dayLabel);
+			GridPane.setHalignment(p, HPos.CENTER);
+			if (column == 7) {
+				column = 0;
+				row++;
+			}
+			grid.add(p, column, row);
+			column++;
+
+			if (checkAppointments(day, month.getValue(), year)) {
+				p.setStyle("-fx-background-color: red");
+				p.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+					calendarTabPane.getSelectionModel().select(dayTab);
+					day = Integer.parseInt(dayLabel.getText());
+					showDayAppointments(LocalDate.of(year, month, day));
+				});
+			}
+			if (LocalDate.now().isEqual(LocalDate.of(year, month.getValue(), day))) {
+				p.getStyleClass().add("currentDate");
 			}
 		}
+
+		day = 0;
+		while (day < 42 - month.maxLength()) {
+			day++;
+
+			StackPane p = createGridCell();
+			Label dayLabel = new Label(Integer.toString(day));
+			p.getChildren().add(dayLabel);
+			GridPane.setHalignment(p, HPos.CENTER);
+			if (column == 7) {
+				column = 0;
+				row++;
+			}
+			p.setDisable(true);
+			grid.add(p, column, row);
+			column++;
+
+		}
+
+		/*
+		 * for (int i = 1; i <= 6; i++) { for (int j = 0; j <= 6; j++) { day++;
+		 * StackPane p = createGridCell(); Label dayLabel = new
+		 * Label(Integer.toString(day)); p.getChildren().add(dayLabel);
+		 * GridPane.setHalignment(p, HPos.CENTER); grid.add(p, j, i); if (day ==
+		 * month.maxLength()) { day = 0; } if (checkAppointments(day, month.getValue(),
+		 * year)) { p.setStyle("-fx-background-color: red");
+		 * p.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+		 * calendarTabPane.getSelectionModel().select(dayTab); }); } } }
+		 */
 	}
 
 	public boolean checkAppointments(int day, int month, int year) {
@@ -163,7 +241,6 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 			if (appointment.getDate().getDayOfMonth() == day && appointment.getDate().getMonthValue() == month
 					&& appointment.getDate().getYear() == year) {
 				isAppointment = true;
-				showDayAppointments(LocalDate.of(year, month, day));
 			}
 		}
 		return isAppointment;
@@ -246,6 +323,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		month = LocalDate.now().getMonth();
 		year = LocalDate.now().getYear();
+		day = LocalDate.now().getDayOfMonth();
 		appointments = controller.customersAppointments();
 
 		createHashMap();

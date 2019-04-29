@@ -149,7 +149,8 @@ public class AdminController implements AdminController_IF {
 	}
 
 	public Customer findCustomerWithID(String id) {
-		return (Customer) daoM.readWithEmail("customer", id);
+		//return (Customer) daoM.readWithID(id, "customer");
+		return daoM.getCustomerDAO().read(id);
 	}
 
 	public boolean removeStaffFromDatabase(String id) {

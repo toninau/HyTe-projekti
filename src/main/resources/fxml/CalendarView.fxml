@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -218,16 +217,27 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-                           <content>
-                              <HBox prefHeight="560.0" prefWidth="1151.0">
-                                 <children>
-                                    <VBox fx:id="timeBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
-                                    <ListView fx:id="appointmentListView" prefHeight="560.0" prefWidth="1053.0" />
-                                 </children>
-                              </HBox>
-                           </content>
-                        </ScrollPane>
+                        <GridPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="626.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="ALWAYS" maxWidth="476.6666748046875" minWidth="10.0" prefWidth="393.46661376953125" />
+                            <ColumnConstraints hgrow="ALWAYS" maxWidth="451.7333435058593" minWidth="10.0" prefWidth="398.53338623046875" />
+                            <ColumnConstraints hgrow="ALWAYS" maxWidth="358.13326416015616" minWidth="10.0" prefWidth="358.13326416015616" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="56.000006103515624" minHeight="10.0" prefHeight="56.000006103515624" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="279.99999084472654" minHeight="10.0" prefHeight="260.79999389648435" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <ListView fx:id="appointmentListView" prefHeight="584.0" prefWidth="796.0" GridPane.columnSpan="3" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                              <Button fx:id="previousDay" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#previousDay" prefHeight="35.0" prefWidth="83.0" text="Button" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
+                              <Button fx:id="nextDay" mnemonicParsing="false" onMouseClicked="#nextDay" text="Button" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
+                              <Label fx:id="dateLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </GridPane>
                      </children>
                   </AnchorPane>
                </content></Tab>

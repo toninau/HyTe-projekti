@@ -83,7 +83,9 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Fills the text fields with chosen customer's information.
 	 */
 	public void showInfo() {
-		customer = c.findCustomerWithID(customer.getCustomerID());
+		String [] split = findCustomer.getText().split(","); ;		
+		String before = split[0];
+		customer = c.findCustomerWithID(before);
 		firstname.setText(customer.getFirstName());
 		surname.setText(customer.getSurname());
 		email.setText(customer.getCustomerID());
@@ -110,11 +112,11 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	/**
 	 * Deletes the chosen customer from database.
 	 */
-	public void removeCustomer() {
-		if(c.removeStaffFromDatabase(getEmail())){
+	public void remove() {
+		if(c.removeCustomerFromDatabase(getEmail())){
 			clearFields();
 		}else {
-			alert("remove");
+			//alert("remove");
 		}
 	}
 	
