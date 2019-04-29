@@ -1,17 +1,17 @@
 package dao;
 
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
+import model.Appointment;
+import model.Customer;
+import model.Staff;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import model.Appointment;
-import model.Customer;
-import model.Staff;
+
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -106,7 +106,7 @@ public class AppointmentDAO {
 			session.close();
 		}
 		Appointment[] returnArray = new Appointment[result.size()];
-		return (Appointment[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class AppointmentDAO {
 			session.close();
 		}
 		Appointment[] returnArray = new Appointment[result.size()];
-		return (Appointment[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class AppointmentDAO {
 		boolean success = false;
 		Session session = sessionfactory.openSession();
 		session.beginTransaction();
-		Appointment a = (Appointment) session.get(Appointment.class, appointment.getAppointmentID());
+		Appointment a = session.get(Appointment.class, appointment.getAppointmentID());
 		if (a != null) {
 			a.setCustomer(appointment.getCustomer());
 			a.setStaff(appointment.getStaff());
@@ -179,7 +179,7 @@ public class AppointmentDAO {
 		boolean success = false;
 		Session session = sessionfactory.openSession();
 		session.beginTransaction();
-		Appointment a = (Appointment) session.get(Appointment.class, id);
+		Appointment a = session.get(Appointment.class, id);
 		if (a != null) {
 			session.delete(a);
 			success = true;

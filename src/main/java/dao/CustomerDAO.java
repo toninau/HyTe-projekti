@@ -1,13 +1,12 @@
 package dao;
 
+import model.Customer;
+import model.Staff;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-import model.Customer;
-import model.Staff;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -83,7 +82,7 @@ public class CustomerDAO {
 			numberString += number;
 		}
 		while (true) {
-			Customer c  = (Customer) session.get(Customer.class, customerID + numberString);
+			Customer c  = session.get(Customer.class, customerID + numberString);
 			if (c == null) {
 				customer.setCustomerID(customerID + numberString);
 				break;
@@ -141,7 +140,7 @@ public class CustomerDAO {
 			session.close();
 		}
 		Customer[] returnArray = new Customer[result.size()];
-		return (Customer[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -167,7 +166,7 @@ public class CustomerDAO {
 			session.close();
 		}
 		Staff[] returnArray = new Staff[result.size()];
-		return (Staff[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -181,7 +180,7 @@ public class CustomerDAO {
 		boolean success = false;
 		Session istunto = sessionFactory.openSession();
 		istunto.beginTransaction();
-		Customer a = (Customer) istunto.get(Customer.class, customer.getCustomerID());
+		Customer a = istunto.get(Customer.class, customer.getCustomerID());
 		if (a != null) {
 			a.setCustomerID(customer.getCustomerID());
 			a.setFirstName(customer.getFirstName());
@@ -211,7 +210,7 @@ public class CustomerDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Customer a = (Customer) session.get(Customer.class, id);
+		Customer a = session.get(Customer.class, id);
 		if (a != null) {
 			session.delete(a);
 			success = true;

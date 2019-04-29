@@ -1,30 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.StaffAppointmentView">
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.staff.StaffAppointmentView">
    <children>
       <HBox prefHeight="68.0" prefWidth="1280.0">
          <children>
-            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="News">
+            <Button fx:id="newsTab" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="%menuButton.home">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Appointments" wrapText="true" />
-            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Send notification" />
-            <Button disable="true" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="Add prescription" />
+            <Button minHeight="83.0" minWidth="320.0" mnemonicParsing="false" text="%menuButton.appointments" wrapText="true" />
          </children>
       </HBox>
       <HBox layoutY="222.0" prefHeight="361.0" prefWidth="1282.0">
@@ -34,34 +23,34 @@
                <children>
                   <TabPane minHeight="500.0" minWidth="1280.0" prefHeight="871.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="60.0">
                     <tabs>
-                      <Tab closable="false" text="Add appointment">
+                      <Tab closable="false" text="%tab.addAppointment">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="914.0" prefWidth="1280.0">
                                  <children>
                                     <VBox layoutX="14.0" layoutY="33.0" prefHeight="354.0" prefWidth="481.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
                                        <children>
-                                          <TextField alignment="TOP_LEFT" prefHeight="88.0" prefWidth="481.0" promptText="appointment information">
+                                          <TextField fx:id="appointmentInfo" alignment="TOP_LEFT" prefHeight="88.0" prefWidth="481.0" promptText="%appointment.AppointmentInfo">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
                                           </TextField>
-                                          <TextField prefHeight="38.0" prefWidth="260.0" promptText="time (ex. 12.30)">
+                                          <TextField fx:id="appointmentTime" prefHeight="38.0" prefWidth="260.0" promptText="%appointment.Time">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <DatePicker prefHeight="31.0" prefWidth="261.0">
+                                          <DatePicker fx:id="AppointmentDate" prefHeight="31.0" prefWidth="261.0">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                           </DatePicker>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add appointment to">
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%appointment.AddAppointmentTo">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="HENKILÖN NIMI JOTTA VARMISTUU" />
-                                          <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="91.0" text="Add">
+                                          <Text fx:id="loadedCustomerName" strokeType="OUTSIDE" strokeWidth="0.0" text="%appointment.LoadedCustomer" />
+                                          <Button fx:id="addAppointment" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" text="%appointment.AddButton">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
@@ -75,7 +64,7 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="Modify appointment">
+                      <Tab text="%tab.modifyAppointment">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="502.0" prefWidth="1280.0">
                                  <children>
@@ -84,12 +73,12 @@
                                           <ListView fx:id="appointmentList" prefHeight="302.0" prefWidth="305.0" stylesheets="@../css/view.css" />
                                           <VBox minHeight="300.0" prefHeight="300.0" prefWidth="394.0">
                                              <children>
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose the appointment to modify" wrappingWidth="384.0126953125">
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%modifyAppointment.helpText" wrappingWidth="384.0126953125">
                                                    <VBox.margin>
                                                       <Insets left="10.0" />
                                                    </VBox.margin>
                                                 </Text>
-                                                <TextField alignment="TOP_LEFT" prefHeight="137.0" prefWidth="384.0" promptText="Appointment information">
+                                                <TextField fx:id="modifyAppointmentInfo" alignment="TOP_LEFT" prefHeight="137.0" prefWidth="384.0" promptText="%modifyAppointment.appointmentInfo">
                                                    <VBox.margin>
                                                       <Insets left="10.0" top="30.0" />
                                                    </VBox.margin>
@@ -97,17 +86,17 @@
                                                       <Font size="13.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField promptText="time">
+                                                <TextField fx:id="modifyAppointmentTime" promptText="%modifyAppointment.time">
                                                    <VBox.margin>
                                                       <Insets left="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </TextField>
-                                                <DatePicker>
+                                                <DatePicker fx:id="modifyAppointmentDate">
                                                    <VBox.margin>
                                                       <Insets left="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </DatePicker>
-                                                <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="118.0" text="Save">
+                                                <Button fx:id="modifyAppointment" mnemonicParsing="false" prefHeight="52.0" prefWidth="118.0" text="%modifyAppointment.saveButton">
                                                    <VBox.margin>
                                                       <Insets left="10.0" top="10.0" />
                                                    </VBox.margin>
@@ -119,13 +108,85 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </HBox>
+                                    <Label layoutX="14.0" layoutY="14.0" text="%modifyAppointment.customerAppointments" />
                                  </children>
                               </AnchorPane>
                         </content>
                       </Tab>
-                        <Tab text="Send message">
+                        <Tab text="%tab.notification">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          </content>
+                        </Tab>
+                        <Tab text="%tab.prescription">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="450.0" prefWidth="320.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%prescription.customerPrescriptions">
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="20.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <ListView fx:id="prescriptionList" prefHeight="210.0" prefWidth="320.0">
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </ListView>
+                                          <Button mnemonicParsing="false" text="%prescription.loadButton">
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <Button mnemonicParsing="false" text="%prescription.newButton">
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="75.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox disable="true" layoutX="320.0" prefHeight="447.0" prefWidth="288.0">
+                                       <children>
+                                          <Label text="%prescription.name">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <TextArea prefHeight="46.0" prefWidth="288.0" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                          <Label text="%prescription.usage">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <TextArea prefHeight="71.0" prefWidth="288.0" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                          <Label text="%prescription.description">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <TextArea prefHeight="167.0" prefWidth="288.0">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </TextArea>
+                                          <Button fx:id="editButton" mnemonicParsing="false" text="%prescription.Button">
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
                           </content>
                         </Tab>
                     </tabs>
@@ -135,11 +196,12 @@
          </children>
       </HBox>
       <ListView fx:id="customerListView" layoutX="6.0" layoutY="83.0" prefHeight="130.0" prefWidth="320.0" AnchorPane.bottomAnchor="509.0" AnchorPane.rightAnchor="962.0" AnchorPane.topAnchor="83.0" />
-      <Text fill="WHITE" layoutX="352.0" layoutY="99.1865234375" strokeType="OUTSIDE" strokeWidth="0.0" text="Load your customer" wrappingWidth="288.1650390625" AnchorPane.leftAnchor="352.0" AnchorPane.topAnchor="83.0" />
-      <Button layoutX="352.0" layoutY="148.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" text="Load">
+      <Text fill="WHITE" layoutX="352.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%appointment.LoadYourCustomer" wrappingWidth="288.1650390625" AnchorPane.leftAnchor="352.0" AnchorPane.topAnchor="122.576171875" />
+      <Button fx:id="loadCustomers" layoutX="352.0" layoutY="148.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" text="%appointment.LoadCustomerButton">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
+      <Button layoutX="1128.0" layoutY="83.0" mnemonicParsing="false" text="%button.logout" />
    </children>
 </AnchorPane>

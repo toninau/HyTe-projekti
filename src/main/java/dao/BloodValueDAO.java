@@ -1,12 +1,13 @@
 package dao;
 
-import java.util.List;
+import model.BloodValue;
+import model.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import model.BloodValue;
-import model.Customer;
+
+import java.util.List;
 
 /**
  * 
@@ -78,7 +79,7 @@ public class BloodValueDAO {
 			session.close();
 		}
 		BloodValue[] returnArray = new BloodValue[result.size()];
-		return (BloodValue[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class BloodValueDAO {
 		boolean success = false;
 		Session session = sessionfactory.openSession();
 		session.beginTransaction();
-		BloodValue v = (BloodValue) session.get(BloodValue.class, id);
+		BloodValue v = session.get(BloodValue.class, id);
 		if (v != null) {
 			session.delete(v);
 			success = true;

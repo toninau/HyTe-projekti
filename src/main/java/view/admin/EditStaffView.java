@@ -1,26 +1,25 @@
 package view.admin;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
-import org.controlsfx.control.textfield.TextFields;
-
 import controller.AdminController;
 import controller.AdminController_IF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import model.Staff;
+import org.controlsfx.control.textfield.TextFields;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * Class for editing staff members in database.
@@ -75,8 +74,8 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	 * Shows chosen employee's information from the database in the text fields.
 	 */
 	public void showInfo() {
-		String [] split = searchStaff.getText().split(","); ;		
-		String before = split[0];
+		String [] split = searchStaff.getText().split(",");
+        String before = split[0];
 		staff = c.findStaffWithID(before);
 		firstName.setText(staff.getFirstName());
 		surname.setText(staff.getSurname());

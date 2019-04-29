@@ -1,15 +1,11 @@
 package dao;
 
-import java.util.List;
-
-import org.hibernate.HibernateException;
-import org.hibernate.ObjectNotFoundException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import model.Customer;
 import model.UserImage;
+import org.hibernate.*;
+import org.hibernate.query.Query;
+
+import java.util.List;
 
 /**
  * DataAccessObject for customers images
@@ -104,7 +100,7 @@ public class UserImageDAO {
 			session.close();
 		}
 		UserImage[] returnArray = new UserImage[result.size()];
-		return (UserImage[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -118,7 +114,7 @@ public class UserImageDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		UserImage img = (UserImage) session.get(UserImage.class, userImage.getImageID());
+		UserImage img = session.get(UserImage.class, userImage.getImageID());
 		if (img != null) {
 			img.setCustomer(userImage.getCustomer());
 			img.setImage(userImage.getImage());
@@ -143,7 +139,7 @@ public class UserImageDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		UserImage img = (UserImage) session.get(UserImage.class, id);
+		UserImage img = session.get(UserImage.class, id);
 		if (img != null) {
 			session.delete(img);
 			success = true;

@@ -1,25 +1,19 @@
 package view.admin;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-
 import controller.AdminController;
 import controller.AdminController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Class for adding staff members to database.
@@ -132,7 +126,7 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 	 * @return Employee's profession
 	 */
 	public String getProfession() {
-		return (String) this.profession.getValue();
+		return this.profession.getValue();
 	}
 
 	/**

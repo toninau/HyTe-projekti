@@ -1,18 +1,16 @@
 package dao;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
+import model.Customer;
+import model.Prescription;
+import model.Staff;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import model.Appointment;
-import model.Customer;
-import model.Prescription;
-import model.Staff;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * 
@@ -106,7 +104,7 @@ public class PrescriptionDAO {
 			session.close();
 		}
 		Prescription[] returnArray = new Prescription[result.size()];
-		return (Prescription[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -133,7 +131,7 @@ public class PrescriptionDAO {
 			session.close();
 		}
 		Prescription[] returnArray = new Prescription[result.size()];
-		return (Prescription[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -147,7 +145,7 @@ public class PrescriptionDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Prescription r = (Prescription) session.get(Prescription.class, id);
+		Prescription r = session.get(Prescription.class, id);
 		if (r != null) {
 			session.delete(r);
 			success = true;
@@ -164,7 +162,7 @@ public class PrescriptionDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Prescription p = (Prescription) session.get(Prescription.class, prescription.getPrescriptionID());
+		Prescription p = session.get(Prescription.class, prescription.getPrescriptionID());
 		if (p != null) {
 			p.setCustomer(prescription.getCustomer());
 			p.setStaff(prescription.getStaff());
