@@ -65,21 +65,20 @@ public class BloodValueDAO {
 	@SuppressWarnings("unchecked")
 	public BloodValue[] readCustomerBloodvalues(Customer customer) {
 		Session session = sessionfactory.openSession();
-		List<BloodValue> result = null;
+		BloodValue[] result = new BloodValue[0];
 		try {
 			session.beginTransaction();
 			String sql = "SELECT * FROM bloodvalue INNER JOIN customer on bloodvalue.customerID = customer.customerID WHERE customer.customerID = :id";
 			Query<BloodValue> query = session.createSQLQuery(sql).addEntity(BloodValue.class);
 			query.setParameter("id", customer.getCustomerID());
-			result = query.list();
+			result = query.list().toArray(new BloodValue[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		BloodValue[] returnArray = new BloodValue[result.size()];
-		return result.toArray(returnArray);
+		return result;
 	}
 
 	/**
