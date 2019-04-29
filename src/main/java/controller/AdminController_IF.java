@@ -4,14 +4,14 @@ import model.Customer;
 import model.Staff;
 
 public interface AdminController_IF {
-	public abstract boolean addStaff();
-	public abstract boolean addCustomer();
-	public abstract Staff[] findStaffAll();
-	public abstract Customer[] findCustomerAll();
-	public abstract Customer findCustomerWithID(String id);
-	public abstract Staff findStaffWithID(String id);
-	public abstract boolean updateStaff(Staff staff);
-	public abstract void updateCustomer(Customer customer);
-	public abstract boolean removeStaffFromDatabase(String id);
-	public abstract boolean removeCustomerFromDatabase(String id);
+	boolean addStaff();
+	boolean addCustomer();
+	Staff[] findStaffAll();
+	Customer[] findCustomerAll();
+	Customer findCustomerWithID(String id);
+	Staff findStaffWithID(String id);
+	boolean updateStaff(Staff staff);
+	void updateCustomer(Customer customer);
+	boolean removeStaffFromDatabase(String id);
+	boolean removeCustomerFromDatabase(String id);
 }

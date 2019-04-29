@@ -1,15 +1,15 @@
 package dao;
 
-import java.math.BigInteger;
-import java.util.List;
-
+import model.Customer;
+import model.Staff;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import model.Customer;
-import model.Staff;
+
+import java.math.BigInteger;
+import java.util.List;
 
 /**
  * 
@@ -81,7 +81,7 @@ public class StaffDAO {
 			numberString += number;
 		}
 		while (true) {
-			Staff s = (Staff) session.get(Staff.class, staffID + numberString);
+			Staff s = session.get(Staff.class, staffID + numberString);
 			if (s == null) {
 				staff.setStaffID(staffID + numberString);
 				break;
@@ -175,7 +175,7 @@ public class StaffDAO {
 			session.close();
 		}
 		Customer[] returnArray = new Customer[result.size()];
-		return (Customer[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -232,7 +232,7 @@ public class StaffDAO {
 			session.close();
 		}
 		Staff[] returnArray = new Staff[result.size()];
-		return (Staff[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class StaffDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Staff s = (Staff) session.get(Staff.class, staff.getStaffID());
+		Staff s = session.get(Staff.class, staff.getStaffID());
 		if (s != null) {
 			s.setFirstName(staff.getFirstName());
 			s.setSurname(staff.getSurname());
@@ -274,7 +274,7 @@ public class StaffDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Staff s = (Staff) session.get(Staff.class, id);
+		Staff s = session.get(Staff.class, id);
 		if (s != null) {
 			session.delete(s);
 			String sql = "DELETE FROM customersStaff WHERE customersStaff.staffID = :id";

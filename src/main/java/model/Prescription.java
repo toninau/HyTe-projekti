@@ -1,14 +1,12 @@
 package model;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
-import javax.persistence.*;
-
-import org.hibernate.annotations.Type;
 
 /**
  * Prescription entity
@@ -87,9 +85,9 @@ public class Prescription implements Serializable {
 	 */
 	public Prescription(String startDate, String endDate, String prescriptionName, String prescriptionGuide, String timeToTake, String dosage,
 			boolean renewPrescription, Customer customer, Staff staff) {
-		this.startDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));;
-		this.endDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));;
-		this.prescriptionName = prescriptionName;
+		this.startDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        this.endDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        this.prescriptionName = prescriptionName;
 		this.prescriptionGuide = prescriptionGuide;
 		this.timeToTake = timeToTake;
 		this.dosage = dosage;

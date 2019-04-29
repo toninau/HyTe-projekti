@@ -1,11 +1,12 @@
 package dao;
 
+import model.Customer;
+import model.Illness;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import model.Customer;
-import model.Illness;
+
 import java.util.List;
 
 /**
@@ -78,7 +79,7 @@ public class IllnessDAO {
 			session.close();
 		}
 		Illness[] returnArray = new Illness[result.size()];
-		return (Illness[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class IllnessDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Illness s = (Illness) session.get(Illness.class, id);
+		Illness s = session.get(Illness.class, id);
 		if (s != null) {
 			session.delete(s);
 			success = true;

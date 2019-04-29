@@ -1,14 +1,14 @@
 package dao;
 
-import java.util.List;
-
+import model.Customer;
+import model.Notification;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import model.Customer;
-import model.Notification;
+
+import java.util.List;
 
 /**
  * 
@@ -105,7 +105,7 @@ public class NotificationDAO {
 			session.close();
 		}
 		Notification[] returnArray = new Notification[result.size()];
-		return (Notification[]) result.toArray(returnArray);
+		return result.toArray(returnArray);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class NotificationDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Notification i = (Notification) session.get(Notification.class, notification.getNotificationID());
+		Notification i = session.get(Notification.class, notification.getNotificationID());
 		if (i != null) {
 			i.setRead(notification.isRead());
 			i.setText(notification.getText());
@@ -143,7 +143,7 @@ public class NotificationDAO {
 		boolean success = false;
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Notification i = (Notification) session.get(Notification.class, id);
+		Notification i = session.get(Notification.class, id);
 		if (i != null) {
 			session.delete(i);
 			success = true;

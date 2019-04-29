@@ -1,24 +1,20 @@
 package controller;
 
+import model.*;
+
 import java.io.File;
 import java.util.List;
 
-import model.Appointment;
-import model.BloodValue;
-import model.Customer;
-import model.Prescription;
-import model.UserImage;
-
 public interface CustomerController_IF {
-	public abstract void loggedCustomer(Customer customer);
-	public abstract Customer getLoggedCustomer();
-	public abstract BloodValue[] bloodValueData();
-	public abstract boolean createBloodsugar();
-	public abstract Prescription[] prescriptions();
-	public abstract List<String> locationSuggestions();
-	public abstract Appointment[] customersAppointments();
-	public abstract void imageToDatabase(File file, int imageSlot);
-	public abstract UserImage[] imageFromDatabase();
-	public abstract void updateImage(File selectedFile, int imageSlot);
-	public abstract void updateMedicineTaken(Prescription p);
+	void loggedCustomer(Customer customer);
+	Customer getLoggedCustomer();
+	BloodValue[] bloodValueData();
+	boolean createBloodsugar();
+	Prescription[] prescriptions();
+	List<String> locationSuggestions();
+	Appointment[] customersAppointments();
+	void imageToDatabase(File file, int imageSlot);
+	UserImage[] imageFromDatabase();
+	void updateImage(File selectedFile, int imageSlot);
+	void updateMedicineTaken(Prescription p);
 }

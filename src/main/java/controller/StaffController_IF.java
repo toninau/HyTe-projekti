@@ -14,6 +14,6 @@ public interface StaffController_IF {
 
     Appointment[] customersAppointments();
 
-    abstract ObservableList<Appointment> allAppointments();
+    ObservableList<Appointment> allAppointments();
     boolean sendNotification(String data);
 }

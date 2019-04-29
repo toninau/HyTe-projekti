@@ -1,18 +1,13 @@
 package controller;
 
 import com.lambdaworks.crypto.SCryptUtil;
-
 import model.Customer;
 import model.DAOManager;
 import model.DAOManager_IF;
 import model.Staff;
-import view.admin.AddCustomerView;
-import view.admin.AddCustomerIF;
-import view.admin.AddStaffView;
-import view.admin.AddStaffIF;
-import view.admin.EditCustomerView;
+import view.admin.*;
+
 //import view.admin.EditCustomerIF;
-import view.admin.EditStaffView;
 //import view.admin.EditStaffIF;
 
 public class AdminController implements AdminController_IF {
@@ -126,11 +121,8 @@ public class AdminController implements AdminController_IF {
 	 * 
 	 */
 	public boolean updateStaff(Staff f) {
-		if (daoM.update(f)) {
-			return true;
-		}
-		return false;
-	}
+        return daoM.update(f);
+    }
 
 	public void updateCustomer(Customer customer) {
 		daoM.update(customer);

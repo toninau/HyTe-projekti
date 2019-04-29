@@ -1,41 +1,27 @@
 package view.customer;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Month;
-import java.util.HashMap;
-import java.util.ResourceBundle;
-
 import controller.CustomerController;
-import controller.CustomerController_IF;
 import javafx.animation.AnimationTimer;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 import model.Appointment;
-import model.Prescription;
-import model.Staff;
 import view.ViewChanger;
+
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class CustomerCalendarView extends ViewChanger implements Initializable {
 
@@ -110,9 +96,9 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	public void showDayAppointments(LocalDate date) {
 		for (int i = 1; i <= 24; i++) {
 			if(i<10) {
-				timeBox.getChildren().add(new Label("0"+Integer.toString(i)+".00"));
+				timeBox.getChildren().add(new Label("0"+ i +".00"));
 			}else {
-				timeBox.getChildren().add(new Label(Integer.toString(i)+".00"));
+				timeBox.getChildren().add(new Label(i +".00"));
 			}
 		}
 		appointmentListView.getItems().addAll(appointmentsList(date));

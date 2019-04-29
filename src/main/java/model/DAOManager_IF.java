@@ -1,30 +1,23 @@
 package model;
 
-import dao.AppointmentDAO;
-import dao.BloodValueDAO;
-import dao.CustomerDAO;
-import dao.IllnessDAO;
-import dao.NotificationDAO;
-import dao.PrescriptionDAO;
-import dao.StaffDAO;
-import dao.UserImageDAO;
+import dao.*;
 
 public interface DAOManager_IF {
-	public abstract void create(Object obj);
-	public abstract boolean update(Object obj);
-	public abstract Object[] readAll(String obj);
-	public abstract Object readWithID(int id, String obj);
-	public abstract Object readWithEmail(String key, String email);
-	public abstract CustomerDAO getCustomerDAO();
-	public abstract StaffDAO getStaffDAO();
-	public abstract PrescriptionDAO getPrescriptionDAO();
-	public abstract IllnessDAO getIllnessDAO();
-	public abstract BloodValueDAO getBloodValueDAO();
-	public abstract NotificationDAO getNotificationDAO();
-	public abstract AppointmentDAO getAppointmentDAO();
-	public abstract UserImageDAO getUserImageDAO();
-	public abstract void writeAllCustomerInformation(Customer customer);
-	public abstract UserImage[] readCustomerImages();
-	public abstract Appointment[] readCustomerAppointments();
-	public abstract Prescription[] readCustomerPrescriptions();
+	void create(Object obj);
+	boolean update(Object obj);
+	Object[] readAll(String obj);
+	Object readWithID(int id, String obj);
+	Object readWithEmail(String key, String email);
+	CustomerDAO getCustomerDAO();
+	StaffDAO getStaffDAO();
+	PrescriptionDAO getPrescriptionDAO();
+	IllnessDAO getIllnessDAO();
+	BloodValueDAO getBloodValueDAO();
+	NotificationDAO getNotificationDAO();
+	AppointmentDAO getAppointmentDAO();
+	UserImageDAO getUserImageDAO();
+	void writeAllCustomerInformation(Customer customer);
+	UserImage[] readCustomerImages();
+	Appointment[] readCustomerAppointments();
+	Prescription[] readCustomerPrescriptions();
 }
