@@ -163,5 +163,39 @@ public class ViewChanger {
 		String title = "Appointment";
 		sceneContent(fxml, event, title, bundle);
 	}
+	
+	
+	
+	public void changeToAddStaff(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+
+		String fxml = FxmlEnum.ADDSTAFF.getFxml();
+		String title  = "Lisää henkilökuntaa";
+		sceneContent(fxml, event, title, bundle);
+	}
+	
+	public void changeToEditStaff(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+
+		String fxml =  FxmlEnum.EDITSTAFF.getFxml();
+		String title  = "Muokkaa henkilökuntaa";
+		sceneContent(fxml, event, title, bundle);
+	}
+	
+	public void changeToAddCustomer(MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+
+		String fxml = FxmlEnum.ADDCUSTOMER.getFxml();
+		String title  = "Lisää asiakkaita";
+		sceneContent(fxml, event, title, bundle);
+	}
+	
+	public void changeToEditCustomer (MouseEvent event) throws IOException {
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
+
+		String fxml = FxmlEnum.EDITCUSTOMER.getFxml();
+		String title  = "Muokkaa asiakkaita";
+		sceneContent(fxml, event, title, bundle);
+	}
 
 }

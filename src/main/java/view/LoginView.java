@@ -101,7 +101,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 				title = "Login";
 			}
 		} else {
-			fxml = FxmlEnum.ADMINMENU.getFxml();
+			fxml = FxmlEnum.ADDCUSTOMER.getFxml();
 			title = "Menu";
 			bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 		}

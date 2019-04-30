@@ -5,102 +5,152 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.admin.EditStaffView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.admin.EditStaffView">
    <children>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <GridPane maxHeight="100.0" prefHeight="90.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="179.5333251953125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="195.5333251953125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="174.800048828125" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="140.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="50.0" prefHeight="130.0" prefWidth="800.0" styleClass="headerLabels" text="%editStaffButton.text" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Label>
-            <Label layoutX="40.0" layoutY="141.0" prefHeight="21.0" prefWidth="316.0" text="%searchPerson.text">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="searchStaff" layoutX="29.0" layoutY="177.0" promptText="%surname.prompt" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="170.0" />
-            <Button fx:id="search" layoutX="673.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#showStaffInfo" prefHeight="31.0" prefWidth="100.0" text="Hae" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="170.0" />
-            <Separator layoutX="12.0" layoutY="216.0" prefHeight="21.0" prefWidth="793.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0" />
-            <Button fx:id="save" layoutX="550.0" layoutY="547.0" mnemonicParsing="false" onMouseClicked="#updateStaffInfo" prefHeight="75.0" prefWidth="187.0" text="%saveButton.text" />
-            <HBox alignment="TOP_CENTER" layoutX="310.0" layoutY="253.0" prefHeight="300.0" prefWidth="1180.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="250.0">
+            <ImageView fitHeight="75.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.halignment="LEFT">
+               <image>
+                  <Image url="@../pictures/contactIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="74.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#logoutForAll" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.halignment="RIGHT">
+               <image>
+                  <Image url="@../pictures/logoutIcon.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ImageView>
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#changeToAddStaff" prefHeight="81.0" styleClass="customerMenuBar" text="%addStaffButton.text" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="placeholder" />
+               </tooltip>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#changeToAddCustomer" prefHeight="83.0" styleClass="customerMenuBar" text="%addCustomerButton.text" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="placeholder" />
+               </tooltip>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#changeToEditStaff" prefHeight="83.0" styleClass="customerMenuBar" text="%editStaffButton.text" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="placeholder" />
+               </tooltip>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#changeToEditCustomer" prefHeight="83.0" styleClass="customerMenuBar" text="%editCustomerButton.text" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <tooltip>
+                  <Tooltip text="placeholder" />
+               </tooltip>
+            </Button>
+         </children>
+      </GridPane>
+      <Label layoutX="40.0" layoutY="140.0" prefHeight="21.0" prefWidth="316.0" text="%searchPerson.text">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="searchStaff" promptText="%surname.prompt" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="170.0" />
+      <Button fx:id="search" mnemonicParsing="false" onMouseClicked="#showInfo" prefHeight="31.0" prefWidth="100.0" text="Hae" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="170.0" />
+      <Separator prefHeight="21.0" prefWidth="793.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0" />
+      <Button fx:id="save" layoutX="658.0" layoutY="537.0" mnemonicParsing="false" onMouseClicked="#updateInfo" prefHeight="75.0" prefWidth="187.0" text="%saveButton.text" />
+      <HBox alignment="TOP_CENTER" prefHeight="300.0" prefWidth="1180.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="250.0">
+         <children>
+            <VBox prefHeight="350.0" prefWidth="640.0">
                <children>
-                  <VBox prefHeight="350.0" prefWidth="640.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="%firstname.text">
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="firstName" promptText="%firstname.prompt" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="%surname.text">
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="surname" prefHeight="31.0" prefWidth="192.0" promptText="%surname.prompt" />
-                           </children>
-                        </HBox>
+                        <Label text="%firstname.text">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="firstName" promptText="%firstname.prompt" />
                      </children>
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                  </VBox>
-                  <VBox prefHeight="230.0" prefWidth="640.0">
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="%email.text">
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="email" promptText="%email.prompt" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Label text="%phone.text">
-                                 <padding>
-                                    <Insets right="5.0" />
-                                 </padding>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="phoneNumber" promptText="%phone.prompt" />
-                           </children>
-                        </HBox>
+                        <Label text="%surname.text">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="surname" prefHeight="44.0" prefWidth="276.0" promptText="%surname.prompt" />
                      </children>
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="250.0" top="20.0" />
-                     </padding>
-                  </VBox>
+                  </HBox>
                </children>
-            </HBox>
-            <Button fx:id="logout" layoutX="50.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#logout" text="%logout.text" />
-            <Button fx:id="toMenu" layoutX="50.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#toMenu" text="%back.text" />
-            <Button fx:id="remove" layoutX="419.0" layoutY="561.0" mnemonicParsing="false" onMouseClicked="#removeStaff" text="remove" />
-         </children></AnchorPane>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="230.0" prefWidth="640.0">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="%email.text">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="email" promptText="%email.prompt" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="%phone.text">
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="phoneNumber" promptText="%phone.prompt" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="250.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="remove" layoutX="422.0" layoutY="553.0" mnemonicParsing="false" onMouseClicked="#removeStaff" text="remove" />
    </children>
 </AnchorPane>
