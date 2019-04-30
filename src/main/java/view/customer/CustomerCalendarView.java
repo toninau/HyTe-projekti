@@ -140,7 +140,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	
 	public void nextDay() {
 		if(day == month.maxLength()) {
-			month.plus(1);
+			month = month.plus(1);
 			day = 0;
 		}
 		day++;
@@ -149,7 +149,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	}
 	public void previousDay() {
 		if(day == 1) {
-			month.minus(1);
+			month = month.minus(1);
 			day = month.maxLength();
 		}
 		day--;
@@ -329,61 +329,6 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		createHashMap();
 		populateGridPane(month, year);
 		showDayAppointments(LocalDate.now());
-	}
-
-	/**
-	 * Fired when Home button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toCustomerHome(Event);
-	 */
-	public void toHome(MouseEvent event) throws IOException {
-		toCustomerHome(event);
-	}
-
-	/**
-	 * Fired when Calendar button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toCustomerCalendar(Event);
-	 */
-	public void toCalendar(MouseEvent event) throws IOException {
-		toCustomerCalendar(event);
-	}
-
-	/**
-	 * Fired when Help button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toCustomerHelp(Event);
-	 */
-	public void toHelp(MouseEvent event) throws IOException {
-		toCustomerHelp(event);
-	}
-
-	/**
-	 * Fired when Health button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toCustomerHealth(Event);
-	 */
-	public void toHealth(MouseEvent event) throws IOException {
-		toCustomerHealth(event);
-	}
-
-	/**
-	 * Fired when logout button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#logoutForAll(Event);
-	 */
-	public void logout(MouseEvent event) throws IOException {
-		logoutForAll(event);
 	}
 
 }

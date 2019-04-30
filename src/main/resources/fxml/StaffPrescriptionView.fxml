@@ -42,7 +42,7 @@
             <ListView fx:id="StaffCustomers" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
-      <Button fx:id="logout" layoutX="1038.0" layoutY="651.0" mnemonicParsing="false" onMouseClicked="#logout" text="%button.logout" />
+      <Button fx:id="logout" layoutX="1038.0" layoutY="651.0" mnemonicParsing="false" onMouseClicked="#logoutForAll" text="%button.logout" />
       <Label fx:id="welcomeText" layoutX="500.0" layoutY="130.0" text="%text.welcomeText" textFill="WHITE" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="130.0" />
       <Label layoutX="675.0" layoutY="390.0" text="mitä helvettiä tähän" textFill="WHITE" />
       <ListView fx:id="appointmentList" layoutX="440.0" layoutY="506.0" prefHeight="200.0" prefWidth="463.0" />

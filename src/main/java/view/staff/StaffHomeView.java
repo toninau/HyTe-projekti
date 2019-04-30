@@ -61,14 +61,6 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 	}
 
 	
-	
-	public void toStaffAppointmentView(MouseEvent event) {
-		toStaffAppointment(event);
-	}
-	
-	public void logout(MouseEvent event) throws IOException {
-		logoutForAll(event);
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

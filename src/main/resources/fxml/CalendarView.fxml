@@ -264,7 +264,7 @@
                   <Image url="@../pictures/contactIcon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="67.0" fitWidth="74.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.halignment="RIGHT">
+            <ImageView fitHeight="67.0" fitWidth="74.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#logoutForAll" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.halignment="RIGHT">
                <image>
                   <Image url="@../pictures/logoutIcon.png" />
                </image>
@@ -272,7 +272,7 @@
                   <Insets />
                </GridPane.margin>
             </ImageView>
-            <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toHome" prefHeight="81.0" styleClass="customerMenuBar" text="%menuButton.frontpage" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCustomerHome" prefHeight="81.0" styleClass="customerMenuBar" text="%menuButton.frontpage" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%%menuButton.frontpage.tt" />
                </tooltip>
@@ -280,17 +280,17 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="calendarButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCalendar" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.calendar" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="calendarButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCustomerCalendar" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.calendar" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%menuButton.calendar.tt" />
                </tooltip>
             </Button>
-            <Button fx:id="myHealthButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toHealth" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.myHealth" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="myHealthButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCustomerHealth" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.myHealth" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%menuButton.myHealth.tt" />
                </tooltip>
             </Button>
-            <Button fx:id="helpButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toHelp" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.help" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="helpButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCustomerHelp" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.help" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%menuButton.help.tt" />
                </tooltip>

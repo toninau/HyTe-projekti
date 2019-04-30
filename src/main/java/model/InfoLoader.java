@@ -72,8 +72,6 @@ public class InfoLoader {
 				}
 				if(obj != null) {
 					arrayList.add((Object[]) obj);
-				}else {
-					done = false;
 				}
 			}			
 		} catch (IOException e) {

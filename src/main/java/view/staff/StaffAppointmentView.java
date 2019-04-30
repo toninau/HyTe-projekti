@@ -69,9 +69,6 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 		appointmentList.getSelectionModel().getSelectedItems();
 	}
 	
-	public void toStaffHome(MouseEvent event) {
-		toStaffHome(event);
-	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

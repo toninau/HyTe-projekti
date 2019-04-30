@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 
 import org.controlsfx.control.CheckListView;
 import org.controlsfx.control.textfield.TextFields;
+import org.reactfx.collection.ListChange;
 
 import controller.CustomerController;
 import controller.CustomerController_IF;
@@ -55,7 +56,6 @@ import view.enums.Bundles;
  */
 public class CustomerHomeView extends ViewChanger implements Initializable {
 
-
 	@FXML
 	private Label weatherCelsius;
 	@FXML
@@ -84,6 +84,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	private WeatherAPICall weather;
 	private ResourceBundle bundle;
 	private CustomerController_IF controller;
+	private ObservableList<Prescription> prescriptionsList;
 
 	public CustomerHomeView() {
 		controller = new CustomerController(this);
@@ -203,14 +204,16 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	/**
 	 * Generates a list view with check boxes and populates the list view.
 	 * 
-	 * @see #prescriptionsList()
+	 * @see #getPrescriptionsList()
 	 */
 	public void showPrescription() {
+		prescriptionsList = getPrescriptionsList();
 		checkListView = new CheckListView<Prescription>();
+		
 		checkListView.getStylesheets().add(getClass().getResource("/css/view.css").toExternalForm());
 		checkListView.getStyleClass().add("checkListView");
 		prescriptionBox.getChildren().add(checkListView);
-		checkListView.setItems(prescriptionsList());
+		checkListView.setItems(prescriptionsList);
 
 		checkListView.setCellFactory(lv -> {
 			CheckBoxListCell<Prescription> cell = new CheckBoxListCell<Prescription>(
@@ -222,18 +225,26 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 							: p.getPrescriptionName() + " " + p.getDosage() + " " + p.getPrescriptionGuide());
 				}
 			};
+			
+			cell.getStyleClass().add("checkListCell");
 			return cell;
 		});
 		checkListView.getCheckModel().getCheckedItems().addListener(new ListChangeListener<Prescription>() {
 			public void onChanged(ListChangeListener.Change<? extends Prescription> c) {
 				String takenAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm"));
-				Prescription p = checkListView.getCheckModel().getCheckedItems().get(0);
-				p.setTakenAt(takenAt);
-				controller.updateMedicineTaken(p);
+				
+				if(!checkListView.getCheckModel().isEmpty()) {
+					Prescription p = checkListView.getCheckModel().getCheckedItems().get(0);
+
+					p.setTakenAt(takenAt);
+					controller.updateMedicineTaken(p);
+				}
 			}
 		});
 	}
 
+	
+	
 	/**
 	 * Checks the time when the medicine is supposed to be taken and adds them into
 	 * an observable list accordingly. e.g. if the medicine is supposed to be taken
@@ -242,20 +253,15 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 * 
 	 * @return An observable list of the prescriptions.
 	 */
-	public ObservableList<Prescription> prescriptionsList() {
-		ObservableList<Prescription> data = FXCollections.observableArrayList();
+	public ObservableList<Prescription> getPrescriptionsList() {
+		prescriptionsList = FXCollections.observableArrayList();
 		Prescription[] a = controller.prescriptions();
 		for (Prescription prescription : a) {
-			if (prescription.getTimeToTake().equalsIgnoreCase("aamu")) {
-				data.add(prescription);
-			} else if (prescription.getTimeToTake().equalsIgnoreCase("ilta") && LocalTime.now().isAfter(LocalTime.NOON)
-					&& LocalTime.now().isBefore(LocalTime.MIDNIGHT)) {
-				data.add(prescription);
-			}
-			//data.add(prescription);
 
+			prescriptionsList.add(prescription);
+			
 		}
-		return data;
+		return prescriptionsList;
 	}
 
 	/**
@@ -281,9 +287,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 			if (a.getDate().isEqual(LocalDate.now())) {
 				data.add(a.toStringCustomer());
 				isEmpty = true;
-			} 
+			}
 		}
-		if(isEmpty) {
+		if (isEmpty) {
 			data.add("No appointments today");
 		}
 		return data;
@@ -371,61 +377,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		showPrescription();
 		showAppointments();
 		showImage();
-	}
-
-	/**
-	 * Fired when Home button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toCustomerHome(Event);
-	 */
-	public void toHome(MouseEvent event) throws IOException {
-		toCustomerHome(event);
-	}
-
-	/**
-	 * Fired when Calendar button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toCustomerCalendar(Event);
-	 */
-	public void toCalendar(MouseEvent event) throws IOException {
-		toCustomerCalendar(event);
-	}
-
-	/**
-	 * Fired when Help button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toCustomerHelp(Event);
-	 */
-	public void toHelp(MouseEvent event) throws IOException {
-		toCustomerHelp(event);
-	}
-
-	/**
-	 * Fired when Health button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toCustomerHealth(Event);
-	 */
-	public void toHealth(MouseEvent event) throws IOException {
-		toCustomerHealth(event);
-	}
-
-	/**
-	 * Fired when logout button is clicked.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#logoutForAll(Event);
-	 */
-	public void logout(MouseEvent event) throws IOException {
-		logoutForAll(event);
 	}
 
 	/**

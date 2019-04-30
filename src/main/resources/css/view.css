@@ -93,6 +93,12 @@
 	-fx-pref-width: 600.0px;
 }
 
+.checkListView:focused .checkListCell:filled:focused:selected {
+    -fx-background-color: red;
+    -fx-background-insets: 0, 1, 2;
+
+}
+
 .stackpane{
 	-fx-border-color: black;
 	-fx-border-width: 2.0px;
