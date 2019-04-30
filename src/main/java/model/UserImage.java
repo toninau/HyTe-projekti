@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class UserImage {
 
 	@Id
-	@Column(name = "imageID")
+	@Column(name = "imageID", length = 11)
 	private String imageID;
 
 	@Column(name = "imageName", nullable = false)
