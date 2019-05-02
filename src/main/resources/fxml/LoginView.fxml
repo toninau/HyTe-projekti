@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -16,12 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720" prefWidth="1280" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
+<AnchorPane prefHeight="720" prefWidth="1280" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800" prefWidth="1000" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <Label prefHeight="106.0" prefWidth="102.0" text="LOGO TMS" BorderPane.alignment="CENTER" />
-         </top>
          <bottom>
          </bottom>
          <center>
@@ -43,10 +39,8 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="usernameAsiakas" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%usernameCustomer.text">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font></TextField>
+                                          <TextField fx:id="usernameAsiakasLogin" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%usernameCustomer.text">
+                                             </TextField>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="50.0" />
@@ -62,10 +56,8 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pwAsiakas" maxHeight="30.0" maxWidth="250.0" onKeyPressed="#checkIfEnterCustomer" prefHeight="30.0" prefWidth="250.0" promptText="%password.text">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font></PasswordField>
+                                          <PasswordField fx:id="pwAsiakasLogin" maxHeight="30.0" maxWidth="250.0" onKeyPressed="#checkIfEnterCustomer" prefHeight="30.0" prefWidth="250.0" promptText="%password.text">
+                                             </PasswordField>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
@@ -101,7 +93,7 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="username" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%staffUsername.text" />
+                                          <TextField fx:id="usernameLogin" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%staffUsername.text" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="50.0" />
@@ -117,7 +109,7 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pw" maxHeight="30.0" maxWidth="250.0" onKeyPressed="#checkIfEnterStaff" prefHeight="30.0" prefWidth="250.0" promptText="%password.text" />
+                                          <PasswordField fx:id="pwLogin" maxHeight="30.0" maxWidth="250.0" onKeyPressed="#checkIfEnterStaff" prefHeight="30.0" prefWidth="250.0" promptText="%password.text" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
@@ -146,6 +138,13 @@
          <bottom>
             <ComboBox fx:id="languageChange" onAction="#changeLocale" prefHeight="43.0" prefWidth="341.0" BorderPane.alignment="CENTER" />
          </bottom>
+         <top>
+            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../pictures/Logo_1.png" />
+               </image>
+            </ImageView>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

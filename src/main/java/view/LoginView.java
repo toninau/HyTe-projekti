@@ -52,18 +52,18 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	@FXML
 	private Tab staffTab;
 	@FXML
-	private PasswordField pw;
+	private PasswordField pwLogin;
 	@FXML
 	private Button loginBtn;
 	@FXML
-	private TextField username;
+	private TextField usernameLogin;
 
 	@FXML
 	private Tab customerTab;
 	@FXML
-	private PasswordField pwAsiakas;
+	private PasswordField pwAsiakasLogin;
 	@FXML
-	private TextField usernameAsiakas;
+	private TextField usernameAsiakasLogin;
 	@FXML
 	private Button loginBtnAsiakas;
 	@FXML
@@ -251,10 +251,10 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		Tooltip pwTip = new Tooltip(bundle.getString("tooltip.password"));
 		Tooltip loginTip = new Tooltip(bundle.getString("tooltip.login"));
 		Tooltip languageTip = new Tooltip(bundle.getString("tooltip.language"));
-		usernameAsiakas.setTooltip(usernameTip);
-		username.setTooltip(usernameTip);
-		pw.setTooltip(pwTip);
-		pwAsiakas.setTooltip(pwTip);
+		usernameAsiakasLogin.setTooltip(usernameTip);
+		usernameLogin.setTooltip(usernameTip);
+		pwLogin.setTooltip(pwTip);
+		pwAsiakasLogin.setTooltip(pwTip);
 		loginBtn.setTooltip(loginTip);
 		loginBtnAsiakas.setTooltip(loginTip);
 		languageChange.setTooltip(languageTip);
@@ -274,7 +274,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 * @return Employee's user name.
 	 */
 	public String getUsernameStaff() {
-		return this.username.getText();
+		return this.usernameLogin.getText();
 	}
 
 	/**
@@ -283,7 +283,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 * @return Employee's password.
 	 */
 	public String getPasswordStaff() {
-		return this.pw.getText();
+		return this.pwLogin.getText();
 	}
 
 	/**
@@ -292,7 +292,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 * @return Customer's user name.
 	 */
 	public String getUsernameCustomer() {
-		return this.usernameAsiakas.getText();
+		return this.usernameAsiakasLogin.getText();
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 * @return Customer's password.
 	 */
 	public String getPasswordCustomer() {
-		return this.pwAsiakas.getText();
+		return this.pwAsiakasLogin.getText();
 	}
 
 }

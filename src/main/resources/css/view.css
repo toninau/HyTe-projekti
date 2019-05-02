@@ -118,6 +118,12 @@
     -fx-background-color: #1f4b93;
 }
 
+.pwLogin .usernameLogin .pwAsiakasLogin .usernameAsiakasLogin {
+	-fx-padding: 0.1em;
+	-fx-background-color: red;
+	-fx-font-size: 25px;
+}
+
 .nextButton{
 	-fx-background-color: transparent;
 	-fx-border-color: transparent;
