@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import model.*;
 import view.staff.StaffAppointmentView;
 import view.staff.StaffHomeView;
-import view.staff.StaffPrescriptionView;
 
 public class StaffController implements StaffController_IF {
 	
@@ -14,7 +13,6 @@ public class StaffController implements StaffController_IF {
 	private DAOManager_IF daom;
 	private StaffHomeView staffHomeView;
 	private StaffAppointmentView appointmentView;
-	private StaffPrescriptionView prescriptionView;
 	
 	public StaffController() {
 		daom = new DAOManager();
@@ -28,12 +26,6 @@ public class StaffController implements StaffController_IF {
 	
 	public StaffController(StaffAppointmentView appointmentView) {
 		this.appointmentView = appointmentView;
-		if (daom == null)
-			daom = new DAOManager();
-	}
-	
-	public StaffController(StaffPrescriptionView prescriptionView) {
-		this.prescriptionView = prescriptionView;
 		if (daom == null)
 			daom = new DAOManager();
 	}
@@ -65,31 +57,36 @@ public class StaffController implements StaffController_IF {
 	    return true;
     }
 
-	@Override
+
 	public ObservableList<Customer> getStaffCustomers() {
 		ObservableList<Customer> customerList = FXCollections.observableArrayList();
-		Customer[] customers = daom.getStaffDAO().readStaffMembersCustomers(staff);
+		staffCustomers = daom.getStaffDAO().readStaffMembersCustomers(staff);
 		
-		for (Customer customer : customers) {
+		for (Customer customer : staffCustomers) {
 			customerList.add(customer);
 			System.out.println(customer.getCustomerID());
 		}
 		return customerList;
 	}
 
-	@Override
+
 	public Appointment[] customersAppointments() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public boolean sendNotification(String data) {
-		// TODO Auto-generated method stub
-		return false;
+	/**
+	 *
+	 * @param data the notification you want to send
+	 * @param customer the customer object loaded in the UI
+	 * @return true if success
+	 */
+
+	public void sendNotification(String data, Customer customer) {
+		String date = java.time.LocalTime.now().toString();
+		daom.getNotificationDAO().create(new Notification(date, data, customer, staff));
 	}
 
-	@Override
+
 	public String getDailyHappenings() {
 		// TODO Auto-generated method stub
 		return null;

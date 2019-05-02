@@ -1,16 +1,5 @@
 package view.staff;
 
-import java.io.IOException;
-import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.ResourceBundle;
-
 import controller.StaffController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,11 +7,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import model.Appointment;
+import model.Staff;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
+
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 public class StaffHomeView extends ViewChanger implements Initializable {
 
@@ -66,6 +61,8 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
 		todaysAppointments();
+		Staff staff = controller.getLoggedStaff();
+		welcomeText.setText(welcomeText.getText()+ " " +staff.getFirstName()+ " " + staff.getSurname());
 	}
 
 	/**

@@ -5,11 +5,12 @@ import controller.StaffController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.Appointment;
 import model.Customer;
+import view.HyteGUI;
 import view.ViewChanger;
+import view.enums.Bundles;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +21,6 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	@FXML ListView<Customer> customerListView;
 
 
-    @FXML Tab newsTab;
 
     @FXML TextField appointmentInfo;
     @FXML TextField modifyAppointmentInfo;
@@ -38,7 +38,7 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 
     @FXML Text loadedCustomerName;
 
-
+	private ResourceBundle bundle;
 
 
 
@@ -71,8 +71,9 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	
 	
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		populateAppointmentListView();
-		populateCustomerListView();
+	public void initialize(URL location, ResourceBundle resources) {
+		bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
+		//populateAppointmentListView();
+		//populateCustomerListView();
 	}
 }
