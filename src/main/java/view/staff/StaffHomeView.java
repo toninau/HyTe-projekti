@@ -33,7 +33,6 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 	ListView<String> appointmentList;
 	@FXML
 	private Button logout;
-	@FXML private Button appointmentButton;
 	
 	private StaffController controller;
 	private ResourceBundle bundle;

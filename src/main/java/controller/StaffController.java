@@ -69,6 +69,10 @@ public class StaffController implements StaffController_IF {
 		return customerList;
 	}
 
+	public void addAppointment(Appointment appointment) {
+		daom.getAppointmentDAO().create(appointment);
+	}
+
 
 	public Appointment[] customersAppointments() {
 		return null;

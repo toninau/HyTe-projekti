@@ -165,7 +165,7 @@ public class StaffDAO {
 		Customer[] result = new Customer[0];
 		try {
 			session.beginTransaction();
-			String sql = "SELECT * FROM customer INNER JOIN customersStaff on customersStaff.customerID = customer.customerID WHERE customersStaff.staffID = :id";
+			String sql = "select * from customer inner join customersStaff, staff where customersStaff.customerID = customer.customerID and customersStaff.staffID = :id";
 			Query<Customer> query = session.createSQLQuery(sql).addEntity(Customer.class);
 			query.setParameter("id", staff.getStaffID());
 			result = query.list().toArray(new Customer[query.list().size()]);

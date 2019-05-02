@@ -1,16 +1,14 @@
 package view.staff;
 
 import controller.StaffController;
-import controller.StaffController_IF;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import model.Appointment;
 import model.Customer;
-import view.HyteGUI;
 import view.ViewChanger;
-import view.enums.Bundles;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,12 +40,10 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 
 
 
-
-	StaffController_IF controller;
+	private Customer customer;
+	StaffController controller;
 	
-	public StaffAppointmentView() {
-		controller = new StaffController(this);
-	}
+	public StaffAppointmentView() { controller = new StaffController(this); }
 	
 	public void populateCustomerListView() {
 		customerListView.getItems().addAll(controller.getStaffCustomers());
@@ -62,18 +58,31 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 		        }
 		    }
 		});
+
 	}
 	
 	public void populateAppointmentListView() {
 		appointmentList.getItems().addAll(controller.allAppointments());
 		appointmentList.getSelectionModel().getSelectedItems();
 	}
-	
+	@FXML
+	public void addAppointment(Event event)  {
+		Appointment appointment = new Appointment();
+		appointment.setStaff(controller.getLoggedStaff());
+		appointment.setInfo(appointmentInfo.getText());
+		appointment.setCustomer(customer);
+		appointment.setDate(appointmentDate.getAccessibleText());
+		appointment.setTime(appointmentTime.getText());
+		controller.addAppointment(appointment);
+	}
+	@FXML
+	public void loadCustomer(Event event) {
+		customer = customerListView.getSelectionModel().getSelectedItem();
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
-		//populateAppointmentListView();
-		//populateCustomerListView();
+		populateCustomerListView();
+		populateAppointmentListView();
 	}
 }
