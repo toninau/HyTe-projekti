@@ -168,13 +168,18 @@ public class StaffDAO {
 			String sql = "select * from customer inner join customersStaff, staff where customersStaff.customerID = customer.customerID and customersStaff.staffID = :id";
 			Query<Customer> query = session.createSQLQuery(sql).addEntity(Customer.class);
 			query.setParameter("id", staff.getStaffID());
-			result = query.list().toArray(new Customer[query.list().size()]);
 			session.getTransaction().commit();
+			result = query.list().toArray(new Customer[query.list().size()]);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
-		}
+		}/*
+		Customer[] result = new Customer[0];
+		result = session.createSQLQuery(
+				"select * from customer inner join customersStaff, staff where customersStaff.customerID = customer.customerID and customersStaff.staffID = :id")
+				.addEntity(Customer.class)
+				.setParameter("id", staff.getStaffID()).list();*/
 		return result;
 	}
 

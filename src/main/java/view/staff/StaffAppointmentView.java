@@ -1,7 +1,6 @@
 package view.staff;
 
 import controller.StaffController;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -11,6 +10,9 @@ import model.Customer;
 import view.ViewChanger;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
 public class StaffAppointmentView extends ViewChanger implements Initializable {
@@ -39,7 +41,7 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	private ResourceBundle bundle;
 
 
-
+	private Appointment appointment;
 	private Customer customer;
 	StaffController controller;
 	
@@ -66,23 +68,66 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 		appointmentList.getSelectionModel().getSelectedItems();
 	}
 	@FXML
-	public void addAppointment(Event event)  {
+	public void addAppointment()  {
 		Appointment appointment = new Appointment();
 		appointment.setStaff(controller.getLoggedStaff());
 		appointment.setInfo(appointmentInfo.getText());
 		appointment.setCustomer(customer);
-		appointment.setDate(appointmentDate.getAccessibleText());
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String date = appointmentDate.getValue().format(dateFormatter);
+		appointment.setDate(date);
 		appointment.setTime(appointmentTime.getText());
-		controller.addAppointment(appointment);
+		if (controller.addAppointment(appointment)) {
+			Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+			a.show();
+		}
 	}
 	@FXML
-	public void loadCustomer(Event event) {
+	public void loadCustomer() {
 		customer = customerListView.getSelectionModel().getSelectedItem();
+		appointmentList.getItems().addAll(controller.getCustomersAppointments(customer));
+		appointmentList.setCellFactory(param -> new ListCell<Appointment>() {
+			@Override
+			protected void updateItem(Appointment item, boolean empty) {
+				super.updateItem(item, empty);
+				if (empty || item == null) {
+					setText(null);
+				} else {
+					setText(item.getDate() + ", " + item.getTime());
+				}
+			}
+		});
+	}
+
+	@FXML
+	public void loadAppointmentInfo() {
+		appointment = appointmentList.getSelectionModel().getSelectedItem();
+		modifyAppointmentInfo.setText(appointment.getInfo());
+
+		modifyAppointmentTime.setText(""+appointment.getTime().truncatedTo(ChronoUnit.MINUTES).format(DateTimeFormatter.ofPattern("HH.mm")));
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String date = appointment.getDate().format(dateFormatter);
+		LocalDate Date = LocalDate.parse(date, dateFormatter);
+		modifyAppointmentDate.setValue(Date);
+	}
+
+	@FXML
+	public void saveAppointment()  {
+		appointment.setTime(modifyAppointmentTime.getText());
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		String date = modifyAppointmentDate.getValue().format(dateFormatter);
+
+		appointment.setDate(date);
+		appointment.setInfo(modifyAppointmentInfo.getText());
+		if(controller.saveAppointment(appointment)) {
+			Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+			a.show();
+		}
+
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		populateCustomerListView();
-		populateAppointmentListView();
 	}
 }

@@ -1,9 +1,10 @@
 package model;
 
-import javax.persistence.*;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.*;
 
 /**
  * Staff entity
@@ -38,18 +39,6 @@ public class Staff implements Serializable{
 
 	@Column(name = "staffPassword")
 	private String password;
-
-	@OneToMany(mappedBy = "staff", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Appointment> appointments = new HashSet<Appointment>();
-
-	@OneToMany(mappedBy = "staff", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Prescription> prescriptions = new HashSet<Prescription>();
-
-	@OneToMany(mappedBy = "staff", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Notification> notifications = new HashSet<Notification>();
-
-	@ManyToMany(mappedBy = "customersStaff")
-	private Set<Customer> customersStaff = new HashSet<Customer>();
 
 	/**
 	 * Empty staff constructor. Values are given using set-methods.

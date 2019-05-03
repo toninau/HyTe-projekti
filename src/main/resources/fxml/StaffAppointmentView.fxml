@@ -39,7 +39,7 @@
                                                 <Insets top="10.0" />
                                              </VBox.margin>
                                           </TextField>
-                                          <DatePicker fx:id="AppointmentDate" prefHeight="31.0" prefWidth="261.0">
+                                          <DatePicker fx:id="appointmentDate" prefHeight="31.0" prefWidth="261.0">
                                              <VBox.margin>
                                                 <Insets top="10.0" />
                                              </VBox.margin>
@@ -70,7 +70,7 @@
                                  <children>
                                     <HBox layoutX="14.0" layoutY="44.0" prefHeight="272.0" prefWidth="823.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
                                        <children>
-                                          <ListView fx:id="appointmentList" prefHeight="302.0" prefWidth="305.0" stylesheets="@../css/view.css" />
+                                          <ListView fx:id="appointmentList" onMouseClicked="#loadAppointmentInfo" prefHeight="302.0" prefWidth="305.0" stylesheets="@../css/view.css" />
                                           <VBox minHeight="300.0" prefHeight="300.0" prefWidth="394.0">
                                              <children>
                                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%appointment.helpText" wrappingWidth="384.0126953125">
@@ -96,7 +96,7 @@
                                                       <Insets left="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </DatePicker>
-                                                <Button fx:id="modifyAppointment" mnemonicParsing="false" prefHeight="52.0" prefWidth="118.0" text="%appointment.saveButton">
+                                                <Button fx:id="modifyAppointment" mnemonicParsing="false" onMouseClicked="#saveAppointment" prefHeight="52.0" prefWidth="118.0" text="%appointment.saveButton">
                                                    <VBox.margin>
                                                       <Insets left="10.0" top="10.0" />
                                                    </VBox.margin>
