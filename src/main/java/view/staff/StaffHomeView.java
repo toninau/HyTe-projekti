@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import model.Appointment;
+import model.Customer;
 import model.Staff;
 import view.HyteGUI;
 import view.ViewChanger;
@@ -41,6 +43,22 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 		controller = new StaffController(this);
 	}
 
+	public void populateCustomerListView() {
+		StaffCustomers.getItems().addAll(controller.getStaffCustomers());
+		StaffCustomers.setCellFactory(param -> new ListCell<Customer>() {
+			@Override
+			protected void updateItem(Customer item, boolean empty) {
+				super.updateItem(item, empty);
+				if (empty || item == null) {
+					setText(null);
+				} else {
+					setText(item.getSurname() + ", " + item.getFirstName());
+				}
+			}
+		});
+
+	}
+
 	public void todaysAppointments() {
 		ObservableList<Appointment> appointments = controller.allAppointments();
 
@@ -62,6 +80,7 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 		todaysAppointments();
 		Staff staff = controller.getLoggedStaff();
 		welcomeText.setText(welcomeText.getText()+ " " +staff.getFirstName()+ " " + staff.getSurname());
+		populateCustomerListView();
 	}
 
 	/**

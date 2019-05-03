@@ -69,13 +69,24 @@ public class StaffController implements StaffController_IF {
 		return customerList;
 	}
 
-	public void addAppointment(Appointment appointment) {
-		daom.getAppointmentDAO().create(appointment);
+
+	public ObservableList<Appointment> getCustomersAppointments(Customer customer) {
+		for (Customer c: staffCustomers) {
+			if (c.equals(customer)) {
+				Appointment[] appointmentList = daom.getAppointmentDAO().readCustomerAppointments(c);
+				ObservableList<Appointment> list = FXCollections.observableArrayList(appointmentList);
+				return list;
+			}
+		}
+		return null;
 	}
 
+    public boolean addAppointment(Appointment appointment) {
+        return daom.getAppointmentDAO().create(appointment);
+    }
 
-	public Appointment[] customersAppointments() {
-		return null;
+	public boolean saveAppointment(Appointment appointment) {
+		return daom.getAppointmentDAO().update(appointment);
 	}
 
 	/**

@@ -12,7 +12,6 @@ public interface StaffController_IF {
 
     ObservableList<Customer> getStaffCustomers();
 
-    Appointment[] customersAppointments();
 
     ObservableList<Appointment> allAppointments();
     void sendNotification(String data, Customer customer);
