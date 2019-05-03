@@ -57,7 +57,6 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	private Button loginBtn;
 	@FXML
 	private TextField usernameLogin;
-
 	@FXML
 	private Tab customerTab;
 	@FXML

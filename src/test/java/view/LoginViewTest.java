@@ -72,16 +72,16 @@ public class LoginViewTest extends ApplicationTest{
 	  
     @Test
     public void testNameInput() {
-    	TextField u = lookup("#usernameAsiakas").query();
-        clickOn("#usernameAsiakas");
+    	TextField u = lookup("#usernameAsiakasLogin").query();
+        clickOn("#usernameAsiakasLogin");
         write("name");
         assertTrue(u.getText().equals("name"));  
     }
 
     @Test
     public void testPasswordInput() {
-    	TextField u = lookup("#pwAsiakas").query();
-        clickOn("#pwAsiakas");
+    	TextField u = lookup("#pwAsiakasLogin").query();
+        clickOn("#pwAsiakasLogin");
         write("password");
         assertTrue(u.getText().equals("password"));             
     }
@@ -91,9 +91,9 @@ public class LoginViewTest extends ApplicationTest{
     @Test
     public void testAdminLogin() {
     	clickOn("#staffTab");
-    	clickOn("#username");
+    	clickOn("#usernameLogin");
     	write("admin");
-    	clickOn("#pw");
+    	clickOn("#pwLogin");
     	write("admin");
     	clickOn("#loginBtn");
     	assertTrue(stage.getTitle().equals("Menu"));
