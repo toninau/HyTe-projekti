@@ -2,14 +2,21 @@ package view.customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import antlr.collections.List;
 import controller.CustomerController;
 import controller.CustomerController_IF;
 import javafx.animation.AnimationTimer;
@@ -17,9 +24,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -37,68 +46,78 @@ import javafx.util.Callback;
 import model.Appointment;
 import model.Prescription;
 import model.Staff;
+import view.HyteGUI;
 import view.ViewChanger;
+import view.enums.Bundles;
 
 public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	@FXML
-	Button homeButton;
+	private Button homeButton;
 	@FXML
-	Button calendarButton;
+	private Button calendarButton;
 	@FXML
-	Button helpButton;
+	private Button helpButton;
 	@FXML
-	Button myHealthButton;
+	private Button myHealthButton;
 	@FXML
-	Button logout;
+	private Button logout;
 	@FXML
-	Tab dayTab;
+	private Tab dayTab;
 	@FXML
-	TabPane calendarTabPane;
+	private TabPane calendarTabPane;
 	@FXML
-	GridPane grid;
+	private GridPane grid;
 	@FXML
-	Button nextMonth;
+	private Button nextMonth;
 	@FXML
-	Button previousMonth;
+	private Button previousMonth;
 	@FXML
-	Label monthLabel;
+	private Label monthLabel;
 	@FXML
-	Label dateLabel;
-	@FXML Button nextDay;
-	@FXML Button previousDay;
+	private Label dateLabel;
 	@FXML
-	Button mondaybutton;
+	private Button nextDay;
 	@FXML
-	Button tuesdaybutton;
+	private Button previousDay;
+	@FXML private Label weekLabel;
+	@FXML private ListView<String> weekTimeList;
 	@FXML
-	Button wednesdaybutton;
+	private Button mondaybutton;
 	@FXML
-	Button thursdaybutton;
+	private Button tuesdaybutton;
 	@FXML
-	Button fridaybutton;
+	private Button wednesdaybutton;
 	@FXML
-	Button saturdaybutton;
+	private Button thursdaybutton;
 	@FXML
-	Button sundaybutton;
+	private Button fridaybutton;
 	@FXML
-	HBox mondaytextarea;
+	private Button saturdaybutton;
 	@FXML
-	HBox tuesdaytextarea;
+	private Button sundaybutton;
 	@FXML
-	HBox wednesdaytextarea;
+	private HBox mondaytextarea;
 	@FXML
-	HBox thursdaytextarea;
+	private HBox tuesdaytextarea;
 	@FXML
-	HBox fridaytextarea;
+	private HBox wednesdaytextarea;
 	@FXML
-	HBox saturdaytextarea;
+	private HBox thursdaytextarea;
 	@FXML
-	HBox sundaytextarea;
+	private HBox fridaytextarea;
+	@FXML
+	private HBox saturdaytextarea;
+	@FXML
+	private HBox sundaytextarea;
 	@FXML
 	private ListView<String> appointmentListView;
+	@FXML
+	private GridPane addAppointmentPane;
+	@FXML
+	private ListView<String> tuesdayList;
 
-
+	private ResourceBundle bundle;
 	private CustomerController controller;
 	private String previoustextarea = "jotain";
 	private HashMap<Button, HBox> map = new HashMap<Button, HBox>();
@@ -115,10 +134,9 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	public void showDayAppointments(LocalDate date) {
 		dateLabel.setText(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-		
-		ObservableList<String> noContent= FXCollections.observableArrayList();
+		ObservableList<String> noContent = FXCollections.observableArrayList();
 		ObservableList<Appointment> todaysAppointments = appointmentsList(date);
-		if(appointmentListView.getItems().size() > 0) {
+		if (appointmentListView.getItems().size() > 0) {
 			appointmentListView.getItems().clear();
 		}
 		for (int i = 0; i < 24; i++) {
@@ -130,25 +148,36 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		}
 		appointmentListView.getItems().addAll(noContent);
 
-		
 		for (Appointment appointment : todaysAppointments) {
 			int index = appointment.getTime().getHour();
 			appointmentListView.getItems().set(index, index + ".00   " + appointment.getInfo());
 		}
 		appointmentListView.scrollTo(LocalTime.now().getHour());
 	}
-	
+
+	public void addAppointment() {
+		appointmentListView.setVisible(false);
+		addAppointmentPane.setVisible(true);
+
+	}
+
+	public void exitAddAppointment() {
+		appointmentListView.setVisible(true);
+		addAppointmentPane.setVisible(false);
+	}
+
 	public void nextDay() {
-		if(day == month.maxLength()) {
+		if (day == month.maxLength()) {
 			month = month.plus(1);
 			day = 0;
 		}
 		day++;
 		showDayAppointments(LocalDate.of(year, month, day));
-		
+
 	}
+
 	public void previousDay() {
-		if(day == 1) {
+		if (day == 1) {
 			month = month.minus(1);
 			day = month.maxLength();
 		}
@@ -158,7 +187,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	public ObservableList<Appointment> appointmentsList(LocalDate date) {
 		ObservableList<Appointment> data = FXCollections.observableArrayList();
-		if(!data.isEmpty()) {
+		if (!data.isEmpty()) {
 			data.clear();
 		}
 		for (Appointment appointment : appointments) {
@@ -168,7 +197,14 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		return data;
 	}
 
+	public int startDay() {
+		LocalDate d = LocalDate.of(year, month.getValue(), 1);
+		return d.getDayOfWeek().getValue();
+	}
+
 	public void populateGridPane(Month month, int year) {
+		final int MAX_ROW = 7;
+		final int MAX_COL = 7;
 		int row = 1;
 		int column = 0;
 		day = 0;
@@ -179,17 +215,28 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		}
 		loadGridPaneFirstRow();
 
+		for (int i = 1; i < startDay(); i++) {
+			StackPane p = createGridCell();
+			Label dayLabel = new Label(Integer.toString(month.minus(1).maxLength() + 1 - startDay() + i));
+			p.getChildren().add(dayLabel);
+			grid.add(p, column, row);
+			column++;
+			p.setDisable(true);
+		}
+
 		while (day < month.maxLength()) {
 			day++;
+
 			StackPane p = createGridCell();
 			Label dayLabel = new Label(Integer.toString(day));
 			p.getChildren().add(dayLabel);
 			GridPane.setHalignment(p, HPos.CENTER);
-			if (column == 7) {
+			if (column == MAX_COL) {
 				column = 0;
 				row++;
 			}
 			grid.add(p, column, row);
+
 			column++;
 
 			if (checkAppointments(day, month.getValue(), year)) {
@@ -206,33 +253,22 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		}
 
 		day = 0;
-		while (day < 42 - month.maxLength()) {
+		while (row < MAX_ROW && column <= MAX_COL) {
 			day++;
 
 			StackPane p = createGridCell();
 			Label dayLabel = new Label(Integer.toString(day));
 			p.getChildren().add(dayLabel);
 			GridPane.setHalignment(p, HPos.CENTER);
-			if (column == 7) {
+			p.setDisable(true);
+
+			if (column == MAX_COL) {
 				column = 0;
 				row++;
 			}
-			p.setDisable(true);
 			grid.add(p, column, row);
 			column++;
-
 		}
-
-		/*
-		 * for (int i = 1; i <= 6; i++) { for (int j = 0; j <= 6; j++) { day++;
-		 * StackPane p = createGridCell(); Label dayLabel = new
-		 * Label(Integer.toString(day)); p.getChildren().add(dayLabel);
-		 * GridPane.setHalignment(p, HPos.CENTER); grid.add(p, j, i); if (day ==
-		 * month.maxLength()) { day = 0; } if (checkAppointments(day, month.getValue(),
-		 * year)) { p.setStyle("-fx-background-color: red");
-		 * p.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-		 * calendarTabPane.getSelectionModel().select(dayTab); }); } } }
-		 */
 	}
 
 	public boolean checkAppointments(int day, int month, int year) {
@@ -247,13 +283,19 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	}
 
 	private void loadGridPaneFirstRow() {
-		String[] string = { "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday" };
-		for (int i = 0; i < string.length; i++) {
+		String[] dayList = new String[DayOfWeek.values().length + 1];
+
+		for (int i = 1; i < dayList.length; i++) {
+			dayList[i] = (bundle.getString("calendar." + DayOfWeek.of(i).toString().toLowerCase()));
+		}
+
+		for (int i = 1; i < dayList.length; i++) {
 			StackPane p = createGridCell();
-			Label tempLabel = new Label(string[i]);
+			Label tempLabel = new Label(dayList[i]);
 			p.getChildren().add(tempLabel);
 			GridPane.setHalignment(tempLabel, HPos.CENTER);
-			grid.add(p, i, 0);
+			GridPane.setValignment(tempLabel, VPos.CENTER);
+			grid.add(p, i - 1, 0);
 		}
 	}
 
@@ -306,6 +348,38 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		}.start();
 	}
 
+	public void showWeekAppointments(LocalDate date) {
+		
+		weekLabel.setText(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " " + date.get(WeekFields.ISO.weekOfYear()));
+		ObservableList<ListView<String>> listViews = FXCollections.observableArrayList();
+		listViews.add(tuesdayList);
+		ObservableList<String> noContent = FXCollections.observableArrayList();
+
+		for (int i = 0; i < 24; i++) {
+			if (i < 10) {
+				noContent.add("0" + Integer.toString(i) + ".00");
+			} else {
+				noContent.add(Integer.toString(i) + ".00");
+			}
+		}
+		weekTimeList.getItems().addAll(noContent);
+				
+		for (int j = 0; j < listViews.size(); j++) {
+			ObservableList<Appointment> todaysAppointments = appointmentsList(date.plusDays(j));
+			if (listViews.get(0).getItems().size() > 0) {
+				listViews.get(0).getItems().clear();
+			}
+
+
+			for (Appointment appointment : todaysAppointments) {
+				int index = appointment.getTime().getHour();
+				listViews.get(0).getItems().set(index, index + ".00   " + appointment.getInfo());
+			}
+			listViews.get(0).scrollTo(LocalTime.now().getHour());
+		}
+
+	}
+
 	public void createHashMap() {
 		// if (map==null) {
 		map.put(mondaybutton, mondaytextarea);
@@ -321,14 +395,17 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		month = LocalDate.now().getMonth();
 		year = LocalDate.now().getYear();
 		day = LocalDate.now().getDayOfMonth();
 		appointments = controller.customersAppointments();
+		addAppointmentPane.setVisible(false);
 
 		createHashMap();
 		populateGridPane(month, year);
 		showDayAppointments(LocalDate.now());
+		showWeekAppointments(LocalDate.now());
 	}
 
 }
