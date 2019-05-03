@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -22,7 +23,7 @@ import java.util.ResourceBundle;
  * 
  */
 
-public class HyteGUI extends Application {
+public class HyteGUI extends Application{
 
 	private Stage primaryStage;
 	private ResourceBundle bundle;
@@ -48,13 +49,9 @@ public class HyteGUI extends Application {
 		this.primaryStage.setTitle("Login");
 		//AnchorPane rootLayout = FXMLLoader.load(getClass().getResource(FxmlEnum.LOGIN.getFxml()), bundle);
 		Scene scene = new Scene(rootLayout);
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/finland_flag.png")));
+		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/logo_250.png")));
 		primaryStage.setScene(scene);
 		primaryStage.show();
-	}
-
-	public void initPreload() {
-
 	}
 
 	public static ObservableList<Locale> getSupportedLocales() {

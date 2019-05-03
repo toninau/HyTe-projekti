@@ -7,6 +7,10 @@
     -fx-font-size: 20.0px;
     -fx-font-weight: bold;
     -fx-padding: 1.0em;
+    -fx-max-width: 400px;
+    -fx-min-width: 400px;
+    -fx-max-height: 80px;
+    -fx-min-height: 80px;
 }
 
 .tab{
@@ -25,8 +29,8 @@
 }
 
 .loginTabPane{
-	-fx-tab-min-width:300.0px;
-	-fx-tab-max-width:300.0px;
+	-fx-tab-min-width:615px;
+	-fx-tab-max-width:615px;
   	-fx-tab-min-height:60.0px;
  	-fx-tab-max-height:60.0px;
 }

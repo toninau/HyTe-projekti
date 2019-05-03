@@ -10,28 +10,43 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720" prefWidth="1280" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
+<AnchorPane prefHeight="720" prefWidth="1280" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800" prefWidth="1000" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <bottom>
-         </bottom>
-         <center>
-            <TabPane opacity="0.82" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="450.0" tabMinHeight="50.0" tabMinWidth="450.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="807.9999755859375" minWidth="10.0" prefWidth="638.4" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="642.0000000000001" minWidth="10.0" prefWidth="642.0000000000001" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="358.5333465576172" minHeight="10.0" prefHeight="172.9333251953125" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="195.333349609375" minHeight="2.2666534423827898" prefHeight="187.8666748046875" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2">
+               <image>
+                  <Image url="@../pictures/logo_250.png" />
+               </image>
+            </ImageView>
+            <TabPane prefHeight="0.0" prefWidth="1281.0" styleClass="loginTabPane" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="450.0" tabMinHeight="50.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
               <tabs>
                 <Tab fx:id="customerTab" text="%customerTab.text">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="300.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" layoutX="74.0" maxHeight="416.0" maxWidth="341.0" prefHeight="257.0" prefWidth="341.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+                              <VBox alignment="TOP_CENTER" layoutX="74.0" maxHeight="416.0" maxWidth="1121.0" prefHeight="270.0" prefWidth="1121.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox maxHeight="30.0" maxWidth="285.0" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox maxHeight="30.0" maxWidth="400.0" prefHeight="100.0" prefWidth="400.0">
                                        <children>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../pictures/usericon.png" />
                                              </image>
@@ -39,18 +54,15 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="usernameAsiakasLogin" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%usernameCustomer.text">
-                                             <font>
-                                                <Font size="22.5" />
-                                             </font></TextField>
+                                          <TextField fx:id="usernameAsiakasLogin" maxHeight="35.0" maxWidth="374.0" prefHeight="35.0" prefWidth="374.0" promptText="%usernameCustomer.text" />
                                        </children>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets top="30.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <HBox maxHeight="30.0" maxWidth="285.0" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox maxHeight="30.0" maxWidth="400.0" prefHeight="100.0" prefWidth="400.0">
                                        <children>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../pictures/pwicon.png" />
                                              </image>
@@ -58,14 +70,14 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pwAsiakasLogin" maxHeight="30.0" maxWidth="250.0" onKeyPressed="#checkIfEnterCustomer" prefHeight="30.0" prefWidth="250.0" promptText="%password.text">
+                                          <PasswordField fx:id="pwAsiakasLogin" maxHeight="35.0" maxWidth="376.0" onKeyPressed="#checkIfEnterCustomer" prefHeight="35.0" prefWidth="376.0" promptText="%password.text">
                                              </PasswordField>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button fx:id="loginBtnAsiakas" maxHeight="30.0" maxWidth="285.0" mnemonicParsing="false" onMouseClicked="#loginCustomer" prefHeight="30.0" prefWidth="250.0" styleClass="loginBtn" text="%loginButton.text">
+                                    <Button fx:id="loginBtnAsiakas" maxHeight="83.0" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#loginCustomer" prefHeight="83.0" prefWidth="400.0" styleClass="loginBtn" text="%loginButton.text">
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
@@ -83,11 +95,11 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" layoutX="100.0" maxHeight="416.0" maxWidth="300.0" prefHeight="256.0" prefWidth="300.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+                              <VBox alignment="TOP_CENTER" layoutX="100.0" maxHeight="416.0" maxWidth="1121.0" prefHeight="267.0" prefWidth="1121.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox maxHeight="30.0" maxWidth="285.0" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0">
                                        <children>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../pictures/usericon.png" />
                                              </image>
@@ -95,15 +107,15 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="usernameLogin" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="%staffUsername.text" />
+                                          <TextField fx:id="usernameLogin" maxHeight="35.0" maxWidth="493.0" prefHeight="35.0" prefWidth="493.0" promptText="%staffUsername.text" />
                                        </children>
                                        <VBox.margin>
-                                          <Insets top="50.0" />
+                                          <Insets top="30.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <HBox maxHeight="30.0" maxWidth="285.0" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox maxHeight="35.0" maxWidth="400.0" prefHeight="35.0" prefWidth="400.0">
                                        <children>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../pictures/pwicon.png" />
                                              </image>
@@ -111,13 +123,13 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pwLogin" maxHeight="30.0" maxWidth="250.0" onKeyPressed="#checkIfEnterStaff" prefHeight="30.0" prefWidth="250.0" promptText="%password.text" />
+                                          <PasswordField fx:id="pwLogin" maxHeight="35.0" maxWidth="381.0" onKeyPressed="#checkIfEnterStaff" prefHeight="35.0" prefWidth="381.0" promptText="%password.text" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button fx:id="loginBtn" maxHeight="30.0" maxWidth="285.0" mnemonicParsing="false" onMouseClicked="#loginStaff" prefHeight="30.0" prefWidth="250.0" styleClass="loginBtn" text="%loginButton.text">
+                                    <Button fx:id="loginBtn" maxHeight="70.0" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#loginStaff" prefHeight="70.0" prefWidth="400.0" styleClass="loginBtn" text="%loginButton.text">
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
@@ -129,24 +141,9 @@
                   </content>
                 </Tab>
               </tabs>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
             </TabPane>
-         </center>
-         <padding>
-            <Insets bottom="100.0" left="150.0" right="150.0" top="50.0" />
-         </padding>
-         <bottom>
-            <ComboBox fx:id="languageChange" onAction="#changeLocale" prefHeight="43.0" prefWidth="341.0" BorderPane.alignment="CENTER" />
-         </bottom>
-         <top>
-            <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@../pictures/logo_250.png" />
-               </image>
-            </ImageView>
-         </top>
-      </BorderPane>
+            <ComboBox fx:id="languageChange" onAction="#changeLocale" prefHeight="43.0" prefWidth="341.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

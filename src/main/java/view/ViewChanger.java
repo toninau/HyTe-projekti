@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

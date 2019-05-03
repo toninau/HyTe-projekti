@@ -71,7 +71,7 @@ public class AdminController implements AdminController_IF {
 			hkunta.setFirstName(etunimi);
 			hkunta.setSurname(sukunimi);
 			hkunta.setPhoneNumber(puhnro);
-			hkunta.setStaffID(email);
+			//hkunta.setStaffID(email);
 			hkunta.setAccessLevel(ammatti);
 			hkunta.setPassword(pw);
 			daoM.create(hkunta);
@@ -106,7 +106,7 @@ public class AdminController implements AdminController_IF {
 			customer.setFirstName(etunimi);
 			customer.setSurname(sukunimi);
 			customer.setPhoneNumber(puhnro);
-			customer.setCustomerID(email);
+			//customer.setCustomerID(email);
 			customer.setAddress(osoite);
 			customer.setIceNumber(ICE);
 			customer.setSSN(hetu);
