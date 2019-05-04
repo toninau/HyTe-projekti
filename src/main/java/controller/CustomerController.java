@@ -1,27 +1,15 @@
 package controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import model.Appointment;
-import model.BloodValue;
-import model.Customer;
-import model.DAOManager;
-import model.DAOManager_IF;
-import model.ImageLoader;
-import model.Prescription;
-import model.UserImage;
+import model.*;
 import view.HyteGUI;
 import view.customer.CustomerCalendarView;
 import view.customer.CustomerHealthView;
 import view.customer.CustomerHelpView;
 import view.customer.CustomerHomeView;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller for customer view classes. 
@@ -180,7 +168,7 @@ public class CustomerController implements CustomerController_IF {
 				in.read(bfile);
 			}
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		UserImage image = new UserImage();
 		image.setCustomer(customer);
@@ -199,7 +187,7 @@ public class CustomerController implements CustomerController_IF {
 				in.read(bfile);
 			}
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		image.setImage(bfile);
 		daom.getUserImageDAO().update(image);
@@ -265,5 +253,10 @@ public class CustomerController implements CustomerController_IF {
 		}
 		
 		return locations;
+	}
+	@Override
+	public Notification[] getMyMessages() {
+		return daom.getNotificationDAO().readCustomersNotifications(customer);
+
 	}
 }

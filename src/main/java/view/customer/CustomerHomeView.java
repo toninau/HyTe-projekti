@@ -1,22 +1,5 @@
 package view.customer;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-
-import javax.imageio.ImageIO;
-
-import org.controlsfx.control.CheckListView;
-import org.controlsfx.control.textfield.TextFields;
-import org.reactfx.collection.ListChange;
-
 import controller.CustomerController;
 import controller.CustomerController_IF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
@@ -27,26 +10,31 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
-import model.Appointment;
-import model.Prescription;
-import model.UserImage;
-import model.WeatherAPICall;
+import model.*;
+import org.controlsfx.control.CheckListView;
+import org.controlsfx.control.textfield.TextFields;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 /**
  * FXML controller class for customer's home view.
@@ -79,6 +67,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	@FXML
 	private ImageView imageThird;
 
+	@FXML private TextArea messageArea;
 	private CheckListView<Prescription> checkListView;
 
 	private WeatherAPICall weather;
@@ -196,8 +185,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 					e.printStackTrace();
 				}
 			}
-		} else {
-
 		}
 	}
 
@@ -208,7 +195,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 */
 	public void showPrescription() {
 		prescriptionsList = getPrescriptionsList();
-		checkListView = new CheckListView<Prescription>();
+		checkListView = new CheckListView<>();
 		
 		checkListView.getStylesheets().add(getClass().getResource("/css/view.css").toExternalForm());
 		checkListView.getStyleClass().add("checkListView");
@@ -229,16 +216,14 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 			cell.getStyleClass().add("checkListCell");
 			return cell;
 		});
-		checkListView.getCheckModel().getCheckedItems().addListener(new ListChangeListener<Prescription>() {
-			public void onChanged(ListChangeListener.Change<? extends Prescription> c) {
-				String takenAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm"));
-				
-				if(!checkListView.getCheckModel().isEmpty()) {
-					Prescription p = checkListView.getCheckModel().getCheckedItems().get(0);
+		checkListView.getCheckModel().getCheckedItems().addListener((ListChangeListener<Prescription>) c -> {
+			String takenAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm"));
 
-					p.setTakenAt(takenAt);
-					controller.updateMedicineTaken(p);
-				}
+			if(!checkListView.getCheckModel().isEmpty()) {
+				Prescription p = checkListView.getCheckModel().getCheckedItems().get(0);
+
+				p.setTakenAt(takenAt);
+				controller.updateMedicineTaken(p);
 			}
 		});
 	}
@@ -359,6 +344,12 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		weatherImageView.setFitWidth(50);
 	}
 
+	public void getMyMessages() {
+		Notification[] notifications = controller.getMyMessages();
+		for (Notification n: notifications) {
+			messageArea.setText(n.getText());
+		}
+	}
 	/**
 	 * Sets the right bundle. Calls the needed methods.
 	 * 
@@ -374,6 +365,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		welcome.setText(welcomeText + " " + controller.getLoggedCustomer().getFirstName());
 		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(controller.locationSuggestions()));
 		// showWeather(loc);
+		getMyMessages();
 		showPrescription();
 		showAppointments();
 		showImage();

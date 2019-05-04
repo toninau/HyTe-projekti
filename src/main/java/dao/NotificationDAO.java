@@ -19,15 +19,15 @@ public class NotificationDAO {
 	/**
 	 * Sessionfactory for CRUD operations
 	 */
-	private SessionFactory sessionFactory = null;
+	private SessionFactory sessionFactory;
 
 	/**
 	 * Class constructor
 	 * 
-	 * @param sessionFactory hibernate SessionFactory
+	 * @param sessionFactory Hibernate SessionFactory
 	 */
-	public NotificationDAO(SessionFactory istuntotehdas) {
-		this.sessionFactory = istuntotehdas;
+	public NotificationDAO(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class NotificationDAO {
 		try {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
-			String sql = "SELECT * FROM notification INNER JOIN customer on notification.customerID = customer.customerID WHERE customer.customerID = :id";
+			String sql = "SELECT * FROM notification INNER JOIN customer on notification.customerID = :id";
 			Query<Notification> query = session.createSQLQuery(sql).addEntity(Notification.class);
 			query.setParameter("id", customer.getCustomerID());
 			result = query.list().toArray(new Notification[query.list().size()]);

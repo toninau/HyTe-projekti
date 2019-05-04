@@ -7,10 +7,12 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import model.Appointment;
 import model.Customer;
+import model.Notification;
 import view.ViewChanger;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
@@ -35,8 +37,10 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
     @FXML Button modifyAppointment;
     @FXML Button loadCustomers;
     @FXML Button logout;
+    @FXML Button sendNotification;
 
     @FXML Text loadedCustomerName;
+	@FXML TextArea notificationTextArea;
 
 	private ResourceBundle bundle;
 
@@ -62,17 +66,24 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 		});
 
 	}
-	
-	public void populateAppointmentListView() {
-		appointmentList.getItems().addAll(controller.allAppointments());
-		appointmentList.getSelectionModel().getSelectedItems();
+
+	public void loadCustomerError() {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Error");
+		alert.setHeaderText("Error");
+		alert.setContentText("Please load the customer first");
+		alert.show();
 	}
+
 	@FXML
 	public void addAppointment()  {
 		Appointment appointment = new Appointment();
 		appointment.setStaff(controller.getLoggedStaff());
 		appointment.setInfo(appointmentInfo.getText());
-		appointment.setCustomer(customer);
+		if (customer == null) {
+			loadCustomerError();
+		}
+		else { appointment.setCustomer(customer); }
 		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		String date = appointmentDate.getValue().format(dateFormatter);
 		appointment.setDate(date);
@@ -124,6 +135,24 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 			a.show();
 		}
 
+	}
+
+	@FXML
+	public void sendNotification() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+		LocalDateTime now = LocalDateTime.now();
+		Notification notification = new Notification();
+		if (customer == null) {
+			loadCustomerError();
+		} else {
+			notification.setCustomer(customer);
+		}
+		notification.setDate(dtf.format(now));
+		notification.setText(notificationTextArea.getText());
+		if (controller.sendNotification(notification)) {
+			Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+			a.show();
+		}
 	}
 	
 	@Override
