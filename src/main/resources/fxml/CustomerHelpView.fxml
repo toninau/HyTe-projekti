@@ -13,10 +13,21 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHelpView">
    <children>
+      <Label fx:id="helpCounter" layoutX="914.0" layoutY="166.0" text="1/16" />
+      <Label fx:id="helpText" alignment="CENTER" layoutX="336.0" layoutY="610.0" text="Test test Test test Test test Test test Test test Test test Test test Test test Test test" textAlignment="CENTER" />
       <ImageView fx:id="slideShow" fitHeight="381.0" fitWidth="625.0" layoutX="339.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="previousButton" layoutX="244.0" layoutY="375.0" mnemonicParsing="false" onAction="#previousImage" text="Previous" />
-      <Button fx:id="nextButton" layoutX="973.0" layoutY="376.0" mnemonicParsing="false" onAction="#nextImage" text="Next" />
-      <Button fx:id="startButton" layoutX="626.0" layoutY="161.0" mnemonicParsing="false" onAction="#startImage" text="Start" />
+      <Button fx:id="previousButton" layoutX="282.0" layoutY="377.0" mnemonicParsing="false" onAction="#previousImage" prefHeight="37.0" prefWidth="50.0" styleClass="previousButton">
+         <tooltip>
+            <Tooltip fx:id="previousTT" />
+         </tooltip></Button>
+      <Button fx:id="nextButton" layoutX="973.0" layoutY="376.0" mnemonicParsing="false" onAction="#nextImage" prefWidth="50.0" styleClass="nextButton">
+         <tooltip>
+            <Tooltip fx:id="nextTT" text="Empty Tooltip" />
+         </tooltip></Button>
+      <Button fx:id="startButton" layoutX="626.0" layoutY="161.0" mnemonicParsing="false" onAction="#startImage" prefWidth="50.0" styleClass="startButton">
+         <tooltip>
+            <Tooltip fx:id="startTT" text="Empty Tooltip" />
+         </tooltip></Button>
       <GridPane maxHeight="100.0" prefHeight="90.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="179.5333251953125" minWidth="10.0" prefWidth="140.0" />
@@ -71,6 +82,5 @@
             </Button>
          </children>
       </GridPane>
-      <Label fx:id="helpText" alignment="CENTER" layoutX="336.0" layoutY="610.0" text="Test test Test test Test test Test test Test test Test test Test test Test test Test test" textAlignment="CENTER" />
    </children>
 </AnchorPane>

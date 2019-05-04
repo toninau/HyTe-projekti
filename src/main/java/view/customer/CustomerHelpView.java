@@ -11,22 +11,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import view.HyteGUI;
 import view.ViewChanger;
+import view.enums.Bundles;
 
 public class CustomerHelpView extends ViewChanger implements Initializable {
 	
 	@FXML private ImageView slideShow;
 	@FXML private Button previousButton;
+    @FXML private Tooltip previousTT;
 	@FXML private Button nextButton;
+    @FXML private Tooltip nextTT;
 	@FXML private Button startButton;
+    @FXML private Tooltip startTT;
 	@FXML private Button homeButton1;
 	@FXML private Button myHealthButton1;
 	@FXML private Button helpButton1;
     @FXML private Label helpText;
+    @FXML private Label helpCounter;
 	
+	private ResourceBundle bundle;
 	private List<String> imageList;
 	private List<String> textList;
 	private int index = 0;
@@ -39,31 +47,39 @@ public class CustomerHelpView extends ViewChanger implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
+		previousTT.setText(bundle.getString("help.previous.tt"));
+		nextTT.setText(bundle.getString("help.next.tt"));
+		startTT.setText(bundle.getString("help.start.tt"));
 		fillImageList();
 		fillTextList();
 		openImage();
 	}
 	
 	@FXML
-	void startImage(ActionEvent event) {
+	private void startImage(ActionEvent event) {
 		index = 0;
 		openImage();
 	}
 
 	@FXML
-	void nextImage(ActionEvent event) {
+	private void nextImage(ActionEvent event) {
 		if (index < imageList.size()-1) {
 			index++;
-			openImage();
+		} else {
+			index = 0;
 		}
+		openImage();
 	}
 	
 	@FXML
-	void previousImage(ActionEvent event) {
+	private void previousImage(ActionEvent event) {
 		if (index > 0) {
 			index--;
-			openImage();
+		} else {
+			index = imageList.size()-1;
 		}
+		openImage();
 	}
 	
 	private void openImage() {
@@ -73,21 +89,21 @@ public class CustomerHelpView extends ViewChanger implements Initializable {
 			Image image = new Image(test);
 			slideShow.setImage(image);
 			helpText.setText(textList.get(index));
+			helpCounter.setText(index + 1 + "/" + imageList.size());
 		} catch (Exception e) {}
 	}
 
 	private void fillImageList() {
-		imageList.add("/pictures/finland_flag.png");
-		imageList.add("/pictures/france_flag.png");
-		imageList.add("/pictures/happy.png");
+		for (int i = 1; i < 4; i++) {
+			imageList.add("/pictures/" + i + ".jpg");
+		}
 	}
 	
 	private void fillTextList() {
-		textList.add("tämä tekee jotakin");
-		textList.add("tämä tekee toista asiaa");
-		textList.add("tämä kolmatta");
-	}
-	
+		for (int i = 0; i < imageList.size(); i++) {
+			textList.add(bundle.getString("help.tip" + i));
+		}
+	}	
 
 	/**
 	 * Fired when Home button is clicked.
