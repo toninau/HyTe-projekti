@@ -72,8 +72,8 @@ public class BloodValue {
 	 * @see #BloodValue(String, String, double, int, int, Customer)
 	 */
 	public BloodValue(String date, String time, double bloodsugar, Customer customer) {
-		this.highPressure = -1;
-		this.lowPressure = -1;
+		//this.highPressure = -1;
+		//this.lowPressure = -1;
 		this.date = date;
 		this.time = time;
 		this.bloodsugar = bloodsugar;

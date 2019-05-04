@@ -1,10 +1,11 @@
 package view.customer;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 
 import controller.CustomerController;
 import controller.CustomerController_IF;
@@ -28,12 +29,10 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import model.BloodValue;
-import model.DAOManager;
 import model.Prescription;
-import net.bytebuddy.asm.Advice.This;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
@@ -74,10 +73,18 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		controller = new CustomerController(this);
 	}
 
-	public void createBlood() {
-		if (controller.createBloodsugar()) {
+	public void createBloodSugarValue() {
+		if (controller.createBloodsugarValue()) {
 			updateBloodSugarChart();
+			bloodsugar.clear();
+		}
+	}
+
+	public void createBloodPressureValue() {
+		if (controller.createBloodPressureValue()) {
 			updateBloodPressureChart();
+			lowPressure.clear();
+			highPressure.clear();
 		}
 	}
 
@@ -91,7 +98,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 	public void updateBloodSugarChart() {
-		BloodValue[] a = controller.bloodValueData();
+		ArrayList<BloodValue> a = controller.bloodSugarData();
 		bloodSugarChart.getData().clear();
 		for (BloodValue bloodValue : a) {
 			seriesBloodSugar.getData()
@@ -112,7 +119,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 	public void updateBloodPressureChart() {
-		BloodValue[] a = controller.bloodValueData();
+		ArrayList<BloodValue> a = controller.bloodPressureData();
 		bloodPressureChart.getData().clear();
 		for (BloodValue bloodValue : a) {
 			seriesHighPressure.getData()
@@ -124,10 +131,10 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		bloodPressureChart.getData().add(seriesLowPressure);
 	}
 
-
 	/**
-	 * Populates the table with an observable list and sets the columns.
-	 * Add's a button so the customer can send a renew request of their prescriptions.
+	 * Populates the table with an observable list and sets the columns. Add's a
+	 * button so the customer can send a renew request of their prescriptions.
+	 * 
 	 * @see #prescriptionsList()
 	 * @see #addButtonToTable()
 	 */
@@ -140,17 +147,17 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		medicineTime.setCellValueFactory(new PropertyValueFactory<Prescription, String>("timeToTake"));
 		medicineRenew.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
 
-		prescriptonsTable.setRowFactory( tv -> {
-		    TableRow<Prescription> row = new TableRow<>();
-		    row.setOnMouseClicked(event -> {
-		        if (! row.isEmpty() ) {
-		            Prescription rowData = row.getItem();
-		            prescriptionInfoLabel.setText(rowData.toStringAllInfo());
-		        }
-		    });
-		    return row ;
+		prescriptonsTable.setRowFactory(tv -> {
+			TableRow<Prescription> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (!row.isEmpty()) {
+					Prescription rowData = row.getItem();
+					prescriptionInfoLabel.setText(rowData.toStringAllInfo());
+				}
+			});
+			return row;
 		});
-		
+
 		ObservableList<Prescription> list = prescriptionsList();
 		prescriptonsTable.setItems(list);
 		prescriptonsTable.getColumns().addAll(medicineName, medicineDosage, medicineDescription, medicineTime);
@@ -159,12 +166,13 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 
 	/**
 	 * Adds all the customer's prescription to an observable list.
+	 * 
 	 * @return Observable list of the customer's prescriptions.
 	 * @see controller.CustomerController#prescriptions()
 	 */
 	public ObservableList<Prescription> prescriptionsList() {
 		ObservableList<Prescription> data = FXCollections.observableArrayList();
-		Prescription [] a = controller.prescriptions();
+		Prescription[] a = controller.prescriptions();
 		for (Prescription prescription : a) {
 			data.add(prescription);
 		}
@@ -172,54 +180,55 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 	/**
-	 * Adds a button to the renew column of the prescriptions table.
-	 * Sets an event handler to the button.
+	 * Adds a button to the renew column of the prescriptions table. Sets an event
+	 * handler to the button.
+	 * 
 	 * @see #sendRenewRequest(Prescription)
 	 */
 	private void addButtonToTable() {
-        Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>> cellFactory = new Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>>() {
-            @Override
-            public TableCell<Prescription, Void> call(final TableColumn<Prescription, Void> param) {
-                final TableCell<Prescription, Void> cell = new TableCell<Prescription, Void>() {
-                    private final Button btn = new Button("Uusi resepti");
-                    {
-                        btn.setOnAction((ActionEvent event) -> {
-                        	Prescription p = getTableView().getItems().get(getIndex());
-                        	sendRenewRequest(p);
-                        	if(p.isRenewPrescription()) { 		
-                        		btn.setDisable(true);
-                        	}else {
-                        		btn.setDisable(false);
-                        	} 	
-                        });
-                    }
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(btn);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-        medicineRenew.setCellFactory(cellFactory);
-        prescriptonsTable.getColumns().add(medicineRenew);
-    }
-	
+		Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>> cellFactory = new Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>>() {
+			@Override
+			public TableCell<Prescription, Void> call(final TableColumn<Prescription, Void> param) {
+				final TableCell<Prescription, Void> cell = new TableCell<Prescription, Void>() {
+					private final Button btn = new Button("Uusi resepti");
+					{
+						btn.setOnAction((ActionEvent event) -> {
+							Prescription p = getTableView().getItems().get(getIndex());
+							sendRenewRequest(p);
+							if (p.isRenewPrescription()) {
+								btn.setDisable(true);
+							} else {
+								btn.setDisable(false);
+							}
+						});
+					}
+
+					@Override
+					public void updateItem(Void item, boolean empty) {
+						super.updateItem(item, empty);
+						if (empty) {
+							setGraphic(null);
+						} else {
+							setGraphic(btn);
+						}
+					}
+				};
+				return cell;
+			}
+		};
+		medicineRenew.setCellFactory(cellFactory);
+		prescriptonsTable.getColumns().add(medicineRenew);
+	}
+
 	/**
 	 * Sets the renew request true.
+	 * 
 	 * @param prescription The prescription to be renewed.
 	 * @see model.Prescription#setRenewPrescription(boolean)
 	 */
 	public void sendRenewRequest(Prescription p) {
 		p.setRenewPrescription(true);
 	}
-	
-	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -239,6 +248,24 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		return dtf.format(localDate);
 	}
 
+	public void validateNumeric(KeyEvent keyEvent) {
+		boolean isNumeric = false;
+		switch (keyEvent.getCode()) {
+		case TAB:
+			break;
+		case BACK_SPACE:
+			break;
+		case DELETE:
+			break;
+		default:
+			if (keyEvent.getCode().isLetterKey())
+				isNumeric = false;
+			else 
+				isNumeric = true;
+			System.out.println(isNumeric);
+		}
+	}
+
 	public int getHighPressure() {
 		return Integer.parseInt(highPressure.getText());
 	}
@@ -248,6 +275,13 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 	public double getBloodsugar() {
-		return Double.parseDouble(bloodsugar.getText());
+		double value;
+		if(bloodsugar.getText().contains(",")) {
+			value = Double.parseDouble(bloodsugar.getText().replaceAll(",", "."));
+		}else {
+			value = Double.parseDouble(bloodsugar.getText());
+		}
+		System.out.println(value);
+		return value;
 	}
 }
