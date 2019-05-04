@@ -99,10 +99,8 @@ public class CustomerController implements CustomerController_IF {
 	/**
 	 * This method creates a blood
 	 */
-	public boolean createBloodsugar() {
+	public boolean createBloodsugarValue() {
 		BloodValue bloodvalue = new BloodValue();
-		bloodvalue.setHighPressure(healthview.getHighPressure());
-		bloodvalue.setLowPressure(healthview.getLowPressure());
 		bloodvalue.setBloodsugar(healthview.getBloodsugar());
 		bloodvalue.setDate(healthview.getDate());
 		bloodvalue.setTime(healthview.getTime());
@@ -110,8 +108,35 @@ public class CustomerController implements CustomerController_IF {
 		return daom.getBloodValueDAO().create(bloodvalue);
 	}
 	
-	public BloodValue[] bloodValueData() {
-		return daom.getBloodValueDAO().readCustomerBloodvalues(customer);
+	public boolean createBloodPressureValue() {
+		BloodValue bloodValue = new BloodValue();
+		bloodValue.setHighPressure(healthview.getHighPressure());
+		bloodValue.setLowPressure(healthview.getLowPressure());
+		bloodValue.setDate(healthview.getDate());
+		bloodValue.setTime(healthview.getTime());
+		bloodValue.setCustomer(customer);
+		return daom.getBloodValueDAO().create(bloodValue);
+	}
+	
+	public ArrayList<BloodValue> bloodSugarData() {
+		BloodValue[] b = daom.getBloodValueDAO().readCustomerBloodvalues(customer);
+		ArrayList<BloodValue> bList = new ArrayList<>();
+		for (BloodValue bloodValue : b) {
+			if(bloodValue.getBloodsugar() > 0)
+				bList.add(bloodValue);
+		}
+		
+		return bList;
+	}
+	
+	public ArrayList<BloodValue> bloodPressureData() {
+		BloodValue[] b = daom.getBloodValueDAO().readCustomerBloodvalues(customer);
+		ArrayList<BloodValue> bList = new ArrayList<>();
+		for (BloodValue bloodValue : b) {
+			if(bloodValue.getHighPressure() > 0 && bloodValue.getLowPressure() > 0)
+				bList.add(bloodValue);		
+		}
+		return bList;
 	}
 	
 
