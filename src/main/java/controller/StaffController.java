@@ -13,24 +13,38 @@ public class StaffController {
 	private DAOManager_IF daom;
 	private StaffHomeView staffHomeView;
 	private StaffAppointmentView appointmentView;
-	
+
+    /**
+     * Empty constructor
+     */
 	public StaffController() {
 		daom = new DAOManager();
 	}
-	
+
+    /**
+     * Controller constructor for the StaffHomeView
+     * @param staffHomeView
+     */
 	public StaffController(StaffHomeView staffHomeView) {
 		this.staffHomeView = staffHomeView;
 		if (daom == null)
 			daom = new DAOManager();
 	}
-	
+
+    /**
+     * Controller constructor for the StaffAppointmentView
+     * @param appointmentView
+     */
 	public StaffController(StaffAppointmentView appointmentView) {
 		this.appointmentView = appointmentView;
 		if (daom == null)
 			daom = new DAOManager();
 	}
-	
-		
+
+    /**
+     * Gets all appointments from the database
+     * @return List of appointments
+     */
 	public ObservableList<Appointment> allAppointments() {
 		ObservableList<Appointment> list = FXCollections.observableArrayList();
 		Appointment[] appointments = daom.getAppointmentDAO().readStaffAppointments(staff);	
@@ -48,6 +62,10 @@ public class StaffController {
 		StaffController.staff = staff;
 	}
 
+    /**
+     * Gets the staff object currently logged in
+     * @return staff object
+     */
 	public Staff getLoggedStaff() {
 		return StaffController.staff;
 	}
@@ -60,7 +78,10 @@ public class StaffController {
 	    return false;
     }
 
-
+    /**
+     * Gets the customers associated with this staff member
+     * @return List of customers
+     */
 	public ObservableList<Customer> getStaffCustomers() {
 		ObservableList<Customer> customerList = FXCollections.observableArrayList();
 		staffCustomers = daom.getStaffDAO().readStaffMembersCustomers(staff);
@@ -72,7 +93,11 @@ public class StaffController {
 		return customerList;
 	}
 
-
+    /**
+     * Gets the customers appointments
+     * @param customer object
+     * @return List of appointments
+     */
 	public ObservableList<Appointment> getCustomersAppointments(Customer customer) {
 		for (Customer c: staffCustomers) {
 			if (c.equals(customer)) {
@@ -84,10 +109,20 @@ public class StaffController {
 		return null;
 	}
 
+    /**
+     * Adds an appointment to the database
+     * @param appointment object
+     * @return true if success
+     */
     public boolean addAppointment(Appointment appointment) {
         return daom.getAppointmentDAO().create(appointment);
     }
 
+    /**
+     * Saves the new values in the modified appointment to the database
+     * @param appointment object
+     * @return true if success
+     */
 	public boolean saveAppointment(Appointment appointment) {
 		return daom.getAppointmentDAO().update(appointment);
 	}
