@@ -91,6 +91,7 @@
 	-fx-border-color: #2654a0;
 	-fx-border-width: 4.0px;
 	-fx-border-radius: 3.0px;
+	-fx-cursor:hand;
 }
 
 .checkListView{
@@ -136,6 +137,8 @@
 	-fx-background-size: 50.0px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: 90.0%;
+    -fx-cursor:hand;
+    
 }
 
 .previousButton{
@@ -145,6 +148,11 @@
 	-fx-background-size: 50.0px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: 90.0%; 
+	-fx-cursor:hand;
+
+}
+
+.addBloodButton{
 }
 
 .startButton{
