@@ -19,7 +19,7 @@ public class NotificationDAO {
 	/**
 	 * Sessionfactory for CRUD operations
 	 */
-	private SessionFactory sessionFactory = null;
+	private SessionFactory sessionFactory;
 
 	/**
 	 * Class constructor

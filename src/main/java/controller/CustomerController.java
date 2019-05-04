@@ -143,7 +143,7 @@ public class CustomerController implements CustomerController_IF {
 				in.read(bfile);
 			}
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		UserImage image = new UserImage();
 		image.setCustomer(customer);
@@ -162,7 +162,7 @@ public class CustomerController implements CustomerController_IF {
 				in.read(bfile);
 			}
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		image.setImage(bfile);
 		daom.getUserImageDAO().update(image);

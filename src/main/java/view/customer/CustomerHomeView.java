@@ -185,8 +185,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 					e.printStackTrace();
 				}
 			}
-		} else {
-
 		}
 	}
 
@@ -197,7 +195,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 */
 	public void showPrescription() {
 		prescriptionsList = getPrescriptionsList();
-		checkListView = new CheckListView<Prescription>();
+		checkListView = new CheckListView<>();
 		
 		checkListView.getStylesheets().add(getClass().getResource("/css/view.css").toExternalForm());
 		checkListView.getStyleClass().add("checkListView");
@@ -218,16 +216,14 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 			cell.getStyleClass().add("checkListCell");
 			return cell;
 		});
-		checkListView.getCheckModel().getCheckedItems().addListener(new ListChangeListener<Prescription>() {
-			public void onChanged(ListChangeListener.Change<? extends Prescription> c) {
-				String takenAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm"));
-				
-				if(!checkListView.getCheckModel().isEmpty()) {
-					Prescription p = checkListView.getCheckModel().getCheckedItems().get(0);
+		checkListView.getCheckModel().getCheckedItems().addListener((ListChangeListener<Prescription>) c -> {
+			String takenAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm"));
 
-					p.setTakenAt(takenAt);
-					controller.updateMedicineTaken(p);
-				}
+			if(!checkListView.getCheckModel().isEmpty()) {
+				Prescription p = checkListView.getCheckModel().getCheckedItems().get(0);
+
+				p.setTakenAt(takenAt);
+				controller.updateMedicineTaken(p);
 			}
 		});
 	}
