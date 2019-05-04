@@ -35,11 +35,6 @@
 						<artifactId>junit-platform-surefire-provider</artifactId>
 						<version>1.2.0</version>
 					</dependency>
-					<dependency>
-						<groupId>org.junit.jupiter</groupId>
-						<artifactId>junit-jupiter-engine</artifactId>
-						<version>5.1.0</version>
-					</dependency>
 				</dependencies>
 			</plugin>
 			<plugin>
@@ -50,7 +45,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.7.201606060606</version>
+				<version>0.8.3</version>
 				<executions>
 					<execution>
 						<goals>
@@ -83,8 +78,8 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.1.0</version>
-			<scope>compile</scope>
+			<version>5.2.0</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.vintage</groupId>
