@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHomeView">
+
+<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHomeView">
    <children>
-      <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <GridPane prefHeight="627.0" prefWidth="1280.0" style="-fx-border-color: #2654a0; -fx-border-style: solid none none none; -fx-border-width: 5px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="549.33330078125" minWidth="10.0" prefWidth="480.13334960937505" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="446.5999755859375" minWidth="10.0" prefWidth="202.53328857421872" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="574.6666259765625" minWidth="10.0" prefWidth="199.8667114257812" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="574.6666259765625" minWidth="10.0" prefWidth="328.86665039062495" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="569.0" minWidth="10.0" prefWidth="389.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="841.0" minWidth="10.0" prefWidth="519.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="372.0" minWidth="10.0" prefWidth="372.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="248.33334350585938" minHeight="10.0" prefHeight="233.4000244140625" valignment="CENTER" vgrow="ALWAYS" />
-          <RowConstraints maxHeight="380.7333129882812" minHeight="10.0" prefHeight="181.1333740234375" valignment="CENTER" vgrow="ALWAYS" />
-          <RowConstraints maxHeight="219.66669311523435" minHeight="10.0" prefHeight="165.6666259765625" valignment="CENTER" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="205.0" minHeight="10.0" prefHeight="196.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="246.0" minHeight="10.0" prefHeight="246.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="208.0" minHeight="10.0" prefHeight="184.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox prefHeight="88.0" prefWidth="472.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <VBox alignment="CENTER" prefHeight="293.0" prefWidth="597.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                <children>
-                  <Label alignment="CENTER" prefHeight="59.0" prefWidth="633.0" text="%health.happiness">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="70.0" prefWidth="400.0">
+                  <Label fx:id="welcome" text="Label" />
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="316.0" prefWidth="419.0" VBox.vgrow="NEVER">
                      <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../pictures/unhappy.png" />
-                           </image>
-                        </ImageView>
-                        <Slider fx:id="happinessSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="58.0" prefWidth="537.0" showTickMarks="true" snapToTicks="true" value="5.0" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../pictures/happy.png" />
-                           </image>
-                        </ImageView>
+                        <ImageView fx:id="imageMe" fitHeight="184.0" fitWidth="150.0" onMouseClicked="#toCustomerCalendar" pickOnBounds="true" preserveRatio="true" />
                      </children>
-                  </HBox>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectImageMe" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/editPicture.png" />
+                     </image>
+                  </ImageView>
                </children>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="240.0" prefWidth="449.0" GridPane.rowIndex="1">
-               <children>
-                  <Label text="Muistahan ottaa lääkkeet!" />
-                  <HBox fx:id="prescriptionBox" prefHeight="164.0" prefWidth="458.0" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="190.0" prefWidth="575.0" style="-fx-border-color: black;" GridPane.columnIndex="3">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="372.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="279.0">
                      <children>
@@ -81,64 +78,90 @@
                      </font>
                   </Label>
                </children>
+            </VBox>
+            <VBox prefHeight="88.0" prefWidth="472.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <Label alignment="CENTER" prefHeight="59.0" prefWidth="633.0" text="%health.happiness">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="70.0" prefWidth="400.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pictures/unhappy.png" />
+                           </image>
+                        </ImageView>
+                        <Slider fx:id="happinessSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="58.0" prefWidth="305.0" showTickMarks="true" snapToTicks="true" value="5.0" />
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pictures/happy.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
                <GridPane.margin>
-                  <Insets bottom="20.0" />
+                  <Insets />
                </GridPane.margin>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="160.0" prefWidth="600.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2">
+            <VBox alignment="CENTER" prefHeight="160.0" prefWidth="600.0" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" text="Päivän tapahtumat" />
-                  <ListView fx:id="appointmentReminder" prefHeight="130.0" prefWidth="546.0">
+                  <ListView fx:id="appointmentReminder" prefHeight="130.0" prefWidth="303.0">
                      <VBox.margin>
-                        <Insets />
+                        <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </ListView>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="240.0" prefWidth="449.0" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="welcome" text="Label" />
-                  <VBox alignment="CENTER" fillWidth="false" prefHeight="198.0" prefWidth="294.0" style="-fx-border-color: black;" VBox.vgrow="NEVER">
-                     <children>
-                        <ImageView fx:id="imageMe" fitHeight="150.0" fitWidth="132.0" onMouseClicked="#toCustomerCalendar" pickOnBounds="true" preserveRatio="true" />
-                     </children>
+                  <Label text="Muistahan ottaa lääkkeet!" />
+                  <HBox fx:id="prescriptionBox" prefHeight="164.0" prefWidth="458.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets left="100.0" right="100.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectImageMe" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pictures/editPicture.png" />
-                     </image>
-                  </ImageView>
+                        <Insets bottom="20.0" left="20.0" right="20.0" />
+                     </VBox.margin></HBox>
                </children>
             </VBox>
-            <HBox prefHeight="232.0" prefWidth="173.0" GridPane.columnIndex="1">
+            <HBox alignment="CENTER" prefHeight="193.0" prefWidth="452.0" GridPane.columnIndex="1">
                <children>
-                  <ImageView fx:id="imageSecond" fitHeight="150.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectSecondImage" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pictures/editPicture.png" />
-                     </image>
-                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="imageSecond" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectSecondImage" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pictures/editPicture.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="193.0" prefWidth="118.0">
+                     <children>
+                        <ImageView fx:id="imageThird" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectThirdImage" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pictures/editPicture.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
                </children>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="50.0" />
+               </GridPane.margin>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fx:id="imageThird" fitHeight="150.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectThirdImage" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pictures/editPicture.png" />
-                     </image>
-                  </ImageView>
+                  <Label text="Viestisi" />
+                  <TextArea fx:id="messageArea" editable="false" prefHeight="182.0" prefWidth="556.0" wrapText="true">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin></TextArea>
                </children>
-            </HBox>
-            <TextArea fx:id="messageArea" editable="false" prefHeight="182.0" prefWidth="556.0" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label text="Viestisi" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
       </GridPane>
       <GridPane maxHeight="100.0" prefHeight="90.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -169,7 +192,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </ImageView>
-            <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCustomerHome" prefHeight="81.0" styleClass="customerMenuBar" text="%menuButton.frontpage" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCustomerHome" prefHeight="81.0" style="-fx-background-color: #cfe0fc;" styleClass="customerMenuBar" text="%menuButton.frontpage" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%menuButton.frontpage.tt" />
                </tooltip>

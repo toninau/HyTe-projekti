@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerCalendarView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerCalendarView">
    <children>
       <TabPane fx:id="calendarTabPane" layoutY="95.0" prefHeight="625.0" prefWidth="1280.0" side="LEFT" styleClass="calendarTabPane" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="20.0" tabMaxWidth="20.0" tabMinHeight="20.0" tabMinWidth="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <tabs>
@@ -318,7 +318,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="calendarButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCustomerCalendar" prefHeight="83.0" styleClass="customerMenuBar" text="%menuButton.calendar" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="calendarButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toCustomerCalendar" prefHeight="83.0" style="-fx-background-color: #cfe0fc;" styleClass="customerMenuBar" text="%menuButton.calendar" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <tooltip>
                   <Tooltip text="%menuButton.calendar.tt" />
                </tooltip>
