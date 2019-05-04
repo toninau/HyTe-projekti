@@ -6,9 +6,9 @@ import model.*;
 import view.staff.StaffAppointmentView;
 import view.staff.StaffHomeView;
 
-public class StaffController implements StaffController_IF {
+public class StaffController {
 	
-	static Staff staff;
+	private static Staff staff;
 	private Customer[] staffCustomers;
 	private DAOManager_IF daom;
 	private StaffHomeView staffHomeView;
@@ -53,8 +53,11 @@ public class StaffController implements StaffController_IF {
 	}
 
 	public boolean sendNotification(Notification notification) {
-	    //daom.getNotificationDAO().create(notification);
-	    return true;
+		notification.setStaff(staff);
+	    if (daom.getNotificationDAO().create(notification)) {
+	    	return true;
+		}
+	    return false;
     }
 
 
@@ -87,18 +90,6 @@ public class StaffController implements StaffController_IF {
 
 	public boolean saveAppointment(Appointment appointment) {
 		return daom.getAppointmentDAO().update(appointment);
-	}
-
-	/**
-	 *
-	 * @param data the notification you want to send
-	 * @param customer the customer object loaded in the UI
-	 * @return true if success
-	 */
-
-	public void sendNotification(String data, Customer customer) {
-		String date = java.time.LocalTime.now().toString();
-		daom.getNotificationDAO().create(new Notification(date, data, customer, staff));
 	}
 
 

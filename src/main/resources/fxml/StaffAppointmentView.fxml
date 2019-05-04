@@ -108,14 +108,19 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </HBox>
-                                    <Label layoutX="14.0" layoutY="14.0" text="%appointment.customerAppointments" />
+                                    <Label layoutX="14.0" layoutY="14.0" text="%appointment.customerAppointments" textFill="WHITE" />
                                  </children>
                               </AnchorPane>
                         </content>
                       </Tab>
                         <Tab text="%tab.notification">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" text="%notification.info" textFill="WHITE" />
+                                    <TextArea fx:id="notificationTextArea" layoutX="8.0" layoutY="41.0" prefHeight="205.0" prefWidth="277.0" promptText="%notification.textPrompt" wrapText="true" AnchorPane.leftAnchor="10.0" />
+                                    <Button fx:id="sendNotification" layoutX="306.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#sendNotification" text="%notification.sendButton" />
+                                 </children></AnchorPane>
                           </content>
                         </Tab>
                         <Tab text="%tab.prescription">
