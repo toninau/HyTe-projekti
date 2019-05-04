@@ -13,6 +13,7 @@ import java.time.temporal.ChronoUnit;
  * @author Group 3
  *
  */
+@SuppressWarnings("squid:S3437")
 @Entity
 @Table(name = "appointment")
 public class Appointment implements Serializable{
@@ -26,6 +27,7 @@ public class Appointment implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "appointmentID")
 	private int appointmentID;
+
 
 	@Column(name = "date")
 	private LocalDate date;

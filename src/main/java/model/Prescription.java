@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
  * @author tonin
  *
  */
+@SuppressWarnings("squid:S3437")
 @Entity
 @Table(name = "prescription")
 public class Prescription implements Serializable {

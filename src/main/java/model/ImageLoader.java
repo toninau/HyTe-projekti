@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
@@ -18,6 +20,7 @@ import dao.UserImageDAO;
 
 public class ImageLoader {
 
+	private static final Logger log = Logger.getLogger(ImageLoader.class.getName());
 	private File[] files;
 	private UserImageDAO userImageDAO;
 	private UserImage[] userImages;
@@ -46,8 +49,8 @@ public class ImageLoader {
 				ImageIO.write(img, "png", files[j]);
 				files[j].deleteOnExit();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.severe("An error occured while opening the file.");
+
 			}
 		}
 
@@ -65,7 +68,7 @@ public class ImageLoader {
 				userImages1[i].setImage(data);
 				userImages1[i].setImageName(imageNames[i]);
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.severe("An error occured while opening the file.");
 			}
 		}
 		return userImages1;

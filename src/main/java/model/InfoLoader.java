@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.hibernate.SessionFactory;
 
@@ -16,17 +18,19 @@ import dao.PrescriptionDAO;
 
 public class InfoLoader {
 
+	private static final Logger log = Logger.getLogger(InfoLoader.class.getName());
+
 	private File fileP, fileA;
 	private Appointment[] appointments;
 	static InfoLoader infoloader;
-	
+
 	private InfoLoader() {
 	}
 
 	public static synchronized InfoLoader getInfoLoader() {
 		if (infoloader == null) {
 			infoloader = new InfoLoader();
-		} 
+		}
 		return infoloader;
 	}
 
@@ -43,80 +47,55 @@ public class InfoLoader {
 	}
 
 	public void writeToFile(Object obj, File f) {
-		try (FileOutputStream os = new FileOutputStream(f = File.createTempFile("info", null));
+		File file = f;
+		try (FileOutputStream os = new FileOutputStream(file = File.createTempFile("info", null));
 				ObjectOutputStream objectOut = new ObjectOutputStream(os)) {
-			if(obj instanceof Appointment[])
-				fileA = f;
-			else if(obj instanceof Prescription[])
-				fileP = f;
+			if (obj instanceof Appointment[])
+				fileA = file;
+			else if (obj instanceof Prescription[])
+				fileP = file;
 			objectOut.writeObject(obj);
-			f.deleteOnExit();
+			file.deleteOnExit();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.severe("An error occured while opening the file.");
+
 		}
 	}
-	
-	
+
 	public Object[] readFromFile(File f) {
 		boolean done = false;
 		Object[] list = null;
 		ArrayList<Object[]> arrayList = new ArrayList<>();
+		
 		try (FileInputStream is = new FileInputStream(f); ObjectInputStream objectIn = new ObjectInputStream(is)) {
-			while(!done) {
+			while (!done) {
 				Object obj = null;
 				try {
 					obj = objectIn.readObject();
-				}catch(ClassNotFoundException e) {
-					
+				} catch (ClassNotFoundException e) {
+					log.severe("Class not found.");
 				}
-				if(obj != null) {
+				if (obj != null) {
 					arrayList.add((Object[]) obj);
 				}
-			}			
+			}
 		} catch (IOException e) {
-			e.getMessage();
+			log.severe("An error occured while opening the file.");
 		}
 		for (int i = 0; i < arrayList.size(); i++) {
 			list = arrayList.get(i);
 		}
-		return list;	
+
+		return list;
 	}
-	
+
 	public Appointment[] readAppointmentsFromFile() {
-		return (Appointment[])readFromFile(fileA);
+		return (Appointment[]) readFromFile(fileA);
 	}
-	
+
 	public Prescription[] readPrescriptionsFromFile() {
-		return(Prescription[])readFromFile(fileP);
+		return (Prescription[]) readFromFile(fileP);
 	}
-
-/*	public Appointment[] readAppointmentsFromFile() {
-		boolean done = true;
-		Appointment[] app = null;
-		ArrayList<Appointment[]> a = new ArrayList<Appointment[]>();
-		try (FileInputStream is = new FileInputStream(fileA); ObjectInputStream objectIn = new ObjectInputStream(is)) {
-			while(done) {
-				Object obj = null;
-				try {
-					obj = objectIn.readObject();
-				}catch(ClassNotFoundException e) {
-					
-				}
-				if(obj != null) {
-					a.add((Appointment[]) obj);
-				}else {
-					done = false;
-				}
-			}			
-
-		} catch (IOException e) {
-			e.getMessage();
-		}
-		for (int i = 0; i < a.size(); i++) {
-			app = a.get(i);
-		}
-		return app;
-	}*/
 
 }

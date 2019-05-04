@@ -151,7 +151,9 @@ public class CustomerController implements CustomerController_IF {
 	public void imageToDatabase(File file, int imageSlot) {
 		byte [] bfile = new byte[(int) file.length()];
 		try (FileInputStream in  = new FileInputStream(file)){
-			in.read(bfile);
+			while(in.read(bfile) > 0) {
+				in.read(bfile);
+			}
 		}catch(Exception e) {
 			
 		}
@@ -162,15 +164,15 @@ public class CustomerController implements CustomerController_IF {
 		image.setImageID(customer.getCustomerID() + imageSlot);
 		daom.getUserImageDAO().create(image);
 		daom.writeImageToFileDuringSession(customer);
-
-	
 	}
 	
 	public void updateImage(File file, int imageSlot) {
 		UserImage image = daom.getUserImageDAO().read(customer.getCustomerID() + imageSlot);
 		byte [] bfile = new byte[(int) file.length()];
 		try (FileInputStream in  = new FileInputStream(file)){
-			in.read(bfile);
+			while(in.read(bfile) > 0) {
+				in.read(bfile);
+			}
 		}catch(Exception e) {
 			
 		}
@@ -192,6 +194,11 @@ public class CustomerController implements CustomerController_IF {
 		return daom.readCustomerImages();
 	}
 	
+	/**
+	 * Updates medicine taken -column in prescription table.
+	 * @param prescription prescription to be updated.
+	 * @see dao.PrescriptionDAO#update(Prescription)
+	 */
 	public void updateMedicineTaken(Prescription prescription) {
 		daom.getPrescriptionDAO().update(prescription);
 	}
