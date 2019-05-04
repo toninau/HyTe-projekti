@@ -127,6 +127,25 @@ public class StaffController {
 		return daom.getAppointmentDAO().update(appointment);
 	}
 
+	public ObservableList<Prescription> getCustomersPrescriptions(Customer customer) {
+		for (Customer c: staffCustomers) {
+			if (c.equals(customer)) {
+				Prescription[] prescriptionList = daom.getPrescriptionDAO().readCustomersPrescriptions(c);
+				ObservableList<Prescription> list = FXCollections.observableArrayList(prescriptionList);
+				return list;
+			}
+		}
+		return null;
+	}
+
+	public boolean savePrescription(Prescription prescription) {
+		if (daom.getPrescriptionDAO().update(prescription)) {
+			return true;
+		} else {
+			prescription.setStaff(staff);
+			return daom.getPrescriptionDAO().create(prescription);
+		}
+	}
 
 	public String getDailyHappenings() {
 		// TODO Auto-generated method stub
