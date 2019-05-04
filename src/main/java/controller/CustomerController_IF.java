@@ -17,4 +17,5 @@ public interface CustomerController_IF {
 	UserImage[] imageFromTempFile();
 	void updateImage(File selectedFile, int imageSlot);
 	void updateMedicineTaken(Prescription p);
+	Notification[] getMyMessages();
 }
