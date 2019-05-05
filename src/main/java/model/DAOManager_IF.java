@@ -22,6 +22,6 @@ public interface DAOManager_IF {
 	UserImage[] readCustomerImages();
 	Appointment[] readCustomerAppointments();
 	Prescription[] readCustomerPrescriptions();
-	
+	BloodValue[] readCustomerBloodValues();
 	void writeImageToFileDuringSession(Customer customer);
 }

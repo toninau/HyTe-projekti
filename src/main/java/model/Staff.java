@@ -12,6 +12,7 @@ import java.io.Serializable;
  * @author tonin
  *
  */
+@SuppressWarnings("squid:S3437")
 @Entity
 @Table(name = "staff")
 public class Staff implements Serializable{

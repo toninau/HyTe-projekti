@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
@@ -9,9 +11,15 @@ import javax.persistence.*;
  * @author Group 3
  *
  */
+@SuppressWarnings("squid:S3437")
 @Entity
 @Table(name = "bloodvalue")
-public class BloodValue {
+public class BloodValue implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

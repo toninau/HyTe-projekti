@@ -55,6 +55,7 @@ public class DAOManager implements DAOManager_IF {
 	public void writeAllCustomerInformation(Customer customer) {
 		info.writeAppointmentsToFile(customer);
 		info.writePrescriptionsToFile(customer);
+		info.writeBloodvaluesToFile(customer);
 		i.writeImagesToFile(customer);	
 	}
 	
@@ -72,6 +73,10 @@ public class DAOManager implements DAOManager_IF {
 	
 	public Prescription[] readCustomerPrescriptions() {
 		return info.readPrescriptionsFromFile();
+	}
+	
+	public BloodValue[] readCustomerBloodValues() {
+		return info.readBloodValuesFromFile();
 	}
 
 	/**

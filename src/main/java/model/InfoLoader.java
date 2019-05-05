@@ -14,13 +14,14 @@ import java.util.logging.Logger;
 import org.hibernate.SessionFactory;
 
 import dao.AppointmentDAO;
+import dao.BloodValueDAO;
 import dao.PrescriptionDAO;
 
 public class InfoLoader {
 
 	private static final Logger log = Logger.getLogger(InfoLoader.class.getName());
 
-	private File fileP, fileA;
+	private File fileP, fileA, fileB;
 	private Appointment[] appointments;
 	static InfoLoader infoloader;
 
@@ -45,6 +46,12 @@ public class InfoLoader {
 		Prescription[] p = pDAO.readCustomersPrescriptions(customer);
 		writeToFile(p, fileP);
 	}
+	
+	public void writeBloodvaluesToFile(Customer customer) {
+		BloodValueDAO bDAO = new BloodValueDAO(HibernateUtil.getSessionFactory(false));
+		BloodValue[] b = bDAO.readCustomerBloodvalues(customer);
+		writeToFile(b, fileB);
+	}
 
 	public void writeToFile(Object obj, File f) {
 		File file = f;
@@ -54,12 +61,12 @@ public class InfoLoader {
 				fileA = file;
 			else if (obj instanceof Prescription[])
 				fileP = file;
+			else if(obj instanceof BloodValue[])
+				fileB = file;
 			objectOut.writeObject(obj);
 			file.deleteOnExit();
 
 		} catch (IOException e) {
-			log.severe("An error occured while opening the file.");
-
 		}
 	}
 
@@ -67,7 +74,7 @@ public class InfoLoader {
 		boolean done = false;
 		Object[] list = null;
 		ArrayList<Object[]> arrayList = new ArrayList<>();
-		
+
 		try (FileInputStream is = new FileInputStream(f); ObjectInputStream objectIn = new ObjectInputStream(is)) {
 			while (!done) {
 				Object obj = null;
@@ -81,12 +88,10 @@ public class InfoLoader {
 				}
 			}
 		} catch (IOException e) {
-			log.severe("An error occured while opening the file.");
 		}
 		for (int i = 0; i < arrayList.size(); i++) {
 			list = arrayList.get(i);
 		}
-
 		return list;
 	}
 
@@ -96,6 +101,10 @@ public class InfoLoader {
 
 	public Prescription[] readPrescriptionsFromFile() {
 		return (Prescription[]) readFromFile(fileP);
+	}
+	
+	public BloodValue[] readBloodValuesFromFile() {	
+		return (BloodValue[]) readFromFile(fileB);
 	}
 
 }

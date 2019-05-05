@@ -11,6 +11,7 @@ import java.util.*;
  * @author Group 3
  *
  */
+@SuppressWarnings("squid:S3437")
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable {

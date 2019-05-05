@@ -137,7 +137,8 @@ public class CustomerController implements CustomerController_IF {
 	 * @see dao.BloodValueDAO#readCustomerBloodvalues(Customer)
 	 */
 	public ArrayList<BloodValue> bloodSugarData() {
-		BloodValue[] b = daom.getBloodValueDAO().readCustomerBloodvalues(customer);
+		BloodValue[] b = daom.readCustomerBloodValues();
+		System.out.println(b.length);
 		ArrayList<BloodValue> bList = new ArrayList<>();
 		for (BloodValue bloodValue : b) {
 			if (bloodValue.getBloodsugar() > 0)
@@ -153,7 +154,7 @@ public class CustomerController implements CustomerController_IF {
 	 * @see dao.BloodValueDAO#readCustomerBloodvalues(Customer)
 	 */
 	public ArrayList<BloodValue> bloodPressureData() {
-		BloodValue[] b = daom.getBloodValueDAO().readCustomerBloodvalues(customer);
+		BloodValue[] b = daom.readCustomerBloodValues();
 		ArrayList<BloodValue> bList = new ArrayList<>();
 		for (BloodValue bloodValue : b) {
 			if (bloodValue.getHighPressure() > 0 && bloodValue.getLowPressure() > 0)
