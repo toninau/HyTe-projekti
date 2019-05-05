@@ -1,5 +1,14 @@
 package view;
 
+import com.lambdaworks.crypto.SCryptUtil;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
+import javafx.stage.Stage;
+import model.HibernateUtil;
 import org.hamcrest.Matchers;
 import org.hibernate.SessionFactory;
 import org.junit.After;
@@ -7,23 +16,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
-
-import com.lambdaworks.crypto.SCryptUtil;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-import javafx.stage.Stage;
-import model.HibernateUtil;
 import view.admin.AddCustomerView;
-import view.enums.Bundles;
-import view.enums.FxmlEnum;
-
-import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

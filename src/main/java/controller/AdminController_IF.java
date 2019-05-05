@@ -14,4 +14,5 @@ public interface AdminController_IF {
 	void updateCustomer(Customer customer);
 	boolean removeStaffFromDatabase(String id);
 	boolean removeCustomerFromDatabase(String id);
+	boolean addCustomerToStaff(Customer customer, Staff staff);
 }

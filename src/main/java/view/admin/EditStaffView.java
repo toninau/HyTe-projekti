@@ -2,14 +2,17 @@ package view.admin;
 
 import controller.AdminController;
 import controller.AdminController_IF;
+import controller.StaffController;
+import controller.StaffController_IF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import model.Customer;
 import model.Staff;
 import org.controlsfx.control.textfield.TextFields;
 import view.HyteGUI;
@@ -48,7 +51,14 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	private Button logout;
 	@FXML
 	private Button toMenu;
-	
+	@FXML
+	private Button addCustomerButton;
+	@FXML
+	private ListView<Customer> adminCustomerListView;
+	@FXML
+	private ListView<Customer> adminStaffCustomerListView;
+
+
 	private ArrayList<String> resultSet;
 
 	private AdminController_IF c;
@@ -74,6 +84,8 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	 * Shows chosen employee's information from the database in the text fields.
 	 */
 	public void showInfo() {
+		adminCustomerListView.getItems().clear();
+		adminStaffCustomerListView.getItems().clear();
 		String [] split = searchStaff.getText().split(",");
         String before = split[0];
 		staff = c.findStaffWithID(before);
@@ -81,6 +93,46 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		surname.setText(staff.getSurname());
 		email.setText(staff.getStaffID());
 		phoneNumber.setText(staff.getPhoneNumber());
+		ObservableList<Customer> customerList = FXCollections.observableArrayList();
+		Customer[] staffCustomers = c.findCustomerAll();
+		StaffController_IF staffController = new StaffController();
+		staffController.loggedStaff(staff);
+		ObservableList<Customer> StaffCustomerList = staffController.getStaffCustomers();
+		for (Customer customer : staffCustomers) {
+			for (Customer c : StaffCustomerList) {
+				if (!c.getFirstName().equals(customer.getFirstName())) {
+					customerList.add(customer);
+				}
+			}
+		}
+		if (StaffCustomerList!=null) {
+			adminStaffCustomerListView.getItems().addAll(StaffCustomerList);
+			adminStaffCustomerListView.setCellFactory(param -> new ListCell<Customer>() {
+				@Override
+				protected void updateItem(Customer item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty || item == null) {
+						setText(null);
+					} else {
+						setText(item.getSurname() + ", " + item.getFirstName());
+					}
+				}
+			});
+		}
+
+		adminCustomerListView.getItems().addAll(customerList);
+		adminCustomerListView.setCellFactory(param -> new ListCell<Customer>() {
+			@Override
+			protected void updateItem(Customer item, boolean empty) {
+				super.updateItem(item, empty);
+				if (empty || item == null) {
+					setText(null);
+				} else {
+					setText(item.getSurname() + ", " + item.getFirstName());
+				}
+			}
+		});
+
 	}
 	
 	/**
@@ -145,7 +197,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	 * Changes scene back to Login view.
 	 * @param event Mouse clicked.
 	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#logoutForAll(Event);
+	 * @see view.ViewChanger;
 	 */
 	public void logout(MouseEvent event) throws IOException {
 		logoutForAll(event);
@@ -167,7 +219,20 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		allFromDatabase();
 		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));	
 	}
-	
+
+	@FXML
+	public void addCustomerToStaff() {
+		Customer customer = adminCustomerListView.getSelectionModel().getSelectedItem();
+		if (c.addCustomerToStaff(customer, staff)) {
+			Alert a = new Alert(AlertType.CONFIRMATION);
+			a.setTitle("Success");
+			a.setContentText("Succesfully added the customer");
+			a.show();
+			showInfo();
+		}
+
+
+	}
 	
 	
 	/**
