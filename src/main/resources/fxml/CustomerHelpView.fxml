@@ -10,10 +10,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHelpView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHelpView">
    <children>
-      <Label fx:id="helpCounter" layoutX="914.0" layoutY="166.0" text="1/16" />
+      <Label fx:id="helpCounter" layoutX="927.0" layoutY="166.0" text="1/16" />
       <Label fx:id="helpText" alignment="CENTER" layoutX="336.0" layoutY="610.0" text="Test test Test test Test test Test test Test test Test test Test test Test test Test test" textAlignment="CENTER" />
       <ImageView fx:id="slideShow" fitHeight="381.0" fitWidth="625.0" layoutX="339.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="previousButton" layoutX="282.0" layoutY="377.0" mnemonicParsing="false" onAction="#previousImage" prefHeight="37.0" prefWidth="50.0" styleClass="previousButton">
@@ -82,5 +83,10 @@
             </Button>
          </children>
       </GridPane>
+      <Label fx:id="helpTip" layoutX="336.0" layoutY="160.0" prefHeight="37.0" prefWidth="219.0" text="Ohje 1">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
