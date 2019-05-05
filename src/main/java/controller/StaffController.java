@@ -6,7 +6,7 @@ import model.*;
 import view.staff.StaffAppointmentView;
 import view.staff.StaffHomeView;
 
-public class StaffController {
+public class StaffController implements StaffController_IF{
 	
 	private static Staff staff;
 	private Customer[] staffCustomers;
@@ -70,6 +70,11 @@ public class StaffController {
 		return StaffController.staff;
 	}
 
+	/**
+	 * Sends the notification to the database
+	 * @param notification object
+	 * @return true if success
+	 */
 	public boolean sendNotification(Notification notification) {
 		notification.setStaff(staff);
 	    if (daom.getNotificationDAO().create(notification)) {
@@ -127,6 +132,11 @@ public class StaffController {
 		return daom.getAppointmentDAO().update(appointment);
 	}
 
+	/**
+	 * Gets the customers prescriptions
+	 * @param customer
+	 * @return List of prescriptions
+	 */
 	public ObservableList<Prescription> getCustomersPrescriptions(Customer customer) {
 		for (Customer c: staffCustomers) {
 			if (c.equals(customer)) {
@@ -138,6 +148,11 @@ public class StaffController {
 		return null;
 	}
 
+	/**
+	 * Saves the prescription to the database
+	 * @param prescription
+	 * @return true if success
+	 */
 	public boolean savePrescription(Prescription prescription) {
 		if (daom.getPrescriptionDAO().update(prescription)) {
 			return true;
