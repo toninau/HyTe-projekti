@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.*;
 import org.controlsfx.control.CheckListView;
@@ -45,7 +46,8 @@ import java.util.ResourceBundle;
  *
  */
 public class CustomerHomeView extends ViewChanger implements Initializable {
-
+	@FXML
+	private Text messageBox;
 	@FXML
 	private Label weatherCelsius;
 	@FXML
@@ -263,6 +265,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	
 	public void showMessages() {
 		messageArea.setItems(messageList());
+		
 	}
 
 	/**
@@ -400,6 +403,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		showPrescription();
 		showAppointments();
 		showImage();
+		messageBox.setText("HELLOOOOO");
+		
+		
 	}
 
 	/**

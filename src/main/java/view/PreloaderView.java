@@ -21,17 +21,17 @@ public class PreloaderView extends Preloader {
 
 	
 	private Scene createPreloaderScene() {
-        iv = new ImageView();
-        iv.setImage(new Image(getClass().getResource("/pictures/tenor.gif").toExternalForm()));
+        //iv = new ImageView();
+        //iv.setImage(new Image(getClass().getResource("/pictures/tenor.gif").toExternalForm()));
         ImageView iv2= new ImageView();
-        iv2.setImage(new Image(getClass().getResource("/pictures/logo_250.png").toExternalForm()));
-        iv2.setFitWidth(200);
-        iv2.setFitHeight(200);
+        iv2.setImage(new Image(getClass().getResource("/pictures/logo_1.png").toExternalForm()));
+        iv2.setFitWidth(720);
+        iv2.setFitHeight(720);
         BorderPane p = new BorderPane();
-        p.setStyle("-fx-background-color: white");
+        p.setStyle("-fx-background-color:  #cfe0fc");
         p.setTop(iv2);
         BorderPane.setAlignment(iv2, Pos.CENTER);
-        p.setCenter(iv);
+        //p.setCenter(iv);
         return new Scene(p, 1280, 720);        
     }
 	

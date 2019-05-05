@@ -49,7 +49,7 @@ public class HyteGUI extends Application{
 		this.primaryStage.setTitle("Login");
 		//AnchorPane rootLayout = FXMLLoader.load(getClass().getResource(FxmlEnum.LOGIN.getFxml()), bundle);
 		Scene scene = new Scene(rootLayout);
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/logo_250.png")));
+		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
