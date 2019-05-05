@@ -31,9 +31,11 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 /**
@@ -68,7 +70,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	private ImageView imageThird;
 	@FXML private ImageView locationInputValidation;
 
-	@FXML private TextArea messageArea;
+	@FXML private ListView<String> messageArea;
 	private CheckListView<Prescription> checkListView;
 
 	private WeatherAPICall weather;
@@ -258,6 +260,10 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	public void showAppointments() {
 		appointmentReminder.getItems().addAll(appointmentList());
 	}
+	
+	public void showMessages() {
+		messageArea.setItems(messageList());
+	}
 
 	/**
 	 * Checks the date of the appointments and adds appointments marked with the
@@ -269,13 +275,14 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		boolean isEmpty = false;
 		ObservableList<String> data = FXCollections.observableArrayList();
 		Appointment[] appointments = controller.customersAppointments();
+		
 		for (Appointment a : appointments) {
 			if (a.getDate().isEqual(LocalDate.now())) {
 				data.add(a.toStringCustomer());
 				isEmpty = true;
 			}
 		}
-		if (isEmpty) {
+		if (!isEmpty) {
 			data.add("No appointments today");
 		}
 		return data;
@@ -350,12 +357,30 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		weatherImageView.setFitWidth(50);
 	}
 
-	public void getMyMessages() {
+	public ObservableList<String> messageList() {
+		ObservableList<String> r = FXCollections.observableArrayList();
 		Notification[] notifications = controller.getMyMessages();
+		System.out.println(notifications.length + "pituus");
 		for (Notification n: notifications) {
-			messageArea.setText(n.getText());
+			if (!r.contains(n.getText()))
+				r.add(n.getText());
 		}
+		return r;
 	}
+	public String timeOfDay() {
+		String s;
+		int h = Calendar.HOUR_OF_DAY;
+		if (h < 11 ) {
+			s = bundle.getString("welcome.morning");
+		} else if (h < 17) {
+			s = bundle.getString("welcome.day");
+		} else {
+			s = bundle.getString("welcome.evening");
+		}
+		
+		return s;
+	}
+	
 	/**
 	 * Sets the right bundle. Calls the needed methods.
 	 * 
@@ -367,11 +392,11 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		String loc = bundle.getString("weather.defaultLocation");
-		String welcomeText = bundle.getString("welcome.morning");
+		String welcomeText = timeOfDay();
 		welcome.setText(welcomeText + " " + controller.getLoggedCustomer().getFirstName());
 		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(controller.locationSuggestions()));
 		// showWeather(loc);
-		getMyMessages();
+		showMessages();
 		showPrescription();
 		showAppointments();
 		showImage();
