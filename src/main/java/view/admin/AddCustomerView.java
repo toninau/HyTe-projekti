@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import javax.sound.midi.VoiceStatus;
+
 import controller.AdminController;
 import controller.AdminController_IF;
 import javafx.fxml.FXML;
@@ -15,6 +17,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import view.HyteGUI;
 import view.ViewChanger;
@@ -51,19 +55,16 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	private PasswordField password;
 	
 	private AdminController_IF controller;
-	private HashMap<String, String> customerInfo;
 	private ResourceBundle bundle;
 	
 	public AddCustomerView() {
 		controller = new AdminController(this);
-		customerInfo = new HashMap<>();
 	}
 	
 	/**
 	 * Method for creating a customer.
 	 */
 	public void addCustomer() {
-		//createInfoMap();
 		if(controller.addCustomer()) {
 			firstname.clear();
 			surname.clear();
@@ -104,15 +105,18 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	}
 	
 	
-	public void createInfoMap() {
-		customerInfo.put("ssn", getSSN());
-		customerInfo.put("firstname", getFirstName());
-		customerInfo.put("surname", getSurname());
-		customerInfo.put("email", getEmail());
-		customerInfo.put("phone", getPhoneNumber());
-		customerInfo.put("ice", getICE());
-		customerInfo.put("address", getAddress());
-		customerInfo.put("password", getPassword());
+	
+	public void validateAlphabetical(KeyEvent keyEvent) {
+		if (keyEvent.getCode().isDigitKey() && keyEvent.getCharacter().matches("<([{\\^=$!|]})?*+.>")) {
+			TextField textField = (TextField) keyEvent.getSource();
+			switch(textField.getId()) {
+			case "firstname":
+				
+				break;
+			case "surname":
+				
+			}
+		}
 	}
 	
 	/**
@@ -122,7 +126,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 */
 	public String checkIfEmpty(TextField field) {
 		if(field.getText().isEmpty()) {
-			field.setPromptText("Arvo puuttuu");
+			field.setPromptText("!");
 			field.setStyle("-fx-prompt-text-fill: red;");
 			return "";
 		}

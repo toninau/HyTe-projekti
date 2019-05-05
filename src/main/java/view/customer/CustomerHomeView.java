@@ -66,6 +66,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	private ImageView imageSecond;
 	@FXML
 	private ImageView imageThird;
+	@FXML private ImageView locationInputValidation;
 
 	@FXML private TextArea messageArea;
 	private CheckListView<Prescription> checkListView;
@@ -298,6 +299,11 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	public void updateLocation(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
 			updateLocationClicked(event);
+		}
+		if(event.getCode().isDigitKey()) {
+			locationInputValidation.setVisible(true);
+		}else {
+			locationInputValidation.setVisible(false);
 		}
 	}
 

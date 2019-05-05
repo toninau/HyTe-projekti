@@ -67,13 +67,18 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	private Button loginBtnAsiakas;
 	@FXML
 	private ComboBox<Locale> languageChange;
+	@FXML
+	private ImageView customerUserValidation;
+	@FXML private ImageView customerPasswordValidation;
+	@FXML private ImageView staffUserValidation;
+	@FXML private ImageView staffPasswordValidation;
 	
 	ObservableList<String> imageList;
 	private ResourceBundle bundle;
 	private LoginController_IF c;
 
 	/**
-	 * Constructor for LoginView -class. Luo Data access object -managerin.
+	 * Constructor for LoginView -class.
 	 */
 	public LoginView() {
 		c = new LoginController(this);
@@ -132,10 +137,12 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		case "user":
 			msg = bundle.getString("loginFailed.username");
 			title = bundle.getString("loginFailed.title");
+			customerUserValidation.setVisible(true);
 			break;
 		case "password":
 			msg = bundle.getString("loginFailed.password");
 			title = bundle.getString("loginFailed.title");
+			customerPasswordValidation.setVisible(true);
 			break;
 		default:
 			msg = "Login failed.";
@@ -149,23 +156,42 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		alert.showAndWait();
 	}
 	
-	public void checkIfEnterCustomer(KeyEvent event) throws IOException {
-		if(event.getCode() == KeyCode.ENTER) {
-			loginCustomer(event);
+	public void inputValidation(KeyEvent event) throws IOException {
+
+		TextField field = (TextField)event.getSource();
+		
+		if(event.getCode().equals(KeyCode.ENTER)) {
+			if(field.getId().equals(usernameAsiakasLogin.getId()) || field.getId().equals(pwAsiakasLogin.getId()))
+				loginCustomer(event);
+			if(field.equals(pwLogin) || field.equals(usernameLogin))
+				loginStaff(event);
+		}else {
+			if(!event.getCode().isLetterKey() && !event.getCode().isDigitKey() && !event.getCode().equals(KeyCode.BACK_SPACE) && !event.getCode().equals(KeyCode.TAB)) {	
+				switch (field.getId()) {
+				case "usernameAsiakasLogin":
+					customerUserValidation.setVisible(true);
+					break;
+				case "pwAsiakasLogin":
+					customerPasswordValidation.setVisible(true);
+					break;
+				case  "pwLogin":
+					staffPasswordValidation.setVisible(true);
+					break;
+				case "usernameLogin":
+					staffUserValidation.setVisible(true);
+					break;
+				default:
+					break;
+				}
+			}else {
+				customerUserValidation.setVisible(false);
+				customerPasswordValidation.setVisible(false);
+				staffUserValidation.setVisible(false);
+				staffPasswordValidation.setVisible(false);
+			}
 		}
+
 	}
-	
-	/**
-	 * Fired when a key is pressed on the password field. Checks if the pressed key is enter.
-	 * @param event
-	 * @throws IOException
-	 */
-	public void checkIfEnterStaff(KeyEvent event) throws IOException {
-		if(event.getCode() == KeyCode.ENTER) {
-			loginStaff(event);
-		}
-	}
-	
 
 	/**
 	 * Changes the current locale according to combo box value.
@@ -262,7 +288,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
-		tooltips();
+		//tooltips();
 		languageChangePhotos();
 		languageChange.setPromptText("Choose a language");
 	}

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -54,7 +55,15 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="usernameAsiakasLogin" maxHeight="35.0" maxWidth="374.0" prefHeight="35.0" prefWidth="374.0" promptText="%usernameCustomer.text" />
+                                          <TextField fx:id="usernameAsiakasLogin" maxHeight="35.0" maxWidth="374.0" onKeyPressed="#inputValidation" prefHeight="35.0" prefWidth="374.0" promptText="%usernameCustomer.text">
+                                             <tooltip>
+                                                <Tooltip text="%tooltip.username" />
+                                             </tooltip></TextField>
+                                          <ImageView fx:id="customerUserValidation" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../pictures/53_warning-512.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="30.0" />
@@ -70,20 +79,30 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pwAsiakasLogin" maxHeight="35.0" maxWidth="376.0" onKeyPressed="#checkIfEnterCustomer" prefHeight="35.0" prefWidth="376.0" promptText="%password.text">
-                                             </PasswordField>
+                                          <PasswordField fx:id="pwAsiakasLogin" maxHeight="35.0" maxWidth="376.0" onKeyPressed="#inputValidation" prefHeight="35.0" prefWidth="376.0" promptText="%password.text">
+                                             <tooltip>
+                                                <Tooltip text="%tooltip.password" />
+                                             </tooltip></PasswordField>
+                                          <ImageView fx:id="customerPasswordValidation" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../pictures/53_warning-512.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button fx:id="loginBtnAsiakas" maxHeight="83.0" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#loginCustomer" prefHeight="83.0" prefWidth="400.0" styleClass="loginBtn" text="%loginButton.text">
+                                    <Button fx:id="loginBtnAsiakas" defaultButton="true" maxHeight="83.0" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#loginCustomer" prefHeight="83.0" prefWidth="400.0" styleClass="loginBtn" text="%loginButton.text">
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                        <font>
                                           <Font size="18.0" />
                                        </font>
+                                       <tooltip>
+                                          <Tooltip text="%tooltip.login" />
+                                       </tooltip>
                                     </Button>
                                  </children>
                               </VBox>
@@ -107,7 +126,15 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <TextField fx:id="usernameLogin" maxHeight="35.0" maxWidth="493.0" prefHeight="35.0" prefWidth="493.0" promptText="%staffUsername.text" />
+                                          <TextField fx:id="usernameLogin" maxHeight="35.0" maxWidth="493.0" onKeyPressed="#inputValidation" prefHeight="35.0" prefWidth="493.0" promptText="%staffUsername.text">
+                                             <tooltip>
+                                                <Tooltip text="%tooltip.username" />
+                                             </tooltip></TextField>
+                                          <ImageView fx:id="staffUserValidation" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../pictures/53_warning-512.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="30.0" />
@@ -123,16 +150,27 @@
                                                 <Insets right="5.0" />
                                              </HBox.margin>
                                           </ImageView>
-                                          <PasswordField fx:id="pwLogin" maxHeight="35.0" maxWidth="381.0" onKeyPressed="#checkIfEnterStaff" prefHeight="35.0" prefWidth="381.0" promptText="%password.text" />
+                                          <PasswordField fx:id="pwLogin" maxHeight="35.0" maxWidth="381.0" onKeyPressed="#inputValidation" prefHeight="35.0" prefWidth="381.0" promptText="%password.text">
+                                             <tooltip>
+                                                <Tooltip text="%tooltip.password" />
+                                             </tooltip></PasswordField>
+                                          <ImageView fx:id="staffPasswordValidation" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../pictures/53_warning-512.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button fx:id="loginBtn" maxHeight="70.0" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#loginStaff" prefHeight="70.0" prefWidth="400.0" styleClass="loginBtn" text="%loginButton.text">
+                                    <Button fx:id="loginBtn" defaultButton="true" maxHeight="70.0" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#loginStaff" prefHeight="70.0" prefWidth="400.0" styleClass="loginBtn" text="%loginButton.text">
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="%tooltip.login" />
+                                       </tooltip>
                                     </Button>
                                  </children>
                               </VBox>
@@ -142,7 +180,10 @@
                 </Tab>
               </tabs>
             </TabPane>
-            <ComboBox fx:id="languageChange" onAction="#changeLocale" prefHeight="43.0" prefWidth="341.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <ComboBox fx:id="languageChange" onAction="#changeLocale" prefHeight="43.0" prefWidth="341.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <tooltip>
+                  <Tooltip text="%tooltip.language" />
+               </tooltip></ComboBox>
          </children>
       </GridPane>
    </children>

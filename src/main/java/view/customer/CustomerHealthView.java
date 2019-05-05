@@ -2,10 +2,11 @@ package view.customer;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 
 import controller.CustomerController;
 import controller.CustomerController_IF;
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -29,6 +31,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import model.BloodValue;
@@ -38,28 +42,56 @@ import view.ViewChanger;
 import view.enums.Bundles;
 
 public class CustomerHealthView extends ViewChanger implements Initializable {
-	@FXML private Button homeButton;
-	@FXML private Button calendarButton;
-	@FXML private Button helpButton;
-	@FXML private Button myHealthButton;
-	@FXML private Button sendblood;
-	@FXML private TextField bloodsugar;
-	@FXML private TextField lowPressure;
-	@FXML private TextField highPressure;
-	@FXML private DatePicker datePicker;
-	@FXML private LineChart<String, Double> bloodSugarChart;
-	@FXML private NumberAxis yAxis;
-	@FXML private CategoryAxis xAxis;
-	@FXML private LineChart<String, Integer> bloodPressureChart;
-	@FXML private NumberAxis yAxisPressure;
-	@FXML private CategoryAxis xAxisPressure;
-	@FXML private TableView<Prescription> prescriptonsTable;
-	@FXML private TableColumn<Prescription, String> medicineName;
-	@FXML private TableColumn<Prescription, String> medicineDosage;
-	@FXML private TableColumn<Prescription, String> medicineDescription;
-	@FXML private TableColumn<Prescription, String> medicineTime;
-	@FXML private TableColumn<Prescription, Void> medicineRenew;
-	@FXML private Label prescriptionInfoLabel;
+	@FXML
+	private Button homeButton;
+	@FXML
+	private Button calendarButton;
+	@FXML
+	private Button helpButton;
+	@FXML
+	private Button myHealthButton;
+	@FXML
+	private Button sendblood;
+	@FXML
+	private TextField bloodsugar;
+	@FXML
+	private TextField lowPressure;
+	@FXML
+	private TextField highPressure;
+	@FXML
+	private DatePicker datePicker;
+	@FXML
+	private LineChart<String, Double> bloodSugarChart;
+	@FXML
+	private NumberAxis yAxis;
+	@FXML
+	private CategoryAxis xAxis;
+	@FXML
+	private LineChart<String, Integer> bloodPressureChart;
+	@FXML
+	private NumberAxis yAxisPressure;
+	@FXML
+	private CategoryAxis xAxisPressure;
+	@FXML
+	private TableView<Prescription> prescriptonsTable;
+	@FXML
+	private TableColumn<Prescription, String> medicineName;
+	@FXML
+	private TableColumn<Prescription, String> medicineDosage;
+	@FXML
+	private TableColumn<Prescription, String> medicineDescription;
+	@FXML
+	private TableColumn<Prescription, String> medicineTime;
+	@FXML
+	private TableColumn<Prescription, Void> medicineRenew;
+	@FXML
+	private Label prescriptionInfoLabel;
+	@FXML
+	private ImageView highPressureInputWarning;
+	@FXML
+	private ImageView lowPressureInputWarning;
+	@FXML
+	private ImageView bloodSugarInputWarning;
 
 	private ResourceBundle bundle;
 
@@ -239,7 +271,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 	public String getTime() {
-		return LocalDate.now().toString();
+		return LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString();
 	}
 
 	public String getDate() {
@@ -249,39 +281,56 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 	public void validateNumeric(KeyEvent keyEvent) {
-		boolean isNumeric = false;
-		switch (keyEvent.getCode()) {
-		case TAB:
-			break;
-		case BACK_SPACE:
-			break;
-		case DELETE:
-			break;
-		default:
-			if (keyEvent.getCode().isLetterKey())
-				isNumeric = false;
-			else 
-				isNumeric = true;
-			System.out.println(isNumeric);
+		if (keyEvent.getCode().isLetterKey()) {
+			TextField textField = (TextField) keyEvent.getSource();
+			if (textField.getId().equals(lowPressure.getId())) {
+				lowPressureInputWarning.setVisible(true);
+			} else if (textField.getId().equals(highPressure.getId())) {
+				highPressureInputWarning.setVisible(true);
+			} else if (textField.getId().equals(bloodsugar.getId())) {
+				bloodSugarInputWarning.setVisible(true);
+			}
+		} else if (keyEvent.getCode().isDigitKey() || keyEvent.getCode().equals(KeyCode.COMMA)
+				|| keyEvent.getCode().equals(KeyCode.PERIOD)) {
+			lowPressureInputWarning.setVisible(false);
+			highPressureInputWarning.setVisible(false);
+			bloodSugarInputWarning.setVisible(false);
 		}
 	}
 
 	public int getHighPressure() {
-		return Integer.parseInt(highPressure.getText());
+		if (highPressure.getText().isEmpty()) {
+			highPressureInputWarning.setVisible(true);
+			return -1;
+		} else {
+			return Integer.parseInt(highPressure.getText());
+
+		}
 	}
 
 	public int getLowPressure() {
-		return Integer.parseInt(lowPressure.getText());
+		if (lowPressure.getText().isEmpty()) {
+			lowPressureInputWarning.setVisible(true);
+			return -1;
+		} else {
+			return Integer.parseInt(lowPressure.getText());
+
+		}
 	}
 
 	public double getBloodsugar() {
 		double value;
-		if(bloodsugar.getText().contains(",")) {
-			value = Double.parseDouble(bloodsugar.getText().replaceAll(",", "."));
+		if(bloodsugar.getText().isEmpty()) {
+			bloodSugarInputWarning.setVisible(true);
+			return -1;
 		}else {
-			value = Double.parseDouble(bloodsugar.getText());
+			if (bloodsugar.getText().contains(",")) {
+				value = Double.parseDouble(bloodsugar.getText().replaceAll(",", "."));
+			} else {
+				value = Double.parseDouble(bloodsugar.getText());
+			}
+			return value;
 		}
-		System.out.println(value);
-		return value;
+
 	}
 }
