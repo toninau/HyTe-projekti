@@ -360,7 +360,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	public ObservableList<String> messageList() {
 		ObservableList<String> r = FXCollections.observableArrayList();
 		Notification[] notifications = controller.getMyMessages();
-		System.out.println(notifications.length + "pituus");
+		
 		for (Notification n: notifications) {
 			if (!r.contains(n.getText()))
 				r.add(n.getText());
