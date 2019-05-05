@@ -1,6 +1,7 @@
 package view.staff;
 
 import controller.StaffController;
+import controller.StaffController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -25,8 +26,7 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	@FXML ListView<Prescription> prescriptionList;
 	@FXML ListView<Customer> customerListView;
 	@FXML Tab prescriptionTab;
-	@FXML
-	HBox prescriptionBox;
+	@FXML HBox prescriptionBox;
 
     @FXML TextField appointmentInfo;
     @FXML TextField modifyAppointmentInfo;
@@ -54,12 +54,10 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	@FXML TextArea prescriptionUsage;
 	@FXML TextArea prescriptionDescription;
 	@FXML TextField prescriptionTimeToTake;
-	private ResourceBundle bundle;
-
 
 	private Appointment appointment;
 	private Customer customer;
-	StaffController controller;
+	StaffController_IF controller;
 
 	/**
 	 * Constructor. Creates the controller for methods
@@ -118,6 +116,9 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 		}
 	}
 
+	/**
+	 * Gets the chosen prescription from the prescriptionList ListView and adds the data to their appropriate fields
+	 */
 	@FXML
 	public void loadCustomersPrescription() {
 		Prescription prescription = prescriptionList.getSelectionModel().getSelectedItem();
@@ -133,6 +134,10 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 
 	}
 
+	/**
+	 * Saves the chosen prescription objects data to the database
+	 * If a prescription is not chosen, a new prescription object is created and saved to the database
+	 */
 	@FXML
 	public void savePrescription() {
 		Prescription prescription = prescriptionList.getSelectionModel().getSelectedItem();
@@ -157,6 +162,9 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 
 	}
 
+	/**
+	 * Hides the prescription box when the tab is closed
+	 */
 	@FXML
 	public void hidePrescriptionBox() {
 		prescriptionBox.setVisible(false);

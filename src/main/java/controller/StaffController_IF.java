@@ -1,22 +1,20 @@
 package controller;
 
 import javafx.collections.ObservableList;
-import model.Appointment;
-import model.Customer;
-import model.Staff;
+import model.*;
 
 public interface StaffController_IF {
-    void loggedStaff(Staff staff);
-
-    Staff getLoggedStaff();
-
-    ObservableList<Customer> getStaffCustomers();
-
-
     ObservableList<Appointment> allAppointments();
-    void sendNotification(String data, Customer customer);
+    void loggedStaff(Staff staff);
+    Staff getLoggedStaff();
+    boolean sendNotification(Notification notification);
+    ObservableList<Customer> getStaffCustomers();
+    ObservableList<Appointment> getCustomersAppointments(Customer customer);
+    boolean addAppointment(Appointment appointment);
+    boolean saveAppointment(Appointment appointment);
+    ObservableList<Prescription> getCustomersPrescriptions(Customer customer);
+    boolean savePrescription(Prescription prescription);
 
-    String getDailyHappenings();
 
 
 }
