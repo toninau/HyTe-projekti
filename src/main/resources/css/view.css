@@ -191,5 +191,15 @@
     -fx-background-position: 90.0%; 
 }
 
+.weekDayButton{
+	 -fx-max-width: 100px;
+    -fx-min-width: 100px;
+    -fx-max-height: 50px;
+    -fx-min-height: 50px;
+    	-fx-border-color: #2654a0;
+	-fx-border-width: 4.0px;
+	-fx-border-radius: 3.0px;
+	-fx-cursor:hand;
+}
 
 

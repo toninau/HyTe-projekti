@@ -80,8 +80,22 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	private Button nextDay;
 	@FXML
 	private Button previousDay;
-	@FXML private Label weekLabel;
-	@FXML private ListView<String> weekTimeList;
+	@FXML
+	private Label weekLabel;
+	@FXML
+	private Label tuesdayLabel;
+	@FXML
+	private Label mondayLabel;
+	@FXML
+	private Label wednesdayLabel;
+	@FXML
+	private Label thursdayLabel;
+	@FXML
+	private Label fridayLabel;
+	@FXML
+	private Label saturdayLabel;
+	@FXML
+	private Label sundayLabel;
 	@FXML
 	private Button mondaybutton;
 	@FXML
@@ -116,6 +130,18 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	private GridPane addAppointmentPane;
 	@FXML
 	private ListView<String> tuesdayList;
+	@FXML
+	private ListView<String> mondayList;
+	@FXML
+	private ListView<String> wednesdayList;
+	@FXML
+	private ListView<String> thursdayList;
+	@FXML
+	private ListView<String> fridayList;
+	@FXML
+	private ListView<String> saturdayList;
+	@FXML
+	private ListView<String> sundayList;
 
 	private ResourceBundle bundle;
 	private CustomerController controller;
@@ -348,36 +374,63 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		}.start();
 	}
 
+	public LocalDate calculateDay(LocalDate date, int a) {
+		int result = date.getDayOfMonth();
+		int monthW = date.getMonthValue();
+		int weekDay = date.getDayOfWeek().getValue();
+		if (a < weekDay) {
+			result = date.minusDays(weekDay - a).getDayOfMonth();
+			if (result > date.getDayOfWeek().getValue()) {
+				monthW = month.minus(1).getValue();
+			}
+		} else if (a > weekDay) {
+			result = date.plusDays(weekDay + a).getDayOfMonth();
+			if (result > date.getMonth().maxLength()) {
+				monthW = month.plus(1).getValue();
+			}
+		}
+		return LocalDate.of(year, monthW, result);
+	}
+
 	public void showWeekAppointments(LocalDate date) {
-		
-		weekLabel.setText(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " " + date.get(WeekFields.ISO.weekOfYear()));
-		ObservableList<ListView<String>> listViews = FXCollections.observableArrayList();
-		listViews.add(tuesdayList);
-		ObservableList<String> noContent = FXCollections.observableArrayList();
+		weekLabel.setText(
+				date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " WEEK " + date.get(WeekFields.ISO.weekOfYear()));
 
-		for (int i = 0; i < 24; i++) {
-			if (i < 10) {
-				noContent.add("0" + Integer.toString(i) + ".00");
-			} else {
-				noContent.add(Integer.toString(i) + ".00");
-			}
+		ObservableList<Appointment> mondayAppointments = appointmentsList(calculateDay(date, 1));
+		ObservableList<Appointment> tuesdayAppointments = appointmentsList(calculateDay(date, 2));
+		ObservableList<Appointment> wednesdayAppointments = appointmentsList(calculateDay(date, 3));
+		ObservableList<Appointment> thursdayAppointments = appointmentsList(calculateDay(date, 4));
+		ObservableList<Appointment> fridayAppointments = appointmentsList(calculateDay(date, 5));
+		ObservableList<Appointment> saturdayAppointments = appointmentsList(calculateDay(date, 6));
+		ObservableList<Appointment> sundayAppointments = appointmentsList(calculateDay(date, 7));
+
+		Label[] labels = { mondayLabel, tuesdayLabel, wednesdayLabel, thursdayLabel, fridayLabel, saturdayLabel,
+				sundayLabel };
+
+		for (int i = 0; i < labels.length; i++) {
+			labels[i].setText(Integer.toString(calculateDay(date, i + 1).getDayOfMonth()));
 		}
-		weekTimeList.getItems().addAll(noContent);
-				
-		for (int j = 0; j < listViews.size(); j++) {
-			ObservableList<Appointment> todaysAppointments = appointmentsList(date.plusDays(j));
-			if (listViews.get(0).getItems().size() > 0) {
-				listViews.get(0).getItems().clear();
-			}
-
-
-			for (Appointment appointment : todaysAppointments) {
-				int index = appointment.getTime().getHour();
-				listViews.get(0).getItems().set(index, index + ".00   " + appointment.getInfo());
-			}
-			listViews.get(0).scrollTo(LocalTime.now().getHour());
+		for (Appointment appointment : mondayAppointments) {
+			mondayList.getItems().add(appointment.getInfo());
 		}
-
+		for (Appointment appointment : tuesdayAppointments) {
+			tuesdayList.getItems().add(appointment.getInfo());
+		}
+		for (Appointment appointment : wednesdayAppointments) {
+			wednesdayList.getItems().add(appointment.getInfo());
+		}
+		for (Appointment appointment : thursdayAppointments) {
+			thursdayList.getItems().add(appointment.getInfo());
+		}
+		for (Appointment appointment : fridayAppointments) {
+			fridayList.getItems().add(appointment.getInfo());
+		}
+		for (Appointment appointment : saturdayAppointments) {
+			saturdayList.getItems().add(appointment.getInfo());
+		}
+		for (Appointment appointment : sundayAppointments) {
+			sundayList.getItems().add(appointment.getInfo());
+		}
 	}
 
 	public void createHashMap() {
