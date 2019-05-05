@@ -104,6 +104,32 @@
 
 }
 
+.list-view {
+	-fx-background-color: #88b4fc;
+	-fx-border-color: #2654a0;
+	-fx-border-width: 4.0px;
+	-fx-border-radius: 3.0px;
+	-fx-background-insets: 0;
+	-fx-padding:0;
+}
+
+.list-cell:even {
+	-fx-background-color : #88b4fc;
+
+	
+}
+.list-cell:odd {
+	-fx-background-color : #88c4ff;
+	
+	
+}
+
+.CustomerHomeLists-cell:even {
+	-fx-background-color : red;
+}
+.CustomerHomeLists-cell:odd {
+	-fx-background-color : green;
+}
 .stackpane{
 	-fx-border-color: black;
 	-fx-border-width: 2.0px;
