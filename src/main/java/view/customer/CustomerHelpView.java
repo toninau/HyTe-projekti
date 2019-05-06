@@ -140,7 +140,7 @@ public class CustomerHelpView extends ViewChanger implements Initializable {
 	 */
 	private void fillImageList() {
 		for (int i = 1; i < 4; i++) {
-			imageList.add("/pictures/" + i + ".jpg");
+			imageList.add("/pictures/" + i + ".png");
 		}
 	}
 
