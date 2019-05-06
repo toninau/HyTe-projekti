@@ -109,7 +109,7 @@
             </VBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="369.0" prefWidth="329.0" style="-fx-border-color: #2654a0; -fx-border-width: 4px; -fx-border-radius: 3px;" GridPane.columnIndex="2" GridPane.rowSpan="2">
                <children>
-                  <Label text="\%weather.daysweather" />
+                  <Label text="%weather.daysweather" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="279.0">
                      <children>
                         <TextField fx:id="locationField" onKeyPressed="#updateLocation" prefHeight="30.0" prefWidth="220.0">
