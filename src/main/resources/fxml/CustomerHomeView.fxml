@@ -86,7 +86,10 @@
                         <Label fx:id="welcome" text="Label" />
                         <VBox alignment="CENTER" fillWidth="false" prefHeight="316.0" prefWidth="419.0" VBox.vgrow="NEVER">
                            <children>
-                              <ImageView fx:id="imageMe" fitHeight="184.0" fitWidth="150.0" onMouseClicked="#toCustomerCalendar" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageMe" fitHeight="184.0" fitWidth="150.0" onMouseClicked="#toCustomerCalendar" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></ImageView>
                            </children>
                            <VBox.margin>
                               <Insets left="50.0" right="50.0" />
@@ -177,7 +180,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="160.0" prefWidth="600.0" GridPane.rowIndex="1">
                <children>
-                  <Label alignment="CENTER" text="Päivän tapahtumat" />
+                  <Label alignment="CENTER" text="%menu.events" />
                   <ListView id="eventList" fx:id="appointmentReminder" prefHeight="185.0" prefWidth="345.0" styleClass="CustomerHomeLists">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
@@ -187,7 +190,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="240.0" prefWidth="449.0" GridPane.rowIndex="2">
                <children>
-                  <Label text="Muistahan ottaa lääkkeet!" />
+                  <Label text="%menu.reminder" />
                   <HBox fx:id="prescriptionBox" prefHeight="164.0" prefWidth="458.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" />
@@ -196,7 +199,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="169.0" prefWidth="385.0">
                <children>
-                  <Label text="Viestisi" />
+                  <Label text="%menu.messages" />
                   <ListView id="messageList" fx:id="messageArea" prefHeight="137.0" prefWidth="345.0" style="-fx-background-insets: 0; -fx-padding: 0;">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
