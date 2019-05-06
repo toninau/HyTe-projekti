@@ -88,7 +88,7 @@ public class LoginViewTest extends ApplicationTest{
     
     
     
-    @Test
+  /*  @Test
     public void testAdminLogin() {
     	clickOn("#staffTab");
     	clickOn("#usernameLogin");
@@ -97,7 +97,7 @@ public class LoginViewTest extends ApplicationTest{
     	write("admin");
     	clickOn("#loginBtn");
     	assertTrue(stage.getTitle().equals("Welcome"));
-    }
+    }*/
     
     
 }
