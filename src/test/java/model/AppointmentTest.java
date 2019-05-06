@@ -91,7 +91,7 @@ public class AppointmentTest {
 		staffmember.setSurname("ahtisaari");
 		staffmember.setAccessLevel("doctor");
 		Appointment appointment = new Appointment("15.04.1995", "13:00", "appointment info", customer, staffmember);
-		assertEquals("13:00  15.04.1995  appointment info. doctor ahtisaari, mahti", appointment.toStringCustomer(), "Appointment toStringCustomer-method is not right");
+		assertEquals("13:00  appointment info. doctor ahtisaari, mahti", appointment.toStringCustomer(), "Appointment toStringCustomer-method is not right");
 
 	}
 
