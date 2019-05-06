@@ -111,7 +111,7 @@ public class StaffDAO {
 		try {
 			session.beginTransaction();
 			String sql = "INSERT INTO customersStaff (customerID, staffID) VALUES (:customerID,:staffID)";
-			Query query = session.createSQLQuery(sql);
+			Query query = session.createSQLQuery(sql).addEntity(Staff.class).addEntity(Customer.class);
 			query.setParameter("customerID", customer.getCustomerID());
 			query.setParameter("staffID", staff.getStaffID());
 			query.executeUpdate();
@@ -140,7 +140,7 @@ public class StaffDAO {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			String sql = "DELETE FROM customersStaff WHERE customersStaff.customerID = :customerID AND customersStaff.staffID = :staffID";
-			Query kysely = session.createSQLQuery(sql);
+			Query kysely = session.createSQLQuery(sql).addEntity(Staff.class).addEntity(Customer.class);
 			kysely.setParameter("customerID", customer.getCustomerID());
 			kysely.setParameter("staffID", staff.getStaffID());
 			kysely.executeUpdate();
@@ -268,6 +268,25 @@ public class StaffDAO {
 			String sql = "DELETE FROM customersStaff WHERE customersStaff.staffID = :id";
 			Query<Staff> query = session.createSQLQuery(sql).addEntity(Staff.class);
 			query.setParameter("id", s.getStaffID());
+			query.executeUpdate();
+			success = true;
+		}
+		session.getTransaction().commit();
+		session.close();
+		return success;
+	}
+	@SuppressWarnings("unchecked")
+	public boolean addCustomerToStaff(Customer customer, Staff staff) {
+		boolean success = false;
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Staff s = session.get(Staff.class, staff.getStaffID());
+		Customer c = session.get(Customer.class, customer.getCustomerID());
+		if (s != null && c != null) {
+			String sql = "INSERT INTO `hyte`.`customersStaff` (`customerID`, `staffID`) VALUES (:cid, :id)";
+			Query<Staff> query = session.createSQLQuery(sql).addEntity(Staff.class).addEntity(Customer.class);
+			query.setParameter("id", s.getStaffID());
+			query.setParameter("cid", c.getCustomerID());
 			query.executeUpdate();
 			success = true;
 		}

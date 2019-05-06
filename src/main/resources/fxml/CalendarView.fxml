@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
@@ -20,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerCalendarView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerCalendarView">
    <children>
       <TabPane fx:id="calendarTabPane" layoutY="95.0" prefHeight="625.0" prefWidth="1280.0" side="LEFT" styleClass="calendarTabPane" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="20.0" tabMaxWidth="20.0" tabMinHeight="20.0" tabMinWidth="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <tabs>
@@ -56,9 +55,6 @@
                               <Label text="sat" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
                               <Label text="sun" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
                            </children>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
                         </GridPane>
                         <GridPane prefHeight="59.0" prefWidth="1172.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
@@ -85,34 +81,31 @@
                      <children>
                         <HBox prefHeight="571.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <ListView fx:id="weekTimeList" maxWidth="100.0" minWidth="100.0" prefHeight="571.0" prefWidth="118.0" HBox.hgrow="NEVER" />
                               <HBox fx:id="mondaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
                                  <children>
-                                    <VBox minWidth="100.0" prefHeight="541.0" prefWidth="500.0">
+                                    <VBox alignment="CENTER" minWidth="100.0" prefHeight="541.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="mondaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.monday">
+                                          <Button fx:id="mondaybutton" mnemonicParsing="false" onMouseClicked="#openbox" styleClass="weekDayButton" text="%calendar.monday">
                                              <VBox.margin>
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" text="fkbhawkfwaawwa ff aknjw kjanfkjf awk fnaw fknawf kawnakf jnf awk fjawnf kawnf awkjnf awn fk" wrapText="true">
-                                             <VBox.margin>
-                                                <Insets left="5.0" right="5.0" top="10.0" />
-                                             </VBox.margin>
-                                          </TextArea>
+                                          <Label fx:id="mondayLabel" alignment="CENTER" prefHeight="27.0" prefWidth="201.0" text="Label" />
+                                          <ListView fx:id="mondayList" prefHeight="530.0" prefWidth="167.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox fx:id="tuesdaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
                                  <children>
-                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                    <VBox alignment="CENTER" minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="tuesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.tuesday">
+                                          <Button fx:id="tuesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" styleClass="weekDayButton" text="%calendar.tuesday">
                                              <VBox.margin>
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
+                                          <Label fx:id="tuesdayLabel" alignment="CENTER" prefHeight="43.0" prefWidth="167.0" text="Label" />
                                           <ListView fx:id="tuesdayList" prefHeight="616.0" prefWidth="167.0" />
                                        </children>
                                     </VBox>
@@ -120,90 +113,75 @@
                               </HBox>
                               <HBox fx:id="wednesdaytextarea" minWidth="100.0" prefHeight="541.0" prefWidth="200.0">
                                  <children>
-                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="320.0">
+                                    <VBox alignment="CENTER" minWidth="100.0" prefHeight="462.0" prefWidth="320.0">
                                        <children>
-                                          <Button fx:id="wednesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.wednesday">
+                                          <Button fx:id="wednesdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" styleClass="weekDayButton" text="%calendar.wednesday">
                                              <VBox.margin>
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
-                                             <VBox.margin>
-                                                <Insets left="5.0" right="5.0" top="10.0" />
-                                             </VBox.margin>
-                                          </TextArea>
+                                          <Label fx:id="wednesdayLabel" alignment="CENTER" prefHeight="27.0" prefWidth="240.0" text="Label" />
+                                          <ListView fx:id="wednesdayList" prefHeight="577.0" prefWidth="167.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox fx:id="thursdaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                    <VBox alignment="CENTER" minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="thursdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.thursday">
+                                          <Button fx:id="thursdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" styleClass="weekDayButton" text="%calendar.thursday">
                                              <VBox.margin>
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
-                                             <VBox.margin>
-                                                <Insets left="5.0" right="5.0" top="10.0" />
-                                             </VBox.margin>
-                                          </TextArea>
+                                          <Label fx:id="thursdayLabel" alignment="CENTER" prefHeight="27.0" prefWidth="200.0" text="Label" />
+                                          <ListView fx:id="thursdayList" prefHeight="574.0" prefWidth="167.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox fx:id="fridaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                    <VBox alignment="CENTER" minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="fridaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.friday">
+                                          <Button fx:id="fridaybutton" mnemonicParsing="false" onMouseClicked="#openbox" styleClass="weekDayButton" text="%calendar.friday">
                                              <VBox.margin>
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
-                                             <VBox.margin>
-                                                <Insets left="5.0" right="5.0" top="10.0" />
-                                             </VBox.margin>
-                                          </TextArea>
+                                          <Label fx:id="fridayLabel" alignment="CENTER" prefHeight="27.0" prefWidth="258.0" text="Label" />
+                                          <ListView fx:id="fridayList" prefHeight="565.0" prefWidth="168.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox fx:id="saturdaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                    <VBox alignment="CENTER" minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="saturdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.saturday">
+                                          <Button fx:id="saturdaybutton" mnemonicParsing="false" onMouseClicked="#openbox" styleClass="weekDayButton" text="%calendar.saturday">
                                              <VBox.margin>
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
-                                             <VBox.margin>
-                                                <Insets left="5.0" right="5.0" top="10.0" />
-                                             </VBox.margin>
-                                          </TextArea>
+                                          <Label fx:id="saturdayLabel" alignment="CENTER" prefHeight="27.0" prefWidth="212.0" text="Label" />
+                                          <ListView fx:id="saturdayList" prefHeight="570.0" prefWidth="168.0" />
                                        </children>
                                     </VBox>
                                  </children>
                               </HBox>
                               <HBox fx:id="sundaytextarea" minWidth="100.0" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <VBox minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
+                                    <VBox alignment="CENTER" minWidth="100.0" prefHeight="462.0" prefWidth="500.0">
                                        <children>
-                                          <Button fx:id="sundaybutton" mnemonicParsing="false" onMouseClicked="#openbox" text="%calendar.sunday">
+                                          <Button fx:id="sundaybutton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#openbox" styleClass="weekDayButton" text="%calendar.sunday">
                                              <VBox.margin>
                                                 <Insets left="5.0" />
                                              </VBox.margin>
                                           </Button>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true">
-                                             <VBox.margin>
-                                                <Insets left="5.0" right="5.0" top="10.0" />
-                                             </VBox.margin>
-                                          </TextArea>
+                                          <Label fx:id="sundayLabel" alignment="CENTER" prefHeight="27.0" prefWidth="233.0" text="Label" />
+                                          <ListView fx:id="sundayList" prefHeight="562.0" prefWidth="168.0" />
                                        </children>
                                     </VBox>
                                  </children>

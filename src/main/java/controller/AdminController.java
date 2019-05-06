@@ -124,6 +124,13 @@ public class AdminController implements AdminController_IF {
         return daoM.update(f);
     }
 
+    public boolean addCustomerToStaff(Customer customer, Staff staff) {
+		if (daoM.getStaffDAO().addCustomerToStaff(customer, staff)) {
+			return true;
+		}
+		return false;
+	}
+
 	public void updateCustomer(Customer customer) {
 		daoM.update(customer);
 	}

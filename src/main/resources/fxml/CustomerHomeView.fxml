@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
@@ -19,9 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHomeView">
+<AnchorPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.customer.CustomerHomeView">
    <children>
-      <GridPane prefHeight="627.0" prefWidth="1280.0" style="-fx-border-color: #2654a0; -fx-border-style: solid none none none; -fx-border-width: 5px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <GridPane prefHeight="627.0" prefWidth="1280.0" style="-fx-border-color: #2654a0; -fx-border-style: solid none none none; -fx-border-width: 5px; -fx-background-color: #cfe0fc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="569.0" minWidth="10.0" prefWidth="389.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="841.0" minWidth="10.0" prefWidth="519.0" />
@@ -33,29 +32,84 @@
           <RowConstraints maxHeight="208.0" minHeight="10.0" prefHeight="184.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="293.0" prefWidth="597.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+            <VBox prefHeight="505.0" prefWidth="516.0" style="-FX-border-color: #2654a0; -fx-border-width: 4px; -fx-border-radius: 3px;" GridPane.columnIndex="1" GridPane.rowSpan="3">
                <children>
-                  <Label fx:id="welcome" text="Label" />
-                  <VBox alignment="CENTER" fillWidth="false" prefHeight="316.0" prefWidth="419.0" VBox.vgrow="NEVER">
+                  <HBox alignment="CENTER" prefHeight="193.0" prefWidth="452.0">
                      <children>
-                        <ImageView fx:id="imageMe" fitHeight="184.0" fitWidth="150.0" onMouseClicked="#toCustomerCalendar" pickOnBounds="true" preserveRatio="true" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: black;">
+                           <children>
+                              <ImageView fx:id="imageSecond" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectSecondImage" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pictures/editPicture.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="193.0" prefWidth="118.0" style="-fx-border-color: black;">
+                           <children>
+                              <ImageView fx:id="imageThird" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectThirdImage" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../pictures/editPicture.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
                      </children>
-                     <VBox.margin>
-                        <Insets left="50.0" right="50.0" />
-                     </VBox.margin>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="334.0" prefWidth="516.0">
+                     <children>
+                        <Label fx:id="welcome" text="Label" />
+                        <VBox alignment="CENTER" fillWidth="false" prefHeight="316.0" prefWidth="419.0" VBox.vgrow="NEVER">
+                           <children>
+                              <ImageView fx:id="imageMe" fitHeight="184.0" fitWidth="150.0" onMouseClicked="#toCustomerCalendar" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectImageMe" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../pictures/editPicture.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
                   </VBox>
-                  <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectImageMe" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pictures/editPicture.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
                </children>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </GridPane.margin>
             </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="372.0" GridPane.columnIndex="2" GridPane.rowSpan="2">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="369.0" prefWidth="329.0" style="-fx-border-color: #2654a0; -fx-border-width: 4px; -fx-border-radius: 3px;" GridPane.columnIndex="2" GridPane.rowSpan="2">
                <children>
+                  <Label text="\%weather.daysweather" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="279.0">
                      <children>
                         <TextField fx:id="locationField" onKeyPressed="#updateLocation" prefHeight="30.0" prefWidth="220.0">
@@ -90,8 +144,11 @@
                      </font>
                   </Label>
                </children>
+               <GridPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </GridPane.margin>
             </VBox>
-            <VBox prefHeight="88.0" prefWidth="472.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <VBox prefHeight="88.0" prefWidth="472.0" style="-fx-border-color: #2654a0; -fx-border-width: 4px; -fx-border-radius: 3px;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
                   <Label alignment="CENTER" prefHeight="59.0" prefWidth="633.0" text="%health.happiness">
                      <font>
@@ -115,13 +172,13 @@
                   </HBox>
                </children>
                <GridPane.margin>
-                  <Insets />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </GridPane.margin>
             </VBox>
             <VBox alignment="CENTER" prefHeight="160.0" prefWidth="600.0" GridPane.rowIndex="1">
                <children>
                   <Label alignment="CENTER" text="Päivän tapahtumat" />
-                  <ListView fx:id="appointmentReminder" prefHeight="130.0" prefWidth="303.0">
+                  <ListView id="eventList" fx:id="appointmentReminder" prefHeight="185.0" prefWidth="345.0" styleClass="CustomerHomeLists">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -137,51 +194,19 @@
                      </VBox.margin></HBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="193.0" prefWidth="452.0" GridPane.columnIndex="1">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <ImageView fx:id="imageSecond" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectSecondImage" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../pictures/editPicture.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="193.0" prefWidth="118.0">
-                     <children>
-                        <ImageView fx:id="imageThird" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="43.0" fitWidth="43.0" onMouseClicked="#selectThirdImage" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../pictures/editPicture.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </children>
-                  </VBox>
-               </children>
-               <GridPane.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="50.0" />
-               </GridPane.margin>
-            </HBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="169.0" prefWidth="385.0">
                <children>
                   <Label text="Viestisi" />
-                  <TextArea fx:id="messageArea" editable="false" prefHeight="182.0" prefWidth="556.0" wrapText="true">
+                  <ListView id="messageList" fx:id="messageArea" prefHeight="137.0" prefWidth="345.0" style="-fx-background-insets: 0; -fx-padding: 0;">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
-                     </VBox.margin></TextArea>
+                     </VBox.margin>
+                  </ListView>
                </children>
             </VBox>
          </children>
       </GridPane>
-      <GridPane maxHeight="100.0" prefHeight="90.0" prefWidth="1280.0" styleClass="customerMenuWrapper" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane maxHeight="100.0" prefHeight="90.0" prefWidth="1280.0" style="-fx-background-color: #cfe0fc;" styleClass="customerMenuWrapper" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="179.5333251953125" minWidth="10.0" prefWidth="140.0" />
             <ColumnConstraints hgrow="ALWAYS" maxWidth="195.5333251953125" minWidth="10.0" prefWidth="140.0" />

@@ -186,7 +186,7 @@ public class Appointment implements Serializable{
 	public String toStringCustomer() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		String date = getDate().format(formatter);
-		return getTime().truncatedTo(ChronoUnit.MINUTES) +   "  " + date + "  " + getInfo() + ". " + getStaff().getAccessLevel() + " " + getStaff().getSurname() + ", " + getStaff().getFirstName();
+		return getTime().truncatedTo(ChronoUnit.MINUTES) + "  " + getInfo() + ". " + getStaff().getAccessLevel() + " " + getStaff().getSurname() + ", " + getStaff().getFirstName();
 	}
 
 	public String toStringStaff() {
