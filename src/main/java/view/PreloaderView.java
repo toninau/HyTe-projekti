@@ -38,6 +38,7 @@ public class PreloaderView extends Preloader {
 	
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
 	    isEmbedded = (stage.getWidth() > 0);
 		stage.setScene(createPreloaderScene());
 		stage.show();

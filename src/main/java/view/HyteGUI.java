@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +22,7 @@ import java.util.ResourceBundle;
  * 
  */
 
+@SuppressWarnings("restriction")
 public class HyteGUI extends Application{
 
 	private Stage primaryStage;
@@ -30,9 +30,7 @@ public class HyteGUI extends Application{
 	static Locale currentLocale = new Locale("fi", "FI");
 	AnchorPane rootLayout;
 
-	@SuppressWarnings("restriction")
 	public static void main(String[] args) {
-		//launch(args);
 		LauncherImpl.launchApplication(HyteGUI.class, PreloaderView.class, args);
 	}
 
@@ -47,7 +45,6 @@ public class HyteGUI extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Login");
-		//AnchorPane rootLayout = FXMLLoader.load(getClass().getResource(FxmlEnum.LOGIN.getFxml()), bundle);
 		Scene scene = new Scene(rootLayout);
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
 		primaryStage.setScene(scene);

@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import antlr.collections.List;
 import controller.CustomerController;
 import controller.CustomerController_IF;
+import controller.StaffController;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -145,6 +146,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	private ResourceBundle bundle;
 	private CustomerController controller;
+	private StaffController staffController;
 	private String previoustextarea = "jotain";
 	private HashMap<Button, HBox> map = new HashMap<Button, HBox>();
 	private Month month;
@@ -155,7 +157,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	public CustomerCalendarView() {
 		controller = new CustomerController(this);
-
+		staffController = new StaffController(this);
 	}
 
 	public void showDayAppointments(LocalDate date) {
@@ -229,7 +231,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	}
 
 	public void populateGridPane(Month month, int year) {
-		final int MAX_ROW = 7;
+		final int MAX_ROW = 6;
 		final int MAX_COL = 7;
 		int row = 1;
 		int column = 0;
@@ -279,21 +281,36 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		}
 
 		day = 0;
-		while (row < MAX_ROW && column <= MAX_COL) {
+		while (row <= MAX_ROW && column <= MAX_COL) {
 			day++;
-
+			boolean done = false;
+			if (column == MAX_COL) {
+				if (row == MAX_ROW) {
+					done  =true;
+				}
+				column = 0;
+				row++;
+			}
+			if (done) {
+				
+			} else {
 			StackPane p = createGridCell();
 			Label dayLabel = new Label(Integer.toString(day));
 			p.getChildren().add(dayLabel);
 			GridPane.setHalignment(p, HPos.CENTER);
 			p.setDisable(true);
-
-			if (column == MAX_COL) {
-				column = 0;
-				row++;
-			}
 			grid.add(p, column, row);
+			}
+			
+
+
+
+			
+			
 			column++;
+			
+			
+
 		}
 	}
 
@@ -435,6 +452,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	public void createHashMap() {
 		// if (map==null) {
+		System.out.println("AAA");
 		map.put(mondaybutton, mondaytextarea);
 		map.put(tuesdaybutton, tuesdaytextarea);
 		map.put(wednesdaybutton, wednesdaytextarea);
@@ -452,7 +470,16 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		month = LocalDate.now().getMonth();
 		year = LocalDate.now().getYear();
 		day = LocalDate.now().getDayOfMonth();
-		appointments = controller.customersAppointments();
+		if(controller.getLoggedCustomer() != null) {
+			appointments = controller.customersAppointments();
+		}
+		if(staffController.getLoggedStaff() != null) {
+			ObservableList<Appointment> a = staffController.allAppointments();
+			appointments = new Appointment[a.size()];
+			for (int i = 0; i < a.size(); i++) {
+				appointments[i] = a.get(i);
+			}
+		}
 		addAppointmentPane.setVisible(false);
 
 		createHashMap();

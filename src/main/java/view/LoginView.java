@@ -69,10 +69,13 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	private ComboBox<Locale> languageChange;
 	@FXML
 	private ImageView customerUserValidation;
-	@FXML private ImageView customerPasswordValidation;
-	@FXML private ImageView staffUserValidation;
-	@FXML private ImageView staffPasswordValidation;
-	
+	@FXML
+	private ImageView customerPasswordValidation;
+	@FXML
+	private ImageView staffUserValidation;
+	@FXML
+	private ImageView staffPasswordValidation;
+
 	ObservableList<String> imageList;
 	private ResourceBundle bundle;
 	private LoginController_IF c;
@@ -93,6 +96,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 */
 	@FXML
 	public void loginStaff(Event event) throws IOException {
+		loading();
 		String fxml = "";
 		String title = "Login";
 		if (!getUsernameStaff().equals("admin") && !getPasswordStaff().equals("admin")) {
@@ -120,15 +124,17 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 */
 	@FXML
 	public void loginCustomer(Event event) throws IOException {
+		loading();
 		String fxml = FxmlEnum.LOGIN.getFxml();
 		String title = "Welcome!";
-		loading();
-		if (c.checkLoginCustomer(getUsernameCustomer(), getPasswordCustomer())) {	
+
+		if (c.checkLoginCustomer(getUsernameCustomer(), getPasswordCustomer())) {
 			bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 			fxml = FxmlEnum.CUSTOMERHOME.getFxml();
 			title = "Welcome!";
 		}
 		sceneContent(fxml, event, title, bundle);
+
 	}
 
 	public void loginFailed(String msg) {
@@ -155,18 +161,19 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		alert.setContentText(msg);
 		alert.showAndWait();
 	}
-	
+
 	public void inputValidation(KeyEvent event) throws IOException {
 
-		TextField field = (TextField)event.getSource();
-		
-		if(event.getCode().equals(KeyCode.ENTER)) {
-			if(field.getId().equals(usernameAsiakasLogin.getId()) || field.getId().equals(pwAsiakasLogin.getId()))
+		TextField field = (TextField) event.getSource();
+
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			if (field.getId().equals(usernameAsiakasLogin.getId()) || field.getId().equals(pwAsiakasLogin.getId()))
 				loginCustomer(event);
-			if(field.equals(pwLogin) || field.equals(usernameLogin))
+			if (field.equals(pwLogin) || field.equals(usernameLogin))
 				loginStaff(event);
-		}else {
-			if(!event.getCode().isLetterKey() && !event.getCode().isDigitKey() && !event.getCode().equals(KeyCode.BACK_SPACE) && !event.getCode().equals(KeyCode.TAB)) {	
+		} else {
+			if (!event.getCode().isLetterKey() && !event.getCode().isDigitKey()
+					&& !event.getCode().equals(KeyCode.BACK_SPACE) && !event.getCode().equals(KeyCode.TAB)) {
 				switch (field.getId()) {
 				case "usernameAsiakasLogin":
 					customerUserValidation.setVisible(true);
@@ -174,7 +181,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 				case "pwAsiakasLogin":
 					customerPasswordValidation.setVisible(true);
 					break;
-				case  "pwLogin":
+				case "pwLogin":
 					staffPasswordValidation.setVisible(true);
 					break;
 				case "usernameLogin":
@@ -183,7 +190,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 				default:
 					break;
 				}
-			}else {
+			} else {
 				customerUserValidation.setVisible(false);
 				customerPasswordValidation.setVisible(false);
 				staffUserValidation.setVisible(false);
@@ -195,6 +202,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 
 	/**
 	 * Changes the current locale according to combo box value.
+	 * 
 	 * @param event Mouse clicked.
 	 * @throws IOException Loading the fxml file failed.
 	 */
@@ -208,7 +216,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	/**
 	 * Set images for combo box.
 	 */
-	public void languageChangePhotos() {	
+	public void languageChangePhotos() {
 		languageChange.setItems(HyteGUI.getSupportedLocales());
 		languageChange.setCellFactory(new Callback<ListView<Locale>, ListCell<Locale>>() {
 			@Override
@@ -250,7 +258,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 								break;
 							default:
 								flag = new Image(getClass().getResourceAsStream("/pictures/finland_flag.png"));
-								text ="Finnish";
+								text = "Finnish";
 								break;
 							}
 							ImageView iconImageView = new ImageView(flag);
@@ -258,7 +266,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 							iconImageView.setFitWidth(30);
 							iconImageView.setPreserveRatio(true);
 							setGraphic(iconImageView);
-							setText(text);					
+							setText(text);
 						}
 					}
 				};
@@ -267,7 +275,6 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		});
 	}
 
-	
 	/**
 	 * Create tooltips for components.
 	 */
@@ -288,7 +295,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
-		//tooltips();
+		// tooltips();
 		languageChangePhotos();
 		languageChange.setPromptText("Choose a language");
 	}

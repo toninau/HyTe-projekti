@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import java.util.ResourceBundle;
 
-import javafx.application.Application;
-import javafx.application.Platform;
+
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -45,30 +44,34 @@ public class ViewChanger {
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
 			stage.setTitle(title);
-			stage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/finland_flag.png")));
+			stage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
 			stage.show();
-			loaded();
+
 		} catch (IOException e) {
-			System.out.println("Opening scene failed.");
-			e.printStackTrace();
 		}
+		loaded();
 	}
 
-	public void loading() {
-		ImageView iv = new ImageView();
-		iv.setImage(new Image(getClass().getResource("/pictures/tenor.gif").toExternalForm()));
-		BorderPane p = new BorderPane();
-		p.setStyle("-fx-background-color: white");
-		p.setCenter(iv);
-		Scene scene = new Scene(p, 1280, 720);
+	public Stage loading() {
 		loadStage = new Stage();
-		loadStage.setScene(scene);
+		BorderPane pane = new BorderPane();
+		ImageView iv = new ImageView();
+		pane.setStyle("-fx-background-color:  #cfe0fc");
+		iv.setImage(new Image(getClass().getResource("/pictures/logo_1.png").toExternalForm()));
+		iv.setFitWidth(720);
+		iv.setFitHeight(720);
+		pane.setCenter(iv);
+		Scene s = new Scene(pane, 1280, 720);
+		loadStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
+		loadStage.setScene(s);
 		loadStage.show();
+		return loadStage;
 	}
 
 	public void loaded() {
-		if(loadStage!=null)
+		if (loadStage != null)
 			loadStage.hide();
+	
 	}
 
 	/**
@@ -150,52 +153,50 @@ public class ViewChanger {
 		String title = "Health";
 		sceneContent(fxml, event, title, bundle);
 	}
-	
+
 	public void toStaffHome(Event event) {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.STAFFHOME.getFxml();
 		String title = "Home";
 		sceneContent(fxml, event, title, bundle);
 	}
-	
+
 	public void toStaffAppointment(Event event) {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.STAFFAPPOINTMENT.getFxml();
 		String title = "Appointment";
 		sceneContent(fxml, event, title, bundle);
 	}
-	
-	
-	
+
 	public void changeToAddStaff(MouseEvent event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 
 		String fxml = FxmlEnum.ADDSTAFF.getFxml();
-		String title  = "Lisää henkilökuntaa";
+		String title = "Lisää henkilökuntaa";
 		sceneContent(fxml, event, title, bundle);
 	}
-	
+
 	public void changeToEditStaff(MouseEvent event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 
-		String fxml =  FxmlEnum.EDITSTAFF.getFxml();
-		String title  = "Muokkaa henkilökuntaa";
+		String fxml = FxmlEnum.EDITSTAFF.getFxml();
+		String title = "Muokkaa henkilökuntaa";
 		sceneContent(fxml, event, title, bundle);
 	}
-	
+
 	public void changeToAddCustomer(MouseEvent event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 
 		String fxml = FxmlEnum.ADDCUSTOMER.getFxml();
-		String title  = "Lisää asiakkaita";
+		String title = "Lisää asiakkaita";
 		sceneContent(fxml, event, title, bundle);
 	}
-	
-	public void changeToEditCustomer (MouseEvent event) throws IOException {
+
+	public void changeToEditCustomer(MouseEvent event) throws IOException {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 
 		String fxml = FxmlEnum.EDITCUSTOMER.getFxml();
-		String title  = "Muokkaa asiakkaita";
+		String title = "Muokkaa asiakkaita";
 		sceneContent(fxml, event, title, bundle);
 	}
 

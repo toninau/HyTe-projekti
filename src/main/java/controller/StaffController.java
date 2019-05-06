@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.*;
+import view.customer.CustomerCalendarView;
 import view.staff.StaffAppointmentView;
 import view.staff.StaffHomeView;
 
@@ -38,6 +39,11 @@ public class StaffController implements StaffController_IF{
 	public StaffController(StaffAppointmentView appointmentView) {
 		this.appointmentView = appointmentView;
 		if (daom == null)
+			daom = new DAOManager();
+	}
+	
+	public StaffController(CustomerCalendarView calendarView) {
+		if(daom==null)
 			daom = new DAOManager();
 	}
 
