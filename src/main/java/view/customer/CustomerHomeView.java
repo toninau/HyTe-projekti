@@ -35,6 +35,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -372,7 +373,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	}
 	public String timeOfDay() {
 		String s;
-		int h = Calendar.HOUR_OF_DAY;
+		int h = LocalTime.now().getHour();
 		if (h < 11 ) {
 			s = bundle.getString("welcome.morning");
 		} else if (h < 17) {
@@ -403,7 +404,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		showPrescription();
 		showAppointments();
 		showImage();
-		messageBox.setText("HELLOOOOO");
+		
 		
 		
 	}
