@@ -334,15 +334,15 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 			weatherCelsius.setText(weather.getCelsius() + "\u00b0C");
 			switch (weather.getState()) {
 			case "Clouds":
-				image = new Image(getClass().getResourceAsStream("/pictures/finland_flag.png"));
+				image = new Image(getClass().getResourceAsStream("/pictures/cloud.png"));
 				weatherState.setText(bundle.getString("weather.clouds"));
 				break;
 			case "Rain":
-				image = new Image(getClass().getResourceAsStream("/pictures/uk_flag.png"));
+				image = new Image(getClass().getResourceAsStream("/pictures/rain.png"));
 				weatherState.setText(bundle.getString("weather.rain"));
 				break;
 			case "Clear":
-				image = new Image(getClass().getResourceAsStream("/pictures/spain_flag.png"));
+				image = new Image(getClass().getResourceAsStream("/pictures/sunny.png"));
 				weatherState.setText(bundle.getString("weather.sunny"));
 				break;
 			case "Haze":
@@ -350,7 +350,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 				weatherState.setText(bundle.getString("weather.sunny"));
 				break;
 			default:
-				image = new Image(getClass().getResourceAsStream("/pictures/sweden_flag.png"));
+				image = new Image(getClass().getResourceAsStream("/pictures/rain.png"));
 				break;
 			}
 		} catch (Exception e) {
@@ -399,7 +399,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		String welcomeText = timeOfDay();
 		welcome.setText(welcomeText + " " + controller.getLoggedCustomer().getFirstName());
 		TextFields.bindAutoCompletion(locationField, SuggestionProvider.create(controller.locationSuggestions()));
-		// showWeather(loc);
+		showWeather(loc);
 		showMessages();
 		showPrescription();
 		showAppointments();
