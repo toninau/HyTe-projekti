@@ -96,7 +96,7 @@ public class LoginViewTest extends ApplicationTest{
     	clickOn("#pwLogin");
     	write("admin");
     	clickOn("#loginBtn");
-    	assertTrue(stage.getTitle().equals("Menu"));
+    	assertTrue(stage.getTitle().equals("Welcome"));
     }
     
     

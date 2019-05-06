@@ -61,6 +61,7 @@ public class ViewChanger {
 		iv.setFitWidth(720);
 		iv.setFitHeight(720);
 		pane.setCenter(iv);
+		loadStage.setTitle("Welcome");
 		Scene s = new Scene(pane, 1280, 720);
 		loadStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
 		loadStage.setScene(s);
@@ -157,7 +158,7 @@ public class ViewChanger {
 	public void toStaffHome(Event event) {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.STAFFHOME.getFxml();
-		String title = "Home";
+		String title = "Welcome";
 		sceneContent(fxml, event, title, bundle);
 	}
 
