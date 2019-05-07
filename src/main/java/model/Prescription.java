@@ -23,6 +23,8 @@ public class Prescription implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final String PATTERN = "dd.MM.yyyy";
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,8 +88,8 @@ public class Prescription implements Serializable {
 	 */
 	public Prescription(String startDate, String endDate, String prescriptionName, String prescriptionGuide, String timeToTake, String dosage,
 			boolean renewPrescription, Customer customer, Staff staff) {
-		this.startDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        this.endDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		this.startDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern(PATTERN));
+        this.endDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern(PATTERN));
         this.prescriptionName = prescriptionName;
 		this.prescriptionGuide = prescriptionGuide;
 		this.timeToTake = timeToTake;
@@ -127,7 +129,7 @@ public class Prescription implements Serializable {
 	 * @param startDate date when prescription started
 	 */
 	public void setStartDate(String startDate) {
-		LocalDate localDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		LocalDate localDate = LocalDate.parse(startDate, DateTimeFormatter.ofPattern(PATTERN));
 		this.startDate = localDate;
 	}
 	
@@ -144,7 +146,7 @@ public class Prescription implements Serializable {
 	 * @param endDate date when prescription is going to end
 	 */
 	public void setEndDate(String endDate) {
-		LocalDate localDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		LocalDate localDate = LocalDate.parse(endDate, DateTimeFormatter.ofPattern(PATTERN));
 		this.endDate = localDate;
 	}
 	
@@ -241,11 +243,11 @@ public class Prescription implements Serializable {
 	}
 
 	public void setTakenAt(String takenAt) {
-		LocalDateTime localDateTime = LocalDateTime.parse(takenAt, DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm"));
+		LocalDateTime localDateTime = LocalDateTime.parse(takenAt, DateTimeFormatter.ofPattern(PATTERN+  " HH.mm"));
 		this.takenAt = localDateTime;
 	}
 	
 	public String toStringAllInfo() {
-		return getStartDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " - " + getEndDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " " + getPrescriptionGuide() + ". " + getStaff().getAccessLevel() + " " + getStaff().getSurname() + ", " + getStaff().getFirstName();
+		return getStartDate().format(DateTimeFormatter.ofPattern(PATTERN)) + " - " + getEndDate().format(DateTimeFormatter.ofPattern(PATTERN)) + " " + getPrescriptionGuide() + ". " + getStaff().getAccessLevel() + " " + getStaff().getSurname() + ", " + getStaff().getFirstName();
 	}
 }

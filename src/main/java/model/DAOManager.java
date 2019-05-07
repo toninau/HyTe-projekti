@@ -1,16 +1,5 @@
 package model;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-
-import javax.imageio.ImageIO;
-
 import org.hibernate.SessionFactory;
 
 import dao.AppointmentDAO;
@@ -41,10 +30,9 @@ public class DAOManager implements DAOManager_IF {
 	private SessionFactory s;
 	private ImageLoader i;
 	private InfoLoader info;
-	File file;
 
 	/**
-	 * Class constructor to get the SessionFactory.
+	 * Class constructor to get the SessionFactory, ImageLoader and InfoLoader singletons.
 	 */
 	public DAOManager() {
 		s = HibernateUtil.getSessionFactory(false);
@@ -52,6 +40,14 @@ public class DAOManager implements DAOManager_IF {
 		info = InfoLoader.getInfoLoader();
 	}
 
+	/**
+	 * Writes all the customer's information to temporary files.
+	 * @param customer Logged in customer.
+	 * @see InfoLoader#writeAppointmentsToFile(Customer)
+	 * @see InfoLoader#writeBloodvaluesToFile(Customer)
+	 * @see InfoLoader#writePrescriptionsToFile(Customer)
+	 * @see ImageLoader#writeImagesToFile(Customer)
+	 */
 	public void writeAllCustomerInformation(Customer customer) {
 		info.writeAppointmentsToFile(customer);
 		info.writePrescriptionsToFile(customer);
@@ -59,29 +55,50 @@ public class DAOManager implements DAOManager_IF {
 		i.writeImagesToFile(customer);	
 	}
 	
+	/**
+	 * Method for writing customer's image to a file during session.
+	 * @param customer The logged in customer.
+	 * @see ImageLoader#writeImagesToFile(Customer)
+	 */
 	public void writeImageToFileDuringSession(Customer customer) {
 		i.writeImagesToFile(customer);
 	}
 
+	/**
+	 * Reads customer's images from file.
+	 * @see ImageLoader#readCustomerImages()
+	 */
 	public UserImage[] readCustomerImages() {
 		return i.readCustomerImages();
 	}
 
+	/**
+	 * Reads customer's appointments from file.
+	 * @see InfoLoader#readAppointmentsFromFile()
+	 */
 	public Appointment[] readCustomerAppointments() {
 		return info.readAppointmentsFromFile();
 	}
 	
+	/**
+	 * Reads customer's prescriptions from file.
+	 * @see InfoLoader#readPrescriptionsFromFile()
+	 */
 	public Prescription[] readCustomerPrescriptions() {
 		return info.readPrescriptionsFromFile();
 	}
 	
+	/**
+	 * Reads customer's blood values from file.
+	 * @see InfoLoader#readBloodValuesFromFile()
+	 */
 	public BloodValue[] readCustomerBloodValues() {
 		return info.readBloodValuesFromFile();
 	}
 
 	/**
-	 * 
-	 * @param obj
+	 * Create method for all objects.
+	 * @param obj Object to be created.
 	 */
 	public void create(Object obj) {
 		if (obj instanceof Staff) {
@@ -96,11 +113,14 @@ public class DAOManager implements DAOManager_IF {
 			getNotificationDAO().create((Notification) obj);
 		} else if (obj instanceof BloodValue) {
 			getBloodValueDAO().create((BloodValue) obj);
-		} else {
-			System.out.println("ei ole");
-		}
+		} 
 	}
 
+	/**
+	 * Update method for all objects.
+	 * @param Object to be updated.
+	 * @return true if update succeeded.
+	 */
 	public boolean update(Object obj) {
 		if (obj instanceof Staff)
 			return getStaffDAO().update((Staff) obj);

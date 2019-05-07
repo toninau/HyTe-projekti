@@ -22,6 +22,7 @@ public class Appointment implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final String PATTERN = "dd.MM.yyyy";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +48,7 @@ public class Appointment implements Serializable{
 	private Staff staff;
 
 	
-	private final String PATTERN = "dd.MM.yyyy";
+	
 	/**
 	 * Standard appointment constructor.
 	 * 

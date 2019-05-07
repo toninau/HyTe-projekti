@@ -5,16 +5,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
-
-import org.hibernate.SessionFactory;
 
 import dao.UserImageDAO;
 
@@ -44,7 +39,10 @@ public class ImageLoader {
 		userImages = userImageDAO.readCustomerUserImages(customer);
 		for (int j = 0; j < userImages.length; j++) {
 			imageNames[j] = userImages[j].getImageName();
-			try (FileOutputStream os = new FileOutputStream(files[j] = File.createTempFile("userimages", null))) {
+			try{
+				files[j] = File.createTempFile("userimages", null);
+			} catch (IOException e1) {}
+			try (FileOutputStream os = new FileOutputStream(files[j])) {
 				BufferedImage img = ImageIO.read(new ByteArrayInputStream(userImages[j].getImage()));
 				ImageIO.write(img, "png", files[j]);
 				files[j].deleteOnExit();

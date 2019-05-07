@@ -34,7 +34,6 @@ public class HibernateUtil {
 				registry = new StandardServiceRegistryBuilder().configure().build();
 			}
 			istuntotehdas = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-			System.out.println("tehdas tulilla");
 		}
 		return istuntotehdas;
 	}
