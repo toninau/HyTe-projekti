@@ -15,6 +15,7 @@ import model.Customer;
 import model.DAOManager;
 import model.HibernateUtil;
 import model.Illness;
+import model.InfoLoader;
 import model.Prescription;
 import model.Staff;
 import view.customer.CustomerCalendarView;
@@ -79,8 +80,9 @@ public class CustomerControllerTest {
 	 */
 	@Test
 	public void customersAppointmentsTest() {
-		Appointment a = new Appointment("24.04.2019", "10.00", "lääkäriaika", customer, staff);
+		Appointment a = new Appointment("24.04.2019", "10:00", "lääkäriaika", customer, staff);
 		daom.getAppointmentDAO().create(a);
+		daom.writeAllCustomerInformation(customer);
 		assertTrue(customerController.customersAppointments()[0].getInfo().equals("lääkäriaika"));
 	}
 
@@ -91,7 +93,9 @@ public class CustomerControllerTest {
 	public void prescriptionsTest() {
 		Prescription p = new Prescription("24.04.2019", "24.04.2020", "Burana", "Tarvittaessa kipuun", "tarvittaessa",
 				"2x400mg", false, customer, staff);
+
 		daom.getPrescriptionDAO().create(p);
+		daom.writeAllCustomerInformation(customer);
 		assertTrue(customerController.prescriptions()[0].getPrescriptionName().equals("Burana"));
 	}
 

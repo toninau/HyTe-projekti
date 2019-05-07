@@ -25,7 +25,7 @@ public class AppointmentDAOTest {
 	private static SessionFactory sf;
 	@BeforeEach
 	public void setTest() {
-		sf = HibernateUtil.getSessionFactory(false);
+		sf = HibernateUtil.getSessionFactory(true);
 		cDAO = new CustomerDAO(sf);
 		sDAO = new StaffDAO(sf);
 		aDAO = new AppointmentDAO(sf);
@@ -55,8 +55,8 @@ public class AppointmentDAOTest {
 		assertTrue(aDAO.create(appointment), "create(appointment): Failed to create appointment.");
 		//Read appointment
 		appointment = aDAO.read(1);
-		assertEquals("FirstName", appointment.getCustomer().getFirstName(), "read(id): Failed to read appointment customer");
-		assertEquals("FirstName", appointment.getStaff().getFirstName(), "read(id): Failed to read appointment staff member");
+		assertEquals("Firstame", appointment.getCustomer().getFirstName(), "read(id): Failed to read appointment customer");
+		assertEquals("Firstname", appointment.getStaff().getFirstName(), "read(id): Failed to read appointment staff member");
 		assertEquals(LocalDate.of(2020, 12, 12), appointment.getDate(), "read(id): Failed to read appointment date");
 		assertEquals("Info", appointment.getInfo(), "read(id): Failed to read appointment info");
 		assertEquals(LocalTime.of(12, 12), appointment.getTime(), "read(id): Failed to read appointment time");
@@ -88,7 +88,7 @@ public class AppointmentDAOTest {
 	
 	private Customer createCustomer() {
 		Customer customer = new Customer();
-		customer.setFirstName("FirstName");
+		customer.setFirstName("Firstname");
 		customer.setSurname("Surname");
 		customer.setSSN("SSN");
 		customer.setIceNumber("ICEnumber");

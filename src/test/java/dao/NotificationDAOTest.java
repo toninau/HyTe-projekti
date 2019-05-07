@@ -42,8 +42,8 @@ public class NotificationDAOTest {
 		n = nDAO.read(1);
 		assertEquals("date", n.getDate(), "read(id): Failed to read notification date");
 		assertEquals("text", n.getText(), "read(id): Failed to read notification text");
-		assertEquals("FirstName", n.getCustomer().getFirstName(), "read(id): Failed to read notification customer");
-		assertEquals("FirstName", n.getStaff().getFirstName(), "read(id): Failed to read notification staff");
+		assertEquals("Firstname", n.getCustomer().getFirstName(), "read(id): Failed to read notification customer");
+		assertEquals("Firstname", n.getStaff().getFirstName(), "read(id): Failed to read notification staff");
 		assertFalse(n.isRead(), "read(id): Failed to read notification read");
 		//Read customers notifications
 		Notification[] notifications = nDAO.readCustomersNotifications(customer);
@@ -66,7 +66,7 @@ public class NotificationDAOTest {
 	
 	private Customer createCustomer() {
 		Customer customer = new Customer();
-		customer.setFirstName("FirstName");
+		customer.setFirstName("Firstname");
 		customer.setSurname("Surname");
 		customer.setSSN("SSN");
 		customer.setIceNumber("ICEnumber");
@@ -80,7 +80,7 @@ public class NotificationDAOTest {
 	
 	private Staff createStaff() {
 		Staff staff = new Staff();
-		staff.setFirstName("FirstName");
+		staff.setFirstName("Firstname");
 		staff.setSurname("Surname");
 		staff.setPhoneNumber("PhoneNumber");
 		staff.setPassword("Password");
