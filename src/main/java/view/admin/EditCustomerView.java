@@ -1,6 +1,5 @@
 package view.admin;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -13,10 +12,9 @@ import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
 import model.Customer;
 import view.HyteGUI;
 import view.ViewChanger;
@@ -153,28 +151,6 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 		alert.showAndWait();
 	}
 
-	
-	/**
-	 * Changes scene back to Login view.
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 */
-	public void logout(MouseEvent event) throws IOException {
-		logoutForAll(event);
-	}
-	
-	/**
-	 * Changes scene back to Admin's menu view.
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 */
-	public void toMenu(MouseEvent event) throws IOException {
-		toAdminMenu(event);
-
-	}
-	
-	
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());

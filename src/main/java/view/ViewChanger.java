@@ -51,7 +51,10 @@ public class ViewChanger {
 		loaded();
 	}
 
-	public Stage loading() {
+	/**
+	 * Loading scene to be shown when fetching all the user's information after logging in.
+	 */
+	public void loading() {
 		loadStage = new Stage();
 		BorderPane pane = new BorderPane();
 		ImageView iv = new ImageView();
@@ -65,13 +68,14 @@ public class ViewChanger {
 		loadStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
 		loadStage.setScene(s);
 		loadStage.show();
-		return loadStage;
 	}
 
+	/**
+	 * Method for closing the loading screen.
+	 */
 	public void loaded() {
 		if (loadStage != null)
 			loadStage.hide();
-	
 	}
 
 	/**
@@ -79,7 +83,7 @@ public class ViewChanger {
 	 * 
 	 * @param event Mouse clicked.
 	 */
-	public void logoutForAll(Event event) throws IOException {
+	public void logoutForAll(Event event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.LOGIN.getFxml();
 		String title = "Login";
@@ -87,25 +91,11 @@ public class ViewChanger {
 	}
 
 	/**
-	 * Method for all admin views. Returns user to admin menu view.
-	 * 
-	 * @param event Mouse clicked.
-	 * @throws IOException
-	 */
-	public void toAdminMenu(MouseEvent event) throws IOException {
-		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
-		String fxml = FxmlEnum.ADMINMENU.getFxml();
-		String title = "Menu";
-		sceneContent(fxml, event, title, bundle);
-	}
-
-	/**
 	 * Method for all customer's views for changing scene to customer's home view.
 	 * 
-	 * @param event
-	 * @throws IOException
+	 * @param event Mouse clicked.
 	 */
-	public void toCustomerHome(Event event) throws IOException {
+	public void toCustomerHome(Event event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.CUSTOMERHOME.getFxml();
 		String title = "Home";
@@ -116,10 +106,9 @@ public class ViewChanger {
 	 * Method for all customer's views for changing the scene to customer's calendar
 	 * view.
 	 * 
-	 * @param event
-	 * @throws IOException
+	 * @param event Mouse clicked.
 	 */
-	public void toCustomerCalendar(Event event) throws IOException {
+	public void toCustomerCalendar(Event event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.CUSTOMERCALENDAR.getFxml();
 		String title = "Calendar";
@@ -130,10 +119,9 @@ public class ViewChanger {
 	 * Method for all customer's views for changing the scene to customer's help
 	 * view.
 	 * 
-	 * @param event
-	 * @throws IOException
+	 * @param event Mouse clicked.
 	 */
-	public void toCustomerHelp(Event event) throws IOException {
+	public void toCustomerHelp(Event event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.CUSTOMERHELP.getFxml();
 		String title = "Help";
@@ -144,16 +132,19 @@ public class ViewChanger {
 	 * Method for all customer's views for changing the scene to customer's health
 	 * view.
 	 * 
-	 * @param event
-	 * @throws IOException
+	 * @param event Mouse clicked.
 	 */
-	public void toCustomerHealth(Event event) throws IOException {
+	public void toCustomerHealth(Event event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.CUSTOMERHEALTH.getFxml();
 		String title = "Health";
 		sceneContent(fxml, event, title, bundle);
 	}
 
+	/**
+	 * Method for all staff's views for changing the scene to home screen.
+	 * @param event Mouse clicked.
+	 */
 	public void toStaffHome(Event event) {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.STAFFHOME.getFxml();
@@ -161,6 +152,10 @@ public class ViewChanger {
 		sceneContent(fxml, event, title, bundle);
 	}
 
+	/**
+	 * Method for all staff's views for changing the scene to appointment screen.
+	 * @param event Mouse clicked.
+	 */
 	public void toStaffAppointment(Event event) {
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
 		String fxml = FxmlEnum.STAFFAPPOINTMENT.getFxml();
@@ -168,35 +163,47 @@ public class ViewChanger {
 		sceneContent(fxml, event, title, bundle);
 	}
 
-	public void changeToAddStaff(MouseEvent event) throws IOException {
+	/**
+	 * Method for all admin's views for changing the scene to add staff screen.
+	 * @param event Mouse clicked.
+	 */
+	public void changeToAddStaff(MouseEvent event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
-
 		String fxml = FxmlEnum.ADDSTAFF.getFxml();
-		String title = "Lisää henkilökuntaa";
+		String title = bundle.getString("addStaffButton.text");
 		sceneContent(fxml, event, title, bundle);
 	}
 
-	public void changeToEditStaff(MouseEvent event) throws IOException {
+	/**
+	 * Method for all admin's views for changing the scene to edit staff screen.
+	 * @param event Mouse clicked.
+	 */
+	public void changeToEditStaff(MouseEvent event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
-
 		String fxml = FxmlEnum.EDITSTAFF.getFxml();
-		String title = "Muokkaa henkilökuntaa";
+		String title = bundle.getString("editStaffButton.text");
 		sceneContent(fxml, event, title, bundle);
 	}
 
-	public void changeToAddCustomer(MouseEvent event) throws IOException {
+	/**
+	 * Method for all admin's views for changing the scene to add customer screen.
+	 * @param event Mouse clicked.
+	 */
+	public void changeToAddCustomer(MouseEvent event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
-
 		String fxml = FxmlEnum.ADDCUSTOMER.getFxml();
-		String title = "Lisää asiakkaita";
+		String title = bundle.getString("addCustomerButton.text");
 		sceneContent(fxml, event, title, bundle);
 	}
 
-	public void changeToEditCustomer(MouseEvent event) throws IOException {
+	/**
+	 * Method for all admin's views for changing the scene to edit customer screen.
+	 * @param event Mouse clicked.
+	 */
+	public void changeToEditCustomer(MouseEvent event){
 		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
-
 		String fxml = FxmlEnum.EDITCUSTOMER.getFxml();
-		String title = "Muokkaa asiakkaita";
+		String title = bundle.getString("editCustomerButton.text");
 		sceneContent(fxml, event, title, bundle);
 	}
 

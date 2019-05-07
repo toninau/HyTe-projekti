@@ -5,7 +5,6 @@ public enum FxmlEnum {
 	/**
 	 * fxml files for admin
 	 */
-	ADMINMENU("/fxml/AdminMenuView.fxml"),
 	ADDSTAFF("/fxml/AddStaffView.fxml"),
 	ADDCUSTOMER("/fxml/AddCustomerView.fxml"),
 	EDITSTAFF("/fxml/EditStaffView.fxml"),
@@ -30,6 +29,10 @@ public enum FxmlEnum {
 	
 	private String fxmlName;
 	
+	/**
+	 * Fxml enum constructor.
+	 * @param fxmlName Name of the fxml.
+	 */
 	FxmlEnum(String fxmlName){
 		this.fxmlName = fxmlName;
 	}
@@ -38,8 +41,5 @@ public enum FxmlEnum {
         return fxmlName;
     }
  
-    @Override
-    public String toString() {
-        return fxmlName;
-    }
+ 
 }

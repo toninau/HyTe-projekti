@@ -1,19 +1,21 @@
 package view.admin;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import controller.AdminController;
 import controller.AdminController_IF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Class for adding staff members to database.
@@ -71,23 +73,6 @@ public class AddStaffView extends ViewChanger implements Initializable, AddStaff
 		alert.showAndWait();
 	}
 	
-	/**
-	 * Changes scene back to Login view.
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 */
-	public void logout(MouseEvent event) throws IOException {
-		logoutForAll(event);
-	}
-	
-	/**
-	 * Changes scene back to Admin's menu view.
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 */
-	public void toMenu(MouseEvent event) throws IOException {
-		toAdminMenu(event);
-	}
 	
 	/**
 	 * Returns the text written in the first name -field.

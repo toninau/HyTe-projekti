@@ -1,12 +1,7 @@
 package view.admin;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
-
-import javax.sound.midi.VoiceStatus;
 
 import controller.AdminController;
 import controller.AdminController_IF;
@@ -17,9 +12,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
@@ -77,25 +70,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 		}
 	}
 	
-	/**
-	 * Changes scene back to Login view.
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * 
-	 */
-	public void logout(MouseEvent event) throws IOException {
-		logoutForAll(event);
-	}
-	
-	/**
-	 * Changes scene back to Admin's menu view.
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 */
-	public void toMenu(MouseEvent event) throws IOException {
-		toAdminMenu(event);
-	}
-	
+
 	public void alert() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error");

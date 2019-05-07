@@ -3,13 +3,8 @@ package dao;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.Clock;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
-
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,10 +22,10 @@ public class AppointmentDAOTest {
 	private static CustomerDAO cDAO;
 	private static StaffDAO sDAO;
 	private static AppointmentDAO aDAO;
-	
+	private static SessionFactory sf;
 	@BeforeEach
 	public void setTest() {
-		SessionFactory sf = HibernateUtil.getSessionFactory(false);
+		sf = HibernateUtil.getSessionFactory(false);
 		cDAO = new CustomerDAO(sf);
 		sDAO = new StaffDAO(sf);
 		aDAO = new AppointmentDAO(sf);
@@ -41,6 +36,7 @@ public class AppointmentDAOTest {
 		cDAO.delete("firsur");
 		sDAO.delete("firsur");
 		aDAO.delete(1);
+		sf.close();
 		
 	}
 	

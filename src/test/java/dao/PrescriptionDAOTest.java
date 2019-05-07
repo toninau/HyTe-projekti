@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +20,19 @@ public class PrescriptionDAOTest {
 	private StaffDAO sDAO;
 	private CustomerDAO cDAO;
 	private PrescriptionDAO pDAO;
+	SessionFactory sf;
 	
 	@BeforeEach
 	public void setTest() {
-		SessionFactory sf = HibernateUtil.getSessionFactory(true);
+		sf = HibernateUtil.getSessionFactory(true);
 		cDAO = new CustomerDAO(sf);
 		sDAO = new StaffDAO(sf);
 		pDAO = new PrescriptionDAO(sf);
+	}
+	
+	@AfterAll
+	public void tearDown() {
+		sf.close();
 	}
 	
 	@Test

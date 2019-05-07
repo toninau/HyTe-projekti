@@ -1,5 +1,11 @@
 package view.admin;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import org.controlsfx.control.textfield.TextFields;
+
 import controller.AdminController;
 import controller.AdminController_IF;
 import controller.StaffController;
@@ -9,20 +15,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import model.Customer;
 import model.Staff;
-import org.controlsfx.control.textfield.TextFields;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 /**
  * Class for editing staff members in database.
@@ -192,26 +195,6 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		alert.showAndWait();
 	}
 	
-	
-	/**
-	 * Changes scene back to Login view.
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger;
-	 */
-	public void logout(MouseEvent event) throws IOException {
-		logoutForAll(event);
-	}
-	
-	/**
-	 * Changes scene back to Admin's menu view.
-	 * @param event Mouse clicked.
-	 * @throws IOException Loading fxml file failed.
-	 * @see view.ViewChanger#toAdminMenu(MouseEvent);
-	 */
-	public void toMenu(MouseEvent event) throws IOException {
-		toAdminMenu(event);
-	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

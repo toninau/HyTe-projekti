@@ -14,6 +14,7 @@ import model.Appointment;
 import model.Customer;
 import model.DAOManager;
 import model.HibernateUtil;
+import model.Illness;
 import model.Prescription;
 import model.Staff;
 import view.customer.CustomerCalendarView;
@@ -31,6 +32,7 @@ public class CustomerControllerTest {
 	private static Customer customer;
 	private static DAOManager daom;
 	private static Staff staff;
+	static SessionFactory istuntotehdas;
 
 	/**
 	 * Set up before tests. Creates a test customer and a staff member. Sets the created customer
@@ -38,16 +40,15 @@ public class CustomerControllerTest {
 	 */
 	@BeforeAll
 	public static void setUp() {
-		SessionFactory istuntotehdas = HibernateUtil.getSessionFactory(true);
+		istuntotehdas = HibernateUtil.getSessionFactory(true);
 		daom = new DAOManager();
 		customerController = new CustomerController();
 		customer = new Customer("Jane", "Doe", "112405-1222", "Homestreet 1", "0502145523", "020202", "password");
 		daom.getCustomerDAO().create(customer);
-
 		staff = new Staff("Mark", "Manson", "0401234568", "Doctor", "passowrd");
 		daom.getStaffDAO().create(staff);
 
-		customerController.loggedCustomer(customer);
+		CustomerController.loggedCustomer(customer);
 	}
 
 	/**
@@ -55,6 +56,7 @@ public class CustomerControllerTest {
 	 */
 	@AfterAll
 	public static void tearDown() {
+		istuntotehdas.close();
 		daom.getCustomerDAO().delete("jandoe");
 		daom.getStaffDAO().delete("marman");
 		daom.getPrescriptionDAO().delete(1);
@@ -76,23 +78,23 @@ public class CustomerControllerTest {
 	/**
 	 * Tests getting all the logged customer's appointments.
 	 */
-	/*@Test
+	@Test
 	public void customersAppointmentsTest() {
 		Appointment a = new Appointment("24.04.2019", "10.00", "lääkäriaika", customer, staff);
 		daom.getAppointmentDAO().create(a);
 		assertTrue(customerController.customersAppointments()[0].getDate().equals("24.04.2019"));
-	}*/
+	}
 
 	/**
 	 * Tests getting all the logged customer's prescriptions.
 	 */
-	/*@Test
+	@Test
 	public void prescriptionsTest() {
 		Prescription p = new Prescription("24.04.2019", "24.04.2020", "Burana", "Tarvittaessa kipuun", "tarvittaessa",
 				"2x400mg", false, customer, staff);
 		daom.getPrescriptionDAO().create(p);
 		assertTrue(customerController.prescriptions()[0].getPrescriptionName().equals("Burana"));
-	}*/
+	}
 
 	/**
 	 * Tests returning the current customer logged in.
