@@ -36,7 +36,7 @@ public class AdminControllerTest {
 		daom = new DAOManager();
 		customer = new Customer("John", "Smith", "12345", "Homestead 5", "040124567", "0501234567", "password");
 		daom.getCustomerDAO().create(customer);
-		staff = new Staff("Jane", "Doe", "0401234568", "Doctor", "passowrd");
+		staff = new Staff("Jane", "Dae", "0401234568", "Doctor", "passowrd");
 		daom.getStaffDAO().create(staff);
 	}
 	
@@ -44,7 +44,7 @@ public class AdminControllerTest {
 	public static void tearDown() {
 		daom.getCustomerDAO().delete("johsmi");
 		daom.getCustomerDAO().delete("marsmi");
-		daom.getStaffDAO().delete("jandoe");
+		daom.getStaffDAO().delete("jandae");
 		daom.getStaffDAO().delete("marman");
 		daom.getStaffDAO().delete("marman2");
 		daom.getCustomerDAO().delete("t@testi.com");
@@ -61,7 +61,7 @@ public class AdminControllerTest {
 	
 	@Test
 	public void updateStaffTest() {
-		assertTrue(staff.getSurname().equals("Doe"));
+		assertTrue(staff.getSurname().equals("Dae"));
 		staff.setSurname("Doa");
 		adminController.updateStaff(staff);
 		assertTrue(staff.getSurname().equals("Doa"));
@@ -127,7 +127,7 @@ public class AdminControllerTest {
 	 */
 	@Test
 	public void findStaffWithIDTest() {
-		assertTrue(adminController.findStaffWithID("jandoe").getFirstName().equals("Jane"));
+		assertTrue(adminController.findStaffWithID("jandae").getFirstName().equals("Jane"));
 	}
 	
 	@Test
