@@ -73,7 +73,6 @@ public class IllnessDAO {
 			result = query.list().toArray(new Illness[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}

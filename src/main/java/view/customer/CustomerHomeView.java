@@ -111,7 +111,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 					controller.imageToDatabase(selectedFile, imageSlot);
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
 			}
 		}
 	}
@@ -187,8 +186,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 					Image image = SwingFXUtils.toFXImage(img, null);
 					imagev.setImage(image);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 		}
@@ -354,7 +351,6 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 				break;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		weatherImageView.setImage(image);
 		weatherImageView.setFitHeight(50);
@@ -403,10 +399,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 		showMessages();
 		showPrescription();
 		showAppointments();
-		showImage();
-		
-		
-		
+		showImage();	
 	}
 
 	/**

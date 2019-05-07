@@ -72,7 +72,6 @@ public class BloodValueDAO {
 			result = query.list().toArray(new BloodValue[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}

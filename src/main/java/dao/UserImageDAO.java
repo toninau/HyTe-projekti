@@ -66,9 +66,7 @@ public class UserImageDAO {
 			session.load(image, id);
 			session.getTransaction().commit();
 		} catch (ObjectNotFoundException oe) {
-			System.out.println("Image not found");
 		} catch (HibernateException e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -93,7 +91,6 @@ public class UserImageDAO {
 			result = query.list().toArray(new UserImage[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -117,9 +114,7 @@ public class UserImageDAO {
 			img.setImage(userImage.getImage());
 			img.setImageName(userImage.getImageName());
 			success = true;
-		} else {
-			System.out.println("Nothing to update");
-		}
+		} 
 		session.getTransaction().commit();
 		session.close();
 		return success;

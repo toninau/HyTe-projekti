@@ -114,7 +114,6 @@ public class CustomerDAO {
 		} catch (ObjectNotFoundException oe) {
 			System.out.println("Customer not found");
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -136,7 +135,6 @@ public class CustomerDAO {
 			result = session.createQuery("from Customer").list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -162,7 +160,6 @@ public class CustomerDAO {
 			result = query.list().toArray(new Staff[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -192,7 +189,6 @@ public class CustomerDAO {
 			a.setPassword(customer.getPassword());
 			success = true;
 		} else {
-			System.out.println("Nothing to update");
 		}
 		istunto.getTransaction().commit();
 		istunto.close();

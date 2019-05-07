@@ -268,7 +268,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 			column++;
 
 			if (checkAppointments(day, month.getValue(), year)) {
-				p.setStyle("-fx-background-color: red");
+				p.setStyle("-fx-background-color: #cfe0fc");
 				p.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 					calendarTabPane.getSelectionModel().select(dayTab);
 					day = Integer.parseInt(dayLabel.getText());

@@ -143,8 +143,8 @@
 }
 
 .currentDate{
-	-fx-border-color: yellow;
-	-fx-border-width: 2.0px;
+	-fx-border-color: black;
+	-fx-border-width: 4.0px;
     -fx-background-insets: 0.0, 0.0 0.0 1.0 1.0 ;
     -fx-background-color: #1f4b93;
 }

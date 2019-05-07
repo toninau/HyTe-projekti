@@ -20,10 +20,7 @@ import java.util.List;
  
 public class CustomerController implements CustomerController_IF {
 
-	private CustomerCalendarView calendarview;
-	private CustomerHomeView homeview;
 	private CustomerHealthView healthview;
-	private CustomerHelpView helpview;
 	private static Customer customer;
 	private DAOManager_IF daom;
 
@@ -37,7 +34,6 @@ public class CustomerController implements CustomerController_IF {
 	 * @see view.customer.CustomerCalendarView#CustomerCalendarView()
 	 */
 	public CustomerController(CustomerCalendarView calendarview) {
-		this.calendarview = calendarview;
 		if (daom == null)
 			daom = new DAOManager();
 	}
@@ -49,7 +45,6 @@ public class CustomerController implements CustomerController_IF {
 	 * @see view.customer.CustomerHomeView#CustomerHomeView()
 	 */
 	public CustomerController(CustomerHomeView homeview) {
-		this.homeview = homeview;
 		if (daom == null)
 			daom = new DAOManager();
 	}
@@ -73,7 +68,6 @@ public class CustomerController implements CustomerController_IF {
 	 * @see view.customer.CustomerHelpView#CustomerHelpView()
 	 */
 	public CustomerController(CustomerHelpView helpview) {
-		this.helpview = helpview;
 		if (daom == null)
 			daom = new DAOManager();
 	}
@@ -202,12 +196,11 @@ public class CustomerController implements CustomerController_IF {
 	public void imageToDatabase(File file, int imageSlot) {
 		byte[] bfile = new byte[(int) file.length()];
 		try (FileInputStream in = new FileInputStream(file)) {
+			int count = 0;
 			while (in.read(bfile) > 0) {
 				in.read(bfile);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 		UserImage image = new UserImage();
 		image.setCustomer(customer);
 		image.setImage(bfile);
@@ -231,9 +224,7 @@ public class CustomerController implements CustomerController_IF {
 			while (in.read(bfile) > 0) {
 				in.read(bfile);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 		image.setImage(bfile);
 		daom.getUserImageDAO().update(image);
 		daom.writeImageToFileDuringSession(customer);
@@ -298,9 +289,7 @@ public class CustomerController implements CustomerController_IF {
 				String[] city = line.split(cvsSplitBy);
 				locations.add(city[col1] + ", " + city[col2]);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} catch (IOException e) {}
 
 		return locations;
 	}

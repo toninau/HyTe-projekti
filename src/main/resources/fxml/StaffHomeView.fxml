@@ -28,7 +28,7 @@
          <children>
             <Button fx:id="newsTab" maxWidth="480.0" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" styleClass="customerMenuBar" text="%menuButton.home" />
             <Button fx:id="appointmentTab" maxWidth="480.0" minHeight="83.0" minWidth="320.0" mnemonicParsing="false" onMouseClicked="#toStaffAppointment" styleClass="customerMenuBar" text="%menuButton.appointments" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" onMouseClicked="#toCustomerCalendar" prefHeight="93.0" prefWidth="320.0" styleClass="customerMenuBar" text="Button" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onMouseClicked="#toCustomerCalendar" prefHeight="93.0" prefWidth="320.0" styleClass="customerMenuBar" text="%menuButton.calendar" GridPane.columnIndex="2" />
          </children>
       </GridPane>
       <VBox layoutX="6.0" layoutY="248.0" maxHeight="1800.0" maxWidth="640.0" minHeight="537.0" minWidth="320.0" prefHeight="637.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="83.0">

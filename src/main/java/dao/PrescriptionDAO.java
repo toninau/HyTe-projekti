@@ -71,9 +71,7 @@ public class PrescriptionDAO {
 			session.load(prescription, id);
 			session.getTransaction().commit();
 		} catch (ObjectNotFoundException oe) {
-			System.out.println("Prescription not found");
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -98,7 +96,6 @@ public class PrescriptionDAO {
 			result = query.list().toArray(new Prescription[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -124,7 +121,6 @@ public class PrescriptionDAO {
 			result = query.list().toArray(new Prescription[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -172,9 +168,7 @@ public class PrescriptionDAO {
 			p.setStartDate(prescription.getStartDate().format(dformatter));
 			p.setTakenAt(prescription.getTakenAt().format(dtFormatter));
 			success = true;
-		} else {
-			System.out.println("Nothing to update");
-		}
+		} 
 		session.getTransaction().commit();
 		session.close();
 		return success;

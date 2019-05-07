@@ -72,7 +72,6 @@ public class NotificationDAO {
 		} catch (ObjectNotFoundException oe) {
 			System.out.println("Notification not found");
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -99,7 +98,6 @@ public class NotificationDAO {
 			result = query.list().toArray(new Notification[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -122,9 +120,7 @@ public class NotificationDAO {
 			i.setRead(notification.isRead());
 			i.setText(notification.getText());
 			success = true;
-		} else {
-			System.out.println("Nothing to update");
-		}
+		} 
 		session.getTransaction().commit();
 		session.close();
 		return success;

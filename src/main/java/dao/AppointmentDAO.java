@@ -70,11 +70,9 @@ public class AppointmentDAO {
 			session.beginTransaction();
 			session.load(appointment, id);
 			session.getTransaction().commit();
-		} catch (ObjectNotFoundException oe) {
-			System.out.println("Appointment not found");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+		} catch (ObjectNotFoundException oe) {} 
+		catch (Exception e) {}
+		finally {
 			session.close();
 		}
 		return appointment;
@@ -98,9 +96,8 @@ public class AppointmentDAO {
 			query.setParameter("id", customer.getCustomerID());
 			result = query.list().toArray(new Appointment[query.list().size()]);
 			session.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+		} catch (Exception e) {}
+		finally {
 			session.close();
 		}
 		return result;
@@ -127,7 +124,6 @@ public class AppointmentDAO {
 			result = query.list().toArray(new Appointment[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -157,7 +153,6 @@ public class AppointmentDAO {
 			a.setDate(appointment.getDate().format(dformatter));
 			success = true;
 		} else {
-			System.out.println("Nothing to update");
 		}
 		session.getTransaction().commit();
 		session.close();

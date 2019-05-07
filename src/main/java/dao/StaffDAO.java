@@ -117,7 +117,6 @@ public class StaffDAO {
 			query.executeUpdate();
 			success = true;
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -146,7 +145,6 @@ public class StaffDAO {
 			kysely.executeUpdate();
 			success = true;
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -171,7 +169,6 @@ public class StaffDAO {
 			session.getTransaction().commit();
 			result = query.list().toArray(new Customer[query.list().size()]);
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -192,9 +189,7 @@ public class StaffDAO {
 			session.load(staff, id);
 			session.getTransaction().commit();
 		} catch (ObjectNotFoundException oe) {
-			System.out.println("Staff member not found");
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -215,7 +210,6 @@ public class StaffDAO {
 			result = session.createQuery("from Staff").list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -243,7 +237,6 @@ public class StaffDAO {
 			s.setPassword(staff.getPassword());
 			success = true;
 		} else {
-			System.out.println("Nothing to update");
 		}
 		session.getTransaction().commit();
 		session.close();
