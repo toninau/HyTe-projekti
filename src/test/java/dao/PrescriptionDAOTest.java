@@ -30,10 +30,6 @@ public class PrescriptionDAOTest {
 		pDAO = new PrescriptionDAO(sf);
 	}
 	
-	@AfterAll
-	public void tearDown() {
-		sf.close();
-	}
 	
 	@Test
 	public void testDAOMethods() {

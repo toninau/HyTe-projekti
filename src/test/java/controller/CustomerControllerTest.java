@@ -56,7 +56,6 @@ public class CustomerControllerTest {
 	 */
 	@AfterAll
 	public static void tearDown() {
-		istuntotehdas.close();
 		daom.getCustomerDAO().delete("jandoe");
 		daom.getStaffDAO().delete("marman");
 		daom.getPrescriptionDAO().delete(1);
@@ -82,7 +81,7 @@ public class CustomerControllerTest {
 	public void customersAppointmentsTest() {
 		Appointment a = new Appointment("24.04.2019", "10.00", "lääkäriaika", customer, staff);
 		daom.getAppointmentDAO().create(a);
-		assertTrue(customerController.customersAppointments()[0].getDate().equals("24.04.2019"));
+		assertTrue(customerController.customersAppointments()[0].getInfo().equals("lääkäriaika"));
 	}
 
 	/**

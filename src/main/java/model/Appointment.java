@@ -111,7 +111,7 @@ public class Appointment implements Serializable{
 	 * @param date date to set
 	 */
 	public void setDate(String date) {
-		this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("PATTERN"));
+		this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(PATTERN));
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class Appointment implements Serializable{
 	}
 
 	public String toStringStaff() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("PATTERN");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN);
 		String stringDate = getDate().format(formatter);
 		return getTime().truncatedTo(ChronoUnit.MINUTES) + "  " + stringDate + " " + getCustomer().getSurname() + " " + getCustomer().getFirstName() + " " + getInfo();
 	}

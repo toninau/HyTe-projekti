@@ -35,9 +35,7 @@ public class AppointmentDAOTest {
 	public static void tearDown() {
 		cDAO.delete("firsur");
 		sDAO.delete("firsur");
-		aDAO.delete(1);
-		sf.close();
-		
+		aDAO.delete(1);		
 	}
 	
 	
