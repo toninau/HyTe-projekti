@@ -66,6 +66,7 @@ public class CustomerDAO {
 	 * 
 	 * @param customer customer whose customerID is created
 	 * @return customer
+	 * @see #addNumberToCustomerID(String, int)
 	 */
 	private Customer createCustomerIDFromName(Customer customer) {
 		Session session = sessionFactory.openSession();
@@ -77,15 +78,28 @@ public class CustomerDAO {
 		String sql = "SELECT COUNT(*) FROM customer WHERE customerID LIKE :id";
 		BigInteger result = (BigInteger) session.createSQLQuery(sql).setParameter("id", customerID + "%")
 				.uniqueResult();
-		int number = result.intValue() + 1;
+		session.close();
+		int numberOfSameID = result.intValue() + 1;
+		customer.setCustomerID(addNumberToCustomerID(customerID, numberOfSameID));
+		return customer;
+	}
+	
+	/**
+	 * Adds number to customerID if it is needed.
+	 * @param customerID basic id, without number
+	 * @param number number of same basic id's
+	 * @return customerID String
+	 */
+	private String addNumberToCustomerID(String customerID, int number) {
+		Session session = sessionFactory.openSession();
 		String numberString = "";
 		if (number > 1) {
 			numberString += number;
 		}
 		while (true) {
-			Customer c  = session.get(Customer.class, customerID + numberString);
+			Customer c = session.get(Customer.class, customerID + numberString);
 			if (c == null) {
-				customer.setCustomerID(customerID + numberString);
+				customerID += numberString;
 				break;
 			}
 			numberString = "";
@@ -94,7 +108,7 @@ public class CustomerDAO {
 			}
 		}
 		session.close();
-		return customer;
+		return customerID;
 	}
 
 	/**
