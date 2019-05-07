@@ -18,7 +18,6 @@ import model.Illness;
 import model.InfoLoader;
 import model.Prescription;
 import model.Staff;
-import model.TestHibernateUtil;
 import view.customer.CustomerCalendarView;
 import view.customer.CustomerHealthView;
 import view.customer.CustomerHelpView;
@@ -42,7 +41,6 @@ public class CustomerControllerTest {
 	 */
 	@BeforeAll
 	public static void setUp() {
-		//TestHibernateUtil t = new TestHibernateUtil();
 		istuntotehdas = HibernateUtil.getSessionFactory(true);
 		daom = new DAOManager();
 		customerController = new CustomerController();
