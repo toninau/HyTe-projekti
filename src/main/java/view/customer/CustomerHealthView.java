@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.CustomerController;
@@ -130,7 +131,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 	public void updateBloodSugarChart() {
-		ArrayList<BloodValue> a = controller.bloodSugarData();
+		List<BloodValue> a = controller.bloodSugarData();
 		bloodSugarChart.getData().clear();
 		for (BloodValue bloodValue : a) {
 			seriesBloodSugar.getData()

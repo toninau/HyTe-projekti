@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -8,15 +7,11 @@ import java.util.ResourceBundle;
 
 import controller.LoginController;
 import controller.LoginController_IF;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -26,20 +21,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Customer;
-import model.DAOManager;
-import model.Staff;
 import view.enums.Bundles;
 import view.enums.FxmlEnum;
-import javafx.scene.image.Image;
 
 /**
  * 
@@ -124,19 +112,21 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 	 */
 	@FXML
 	public void loginCustomer(Event event) throws IOException {
-		loading();
 		String fxml = FxmlEnum.LOGIN.getFxml();
 		String title = "Welcome!";
-
+		loading();
 		if (c.checkLoginCustomer(getUsernameCustomer(), getPasswordCustomer())) {
 			bundle = ResourceBundle.getBundle(Bundles.CUSTOMER.getBundleName(), HyteGUI.getLocale());
 			fxml = FxmlEnum.CUSTOMERHOME.getFxml();
 			title = "Welcome!";
 		}
 		sceneContent(fxml, event, title, bundle);
-
 	}
 
+	/**
+	 * Alerts the user about a failed login. Sets the alert messages accordingly.
+	 * @param msg "user" or "password" for the switch-case.
+	 */
 	public void loginFailed(String msg) {
 		String title;
 		switch (msg) {
@@ -162,6 +152,11 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		alert.showAndWait();
 	}
 
+	/**
+	 * Validates input for user name and password fields. Forbids special characters. Login with pressing enter key.
+	 * @param event Key pressed.
+	 * @throws IOException Loading fxml file failed.
+	 */
 	public void inputValidation(KeyEvent event) throws IOException {
 
 		TextField field = (TextField) event.getSource();
@@ -275,27 +270,9 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 		});
 	}
 
-	/**
-	 * Create tooltips for components.
-	 */
-	public void tooltips() {
-		Tooltip usernameTip = new Tooltip(bundle.getString("tooltip.username"));
-		Tooltip pwTip = new Tooltip(bundle.getString("tooltip.password"));
-		Tooltip loginTip = new Tooltip(bundle.getString("tooltip.login"));
-		Tooltip languageTip = new Tooltip(bundle.getString("tooltip.language"));
-		usernameAsiakasLogin.setTooltip(usernameTip);
-		usernameLogin.setTooltip(usernameTip);
-		pwLogin.setTooltip(pwTip);
-		pwAsiakasLogin.setTooltip(pwTip);
-		loginBtn.setTooltip(loginTip);
-		loginBtnAsiakas.setTooltip(loginTip);
-		languageChange.setTooltip(languageTip);
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), HyteGUI.getLocale());
-		// tooltips();
 		languageChangePhotos();
 		languageChange.setPromptText("Choose a language");
 	}

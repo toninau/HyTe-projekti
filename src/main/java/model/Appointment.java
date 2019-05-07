@@ -46,6 +46,8 @@ public class Appointment implements Serializable{
 	@JoinColumn(name = "staffID", nullable = false)
 	private Staff staff;
 
+	
+	private final String PATTERN = "dd.MM.yyyy";
 	/**
 	 * Standard appointment constructor.
 	 * 
@@ -58,7 +60,7 @@ public class Appointment implements Serializable{
 	 */
 	public Appointment(String date, String time, String info, Customer customer, Staff staff) {
 
-		this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(PATTERN));
 		this.time = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
 		this.info = info;
 		this.customer = customer;
@@ -108,7 +110,7 @@ public class Appointment implements Serializable{
 	 * @param date date to set
 	 */
 	public void setDate(String date) {
-		this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("PATTERN"));
 	}
 
 	/**
@@ -184,14 +186,12 @@ public class Appointment implements Serializable{
 	}
 
 	public String toStringCustomer() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-		String date = getDate().format(formatter);
 		return getTime().truncatedTo(ChronoUnit.MINUTES) + "  " + getInfo() + ". " + getStaff().getAccessLevel() + " " + getStaff().getSurname() + ", " + getStaff().getFirstName();
 	}
 
 	public String toStringStaff() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-		String date = getDate().format(formatter);
-		return getTime().truncatedTo(ChronoUnit.MINUTES) + "  " + date + " " + getCustomer().getSurname() + " " + getCustomer().getFirstName() + " " + getInfo();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("PATTERN");
+		String stringDate = getDate().format(formatter);
+		return getTime().truncatedTo(ChronoUnit.MINUTES) + "  " + stringDate + " " + getCustomer().getSurname() + " " + getCustomer().getFirstName() + " " + getInfo();
 	}
 }

@@ -64,7 +64,7 @@ public class StaffController implements StaffController_IF{
 	 * Sets the current logged employee.
 	 * @param staff Logged employee.
 	 */
-	public void loggedStaff(Staff staff) {
+	public static void loggedStaff(Staff staff) {
 		StaffController.staff = staff;
 	}
 

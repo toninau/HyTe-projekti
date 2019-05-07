@@ -5,7 +5,6 @@ import model.*;
 
 public interface StaffController_IF {
     ObservableList<Appointment> allAppointments();
-    void loggedStaff(Staff staff);
     Staff getLoggedStaff();
     boolean sendNotification(Notification notification);
     ObservableList<Customer> getStaffCustomers();

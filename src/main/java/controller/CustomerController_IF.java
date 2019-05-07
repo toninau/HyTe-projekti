@@ -6,10 +6,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public interface CustomerController_IF {
-	abstract void loggedCustomer(Customer customer);
 	abstract Customer getLoggedCustomer();
-	abstract ArrayList<BloodValue> bloodSugarData();
+	abstract List<BloodValue> bloodSugarData();
 	abstract ArrayList<BloodValue> bloodPressureData();
 	abstract boolean createBloodsugarValue();
 	abstract boolean createBloodPressureValue();

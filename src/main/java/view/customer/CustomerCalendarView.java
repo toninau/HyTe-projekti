@@ -7,25 +7,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalField;
+
 import java.time.temporal.WeekFields;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import antlr.collections.List;
 import controller.CustomerController;
-import controller.CustomerController_IF;
 import controller.StaffController;
 import javafx.animation.AnimationTimer;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
@@ -35,18 +27,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 import model.Appointment;
-import model.Prescription;
-import model.Staff;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
@@ -301,16 +287,9 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 			p.setDisable(true);
 			grid.add(p, column, row);
 			}
-			
 
-
-
-			
-			
 			column++;
 			
-			
-
 		}
 	}
 
@@ -451,8 +430,6 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	}
 
 	public void createHashMap() {
-		// if (map==null) {
-		System.out.println("AAA");
 		map.put(mondaybutton, mondaytextarea);
 		map.put(tuesdaybutton, tuesdaytextarea);
 		map.put(wednesdaybutton, wednesdaytextarea);
@@ -460,8 +437,6 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		map.put(fridaybutton, fridaytextarea);
 		map.put(saturdaybutton, saturdaytextarea);
 		map.put(sundaybutton, sundaytextarea);
-
-		// }
 	}
 
 	@Override

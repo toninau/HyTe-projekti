@@ -46,7 +46,6 @@ public class ViewChanger {
 			stage.setTitle(title);
 			stage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
 			stage.show();
-
 		} catch (IOException e) {
 		}
 		loaded();

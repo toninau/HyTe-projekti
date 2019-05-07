@@ -1,15 +1,27 @@
 package controller;
 
-import model.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Appointment;
+import model.BloodValue;
+import model.Customer;
+import model.DAOManager;
+import model.DAOManager_IF;
+import model.Notification;
+import model.Prescription;
+import model.UserImage;
 import view.HyteGUI;
 import view.customer.CustomerCalendarView;
 import view.customer.CustomerHealthView;
 import view.customer.CustomerHelpView;
 import view.customer.CustomerHomeView;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Controller for customer view classes.
@@ -17,7 +29,7 @@ import java.util.List;
  * @author IdaKi
  *
  */
- 
+
 public class CustomerController implements CustomerController_IF {
 
 	private CustomerHealthView healthview;
@@ -85,6 +97,7 @@ public class CustomerController implements CustomerController_IF {
 
 	/**
 	 * This method creates a blood sugar value to the database.
+	 * 
 	 * @see dao.BloodValueDAO#create(BloodValue)
 	 */
 	public boolean createBloodsugarValue() {
@@ -105,6 +118,7 @@ public class CustomerController implements CustomerController_IF {
 
 	/**
 	 * Creates a blood pressure value to the database.
+	 * 
 	 * @see dao.BloodValueDAO#create(BloodValue)
 	 */
 	public boolean createBloodPressureValue() {
@@ -125,14 +139,14 @@ public class CustomerController implements CustomerController_IF {
 	}
 
 	/**
-	 * Gets all the customer's blood values from database and adds the blood values 
+	 * Gets all the customer's blood values from database and adds the blood values
 	 * with blood sugar values to an ArrayList.
+	 * 
 	 * @return bList ArrayList of blood sugar values.
 	 * @see dao.BloodValueDAO#readCustomerBloodvalues(Customer)
 	 */
-	public ArrayList<BloodValue> bloodSugarData() {
+	public List<BloodValue> bloodSugarData() {
 		BloodValue[] b = daom.readCustomerBloodValues();
-		System.out.println(b.length);
 		ArrayList<BloodValue> bList = new ArrayList<>();
 		for (BloodValue bloodValue : b) {
 			if (bloodValue.getBloodsugar() > 0)
@@ -144,6 +158,7 @@ public class CustomerController implements CustomerController_IF {
 	/**
 	 * Gets all the customer's blood values from database and adds the blood values
 	 * with blood pressure values to an ArrayList.
+	 * 
 	 * @return bList ArrayList of blood pressure values.
 	 * @see dao.BloodValueDAO#readCustomerBloodvalues(Customer)
 	 */
@@ -181,8 +196,7 @@ public class CustomerController implements CustomerController_IF {
 	 * 
 	 * @see view.LoginView#loginCustomer(javafx.event.Event)
 	 */
-	@Override
-	public void loggedCustomer(Customer customer) {
+	public static void loggedCustomer(Customer customer) {
 		CustomerController.customer = customer;
 	}
 
@@ -200,7 +214,8 @@ public class CustomerController implements CustomerController_IF {
 			while (in.read(bfile) > 0) {
 				in.read(bfile);
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		UserImage image = new UserImage();
 		image.setCustomer(customer);
 		image.setImage(bfile);
@@ -213,7 +228,7 @@ public class CustomerController implements CustomerController_IF {
 	/**
 	 * Updates an image to database and to a temporary file.
 	 * 
-	 * @param file The file of the new image.
+	 * @param file      The file of the new image.
 	 * @param imageSlot The slot of the image to be updated.
 	 * @see dao.UserImageDAO#update(UserImage)
 	 */
@@ -224,7 +239,8 @@ public class CustomerController implements CustomerController_IF {
 			while (in.read(bfile) > 0) {
 				in.read(bfile);
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		image.setImage(bfile);
 		daom.getUserImageDAO().update(image);
 		daom.writeImageToFileDuringSession(customer);
@@ -232,6 +248,7 @@ public class CustomerController implements CustomerController_IF {
 
 	/**
 	 * Deletes the chosen image.
+	 * 
 	 * @param imageSlot The slot of the chosen image-
 	 */
 	public void deleteImage(int imageSlot) {
@@ -263,7 +280,8 @@ public class CustomerController implements CustomerController_IF {
 		InputStream csvFile = null;
 		String line = "";
 		String cvsSplitBy = "";
-		int col1 = 0, col2 = 0;
+		int col1 = 0;
+		int col2 = 0;
 		switch (HyteGUI.getLocale().getCountry()) {
 		case "FI":
 			csvFile = getClass().getResourceAsStream("/cityLists/kuntaluettelo.csv");
@@ -278,10 +296,7 @@ public class CustomerController implements CustomerController_IF {
 			col2 = 1;
 			break;
 		default:
-			csvFile = getClass().getResourceAsStream("/cityLists/kuntaluettelo.csv");
-			cvsSplitBy = ";";
-			col1 = 1;
-			col2 = 15;
+
 			break;
 		}
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {

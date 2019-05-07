@@ -96,7 +96,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		ObservableList<Customer> customerList = FXCollections.observableArrayList();
 		Customer[] staffCustomers = c.findCustomerAll();
 		StaffController_IF staffController = new StaffController();
-		staffController.loggedStaff(staff);
+		StaffController.loggedStaff(staff);
 		ObservableList<Customer> StaffCustomerList = staffController.getStaffCustomers();
 		for (Customer customer : staffCustomers) {
 			for (Customer c : StaffCustomerList) {

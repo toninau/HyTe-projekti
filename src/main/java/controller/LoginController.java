@@ -24,37 +24,37 @@ public class LoginController implements LoginController_IF {
 		return (Customer) daom.readWithEmail("customer", email);
 	}
 
+	public boolean checkLoginInfo(String pw, String pwDB, String username, String usernameDB) {
+		if(pwDB!=null) {
+			if(checkUsername(username, usernameDB)) {
+				if(checkPassword(pw, pwDB)) {
+					return true;
+				}else {
+					view.loginFailed("password");
+				}
+			}else {
+				view.loginFailed("user");
+			}
+		}else {
+			view.loginFailed("user");
+		}
+		return false;
+	}
+	
 	public boolean checkLoginCustomer(String email, String password) {
 		success = false;
-		CustomerController_IF customerController = new CustomerController();
 		Customer customer = getCustomerFromDatabase(email);
 		String pwFromDB = customer.getPassword();
 		String emailFromDB = customer.getCustomerID();
-		if (pwFromDB != null) {
-			if (checkUsername(email, emailFromDB)) {
-				if (checkPassword(password, pwFromDB)) {
-					success = true;
-					getAllCustomerInformation(customer);
-					customerController.loggedCustomer(customer);
-				} else {
-					success = false;
-					view.loginFailed("password");
-				}
-			} else {
-				success = false;
-				view.loginFailed("user");
-			}
-		} else {
-			success = false;
-			view.loginFailed("user");
+		if (checkLoginInfo(password, pwFromDB, email, emailFromDB)){
+			CustomerController.loggedCustomer(customer);
+			daom.writeAllCustomerInformation(customer);
+			success = true;
 		}
 		return success;
 	}
 	
-	public void getAllCustomerInformation(Customer customer) {
-		daom.writeAllCustomerInformation(customer);
-		
-	}
+
 
 	public Staff getStaffFromDatabase(String email) {
 		return (Staff) daom.readWithEmail("staff", email);
@@ -62,30 +62,15 @@ public class LoginController implements LoginController_IF {
 
 	@Override
 	public boolean checkLoginStaff(String email, String password) {
-		StaffController staffController = new StaffController();
 		success = false;
 		Staff staff = getStaffFromDatabase(email);
 		String pwFromDB = staff.getPassword();
 		String emailFromDB = staff.getStaffID();
 		
-		if (pwFromDB != null) {
-			if (checkUsername(email, emailFromDB)) {
-				if (checkPassword(password, pwFromDB)) {
-					success = true;
-					staffController.loggedStaff(staff);
-				} else {
-					success = false;
-					view.loginFailed("password");
-				}
-			} else {
-				success = false;
-				view.loginFailed("user");
-			}
-		} else {
-			success = false;
-			view.loginFailed("user");
+		if (checkLoginInfo(password, pwFromDB, email, emailFromDB)){
+			StaffController.loggedStaff(staff);
+			success = true;
 		}
-
 		return success;
 	}
 

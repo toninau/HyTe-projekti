@@ -47,27 +47,27 @@ public class Customer implements Serializable {
 	private String password;
 
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Illness> illnesses = new HashSet<Illness>();
+	private Set<Illness> illnesses = new HashSet<>();
 
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Appointment> reservations = new HashSet<Appointment>();
+	private Set<Appointment> reservations = new HashSet<>();
 
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Prescription> prescriptions = new HashSet<Prescription>();
+	private Set<Prescription> prescriptions = new HashSet<>();
 
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<BloodValue> bloodValues = new HashSet<BloodValue>();
+	private Set<BloodValue> bloodValues = new HashSet<>();
 
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<Notification> notifications = new HashSet<Notification>();
+	private Set<Notification> notifications = new HashSet<>();
 
 	@OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.PERSIST)
-	private Set<UserImage> images = new HashSet<UserImage>();
+	private Set<UserImage> images = new HashSet<>();
 
 	@ManyToMany
 	@JoinTable(name = "customersStaff", joinColumns = { @JoinColumn(name = "customerID") }, inverseJoinColumns = {
 			@JoinColumn(name = "staffID") })
-	private Set<Staff> customersStaff = new HashSet<Staff>();
+	private Set<Staff> customersStaff = new HashSet<>();
 
 	/**
 	 * Empty customer constructor. Values are given using set-methods.

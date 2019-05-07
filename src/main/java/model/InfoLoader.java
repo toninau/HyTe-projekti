@@ -65,7 +65,6 @@ public class InfoLoader {
 				fileB = file;
 			objectOut.writeObject(obj);
 			file.deleteOnExit();
-
 		} catch (IOException e) {
 		}
 	}
