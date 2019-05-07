@@ -102,7 +102,7 @@ public class AppointmentDAOTest {
 	
 	private Staff createStaff() {
 		Staff staff = new Staff();
-		staff.setFirstName("FirstName");
+		staff.setFirstName("Firstname");
 		staff.setSurname("Surname");
 		staff.setPhoneNumber("PhoneNumber");
 		staff.setPassword("Password");
