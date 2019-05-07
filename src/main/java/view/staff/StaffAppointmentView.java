@@ -109,11 +109,17 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		String date = appointmentDate.getValue().format(dateFormatter);
 		appointment.setDate(date);
-		appointment.setTime(appointmentTime.getText());
-		if (controller.addAppointment(appointment)) {
-			Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-			a.show();
+		if (appointmentTime.getText().contains(":") && !appointmentTime.getText().isEmpty()) {
+			appointment.setTime(appointmentTime.getText());
+			if (controller.addAppointment(appointment)) {
+				Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+				a.show();
+			}
+		} else {
+			timeIsWrong();
 		}
+
+
 	}
 
 	/**
@@ -145,21 +151,41 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 			prescription = new Prescription();
 			prescription.setCustomer(customer);
 		}
-		prescription.setPrescriptionName(prescriptionName.getText());
-		prescription.setDosage(prescriptionUsage.getText());
-		prescription.setPrescriptionGuide(prescriptionDescription.getText());
-		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-		String start = startDate.getValue().format(dateFormatter);
-		String end = endDate.getValue().format(dateFormatter);
-		prescription.setTimeToTake(prescriptionTimeToTake.getText());
-		prescription.setStartDate(start);
-		prescription.setEndDate(end);
-
-		if(controller.savePrescription(prescription)) {
-			Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-			a.show();
+		try {
+			prescription.setPrescriptionName(prescriptionName.getText());
+			prescription.setDosage(prescriptionUsage.getText());
+			prescription.setPrescriptionGuide(prescriptionDescription.getText());
+			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+			String start = startDate.getValue().format(dateFormatter);
+			String end = endDate.getValue().format(dateFormatter);
+		if (prescriptionTimeToTake.getText().contains(":") && !prescriptionTimeToTake.getText().isEmpty()) {
+			prescription.setTimeToTake(prescriptionTimeToTake.getText());
+			prescription.setStartDate(start);
+			prescription.setEndDate(end);
 		}
+		} catch (NullPointerException e) {
+			fieldsAreEmpty();
+		}
+		if(controller.savePrescription(prescription)) {
+			Alert b = new Alert(Alert.AlertType.CONFIRMATION);
+			b.show();
+		} else {
+			timeIsWrong();
+		}
+	}
 
+	public void fieldsAreEmpty() {
+		Alert a = new Alert(Alert.AlertType.ERROR);
+		a.setTitle("Error");
+		a.setContentText("Some fields are empty");
+		a.show();
+	}
+
+	public void timeIsWrong() {
+		Alert a = new Alert(Alert.AlertType.ERROR);
+		a.setTitle("Error");
+		a.setContentText("You have written the time wrong, the correct style is XX:XX");
+		a.show();
 	}
 
 	/**
