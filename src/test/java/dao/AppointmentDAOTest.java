@@ -55,7 +55,7 @@ public class AppointmentDAOTest {
 		assertTrue(aDAO.create(appointment), "create(appointment): Failed to create appointment.");
 		//Read appointment
 		appointment = aDAO.read(1);
-		assertEquals("Firstame", appointment.getCustomer().getFirstName(), "read(id): Failed to read appointment customer");
+		assertEquals("Firstname", appointment.getCustomer().getFirstName(), "read(id): Failed to read appointment customer");
 		assertEquals("Firstname", appointment.getStaff().getFirstName(), "read(id): Failed to read appointment staff member");
 		assertEquals(LocalDate.of(2020, 12, 12), appointment.getDate(), "read(id): Failed to read appointment date");
 		assertEquals("Info", appointment.getInfo(), "read(id): Failed to read appointment info");
