@@ -218,7 +218,6 @@ public class CustomerController implements CustomerControllerIF {
 				if(offset >= bfile.length) {
 					break;
 				}
-				in.read(bfile);
 			}
 		} catch (Exception e) {
 		}
@@ -249,7 +248,6 @@ public class CustomerController implements CustomerControllerIF {
 				if(offset >= bfile.length) {
 					break;
 				}
-				in.read(bfile);
 			}
 		} catch (Exception e) {
 		}

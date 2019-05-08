@@ -452,7 +452,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 				monthW = month.minus(1).getValue();
 			}
 		} else if (weekDay > weekDayNow) {
-			result = date.plusDays(a - weekDayNow).getDayOfMonth();
+			result = date.plusDays(weekDay - weekDayNow).getDayOfMonth();
 			if (result > date.getMonth().maxLength()) {
 				monthW = month.plus(1).getValue();
 			}
