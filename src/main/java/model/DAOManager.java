@@ -158,10 +158,13 @@ public class DAOManager implements DAOManagerIF {
 	}
 
 	/**
-	 * 
+	 * Reads the object with the given int id from the database.
 	 * @param id  Id of the object to be read.
 	 * @param obj Name of the wanted object.
-	 * @return
+	 * @return The object found with the given id.
+	 * @see dao.AppointmentDAO#read(int)
+	 * @see dao.PrescriptionDAO#read(int)
+	 * @see dao.NotificationDAO#read(int)
 	 */
 	public Object readWithID(int id, String obj) {
 		switch (obj) {
@@ -176,12 +179,16 @@ public class DAOManager implements DAOManagerIF {
 		}
 	}
 
-	public Object readWithEmail(String key, String email) {
+	/**
+	 * Reads the object with the given String id from the database.
+	 * @return The object found with the given id.
+	 */
+	public Object readPersonWithID(String key, String id) {
 		switch (key) {
 		case "staff":
-			return getStaffDAO().read(email);
+			return getStaffDAO().read(id);
 		case "customer":
-			return getCustomerDAO().read(email);
+			return getCustomerDAO().read(id);
 		default:
 			return null;
 		}

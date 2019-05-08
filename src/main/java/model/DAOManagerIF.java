@@ -8,7 +8,7 @@ public interface DAOManagerIF {
 	abstract boolean update(Object obj);
 	abstract Object[] readAll(String obj);
 	abstract Object readWithID(int id, String obj);
-	abstract Object readWithEmail(String key, String email);
+	abstract Object readPersonWithID(String key, String email);
 	abstract CustomerDAO getCustomerDAO();
 	abstract StaffDAO getStaffDAO();
 	abstract PrescriptionDAO getPrescriptionDAO();

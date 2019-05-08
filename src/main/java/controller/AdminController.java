@@ -7,47 +7,71 @@ import model.DAOManagerIF;
 import model.Staff;
 import view.admin.*;
 
-//import view.admin.EditCustomerIF;
-//import view.admin.EditStaffIF;
-
+/**
+ * Controller class for admin's views. 
+ * @author IdaKi
+ *
+ */
 public class AdminController implements AdminControllerIF {
 
 	private AddStaffIF addstaff;
 	private AddCustomerIF addcustomer;
 	private DAOManagerIF daoM;
 
+	/**
+	 * Empty costructor.
+	 */
 	public AdminController() {
 		daoM = new DAOManager();
 	}
 
+	/**
+	 * Constructor for add staff view.
+	 * @see model.DAOManager#DAOManager()
+	 * @param addstaff AddStaffView.
+	 */
 	public AdminController(AddStaffView addstaff) {
-
 		this.addstaff = addstaff;
 		if (daoM == null)
 			daoM = new DAOManager();
-
 	}
 
+	/**
+	 * Constructor for add customer view.
+	 * @see model.DAOManager#DAOManager()
+	 * @param addcustomer AddCustomerView.
+	 */
 	public AdminController(AddCustomerView addcustomer) {
 		this.addcustomer = addcustomer;
 		if (daoM == null)
 			daoM = new DAOManager();
 	}
 
+	/**
+	 * Constructor for edit staff view.
+	 * @see model.DAOManager#DAOManager()
+	 * @param editstaff EditStaffView.
+	 */
 	public AdminController(EditStaffView editstaff) {
-		// EditStaffIF es = editstaff;
 		if (daoM == null)
 			daoM = new DAOManager();
 	}
 
+	/**
+	 * Constructor for edit customer view.
+	 * @see model.DAOManager#DAOManager()
+	 * @param editcustomer EditCustomerView.
+	 */
 	public AdminController(EditCustomerView editcustomer) {
-		// EditCustomerIF ec = editcustomer;
 		if (daoM == null)
 			daoM = new DAOManager();
 	}
 
 	/**
 	 * Method for adding an employee to database.
+	 * @return <code> true </code> if creating the staff member succeeded. <br>
+	 * 			<code> false </code> if creating the staff member failed.
+	 * @see dao.StaffDAO#create(Staff)
 	 */
 	public boolean addStaff() {
 		Staff hkunta = new Staff();
@@ -71,7 +95,6 @@ public class AdminController implements AdminControllerIF {
 			hkunta.setFirstName(etunimi);
 			hkunta.setSurname(sukunimi);
 			hkunta.setPhoneNumber(puhnro);
-			//hkunta.setStaffID(email);
 			hkunta.setAccessLevel(ammatti);
 			hkunta.setPassword(pw);
 			daoM.create(hkunta);
@@ -81,6 +104,9 @@ public class AdminController implements AdminControllerIF {
 
 	/**
 	 * Method for adding a customer to database.
+	 * @return <code> true </code> if creating the customer succeeded. <br>
+	 * 			<code> false </code> if creating the customer failed.
+	 * @see dao.CustomerDAO#create(Customer)
 	 */
 	public boolean addCustomer() {
 		Customer customer = new Customer();
@@ -91,10 +117,10 @@ public class AdminController implements AdminControllerIF {
 		String sukunimi = addcustomer.getSurname();
 		String puhnro = addcustomer.getPhoneNumber();
 		String email = addcustomer.getEmail();
-		String ICE = addcustomer.getICE();
+		String ice = addcustomer.getICE();
 		String osoite = addcustomer.getAddress();
 		String pw = encryptPassword(addcustomer.getPassword());
-		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ICE, osoite, pw };
+		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ice, osoite, pw };
 		for (String string : info) {
 			if (string.isEmpty()) {
 				success = false;
@@ -106,9 +132,8 @@ public class AdminController implements AdminControllerIF {
 			customer.setFirstName(etunimi);
 			customer.setSurname(sukunimi);
 			customer.setPhoneNumber(puhnro);
-			//customer.setCustomerID(email);
 			customer.setAddress(osoite);
-			customer.setIceNumber(ICE);
+			customer.setIceNumber(ice);
 			customer.setSSN(hetu);
 			customer.setPassword(pw);
 			daoM.create(customer);
@@ -119,47 +144,113 @@ public class AdminController implements AdminControllerIF {
 	/**
 	 * Method for updating the information of an employee.
 	 * 
+	 * @return <code> true </code> if updating the employee succeeded. <br>
+	 * <code> false </code> if updating the employee failed.
 	 */
 	public boolean updateStaff(Staff f) {
-        return daoM.update(f);
-    }
+		return daoM.update(f);
+	}
 
-    public boolean addCustomerToStaff(Customer customer, Staff staff) {
+	/**
+	 * Method for adding a customer to an employee.
+	 * 
+	 * @return <code> true </code> if adding the customer succeeded. <br>
+	 *         <code> false </code> if adding the customer failed.
+	 */
+	public boolean addCustomerToStaff(Customer customer, Staff staff) {
 		if (daoM.getStaffDAO().addCustomerToStaff(customer, staff)) {
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Method for updating customer in database.
+	 * 
+	 * @see model.DAOManager#update(Object)
+	 * @see dao.CustomerDAO#update(Customer)
+	 */
 	public void updateCustomer(Customer customer) {
 		daoM.update(customer);
 	}
 
+	/**
+	 * Method for reading all staff members from database.
+	 * 
+	 * @return An array of staff members.
+	 * @see model.DAOManager#readAll(String)
+	 * @see dao.StaffDAO#readAll()
+	 */
 	public Staff[] findStaffAll() {
 		return (Staff[]) daoM.readAll("staff");
 	}
 
+	/**
+	 * Method for reading all customers from database.
+	 * 
+	 * @return An array of customers.
+	 * @see model.DAOManager#readAll(String)
+	 * @see dao.CustomerDAO#readAll()
+	 */
 	public Customer[] findCustomerAll() {
 		return (Customer[]) daoM.readAll("customer");
 	}
 
+	/**
+	 * Reads a staff member with their id.
+	 * 
+	 * @param id Staff member's id.
+	 * @return Staff member found from database with given id.
+	 * @see model.DAOManager#readWithID(int, String)
+	 */
 	public Staff findStaffWithID(String id) {
-		return (Staff) daoM.readWithEmail("staff", id);
+		return (Staff) daoM.readPersonWithID("staff", id);
 	}
 
+	/**
+	 * Reads a customer with their id.
+	 * 
+	 * @param id Customer's id.
+	 * @return Customer found from database with given id.
+	 * @see model.DAOManager#readWithID(int, String)
+	 */
 	public Customer findCustomerWithID(String id) {
-		//return (Customer) daoM.readWithID(id, "customer");
-		return daoM.getCustomerDAO().read(id);
+		return (Customer) daoM.readPersonWithID("customer", id);
 	}
 
+	/**
+	 * Removes the chosen staff member.
+	 * 
+	 * @param id The id of the staff member to be deleted.
+	 * @return <code> true </code> if the deletion is successful. <br>
+	 *         <code>false</code> if the deletion is not successful
+	 * @see dao.StaffDAO#delete(String)
+	 * 
+	 */
 	public boolean removeStaffFromDatabase(String id) {
 		return daoM.getStaffDAO().delete(id);
 	}
 
+	/**
+	 * Removes the chosen customer.
+	 * 
+	 * @param id The id of the customer to be deleted.
+	 * @return <code> true </code> if the deletion is successful. <br>
+	 *         <code>false</code> if the deletion is not successful
+	 * @see dao.CustomerDAO#delete(String)
+	 * 
+	 */
 	public boolean removeCustomerFromDatabase(String id) {
 		return daoM.getCustomerDAO().delete(id);
 	}
 
+	/**
+	 * Encrypts the password using SCryptUtil.
+	 * 
+	 * @param password Password to be encrypted.
+	 * @return Encrypted password.
+	 * @see SCryptUtil#scrypt(String, int, int, int)
+	 */
 	public String encryptPassword(String password) {
 		String originalPassword = password;
 		return SCryptUtil.scrypt(originalPassword, 16, 16, 16);

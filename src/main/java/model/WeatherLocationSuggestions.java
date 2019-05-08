@@ -1,6 +1,7 @@
 package model;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,12 +10,24 @@ import java.util.List;
 
 import view.HyteGUI;
 
+/**
+ * This class provides locations to the use of the weather component.
+ * @author IdaKi
+ *
+ */
 public class WeatherLocationSuggestions {
 	
+	/**
+	 * Emtpy constructor.
+	 */
 	public WeatherLocationSuggestions(){
 		
 	}
 	
+	/**
+	 * Location suggestions from csv files according to the current locale. (FI, GB supported)
+	 * @return List of locations.
+	 */
 	public List<String> getLocationSuggestions() {
 		ArrayList<String> locations = new ArrayList<>();
 		InputStream csvFile = null;
@@ -47,5 +60,7 @@ public class WeatherLocationSuggestions {
 
 		return locations;
 	}
+	
+
 
 }

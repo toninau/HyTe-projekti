@@ -21,7 +21,7 @@ public class LoginController implements LoginControllerIF {
 	}
 
 	public Customer getCustomerFromDatabase(String email) {
-		return (Customer) daom.readWithEmail("customer", email);
+		return (Customer) daom.readPersonWithID("customer", email);
 	}
 
 	public boolean checkLoginInfo(String pw, String pwDB, String username, String usernameDB) {
@@ -57,7 +57,7 @@ public class LoginController implements LoginControllerIF {
 
 
 	public Staff getStaffFromDatabase(String email) {
-		return (Staff) daom.readWithEmail("staff", email);
+		return (Staff) daom.readPersonWithID("staff", email);
 	}
 
 	@Override
