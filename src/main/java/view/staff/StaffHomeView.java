@@ -1,5 +1,11 @@
 package view.staff;
 
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
+
 import controller.StaffController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,22 +17,14 @@ import javafx.scene.control.ListView;
 import model.Appointment;
 import model.Customer;
 import model.Staff;
-import view.HyteGUI;
 import view.ViewChanger;
-import view.enums.Bundles;
-
-import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 
 public class StaffHomeView extends ViewChanger implements Initializable {
 
 	@FXML
-	ListView dailyNews;
+	ListView<String> dailyNews;
 	@FXML
-	ListView StaffCustomers;
+	ListView<Customer> staffCustomers;
 	@FXML
 	Label welcomeText;
 	@FXML
@@ -37,15 +35,14 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 	private Button logout;
 	
 	private StaffController controller;
-	private ResourceBundle bundle;
 
 	public StaffHomeView() {
 		controller = new StaffController(this);
 	}
 
 	public void populateCustomerListView() {
-		StaffCustomers.getItems().addAll(controller.getStaffCustomers());
-		StaffCustomers.setCellFactory(param -> new ListCell<Customer>() {
+		staffCustomers.getItems().addAll(controller.getStaffCustomers());
+		staffCustomers.setCellFactory(param -> new ListCell<Customer>() {
 			@Override
 			protected void updateItem(Customer item, boolean empty) {
 				super.updateItem(item, empty);
@@ -65,9 +62,6 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 		for (Appointment appointment : appointments) {
 			if (appointment.getDate().isEqual(LocalDate.now())) {
 				appointmentList.getItems().add(appointment.toStringStaff());
-				if(getTime().isBefore(appointment.getTime())) {
-					
-				}
 			}
 		}
 	}
@@ -76,7 +70,6 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		bundle = ResourceBundle.getBundle(Bundles.STAFF.getBundleName(), HyteGUI.getLocale());
 		todaysAppointments();
 		Staff staff = controller.getLoggedStaff();
 		welcomeText.setText(welcomeText.getText()+ " " +staff.getFirstName()+ " " + staff.getSurname());
@@ -99,7 +92,6 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 	}
 
 	public LocalTime toDateTime(String strTime) {
-		LocalTime time = LocalTime.parse(strTime, DateTimeFormatter.ofPattern("HH:mm"));
-		return time;
+		return LocalTime.parse(strTime, DateTimeFormatter.ofPattern("HH:mm"));
 	}
 }

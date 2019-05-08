@@ -55,9 +55,12 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	@FXML TextArea prescriptionDescription;
 	@FXML TextField prescriptionTimeToTake;
 
+	private static final String ERROR = "Error";
+	private static final String PATTERN = "dd.MM.yyyy";
+
 	private Appointment appointment;
 	private Customer customer;
-	StaffControllerIF controller;
+	private StaffControllerIF controller;
 
 	/**
 	 * Constructor. Creates the controller for methods
@@ -88,8 +91,8 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	 */
 	public void loadCustomerError() {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setTitle("Error");
-		alert.setHeaderText("Error");
+		alert.setTitle(ERROR);
+		alert.setHeaderText(ERROR);
 		alert.setContentText("Please load the customer first");
 		alert.show();
 	}
@@ -99,19 +102,19 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	 */
 	@FXML
 	public void addAppointment()  {
-		Appointment appointment = new Appointment();
-		appointment.setStaff(controller.getLoggedStaff());
-		appointment.setInfo(appointmentInfo.getText());
+		Appointment app = new Appointment();
+		app.setStaff(controller.getLoggedStaff());
+		app.setInfo(appointmentInfo.getText());
 		if (customer == null) {
 			loadCustomerError();
 		}
-		else { appointment.setCustomer(customer); }
-		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		else { app.setCustomer(customer); }
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(PATTERN);
 		String date = appointmentDate.getValue().format(dateFormatter);
-		appointment.setDate(date);
+		app.setDate(date);
 		if (appointmentTime.getText().contains(":") && !appointmentTime.getText().isEmpty()) {
-			appointment.setTime(appointmentTime.getText());
-			if (controller.addAppointment(appointment)) {
+			app.setTime(appointmentTime.getText());
+			if (controller.addAppointment(app)) {
 				Alert a = new Alert(Alert.AlertType.CONFIRMATION);
 				a.show();
 			}
@@ -155,7 +158,7 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 			prescription.setPrescriptionName(prescriptionName.getText());
 			prescription.setDosage(prescriptionUsage.getText());
 			prescription.setPrescriptionGuide(prescriptionDescription.getText());
-			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(PATTERN);
 			String start = startDate.getValue().format(dateFormatter);
 			String end = endDate.getValue().format(dateFormatter);
 		if (prescriptionTimeToTake.getText().contains(":") && !prescriptionTimeToTake.getText().isEmpty()) {
@@ -176,14 +179,14 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 
 	public void fieldsAreEmpty() {
 		Alert a = new Alert(Alert.AlertType.ERROR);
-		a.setTitle("Error");
+		a.setTitle(ERROR);
 		a.setContentText("Some fields are empty");
 		a.show();
 	}
 
 	public void timeIsWrong() {
 		Alert a = new Alert(Alert.AlertType.ERROR);
-		a.setTitle("Error");
+		a.setTitle(ERROR);
 		a.setContentText("You have written the time wrong, the correct style is XX:XX");
 		a.show();
 	}
@@ -243,8 +246,8 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 		modifyAppointmentTime.setText(""+appointment.getTime().truncatedTo(ChronoUnit.MINUTES).format(DateTimeFormatter.ofPattern("HH.mm")));
 		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 		String date = appointment.getDate().format(dateFormatter);
-		LocalDate Date = LocalDate.parse(date, dateFormatter);
-		modifyAppointmentDate.setValue(Date);
+		LocalDate localDate = LocalDate.parse(date, dateFormatter);
+		modifyAppointmentDate.setValue(localDate);
 	}
 
 	/**
@@ -253,7 +256,7 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 	@FXML
 	public void saveAppointment()  {
 		appointment.setTime(modifyAppointmentTime.getText());
-		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(PATTERN);
 		String date = modifyAppointmentDate.getValue().format(dateFormatter);
 
 		appointment.setDate(date);

@@ -29,7 +29,7 @@ import view.customer.CustomerHomeView;
 
 public class CustomerController implements CustomerControllerIF {
 
-	private final Logger LOGGER = Logger.getLogger(CustomerController.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CustomerController.class.getName());
 	private CustomerHealthView healthview;
 	private static Customer customer;
 	private DAOManagerIF daom;

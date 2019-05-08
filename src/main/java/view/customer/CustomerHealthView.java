@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -16,7 +15,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -125,7 +123,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		xAxis.setLabel(bundle.getString("health.sugarchart.category"));
 		yAxis.setLabel(bundle.getString("health.sugarchart.value"));
 		bloodSugarChart.setTitle(bundle.getString("health.sugarchart.title"));
-		seriesBloodSugar = new XYChart.Series<String, Double>();
+		seriesBloodSugar = new XYChart.Series<>();
 		seriesBloodSugar.setName(bundle.getString("health.sugarchart.title"));
 		updateBloodSugarChart();
 	}
@@ -135,7 +133,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		bloodSugarChart.getData().clear();
 		for (BloodValue bloodValue : a) {
 			seriesBloodSugar.getData()
-					.add(new XYChart.Data<String, Double>(bloodValue.getDate(), bloodValue.getBloodsugar()));
+					.add(new XYChart.Data<>(bloodValue.getDate(), bloodValue.getBloodsugar()));
 		}
 		bloodSugarChart.getData().add(seriesBloodSugar);
 	}
@@ -144,8 +142,8 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		xAxisPressure.setLabel(bundle.getString("health.pressurechart.category"));
 		yAxisPressure.setLabel(bundle.getString("health.pressurechart.value"));
 		bloodPressureChart.setTitle(bundle.getString("health.pressurechart.title"));
-		seriesHighPressure = new XYChart.Series<String, Integer>();
-		seriesLowPressure = new XYChart.Series<String, Integer>();
+		seriesHighPressure = new XYChart.Series<>();
+		seriesLowPressure = new XYChart.Series<>();
 		seriesHighPressure.setName("yläpaine");
 		seriesLowPressure.setName("alapaine");
 		updateBloodPressureChart();
@@ -156,9 +154,9 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		bloodPressureChart.getData().clear();
 		for (BloodValue bloodValue : a) {
 			seriesHighPressure.getData()
-					.add(new Data<String, Integer>(bloodValue.getDate(), bloodValue.getHighPressure()));
+					.add(new Data<>(bloodValue.getDate(), bloodValue.getHighPressure()));
 			seriesLowPressure.getData()
-					.add(new Data<String, Integer>(bloodValue.getDate(), bloodValue.getLowPressure()));
+					.add(new Data<>(bloodValue.getDate(), bloodValue.getLowPressure()));
 		}
 		bloodPressureChart.getData().add(seriesHighPressure);
 		bloodPressureChart.getData().add(seriesLowPressure);
@@ -222,7 +220,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 		Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>> cellFactory = new Callback<TableColumn<Prescription, Void>, TableCell<Prescription, Void>>() {
 			@Override
 			public TableCell<Prescription, Void> call(final TableColumn<Prescription, Void> param) {
-				final TableCell<Prescription, Void> cell = new TableCell<Prescription, Void>() {
+				return  new TableCell<Prescription, Void>() {
 					private final Button btn = new Button("Uusi resepti");
 					{
 						btn.setOnAction((ActionEvent event) -> {
@@ -246,7 +244,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 						}
 					}
 				};
-				return cell;
+				
 			}
 		};
 		medicineRenew.setCellFactory(cellFactory);

@@ -77,6 +77,7 @@ public class NotificationDAO {
 		} catch (ObjectNotFoundException oe) {
 			LOGGER.warning("Notification not found");
 		} catch (Exception e) {
+			LOGGER.warning("Exception in read");
 		} finally {
 			session.close();
 		}

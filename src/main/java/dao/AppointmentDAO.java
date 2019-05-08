@@ -1,17 +1,16 @@
 package dao;
 
-import model.Appointment;
-import model.Customer;
-import model.Staff;
-import org.hibernate.ObjectNotFoundException;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-
-import java.time.format.DateTimeFormatter;
-import java.util.logging.Logger;
+import model.Appointment;
+import model.Customer;
+import model.Staff;
 
 /**
  * 
@@ -23,7 +22,7 @@ public class AppointmentDAO {
 	 * Sessionfactory used for CRUD operations
 	 */
 	private SessionFactory sessionfactory = null;
-	private final Logger LOGGER = Logger.getLogger(AppointmentDAO.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(AppointmentDAO.class.getName());
 
 
 	/**

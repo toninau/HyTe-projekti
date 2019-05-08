@@ -1,17 +1,17 @@
 package dao;
 
-import model.Customer;
-import model.Staff;
-import org.hibernate.ObjectNotFoundException;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
+import model.Customer;
+import model.Staff;
 
 /**
  * 
@@ -119,7 +119,7 @@ public class StaffDAO {
 			query.executeUpdate();
 			success = true;
 		} catch (Exception e) {
-			LOGGER.warning("Exception");
+			LOGGER.warning("Exception in add customer to staff member");
 		} finally {
 			session.close();
 		}
@@ -148,7 +148,7 @@ public class StaffDAO {
 			kysely.executeUpdate();
 			success = true;
 		} catch (Exception e) {
-			LOGGER.warning("Exception");
+			LOGGER.warning("Exception in delete staff member's customer");
 		} finally {
 			session.close();
 		}
@@ -173,7 +173,7 @@ public class StaffDAO {
 			session.getTransaction().commit();
 			result = query.list().toArray(new Customer[query.list().size()]);
 		} catch (Exception e) {
-			LOGGER.warning("Exception");
+			LOGGER.warning("Exception in read staff member's customers");
 		} finally {
 			session.close();
 		}
@@ -215,7 +215,7 @@ public class StaffDAO {
 			result = session.createQuery("from Staff").list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			LOGGER.warning("Exception");
+			LOGGER.warning("Exception in read all");
 		} finally {
 			session.close();
 		}

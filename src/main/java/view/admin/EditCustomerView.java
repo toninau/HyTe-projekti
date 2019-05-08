@@ -14,9 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Customer;
-import view.HyteGUI;
 import view.ViewChanger;
-import view.enums.Bundles;
 
 /**
  * Class for editing customers in database.
@@ -69,8 +67,8 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 */
 	public void allFromDatabase() {
 		Customer[] customers = c.findCustomerAll();
-        for (Customer c : customers) {
-            resultSet.add(c.getCustomerID() + ", " + c.getSurname() + ", " + c.getFirstName());
+        for (Customer cust : customers) {
+            resultSet.add(cust.getCustomerID() + ", " + cust.getSurname() + ", " + cust.getFirstName());
         }
 	}
 

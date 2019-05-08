@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,6 +50,7 @@ public class CustomerHelpView extends ViewChanger implements Initializable {
 	@FXML
 	private Label helpTip;
 
+	private static final Logger LOGGER = Logger.getLogger(CustomerHelpView.class.getName());
 	private ResourceBundle bundle;
 	private List<String> imageList;
 	private List<String> textList;
@@ -132,6 +135,7 @@ public class CustomerHelpView extends ViewChanger implements Initializable {
 			helpCounter.setText(index1 + "/" + imageList.size());
 			helpTip.setText(bundle.getString("help.mainTip") + " " + index1);
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		}
 	}
 

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
@@ -81,9 +82,10 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	@FXML private ImageView locationInputValidation;
 
 	@FXML private ListView<String> messageArea;
-	private CheckListView<Prescription> checkListView;
 
-	private WeatherAPICall weather;
+	private static final String UPDATE = "update";
+	private static final String CREATE = "create";
+	private static final Logger LOGGER = Logger.getLogger(CustomerHelpView.class.getName());
 	private ResourceBundle bundle;
 	private CustomerControllerIF controller;
 	private ObservableList<Prescription> prescriptionsList;
@@ -112,12 +114,13 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 			try {
 				url = f.toURI().toURL().toString();
 				imageView.setImage(new Image(url));
-				if (action.equals("update")) {
+				if (action.equals(UPDATE)) {
 					controller.updateImage(selectedFile, imageSlot);
 				} else {
 					controller.imageToDatabase(selectedFile, imageSlot);
 				}
 			} catch (IOException e) {
+				LOGGER.warning("Could not open file");
 			}
 		}
 	}
@@ -129,9 +132,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	public void selectImageMe() {
 		String action;
 		if (imageMe.getImage() != null) {
-			action = "update";
+			action = UPDATE;
 		} else {
-			action = "create";
+			action = CREATE;
 		}
 		selectImage(imageMe, 1, action);
 	}
@@ -142,9 +145,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	public void selectSecondImage() {
 		String action;
 		if (imageSecond.getImage() != null) {
-			action = "update";
+			action = UPDATE;
 		} else {
-			action = "create";
+			action = CREATE;
 		}
 		selectImage(imageSecond, 2, action);
 	}
@@ -155,9 +158,9 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	public void selectThirdImage() {
 		String action;
 		if (imageThird.getImage() != null) {
-			action = "update";
+			action = UPDATE;
 		} else {
-			action = "create";
+			action = CREATE;
 		}
 		selectImage(imageThird, 3, action);
 	}
@@ -193,6 +196,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 					Image image = SwingFXUtils.toFXImage(img, null);
 					imagev.setImage(image);
 				} catch (IOException e) {
+					LOGGER.warning("Could not read file");
 				}
 			}
 		}
@@ -204,9 +208,8 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 	 * @see #getPrescriptionsList()
 	 */
 	public void showPrescription() {
-		prescriptionsList = getPrescriptionsList();
-		checkListView = new CheckListView<>();
-		
+		CheckListView<Prescription> checkListView = new CheckListView<>();
+		prescriptionsList = getPrescriptionsList();		
 		checkListView.getStylesheets().add(getClass().getResource("/css/view.css").toExternalForm());
 		checkListView.getStyleClass().add("checkListView");
 		prescriptionBox.getChildren().add(checkListView);
@@ -333,7 +336,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 		locationField.setText(location);
 		try {
-			weather = new WeatherAPICall(location);
+			WeatherAPICall weather = new WeatherAPICall(location);
 			weatherState.setText(weather.getState());
 			weatherCelsius.setText(weather.getCelsius() + "\u00b0C");
 			switch (weather.getState()) {
@@ -358,6 +361,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 				break;
 			}
 		} catch (Exception e) {
+			LOGGER.warning("Could not show weather");
 		}
 		weatherImageView.setImage(image);
 		weatherImageView.setFitHeight(50);

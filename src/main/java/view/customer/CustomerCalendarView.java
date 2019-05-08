@@ -39,7 +39,9 @@ import view.ViewChanger;
 import view.enums.Bundles;
 
 /**
- * This class is a fxml controller for CalendarView fxml file. Creates a monthly, weekly and daily calendar.
+ * This class is a fxml controller for CalendarView fxml file. Creates a
+ * monthly, weekly and daily calendar.
+ * 
  * @author IdaKi
  *
  */
@@ -140,7 +142,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	private CustomerController controller;
 	private StaffController staffController;
 	private String previoustextarea = "jotain";
-	private HashMap<Button, HBox> map = new HashMap<Button, HBox>();
+	private HashMap<Button, HBox> map = new HashMap<>();
 	private Month month;
 	private int year;
 	private int day;
@@ -148,7 +150,9 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	private Appointment[] appointments;
 
 	/**
-	 * Constructor for customer calendar view. Creates controllers for staff and customer.
+	 * Constructor for customer calendar view. Creates controllers for staff and
+	 * customer.
+	 * 
 	 * @see controller.StaffController#StaffController(CustomerCalendarView)
 	 * @see controller.CustomerController#CustomerController(CustomerCalendarView)
 	 */
@@ -159,6 +163,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	/**
 	 * Adds the day appointment to a list view.
+	 * 
 	 * @param date The day which appointments are to be shown.
 	 */
 	public void showDayAppointments(LocalDate date) {
@@ -227,6 +232,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	/**
 	 * Adds appointments with the given date to an observable list
+	 * 
 	 * @param date The date which appointments are wanted.
 	 * @return Observable list of the given day's appointments.
 	 */
@@ -244,18 +250,19 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	/**
 	 * Calculates the day of the week that is the first day of the month.
-	 * @return integer value of the month's starting day.  (e.g. Monday = 1 etc.)
+	 * 
+	 * @return integer value of the month's starting day. (e.g. Monday = 1 etc.)
 	 */
 	public int startDay() {
 		LocalDate d = LocalDate.of(year, month.getValue(), 1);
 		return d.getDayOfWeek().getValue();
 	}
-	
 
 	/**
 	 * Populates the grid pane to look like a monthly calendar.
+	 * 
 	 * @param month The month to be shown.
-	 * @param year	The year.
+	 * @param year  The year.
 	 */
 	public void populateGridPane(Month month, int year) {
 		final int MAX_ROW = 6;
@@ -296,9 +303,10 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		}
 		nextMonthDays(day, column, MAX_COL, MAX_ROW, row);
 	}
-	
+
 	/**
 	 * Adds the next month's day to the grid pane.
+	 * 
 	 * @param day
 	 * @param column
 	 * @param maxcol
@@ -306,37 +314,38 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	 * @param row
 	 */
 	public void nextMonthDays(int day, int column, int maxcol, int maxrow, int row) {
-		day = 0;
+		int d = day;
+		d = 0;
 		while (row <= maxrow && column <= maxcol) {
-			day++;
+			d++;
 			boolean done = false;
 			if (column == maxcol) {
 				if (row == maxrow) {
-					done  =true;
+					done = true;
 				}
 				column = 0;
 				row++;
 			}
 			if (done) {
-				
+				break;
 			} else {
-			StackPane p = createGridCell();
-			Label dayLabel = new Label(Integer.toString(day));
-			p.getChildren().add(dayLabel);
-			GridPane.setHalignment(p, HPos.CENTER);
-			p.setDisable(true);
-			grid.add(p, column, row);
+				StackPane p = createGridCell();
+				Label dayLabel = new Label(Integer.toString(d));
+				p.getChildren().add(dayLabel);
+				GridPane.setHalignment(p, HPos.CENTER);
+				p.setDisable(true);
+				grid.add(p, column, row);
 			}
-
-			column++;	
+			column++;
 		}
 	}
 
 	/**
 	 * Checks if there are appointments on the given day.
-	 * @param day	Day of the date to be checked.
-	 * @param month	Month of the date to be checked.
-	 * @param year	Year of the date to be checked.
+	 * 
+	 * @param day   Day of the date to be checked.
+	 * @param month Month of the date to be checked.
+	 * @param year  Year of the date to be checked.
 	 * @param stack pane which is the cell of the grid pane.
 	 */
 	public void checkAppointments(int day, int month, int year, StackPane p) {
@@ -347,23 +356,25 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 			}
 		}
 	}
-	
+
 	/**
 	 * Sets the current dates cell style.
-	 * @param day Day of the date to be checked.
+	 * 
+	 * @param day   Day of the date to be checked.
 	 * @param month Month of the date to be checked.
-	 * @param year Year of the date to be checked.
-	 * @param p StackPane which is the cell of the grid pane.
+	 * @param year  Year of the date to be checked.
+	 * @param p     StackPane which is the cell of the grid pane.
 	 */
 	public void checkCurrentDate(int day, int month, int year, StackPane p) {
 		if (LocalDate.now().isEqual(LocalDate.of(year, month, day))) {
 			p.getStyleClass().add("currentDate");
 		}
 	}
-	
+
 	/**
 	 * Sets an event listener to a grid pane cell.
-	 * @param p Cell to set the listener to.
+	 * 
+	 * @param p   Cell to set the listener to.
 	 * @param day Day which appointments can be seen when clicked.
 	 */
 	public void setEventListener(StackPane p, int day) {
@@ -396,6 +407,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	/**
 	 * Creates the grid cell to be used in the grid pane.
+	 * 
 	 * @return StackPane working as the cell.
 	 */
 	public StackPane createGridCell() {
@@ -429,7 +441,8 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	/**
 	 * Animation for widening the week calendar's weekday columns
-	 * @param event	MouseClicked.
+	 * 
+	 * @param event MouseClicked.
 	 * @throws IOException
 	 */
 	public void openbox(MouseEvent event) throws IOException {
@@ -460,7 +473,8 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	/**
 	 * Calculates the day value for the week calendar.
-	 * @param date 
+	 * 
+	 * @param date
 	 * @param a
 	 * @return The date for the week calendar.
 	 */
@@ -468,7 +482,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		int result = date.getDayOfMonth();
 		int monthW = date.getMonthValue();
 		int weekDayNow = date.getDayOfWeek().getValue();
-		long weekDay = (long)a;
+		long weekDay = (long) a;
 		if (weekDay < weekDayNow) {
 			result = date.minusDays(weekDayNow - weekDay).getDayOfMonth();
 			if (result > date.getDayOfWeek().getValue()) {
@@ -485,12 +499,13 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	/**
 	 * Populates the labels and list views using the calculateDay() method.
+	 * 
 	 * @param date The date which week is to be shown.
 	 * @see #calculateDay(LocalDate, int)
 	 */
 	public void showWeekAppointments(LocalDate date) {
-		weekLabel.setText(
-				date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " WEEK " + date.get(WeekFields.ISO.weekOfYear()));
+		weekLabel.setText(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " WEEK "
+				+ date.get(WeekFields.ISO.weekOfYear()));
 
 		ObservableList<Appointment> mondayAppointments = appointmentsList(calculateDay(date, 1));
 		ObservableList<Appointment> tuesdayAppointments = appointmentsList(calculateDay(date, 2));
@@ -531,6 +546,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 	/**
 	 * Creates a hash map for the week calendar animation.
+	 * 
 	 * @see #openbox(MouseEvent)
 	 */
 	public void createHashMap() {
@@ -549,10 +565,10 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		month = LocalDate.now().getMonth();
 		year = LocalDate.now().getYear();
 		day = LocalDate.now().getDayOfMonth();
-		if(controller.getLoggedCustomer() != null) {
+		if (controller.getLoggedCustomer() != null) {
 			appointments = controller.customersAppointments();
 		}
-		if(staffController.getLoggedStaff() != null) {
+		if (staffController.getLoggedStaff() != null) {
 			ObservableList<Appointment> a = staffController.allAppointments();
 			appointments = new Appointment[a.size()];
 			for (int i = 0; i < a.size(); i++) {

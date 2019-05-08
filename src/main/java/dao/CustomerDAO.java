@@ -130,7 +130,7 @@ public class CustomerDAO {
 		} catch (ObjectNotFoundException oe) {
 			LOGGER.warning("Object not found");
 		} catch (Exception e) {
-			LOGGER.warning("Exception");
+			LOGGER.warning("Exception in read");
 		} finally {
 			session.close();
 		}
@@ -152,7 +152,7 @@ public class CustomerDAO {
 			result = session.createQuery("from Customer").list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
-			LOGGER.warning("Exception");
+			LOGGER.warning("Exception in read all");
 		} finally {
 			session.close();
 		}

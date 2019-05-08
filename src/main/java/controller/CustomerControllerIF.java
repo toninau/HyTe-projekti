@@ -1,10 +1,14 @@
 package controller;
 
-import model.*;
-
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
+
+import model.Appointment;
+import model.BloodValue;
+import model.Customer;
+import model.Notification;
+import model.Prescription;
+import model.UserImage;
 
 
 public interface CustomerControllerIF {
