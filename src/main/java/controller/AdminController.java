@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.HashMap;
+
 import com.lambdaworks.crypto.SCryptUtil;
 import model.Customer;
 import model.DAOManager;
@@ -108,19 +110,19 @@ public class AdminController implements AdminControllerIF {
 	 * 			<code> false </code> if creating the customer failed.
 	 * @see dao.CustomerDAO#create(Customer)
 	 */
-	public boolean addCustomer() {
+	public boolean addCustomer(HashMap<String, String> map) {
 		Customer customer = new Customer();
 		boolean success = true;
 
-		String hetu = addcustomer.getSSN();
-		String etunimi = addcustomer.getFirstName();
-		String sukunimi = addcustomer.getSurname();
-		String puhnro = addcustomer.getPhoneNumber();
-		String email = addcustomer.getEmail();
-		String ice = addcustomer.getICE();
-		String osoite = addcustomer.getAddress();
-		String pw = encryptPassword(addcustomer.getPassword());
-		String[] info = { etunimi, sukunimi, puhnro, email, hetu, ice, osoite, pw };
+		String hetu = map.get("ssn");
+		String etunimi = map.get("firstname");
+		String sukunimi = map.get("surname");
+		String puhnro = map.get("phone");
+		//String email = addcustomer.getEmail();
+		String ice = map.get("ice");
+		String osoite = map.get("address");
+		String pw = encryptPassword(map.get("password"));
+		String[] info = { etunimi, sukunimi, puhnro, hetu, ice, osoite, pw };
 		for (String string : info) {
 			if (string.isEmpty()) {
 				success = false;

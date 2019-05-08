@@ -82,7 +82,7 @@ public class LoginControllerTest {
 			LoginView loginView = new LoginView();
 			loginController = new LoginController(loginView);
 		} catch (Exception e) {
-			fail("Failed to create appointment-object");
+			fail("Failed to create loginview");
 		}
 	}
 	

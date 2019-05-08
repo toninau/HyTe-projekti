@@ -1,7 +1,10 @@
 package controller;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.HashMap;
 
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
@@ -48,8 +51,30 @@ public class AdminControllerTest {
 		daom.getStaffDAO().delete("marman");
 		daom.getStaffDAO().delete("marman2");
 		daom.getCustomerDAO().delete("t@testi.com");
+		daom.getCustomerDAO().delete("acvacv");
 	}
 	
+	@Test
+	public void deleteCustomerTest() {
+		Customer c = new Customer("Adam", "Testing", "ssn", "Tablestreet", "000", "111", "pw");
+		daom.getCustomerDAO().create(c);
+		assertTrue(daom.getCustomerDAO().read("adates").getFirstName().equals(c.getFirstName()));
+		adminController.removeCustomerFromDatabase("adates");
+		assertFalse(daom.getCustomerDAO().read("adates").equals(c));
+	}
+	
+	@Test
+	public void addStaffTest() {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("firstname", "acv");
+		map.put("surname", "acv");
+		map.put("ice", "icenr");
+		map.put("password", "salas");
+		map.put("ssn", "ssn");
+		map.put("phone", "phone");
+		map.put("address", "addr");
+		assertTrue(adminController.addCustomer(map));
+	}
 	
 	@Test
 	public void updateCustomerTest() {

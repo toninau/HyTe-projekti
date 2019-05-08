@@ -1,6 +1,7 @@
 package view.admin;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import controller.AdminController;
@@ -48,6 +49,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	
 	private AdminControllerIF controller;
 	private ResourceBundle bundle;
+	private HashMap<String, String> map;
 	
 	public AddCustomerView() {
 		controller = new AdminController(this);
@@ -57,7 +59,8 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	 * Method for creating a customer.
 	 */
 	public void addCustomer() {
-		if(controller.addCustomer()) {
+
+		if(controller.addCustomer(map)) {
 			firstname.clear();
 			surname.clear();
 			ssn.clear();
@@ -67,6 +70,17 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 			ice.clear();
 			password.clear();
 		}
+	}
+	
+	public void createHashMap() {
+		map = new HashMap<>();
+		map.put("firstname", getFirstName());
+		map.put("surname", getSurname());
+		map.put("ice", getICE());
+		map.put("password", getPassword());
+		map.put("ssn", getSSN());
+		map.put("phone", getPhoneNumber());
+		map.put("address", getAddress());
 	}
 	
 
