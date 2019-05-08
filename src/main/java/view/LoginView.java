@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import controller.LoginController;
-import controller.LoginController_IF;
+import controller.LoginControllerIF;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -35,7 +35,7 @@ import view.enums.FxmlEnum;
  *
  */
 
-public class LoginView extends ViewChanger implements Initializable, LoginView_IF {
+public class LoginView extends ViewChanger implements Initializable, LoginViewIF {
 
 	@FXML
 	private Tab staffTab;
@@ -66,7 +66,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginView_I
 
 	ObservableList<String> imageList;
 	private ResourceBundle bundle;
-	private LoginController_IF c;
+	private LoginControllerIF c;
 
 	/**
 	 * Constructor for LoginView -class.

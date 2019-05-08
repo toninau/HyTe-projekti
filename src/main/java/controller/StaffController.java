@@ -7,11 +7,11 @@ import view.customer.CustomerCalendarView;
 import view.staff.StaffAppointmentView;
 import view.staff.StaffHomeView;
 
-public class StaffController implements StaffController_IF{
+public class StaffController implements StaffControllerIF{
 	
 	private static Staff staff;
 	private Customer[] staffCustomers;
-	private DAOManager_IF daom;
+	private DAOManagerIF daom;
 	private StaffHomeView staffHomeView;
 	private StaffAppointmentView appointmentView;
 

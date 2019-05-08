@@ -1,7 +1,7 @@
 package view.staff;
 
 import controller.StaffController;
-import controller.StaffController_IF;
+import controller.StaffControllerIF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -57,7 +57,7 @@ public class StaffAppointmentView extends ViewChanger implements Initializable {
 
 	private Appointment appointment;
 	private Customer customer;
-	StaffController_IF controller;
+	StaffControllerIF controller;
 
 	/**
 	 * Constructor. Creates the controller for methods

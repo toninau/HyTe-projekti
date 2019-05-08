@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.textfield.TextFields;
 
 import controller.AdminController;
-import controller.AdminController_IF;
+import controller.AdminControllerIF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,7 +55,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	private Button toMenu;
 	
 	private ArrayList<String> resultSet;
-	private AdminController_IF c;
+	private AdminControllerIF c;
 	private Customer customer;
 	private ResourceBundle bundle;
 	

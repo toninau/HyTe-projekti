@@ -17,7 +17,7 @@ import org.controlsfx.control.CheckListView;
 import org.controlsfx.control.textfield.TextFields;
 
 import controller.CustomerController;
-import controller.CustomerController_IF;
+import controller.CustomerControllerIF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -85,7 +85,7 @@ public class CustomerHomeView extends ViewChanger implements Initializable {
 
 	private WeatherAPICall weather;
 	private ResourceBundle bundle;
-	private CustomerController_IF controller;
+	private CustomerControllerIF controller;
 	private ObservableList<Prescription> prescriptionsList;
 
 	public CustomerHomeView() {

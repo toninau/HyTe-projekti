@@ -9,7 +9,7 @@ import model.Appointment;
 import model.BloodValue;
 import model.Customer;
 import model.DAOManager;
-import model.DAOManager_IF;
+import model.DAOManagerIF;
 import model.Notification;
 import model.Prescription;
 import model.UserImage;
@@ -26,11 +26,11 @@ import view.customer.CustomerHomeView;
  *
  */
 
-public class CustomerController implements CustomerController_IF {
+public class CustomerController implements CustomerControllerIF {
 
 	private CustomerHealthView healthview;
 	private static Customer customer;
-	private DAOManager_IF daom;
+	private DAOManagerIF daom;
 
 	public CustomerController() {
 	}
@@ -107,7 +107,9 @@ public class CustomerController implements CustomerController_IF {
 			bloodvalue.setDate(healthview.getDate());
 			bloodvalue.setTime(healthview.getTime());
 			bloodvalue.setCustomer(customer);
-			return daom.getBloodValueDAO().create(bloodvalue);
+			success = daom.getBloodValueDAO().create(bloodvalue);
+			daom.writeBloodValueToFileDuringSession(customer);
+			return success;
 		}
 		return success;
 	}
@@ -129,8 +131,11 @@ public class CustomerController implements CustomerController_IF {
 			bloodValue.setDate(healthview.getDate());
 			bloodValue.setTime(healthview.getTime());
 			bloodValue.setCustomer(customer);
-			return daom.getBloodValueDAO().create(bloodValue);
+			success = daom.getBloodValueDAO().create(bloodValue);
+			daom.writeBloodValueToFileDuringSession(customer);
+			return success;
 		}
+		
 		return success;
 	}
 

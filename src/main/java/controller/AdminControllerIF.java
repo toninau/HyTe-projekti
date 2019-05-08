@@ -3,7 +3,7 @@ package controller;
 import model.Customer;
 import model.Staff;
 
-public interface AdminController_IF {
+public interface AdminControllerIF {
 	boolean addStaff();
 	boolean addCustomer();
 	Staff[] findStaffAll();

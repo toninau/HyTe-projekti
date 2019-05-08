@@ -7,9 +7,9 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.textfield.TextFields;
 
 import controller.AdminController;
-import controller.AdminController_IF;
+import controller.AdminControllerIF;
 import controller.StaffController;
-import controller.StaffController_IF;
+import controller.StaffControllerIF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,7 +64,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 
 	private ArrayList<String> resultSet;
 
-	private AdminController_IF c;
+	private AdminControllerIF c;
 	private Staff staff;
 	ResourceBundle bundle;
 	
@@ -98,7 +98,7 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		phoneNumber.setText(staff.getPhoneNumber());
 		ObservableList<Customer> customerList = FXCollections.observableArrayList();
 		Customer[] staffCustomers = c.findCustomerAll();
-		StaffController_IF staffController = new StaffController();
+		StaffControllerIF staffController = new StaffController();
 		StaffController.loggedStaff(staff);
 		ObservableList<Customer> StaffCustomerList = staffController.getStaffCustomers();
 		for (Customer customer : staffCustomers) {

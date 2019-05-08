@@ -1,6 +1,6 @@
 package view;
 
-public interface LoginView_IF {
+public interface LoginViewIF {
 	String getUsernameCustomer();
 	String getUsernameStaff();
 	String getPasswordCustomer();

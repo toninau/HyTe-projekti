@@ -51,7 +51,6 @@ public class ImageLoader {
 
 			}
 		}
-
 	}
 	
 	public UserImage[] readCustomerImages() {

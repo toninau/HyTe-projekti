@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public interface CustomerController_IF {
+public interface CustomerControllerIF {
 	abstract Customer getLoggedCustomer();
 	abstract List<BloodValue> bloodSugarData();
 	abstract ArrayList<BloodValue> bloodPressureData();

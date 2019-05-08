@@ -14,14 +14,14 @@ import view.LoginView;
 import controller.LoginController;
 import model.Customer;
 import model.DAOManager;
-import model.DAOManager_IF;
+import model.DAOManagerIF;
 import model.HibernateUtil;
 import model.Staff;
 
 public class LoginControllerTest {
 	
 	static LoginController loginController;
-	private static DAOManager_IF daom;
+	private static DAOManagerIF daom;
 	private static Customer customer;
 	private static Staff staff;
 	

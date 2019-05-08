@@ -56,7 +56,7 @@ public class AppointmentDAOTest {
 		//Read appointment
 		appointment = aDAO.read(1);
 		assertEquals("Firstname", appointment.getCustomer().getFirstName(), "read(id): Failed to read appointment customer");
-		assertEquals("Firstname", appointment.getStaff().getFirstName(), "read(id): Failed to read appointment staff member");
+		assertEquals("FirstName", appointment.getStaff().getFirstName(), "read(id): Failed to read appointment staff member");
 		assertEquals(LocalDate.of(2020, 12, 12), appointment.getDate(), "read(id): Failed to read appointment date");
 		assertEquals("Info", appointment.getInfo(), "read(id): Failed to read appointment info");
 		assertEquals(LocalTime.of(12, 12), appointment.getTime(), "read(id): Failed to read appointment time");
@@ -102,7 +102,7 @@ public class AppointmentDAOTest {
 	
 	private Staff createStaff() {
 		Staff staff = new Staff();
-		staff.setFirstName("Firstname");
+		staff.setFirstName("FirstName");
 		staff.setSurname("Surname");
 		staff.setPhoneNumber("PhoneNumber");
 		staff.setPassword("Password");

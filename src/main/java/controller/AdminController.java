@@ -3,18 +3,18 @@ package controller;
 import com.lambdaworks.crypto.SCryptUtil;
 import model.Customer;
 import model.DAOManager;
-import model.DAOManager_IF;
+import model.DAOManagerIF;
 import model.Staff;
 import view.admin.*;
 
 //import view.admin.EditCustomerIF;
 //import view.admin.EditStaffIF;
 
-public class AdminController implements AdminController_IF {
+public class AdminController implements AdminControllerIF {
 
 	private AddStaffIF addstaff;
 	private AddCustomerIF addcustomer;
-	private DAOManager_IF daoM;
+	private DAOManagerIF daoM;
 
 	public AdminController() {
 		daoM = new DAOManager();

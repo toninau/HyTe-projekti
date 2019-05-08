@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.CustomerController;
-import controller.CustomerController_IF;
+import controller.CustomerControllerIF;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -100,7 +100,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	private Series<String, Integer> seriesHighPressure;
 	private Series<String, Integer> seriesLowPressure;
 
-	private CustomerController_IF controller;
+	private CustomerControllerIF controller;
 
 	public CustomerHealthView() {
 		controller = new CustomerController(this);

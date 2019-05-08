@@ -16,7 +16,7 @@ import dao.UserImageDAO;
  * This manager class manages all DAO-classes in the project.
  *
  */
-public class DAOManager implements DAOManager_IF {
+public class DAOManager implements DAOManagerIF {
 
 	private CustomerDAO customerDAO = null;
 	private StaffDAO staffDAO = null;
@@ -62,6 +62,15 @@ public class DAOManager implements DAOManager_IF {
 	 */
 	public void writeImageToFileDuringSession(Customer customer) {
 		i.writeImagesToFile(customer);
+	}
+	
+	/**
+	 * Method for writing customer's blood values to a file during session.
+	 * @param customer The logged in customer.
+	 * @see InfoLoader#writeBloodvaluesToFile(Customer)
+	 */
+	public void writeBloodValueToFileDuringSession(Customer customer) {
+		info.writeBloodvaluesToFile(customer);
 	}
 
 	/**

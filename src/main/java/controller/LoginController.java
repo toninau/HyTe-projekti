@@ -4,18 +4,18 @@ import com.lambdaworks.crypto.SCryptUtil;
 
 import model.Customer;
 import model.DAOManager;
-import model.DAOManager_IF;
+import model.DAOManagerIF;
 import model.Staff;
-import view.LoginView_IF;
+import view.LoginViewIF;
 
-public class LoginController implements LoginController_IF {
+public class LoginController implements LoginControllerIF {
 
-	private DAOManager_IF daom;
-	private LoginView_IF view;
+	private DAOManagerIF daom;
+	private LoginViewIF view;
 
 	private boolean success = false;
 
-	public LoginController(LoginView_IF view) {
+	public LoginController(LoginViewIF view) {
 		this.view = view;
 		daom = new DAOManager();
 	}

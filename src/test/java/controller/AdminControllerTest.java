@@ -12,7 +12,7 @@ import com.lambdaworks.crypto.SCryptUtil;
 
 import model.Customer;
 import model.DAOManager;
-import model.DAOManager_IF;
+import model.DAOManagerIF;
 import model.HibernateUtil;
 import model.Staff;
 import view.admin.*;
@@ -24,7 +24,7 @@ public class AdminControllerTest {
 	private AddStaffView addStaffView;
 	private EditStaffView editStaffView;
 	private EditCustomerView editCustomerView;
-	private static DAOManager_IF daom;
+	private static DAOManagerIF daom;
 	private static Customer customer;
 	private static Staff staff;
 	

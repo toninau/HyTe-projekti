@@ -3,7 +3,7 @@ package controller;
 import javafx.collections.ObservableList;
 import model.*;
 
-public interface StaffController_IF {
+public interface StaffControllerIF {
     ObservableList<Appointment> allAppointments();
     Staff getLoggedStaff();
     boolean sendNotification(Notification notification);

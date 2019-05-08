@@ -7,15 +7,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import dao.AppointmentDAO;
 import dao.BloodValueDAO;
 import dao.PrescriptionDAO;
 
 public class InfoLoader {
-
-	private static final Logger log = Logger.getLogger(InfoLoader.class.getName());
 
 	private File fileP;
 	private File fileA;

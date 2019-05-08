@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.AdminController;
-import controller.AdminController_IF;
+import controller.AdminControllerIF;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -47,7 +47,7 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 	@FXML
 	private PasswordField password;
 	
-	private AdminController_IF controller;
+	private AdminControllerIF controller;
 	private ResourceBundle bundle;
 	
 	public AddCustomerView() {

@@ -3,7 +3,7 @@ package controller;
 import model.Customer;
 import model.Staff;
 
-public interface LoginController_IF {
+public interface LoginControllerIF {
 
 	abstract boolean checkLoginCustomer(String username, String password);
 	abstract Customer getCustomerFromDatabase(String email);
