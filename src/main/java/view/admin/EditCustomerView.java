@@ -11,8 +11,6 @@ import controller.AdminControllerIF;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Customer;
@@ -57,7 +55,6 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	private ArrayList<String> resultSet;
 	private AdminControllerIF c;
 	private Customer customer;
-	private ResourceBundle bundle;
 	
 	/**
 	 * 
@@ -72,8 +69,8 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 */
 	public void allFromDatabase() {
 		Customer[] customers = c.findCustomerAll();
-        for (Customer customer : customers) {
-            resultSet.add(customer.getCustomerID() + ", " + customer.getSurname() + ", " + customer.getFirstName());
+        for (Customer c : customers) {
+            resultSet.add(c.getCustomerID() + ", " + c.getSurname() + ", " + c.getFirstName());
         }
 	}
 
@@ -81,7 +78,7 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	 * Fills the text fields with chosen customer's information.
 	 */
 	public void showInfo() {
-		String [] split = findCustomer.getText().split(","); ;		
+		String [] split = findCustomer.getText().split(",");	
 		String before = split[0];
 		customer = c.findCustomerWithID(before);
 		firstname.setText(customer.getFirstName());
@@ -113,11 +110,12 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 	public void remove() {
 		if(c.removeCustomerFromDatabase(getEmail())){
 			clearFields();
-		}else {
-			//alert("remove");
 		}
 	}
 	
+	/**
+	 * Clears the fields.
+	 */
 	public void clearFields() {
 		firstname.clear();
 		surname.clear();
@@ -128,33 +126,9 @@ public class EditCustomerView extends ViewChanger implements Initializable, Edit
 		ssn.clear();	
 	}
 	
-	public void alert(String msg) {
-		String title;
-		switch (msg) {
-		case "remove":
-			msg = bundle.getString("loginFailed.username");
-			title = bundle.getString("loginFailed.title");
-			break;
-		case "update":
-			msg = bundle.getString("loginFailed.password");
-			title = bundle.getString("loginFailed.title");
-			break;
-		default:
-			msg = "Login failed.";
-			title = "Login failed";
-			break;
-		}
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(msg);
-		alert.showAndWait();
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
-
 		allFromDatabase();
 		TextFields.bindAutoCompletion(findCustomer, SuggestionProvider.create(resultSet));
 	}

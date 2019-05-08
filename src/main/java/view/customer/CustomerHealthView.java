@@ -152,7 +152,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	}
 
 	public void updateBloodPressureChart() {
-		ArrayList<BloodValue> a = controller.bloodPressureData();
+		List<BloodValue> a = controller.bloodPressureData();
 		bloodPressureChart.getData().clear();
 		for (BloodValue bloodValue : a) {
 			seriesHighPressure.getData()

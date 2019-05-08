@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * 
@@ -22,6 +23,7 @@ public class StaffDAO {
 	 * Sessionfactory for CRUD-operations
 	 */
 	private SessionFactory sessionFactory = null;
+	private static final Logger LOGGER = Logger.getLogger(StaffDAO.class.getName());
 
 	/**
 	 * Class constructor.
@@ -117,6 +119,7 @@ public class StaffDAO {
 			query.executeUpdate();
 			success = true;
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -145,6 +148,7 @@ public class StaffDAO {
 			kysely.executeUpdate();
 			success = true;
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -169,6 +173,7 @@ public class StaffDAO {
 			session.getTransaction().commit();
 			result = query.list().toArray(new Customer[query.list().size()]);
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -188,8 +193,8 @@ public class StaffDAO {
 			session.beginTransaction();
 			session.load(staff, id);
 			session.getTransaction().commit();
-		} catch (ObjectNotFoundException oe) {
 		} catch (Exception e) {
+			LOGGER.warning("Object not found");
 		} finally {
 			session.close();
 		}
@@ -210,6 +215,7 @@ public class StaffDAO {
 			result = session.createQuery("from Staff").list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -236,7 +242,6 @@ public class StaffDAO {
 			s.setPhoneNumber(staff.getPhoneNumber());
 			s.setPassword(staff.getPassword());
 			success = true;
-		} else {
 		}
 		session.getTransaction().commit();
 		session.close();

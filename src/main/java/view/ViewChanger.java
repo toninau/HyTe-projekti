@@ -1,9 +1,8 @@
 package view;
 
 import java.io.IOException;
-
 import java.util.ResourceBundle;
-
+import java.util.logging.Logger;
 
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +26,7 @@ import view.enums.FxmlEnum;
  */
 public class ViewChanger {
 
+	private static final Logger LOGGER = Logger.getLogger(ViewChanger.class.getName());
 	private Stage loadStage;
 
 	/**
@@ -47,6 +47,7 @@ public class ViewChanger {
 			stage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
 			stage.show();
 		} catch (IOException e) {
+			LOGGER.warning("Opening scene failed");
 		}
 		loaded();
 	}

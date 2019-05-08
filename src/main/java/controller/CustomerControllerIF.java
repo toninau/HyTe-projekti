@@ -10,7 +10,7 @@ import java.util.List;
 public interface CustomerControllerIF {
 	abstract Customer getLoggedCustomer();
 	abstract List<BloodValue> bloodSugarData();
-	abstract ArrayList<BloodValue> bloodPressureData();
+	abstract List<BloodValue> bloodPressureData();
 	abstract boolean createBloodsugarValue();
 	abstract boolean createBloodPressureValue();
 

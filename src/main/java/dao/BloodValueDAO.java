@@ -2,10 +2,15 @@ package dao;
 
 import model.BloodValue;
 import model.Customer;
+
+import java.util.logging.Logger;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import controller.CustomerController;
 
 /**
  * 
@@ -17,6 +22,7 @@ public class BloodValueDAO {
 	 * Sessionfactory for CRUD operations
 	 */
 	private SessionFactory sessionfactory = null;
+	private final Logger LOGGER = Logger.getLogger(BloodValueDAO.class.getName());
 
 	/**
 	 * Class constructor
@@ -72,6 +78,7 @@ public class BloodValueDAO {
 			result = query.list().toArray(new BloodValue[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}

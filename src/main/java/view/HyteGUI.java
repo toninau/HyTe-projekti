@@ -1,6 +1,5 @@
 package view;
 
-import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +15,8 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import com.sun.javafx.application.LauncherImpl;
+
 /**
  * 
  * Application login screen
@@ -25,10 +26,8 @@ import java.util.ResourceBundle;
 @SuppressWarnings("restriction")
 public class HyteGUI extends Application{
 
-	private Stage primaryStage;
-	private ResourceBundle bundle;
-	static Locale currentLocale = new Locale("fi", "FI");
-	AnchorPane rootLayout;
+	private static Locale currentLocale = new Locale("fi", "FI");
+	private AnchorPane rootLayout;
 
 	public static void main(String[] args) {
 		LauncherImpl.launchApplication(HyteGUI.class, PreloaderView.class, args);
@@ -37,18 +36,18 @@ public class HyteGUI extends Application{
 	@Override
 	public void init() throws IOException {
 		initLocale();
-		bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), currentLocale);
+		ResourceBundle bundle = ResourceBundle.getBundle(Bundles.LOGIN.getBundleName(), currentLocale);
 		rootLayout = FXMLLoader.load(getClass().getResource(FxmlEnum.LOGIN.getFxml()), bundle);
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Login");
+		Stage stage = primaryStage;
+		stage.setTitle("Login");
 		Scene scene = new Scene(rootLayout);
-		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	public static ObservableList<Locale> getSupportedLocales() {
@@ -63,7 +62,7 @@ public class HyteGUI extends Application{
 		return observableList;
 	}
 
-	public void initLocale() {
+	public static void initLocale() {
 		String language = "fi";
 		String country = "FI";
 		currentLocale = new Locale(language, country);

@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 /**
  * 
@@ -21,6 +22,7 @@ public class PrescriptionDAO {
 	 * SessionFactory for CRUD-operations
 	 */
 	private SessionFactory sessionFactory = null;
+	private static final Logger LOGGER = Logger.getLogger(PrescriptionDAO.class.getName());
 
 	/**
 	 * Class constructor
@@ -70,8 +72,8 @@ public class PrescriptionDAO {
 			session.beginTransaction();
 			session.load(prescription, id);
 			session.getTransaction().commit();
-		} catch (ObjectNotFoundException oe) {
-		} catch (Exception e) {
+		} catch (Exception  e) {
+			LOGGER.warning("Object not found");
 		} finally {
 			session.close();
 		}
@@ -96,6 +98,7 @@ public class PrescriptionDAO {
 			result = query.list().toArray(new Prescription[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -121,6 +124,7 @@ public class PrescriptionDAO {
 			result = query.list().toArray(new Prescription[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}

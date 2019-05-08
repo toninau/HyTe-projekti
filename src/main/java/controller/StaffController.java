@@ -2,8 +2,13 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.*;
-import view.customer.CustomerCalendarView;
+import model.Appointment;
+import model.Customer;
+import model.DAOManager;
+import model.DAOManagerIF;
+import model.Notification;
+import model.Prescription;
+import model.Staff;
 import view.staff.StaffAppointmentView;
 import view.staff.StaffHomeView;
 
@@ -12,8 +17,7 @@ public class StaffController implements StaffControllerIF{
 	private static Staff staff;
 	private Customer[] staffCustomers;
 	private DAOManagerIF daom;
-	private StaffHomeView staffHomeView;
-	private StaffAppointmentView appointmentView;
+
 
     /**
      * Empty constructor
@@ -27,7 +31,6 @@ public class StaffController implements StaffControllerIF{
      * @param staffHomeView
      */
 	public StaffController(StaffHomeView staffHomeView) {
-		this.staffHomeView = staffHomeView;
 		if (daom == null)
 			daom = new DAOManager();
 	}
@@ -37,15 +40,10 @@ public class StaffController implements StaffControllerIF{
      * @param appointmentView
      */
 	public StaffController(StaffAppointmentView appointmentView) {
-		this.appointmentView = appointmentView;
 		if (daom == null)
 			daom = new DAOManager();
 	}
 	
-	public StaffController(CustomerCalendarView calendarView) {
-		if(daom==null)
-			daom = new DAOManager();
-	}
 
     /**
      * Gets all appointments from the database
@@ -83,10 +81,7 @@ public class StaffController implements StaffControllerIF{
 	 */
 	public boolean sendNotification(Notification notification) {
 		notification.setStaff(staff);
-	    if (daom.getNotificationDAO().create(notification)) {
-	    	return true;
-		}
-	    return false;
+	    return daom.getNotificationDAO().create(notification);
     }
 
     /**
@@ -99,7 +94,6 @@ public class StaffController implements StaffControllerIF{
 		
 		for (Customer customer : staffCustomers) {
 			customerList.add(customer);
-			System.out.println(customer.getCustomerID());
 		}
 		return customerList;
 	}
@@ -113,8 +107,7 @@ public class StaffController implements StaffControllerIF{
 		for (Customer c: staffCustomers) {
 			if (c.equals(customer)) {
 				Appointment[] appointmentList = daom.getAppointmentDAO().readCustomerAppointments(c);
-				ObservableList<Appointment> list = FXCollections.observableArrayList(appointmentList);
-				return list;
+				return FXCollections.observableArrayList(appointmentList);
 			}
 		}
 		return null;
@@ -147,8 +140,7 @@ public class StaffController implements StaffControllerIF{
 		for (Customer c: staffCustomers) {
 			if (c.equals(customer)) {
 				Prescription[] prescriptionList = daom.getPrescriptionDAO().readCustomersPrescriptions(c);
-				ObservableList<Prescription> list = FXCollections.observableArrayList(prescriptionList);
-				return list;
+				return  FXCollections.observableArrayList(prescriptionList);
 			}
 		}
 		return null;
@@ -169,7 +161,6 @@ public class StaffController implements StaffControllerIF{
 	}
 
 	public String getDailyHappenings() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

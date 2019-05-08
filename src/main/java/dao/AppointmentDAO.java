@@ -9,7 +9,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 /**
  * 
@@ -21,6 +23,8 @@ public class AppointmentDAO {
 	 * Sessionfactory used for CRUD operations
 	 */
 	private SessionFactory sessionfactory = null;
+	private final Logger LOGGER = Logger.getLogger(AppointmentDAO.class.getName());
+
 
 	/**
 	 * Class constructor
@@ -70,8 +74,9 @@ public class AppointmentDAO {
 			session.beginTransaction();
 			session.load(appointment, id);
 			session.getTransaction().commit();
-		} catch (ObjectNotFoundException oe) {} 
-		catch (Exception e) {}
+		} catch (Exception oe) { 
+			LOGGER.warning("Object not found.");
+		}
 		finally {
 			session.close();
 		}
@@ -96,7 +101,9 @@ public class AppointmentDAO {
 			query.setParameter("id", customer.getCustomerID());
 			result = query.list().toArray(new Appointment[query.list().size()]);
 			session.getTransaction().commit();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			LOGGER.warning("Exception");
+		}
 		finally {
 			session.close();
 		}
@@ -124,6 +131,7 @@ public class AppointmentDAO {
 			result = query.list().toArray(new Appointment[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -152,7 +160,6 @@ public class AppointmentDAO {
 			a.setTime(appointment.getTime().format(tformatter));
 			a.setDate(appointment.getDate().format(dformatter));
 			success = true;
-		} else {
 		}
 		session.getTransaction().commit();
 		session.close();

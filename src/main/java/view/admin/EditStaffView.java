@@ -23,9 +23,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Customer;
 import model.Staff;
-import view.HyteGUI;
 import view.ViewChanger;
-import view.enums.Bundles;
 
 /**
  * Class for editing staff members in database.
@@ -66,7 +64,6 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 
 	private AdminControllerIF c;
 	private Staff staff;
-	ResourceBundle bundle;
 	
 	public EditStaffView() {
 		c = new AdminController(this);
@@ -78,8 +75,8 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	 */
 	public void allFromDatabase() {
 		Staff[] staffs = c.findStaffAll();
-        for (Staff staff : staffs) {
-            resultSet.add(staff.getStaffID() + ", " + staff.getSurname() + ", " + staff.getFirstName());
+        for (Staff s : staffs) {
+            resultSet.add(s.getStaffID() + ", " + s.getSurname() + ", " + s.getFirstName());
         }
 	}
 	
@@ -96,20 +93,21 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		surname.setText(staff.getSurname());
 		email.setText(staff.getStaffID());
 		phoneNumber.setText(staff.getPhoneNumber());
-		ObservableList<Customer> customerList = FXCollections.observableArrayList();
-		Customer[] staffCustomers = c.findCustomerAll();
+		
+		populateCustomerListView();
+		populateStaffsCustomerListView();
+	}
+	
+	/**
+	 * Populates the list view with the staff member's customers.
+	 */
+	public void populateStaffsCustomerListView() {
 		StaffControllerIF staffController = new StaffController();
 		StaffController.loggedStaff(staff);
-		ObservableList<Customer> StaffCustomerList = staffController.getStaffCustomers();
-		for (Customer customer : staffCustomers) {
-			for (Customer c : StaffCustomerList) {
-				if (!c.getFirstName().equals(customer.getFirstName())) {
-					customerList.add(customer);
-				}
-			}
-		}
-		if (StaffCustomerList!=null) {
-			adminStaffCustomerListView.getItems().addAll(StaffCustomerList);
+		ObservableList<Customer> staffCustomerList = staffController.getStaffCustomers();
+
+		if (staffCustomerList!=null) {
+			adminStaffCustomerListView.getItems().addAll(staffCustomerList);
 			adminStaffCustomerListView.setCellFactory(param -> new ListCell<Customer>() {
 				@Override
 				protected void updateItem(Customer item, boolean empty) {
@@ -122,7 +120,14 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 				}
 			});
 		}
-
+	}
+	
+	/**
+	 * Populates the list view with all customers from database.
+	 */
+	public void populateCustomerListView() {
+		Customer[] customers = c.findCustomerAll();
+		ObservableList<Customer> customerList = FXCollections.observableArrayList(customers);
 		adminCustomerListView.getItems().addAll(customerList);
 		adminCustomerListView.setCellFactory(param -> new ListCell<Customer>() {
 			@Override
@@ -135,7 +140,6 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 				}
 			}
 		});
-
 	}
 	
 	/**
@@ -148,9 +152,6 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		staff.setPhoneNumber(getPhoneNumber());
 		if(c.updateStaff(staff)) {
 			clearFields();
-		}else {
-			alert("update");
-
 		}
 	}
 	
@@ -160,8 +161,6 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 	public void removeStaff() {
 		if(c.removeStaffFromDatabase(getEmail())){
 			clearFields();
-		}else {
-			alert("remove");
 		}
 	}
 	
@@ -172,33 +171,9 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 		phoneNumber.clear();
 	}
 	
-	public void alert(String msg) {
-		String title;
-		switch (msg) {
-		case "remove":
-			msg = bundle.getString("loginFailed.username");
-			title = bundle.getString("loginFailed.title");
-			break;
-		case "update":
-			msg = bundle.getString("loginFailed.password");
-			title = bundle.getString("loginFailed.title");
-			break;
-		default:
-			msg = "Login failed.";
-			title = "Login failed";
-			break;
-		}
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(msg);
-		alert.showAndWait();
-	}
-	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		bundle = ResourceBundle.getBundle(Bundles.ADMIN.getBundleName(), HyteGUI.getLocale());
 		allFromDatabase();
 		TextFields.bindAutoCompletion(searchStaff, SuggestionProvider.create(resultSet));	
 	}
@@ -213,8 +188,6 @@ public class EditStaffView extends ViewChanger implements Initializable, EditSta
 			a.show();
 			showInfo();
 		}
-
-
 	}
 	
 	

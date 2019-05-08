@@ -8,21 +8,25 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Class for a preloader screen that shows while the application is initialising.
+ * @author IdaKi
+ *
+ */
 public class PreloaderView extends Preloader {
-	ImageView iv;
-	Stage stage;
-    boolean isEmbedded = false;
+	private Stage stage;
+    private boolean isEmbedded = false;
 
 
-	
-	private Scene createPreloaderScene() {
-        //iv = new ImageView();
-        //iv.setImage(new Image(getClass().getResource("/pictures/tenor.gif").toExternalForm()));
+	/**
+	 * Creates a preloader scene.
+	 * @return preloader scene.
+	 */
+	private Scene createPreloaderScene() {        
         ImageView iv2= new ImageView();
         iv2.setImage(new Image(getClass().getResource("/pictures/logo_1.png").toExternalForm()));
         iv2.setFitWidth(720);
@@ -31,11 +35,13 @@ public class PreloaderView extends Preloader {
         p.setStyle("-fx-background-color:  #cfe0fc");
         p.setTop(iv2);
         BorderPane.setAlignment(iv2, Pos.CENTER);
-        //p.setCenter(iv);
         return new Scene(p, 1280, 720);        
     }
 	
-	
+	/**
+	 * Start method for preloader.
+	 * @param Stage.
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/pictures/ICON.png")));
@@ -44,6 +50,10 @@ public class PreloaderView extends Preloader {
 		stage.show();
 	}
 	
+	/**
+	 * Fades out the preloader.
+	 * @param State change notification.
+	 */
     @Override
     public void handleStateChangeNotification(StateChangeNotification evt) {
     	 if (evt.getType() == StateChangeNotification.Type.BEFORE_START) {
@@ -66,8 +76,4 @@ public class PreloaderView extends Preloader {
     	    }
     } 
 	
-	@Override
-	public void handleProgressNotification(ProgressNotification pn) {
-
-	}
 }

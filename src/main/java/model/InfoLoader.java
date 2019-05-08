@@ -7,12 +7,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import dao.AppointmentDAO;
 import dao.BloodValueDAO;
 import dao.PrescriptionDAO;
 
 public class InfoLoader {
+
+	private static final Logger LOGGER = Logger.getLogger(InfoLoader.class.getName());
 
 	private File fileP;
 	private File fileA;
@@ -52,6 +55,7 @@ public class InfoLoader {
 		try {
 			file = File.createTempFile("info", null);
 		} catch (IOException e1) {
+			LOGGER.warning("IOException");
 		}
 		try (FileOutputStream os = new FileOutputStream(file);
 				ObjectOutputStream objectOut = new ObjectOutputStream(os)) {
@@ -64,6 +68,7 @@ public class InfoLoader {
 			objectOut.writeObject(obj);
 			file.deleteOnExit();
 		} catch (IOException e) {
+			LOGGER.warning("IOException");
 		}
 	}
 
@@ -77,7 +82,9 @@ public class InfoLoader {
 			if (obj != null) {
 				arrayList.add((Object[]) obj);
 			}
-		} catch (IOException | ClassNotFoundException e) {}
+		} catch (IOException | ClassNotFoundException e) {
+			LOGGER.warning("IOException, ClassNotFoundException");
+		}
 		for (int i = 0; i < arrayList.size(); i++) {
 			list = arrayList.get(i);
 		}

@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * 
@@ -22,6 +23,7 @@ public class CustomerDAO {
 	 * Sessionfactory for CRUD-operations
 	 */
 	private SessionFactory sessionFactory = null;
+	private static final Logger LOGGER = Logger.getLogger(CustomerDAO.class.getName());
 
 	/**
 	 * Class constructor.
@@ -126,8 +128,9 @@ public class CustomerDAO {
 			session.load(customer, id);
 			session.getTransaction().commit();
 		} catch (ObjectNotFoundException oe) {
-			System.out.println("Customer not found");
+			LOGGER.warning("Object not found");
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -149,6 +152,7 @@ public class CustomerDAO {
 			result = session.createQuery("from Customer").list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -163,7 +167,7 @@ public class CustomerDAO {
 	 * @return List of staff objects
 	 */
 	@SuppressWarnings("unchecked")
-	public Staff[] readAsiakkaanHenkilökunta(Customer customer) {
+	public Staff[] readCustomersStaff(Customer customer) {
 		Session session = sessionFactory.openSession();
 		Staff[] result = new Staff[0];
 		try {
@@ -174,6 +178,7 @@ public class CustomerDAO {
 			result = query.list().toArray(new Staff[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}
@@ -202,8 +207,7 @@ public class CustomerDAO {
 			a.setPhoneNumber(customer.getPhoneNumber());
 			a.setPassword(customer.getPassword());
 			success = true;
-		} else {
-		}
+		} 
 		istunto.getTransaction().commit();
 		istunto.close();
 		return success;

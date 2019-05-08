@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import view.HyteGUI;
 
@@ -17,21 +18,15 @@ import view.HyteGUI;
  */
 public class WeatherLocationSuggestions {
 	
-	/**
-	 * Emtpy constructor.
-	 */
-	public WeatherLocationSuggestions(){
-		
-	}
+	private static final Logger LOGGER = Logger.getLogger(WeatherLocationSuggestions.class.getName());
+
 	
 	/**
 	 * Location suggestions from csv files according to the current locale. (FI, GB supported)
 	 * @return List of locations.
 	 */
 	public List<String> getLocationSuggestions() {
-		ArrayList<String> locations = new ArrayList<>();
 		InputStream csvFile = null;
-		String line = "";
 		String cvsSplitBy = "";
 		int col1 = 0;
 		int col2 = 0;
@@ -51,16 +46,21 @@ public class WeatherLocationSuggestions {
 		default:
 			break;
 		}
+		return readLocations(col1, col2, cvsSplitBy, csvFile);
+	}
+	
+	public List<String> readLocations(int col1, int col2, String cvsSplitBy, InputStream csvFile) {
+		List<String> locations = new ArrayList<>();
+		String line = "";
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
 			while ((line = br.readLine()) != null) {
 				String[] city = line.split(cvsSplitBy);
 				locations.add(city[col1] + ", " + city[col2]);
 			}
-		} catch (IOException e) {}
-
+		} catch (IOException e) {
+			LOGGER.warning("IOException");
+		}
 		return locations;
 	}
 	
-
-
 }

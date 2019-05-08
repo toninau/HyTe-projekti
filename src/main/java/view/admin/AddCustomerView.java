@@ -12,7 +12,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import view.HyteGUI;
 import view.ViewChanger;
 import view.enums.Bundles;
@@ -79,20 +78,6 @@ public class AddCustomerView extends ViewChanger implements Initializable, AddCu
 		alert.showAndWait();
 	}
 	
-	
-	
-	public void validateAlphabetical(KeyEvent keyEvent) {
-		if (keyEvent.getCode().isDigitKey() && keyEvent.getCharacter().matches("<([{\\^=$!|]})?*+.>")) {
-			TextField textField = (TextField) keyEvent.getSource();
-			switch(textField.getId()) {
-			case "firstname":
-				
-				break;
-			case "surname":
-				
-			}
-		}
-	}
 	
 	/**
 	 * Checks if the given text field is empty.

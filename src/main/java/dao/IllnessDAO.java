@@ -2,6 +2,9 @@ package dao;
 
 import model.Customer;
 import model.Illness;
+
+import java.util.logging.Logger;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,6 +21,7 @@ public class IllnessDAO {
 	 * Sessionfactory for CRUD operations.
 	 */
 	private SessionFactory sessionFactory = null;
+	private static final Logger LOGGER = Logger.getLogger(IllnessDAO.class.getName());
 
 	/**
 	 * Class constructor.
@@ -73,6 +77,7 @@ public class IllnessDAO {
 			result = query.list().toArray(new Illness[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}

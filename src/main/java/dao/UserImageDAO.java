@@ -2,6 +2,9 @@ package dao;
 
 import model.Customer;
 import model.UserImage;
+
+import java.util.logging.Logger;
+
 import org.hibernate.*;
 import org.hibernate.query.Query;
 
@@ -16,6 +19,7 @@ public class UserImageDAO {
 	 * Sessionfactory used for CRUD operations
 	 */
 	private SessionFactory sessionFactory = null;
+	private static final Logger LOGGER = Logger.getLogger(UserImageDAO.class.getName());
 
 	/**
 	 * Standard constructor for UserImageDAO
@@ -65,8 +69,8 @@ public class UserImageDAO {
 			session.beginTransaction();
 			session.load(image, id);
 			session.getTransaction().commit();
-		} catch (ObjectNotFoundException oe) {
-		} catch (HibernateException e) {
+		} catch (HibernateException oe) {
+			LOGGER.warning("Hibernate exception");
 		} finally {
 			session.close();
 		}
@@ -91,6 +95,7 @@ public class UserImageDAO {
 			result = query.list().toArray(new UserImage[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}

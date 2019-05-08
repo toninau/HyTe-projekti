@@ -154,7 +154,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	 */
 	public CustomerCalendarView() {
 		controller = new CustomerController(this);
-		staffController = new StaffController(this);
+		staffController = new StaffController();
 	}
 
 	/**
@@ -250,6 +250,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 		LocalDate d = LocalDate.of(year, month.getValue(), 1);
 		return d.getDayOfWeek().getValue();
 	}
+	
 
 	/**
 	 * Populates the grid pane to look like a monthly calendar.
@@ -280,7 +281,6 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 
 		while (day < month.maxLength()) {
 			day++;
-
 			StackPane p = createGridCell();
 			Label dayLabel = new Label(Integer.toString(day));
 			p.getChildren().add(dayLabel);
@@ -290,28 +290,28 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 				row++;
 			}
 			grid.add(p, column, row);
-
 			column++;
-
-			if (checkAppointments(day, month.getValue(), year)) {
-				p.setStyle("-fx-background-color: #cfe0fc");
-				p.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-					calendarTabPane.getSelectionModel().select(dayTab);
-					day = Integer.parseInt(dayLabel.getText());
-					showDayAppointments(LocalDate.of(year, month, day));
-				});
-			}
-			if (LocalDate.now().isEqual(LocalDate.of(year, month.getValue(), day))) {
-				p.getStyleClass().add("currentDate");
-			}
+			checkAppointments(day, month.getValue(), year, p);
+			checkCurrentDate(day, month.getValue(), year, p);
 		}
-
+		nextMonthDays(day, column, MAX_COL, MAX_ROW, row);
+	}
+	
+	/**
+	 * Adds the next month's day to the grid pane.
+	 * @param day
+	 * @param column
+	 * @param maxcol
+	 * @param maxrow
+	 * @param row
+	 */
+	public void nextMonthDays(int day, int column, int maxcol, int maxrow, int row) {
 		day = 0;
-		while (row <= MAX_ROW && column <= MAX_COL) {
+		while (row <= maxrow && column <= maxcol) {
 			day++;
 			boolean done = false;
-			if (column == MAX_COL) {
-				if (row == MAX_ROW) {
+			if (column == maxcol) {
+				if (row == maxrow) {
 					done  =true;
 				}
 				column = 0;
@@ -328,8 +328,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 			grid.add(p, column, row);
 			}
 
-			column++;
-			
+			column++;	
 		}
 	}
 
@@ -338,17 +337,41 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	 * @param day	Day of the date to be checked.
 	 * @param month	Month of the date to be checked.
 	 * @param year	Year of the date to be checked.
-	 * @return
+	 * @param stack pane which is the cell of the grid pane.
 	 */
-	public boolean checkAppointments(int day, int month, int year) {
-		boolean isAppointment = false;
+	public void checkAppointments(int day, int month, int year, StackPane p) {
 		for (Appointment appointment : appointments) {
 			if (appointment.getDate().getDayOfMonth() == day && appointment.getDate().getMonthValue() == month
 					&& appointment.getDate().getYear() == year) {
-				isAppointment = true;
+				setEventListener(p, day);
 			}
 		}
-		return isAppointment;
+	}
+	
+	/**
+	 * Sets the current dates cell style.
+	 * @param day Day of the date to be checked.
+	 * @param month Month of the date to be checked.
+	 * @param year Year of the date to be checked.
+	 * @param p StackPane which is the cell of the grid pane.
+	 */
+	public void checkCurrentDate(int day, int month, int year, StackPane p) {
+		if (LocalDate.now().isEqual(LocalDate.of(year, month, day))) {
+			p.getStyleClass().add("currentDate");
+		}
+	}
+	
+	/**
+	 * Sets an event listener to a grid pane cell.
+	 * @param p Cell to set the listener to.
+	 * @param day Day which appointments can be seen when clicked.
+	 */
+	public void setEventListener(StackPane p, int day) {
+		p.setStyle("-fx-background-color: #cfe0fc; -fx-cursor: hand ");
+		p.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+			calendarTabPane.getSelectionModel().select(dayTab);
+			showDayAppointments(LocalDate.of(year, month, day));
+		});
 	}
 
 	/**

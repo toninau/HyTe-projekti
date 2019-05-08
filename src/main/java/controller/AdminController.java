@@ -19,7 +19,7 @@ public class AdminController implements AdminControllerIF {
 	private DAOManagerIF daoM;
 
 	/**
-	 * Empty costructor.
+	 * Empty constructor.
 	 */
 	public AdminController() {
 		daoM = new DAOManager();
@@ -158,10 +158,7 @@ public class AdminController implements AdminControllerIF {
 	 *         <code> false </code> if adding the customer failed.
 	 */
 	public boolean addCustomerToStaff(Customer customer, Staff staff) {
-		if (daoM.getStaffDAO().addCustomerToStaff(customer, staff)) {
-			return true;
-		}
-		return false;
+		return daoM.getStaffDAO().addCustomerToStaff(customer, staff);
 	}
 
 	/**

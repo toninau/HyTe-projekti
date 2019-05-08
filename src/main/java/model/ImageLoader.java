@@ -41,7 +41,9 @@ public class ImageLoader {
 			imageNames[j] = userImages[j].getImageName();
 			try{
 				files[j] = File.createTempFile("userimages", null);
-			} catch (IOException e1) {}
+			} catch (IOException e1) {
+				log.warning("IOException");
+			}
 			try (FileOutputStream os = new FileOutputStream(files[j])) {
 				BufferedImage img = ImageIO.read(new ByteArrayInputStream(userImages[j].getImage()));
 				ImageIO.write(img, "png", files[j]);

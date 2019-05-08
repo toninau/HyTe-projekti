@@ -2,6 +2,9 @@ package dao;
 
 import model.Customer;
 import model.Notification;
+
+import java.util.logging.Logger;
+
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,6 +23,8 @@ public class NotificationDAO {
 	 * Sessionfactory for CRUD operations
 	 */
 	private SessionFactory sessionFactory;
+	private static final Logger LOGGER = Logger.getLogger(NotificationDAO.class.getName());
+
 
 	/**
 	 * Class constructor
@@ -70,7 +75,7 @@ public class NotificationDAO {
 			session.load(notification, id);
 			session.getTransaction().commit();
 		} catch (ObjectNotFoundException oe) {
-			System.out.println("Notification not found");
+			LOGGER.warning("Notification not found");
 		} catch (Exception e) {
 		} finally {
 			session.close();
@@ -98,6 +103,7 @@ public class NotificationDAO {
 			result = query.list().toArray(new Notification[query.list().size()]);
 			session.getTransaction().commit();
 		} catch (Exception e) {
+			LOGGER.warning("Exception");
 		} finally {
 			session.close();
 		}

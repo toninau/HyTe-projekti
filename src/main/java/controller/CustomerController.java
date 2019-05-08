@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import model.Appointment;
 import model.BloodValue;
@@ -28,6 +29,7 @@ import view.customer.CustomerHomeView;
 
 public class CustomerController implements CustomerControllerIF {
 
+	private final Logger LOGGER = Logger.getLogger(CustomerController.class.getName());
 	private CustomerHealthView healthview;
 	private static Customer customer;
 	private DAOManagerIF daom;
@@ -163,7 +165,7 @@ public class CustomerController implements CustomerControllerIF {
 	 * @return bList ArrayList of blood pressure values.
 	 * @see dao.BloodValueDAO#readCustomerBloodvalues(Customer)
 	 */
-	public ArrayList<BloodValue> bloodPressureData() {
+	public List<BloodValue> bloodPressureData() {
 		BloodValue[] b = daom.readCustomerBloodValues();
 		ArrayList<BloodValue> bList = new ArrayList<>();
 		for (BloodValue bloodValue : b) {
@@ -209,7 +211,18 @@ public class CustomerController implements CustomerControllerIF {
 	 * @see dao.UserImageDAO#create(UserImage)
 	 */
 	public void imageToDatabase(File file, int imageSlot) {
+		UserImage image = new UserImage();
+		image.setCustomer(customer);
+		image.setImage(readImage(file));
+		image.setImageName(customer.getCustomerID() + imageSlot);
+		image.setImageID(customer.getCustomerID() + imageSlot);
+		daom.getUserImageDAO().create(image);
+		daom.writeImageToFileDuringSession(customer);
+	}
+
+	public byte[] readImage(File file) {
 		byte[] bfile = new byte[(int) file.length()];
+
 		try (FileInputStream in = new FileInputStream(file)) {
 			int count = 0;
 			int offset = 0;
@@ -220,16 +233,11 @@ public class CustomerController implements CustomerControllerIF {
 				}
 			}
 		} catch (Exception e) {
+			LOGGER.warning("Failed to load file");
 		}
-		UserImage image = new UserImage();
-		image.setCustomer(customer);
-		image.setImage(bfile);
-		image.setImageName(customer.getCustomerID() + imageSlot);
-		image.setImageID(customer.getCustomerID() + imageSlot);
-		daom.getUserImageDAO().create(image);
-		daom.writeImageToFileDuringSession(customer);
+		return bfile;
 	}
-
+	
 	/**
 	 * Updates an image to database and to a temporary file.
 	 * 
@@ -239,19 +247,8 @@ public class CustomerController implements CustomerControllerIF {
 	 */
 	public void updateImage(File file, int imageSlot) {
 		UserImage image = daom.getUserImageDAO().read(customer.getCustomerID() + imageSlot);
-		byte[] bfile = new byte[(int) file.length()];
-		try (FileInputStream in = new FileInputStream(file)) {
-			int count = 0;
-			int offset = 0;
-			while ((count = in.read(bfile)) > 0) {
-				offset += count;
-				if(offset >= bfile.length) {
-					break;
-				}
-			}
-		} catch (Exception e) {
-		}
-		image.setImage(bfile);
+
+		image.setImage(readImage(file));
 		daom.getUserImageDAO().update(image);
 		daom.writeImageToFileDuringSession(customer);
 	}
