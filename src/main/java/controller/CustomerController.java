@@ -211,7 +211,13 @@ public class CustomerController implements CustomerControllerIF {
 	public void imageToDatabase(File file, int imageSlot) {
 		byte[] bfile = new byte[(int) file.length()];
 		try (FileInputStream in = new FileInputStream(file)) {
-			while (in.read(bfile) > 0) {
+			int count = 0;
+			int offset = 0;
+			while ((count = in.read(bfile)) > 0) {
+				offset += count;
+				if(offset >= bfile.length) {
+					break;
+				}
 				in.read(bfile);
 			}
 		} catch (Exception e) {
@@ -236,7 +242,13 @@ public class CustomerController implements CustomerControllerIF {
 		UserImage image = daom.getUserImageDAO().read(customer.getCustomerID() + imageSlot);
 		byte[] bfile = new byte[(int) file.length()];
 		try (FileInputStream in = new FileInputStream(file)) {
-			while (in.read(bfile) > 0) {
+			int count = 0;
+			int offset = 0;
+			while ((count = in.read(bfile)) > 0) {
+				offset += count;
+				if(offset >= bfile.length) {
+					break;
+				}
 				in.read(bfile);
 			}
 		} catch (Exception e) {

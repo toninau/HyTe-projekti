@@ -347,7 +347,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	public void openbox(MouseEvent event) throws IOException {
 		final Button btn = (Button) event.getSource();
 		new AnimationTimer() {
-			private long sleepNanoseconds = 15 * 1000000;
+			private long sleepNanoseconds = 15000000;
 			private long prevTime = 0;
 
 			public void handle(long currentNanoTime) {
@@ -373,14 +373,15 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	public LocalDate calculateDay(LocalDate date, int a) {
 		int result = date.getDayOfMonth();
 		int monthW = date.getMonthValue();
-		int weekDay = date.getDayOfWeek().getValue();
-		if (a < weekDay) {
-			result = date.minusDays(weekDay - a).getDayOfMonth();
+		int weekDayNow = date.getDayOfWeek().getValue();
+		long weekDay = (long)a;
+		if (weekDay < weekDayNow) {
+			result = date.minusDays(weekDayNow - weekDay).getDayOfMonth();
 			if (result > date.getDayOfWeek().getValue()) {
 				monthW = month.minus(1).getValue();
 			}
-		} else if (a > weekDay) {
-			result = date.plusDays(weekDay + a).getDayOfMonth();
+		} else if (weekDay > weekDayNow) {
+			result = date.plusDays(a - weekDayNow).getDayOfMonth();
 			if (result > date.getMonth().maxLength()) {
 				monthW = month.plus(1).getValue();
 			}
