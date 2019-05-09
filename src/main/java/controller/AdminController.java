@@ -1,13 +1,19 @@
 package controller;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import com.lambdaworks.crypto.SCryptUtil;
+
 import model.Customer;
 import model.DAOManager;
 import model.DAOManagerIF;
 import model.Staff;
-import view.admin.*;
+import view.admin.AddCustomerIF;
+import view.admin.AddCustomerView;
+import view.admin.AddStaffIF;
+import view.admin.AddStaffView;
+import view.admin.EditCustomerView;
+import view.admin.EditStaffView;
 
 /**
  * Controller class for admin's views. 
@@ -110,7 +116,7 @@ public class AdminController implements AdminControllerIF {
 	 * 			<code> false </code> if creating the customer failed.
 	 * @see dao.CustomerDAO#create(Customer)
 	 */
-	public boolean addCustomer(HashMap<String, String> map) {
+	public boolean addCustomer(Map<String, String> map) {
 		Customer customer = new Customer();
 		boolean success = true;
 
@@ -118,7 +124,6 @@ public class AdminController implements AdminControllerIF {
 		String etunimi = map.get("firstname");
 		String sukunimi = map.get("surname");
 		String puhnro = map.get("phone");
-		//String email = addcustomer.getEmail();
 		String ice = map.get("ice");
 		String osoite = map.get("address");
 		String pw = encryptPassword(map.get("password"));

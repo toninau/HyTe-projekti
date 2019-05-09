@@ -58,15 +58,13 @@ public class AddCustomerViewTest extends ApplicationTest {
 	}
 	
 	@Test
-	public void addCustomerName() {
+	public void addCustomerNameTest() {
 		TextField fname = lookup("#firstname").query();
 		TextField surname = lookup("#surname").query();
-
         clickOn("#firstname");
         write("firstname");
         clickOn("#surname");
-        write("surname");
-        
+        write("surname"); 
         verifyThat(fname.getText(), Matchers.is("firstname"));
         verifyThat(surname.getText(), Matchers.is("surname"));
 	}

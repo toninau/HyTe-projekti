@@ -254,7 +254,7 @@ public class CustomerHealthView extends ViewChanger implements Initializable {
 	/**
 	 * Sets the renew request true.
 	 * 
-	 * @param prescription The prescription to be renewed.
+	 * @param p The prescription to be renewed.
 	 * @see model.Prescription#setRenewPrescription(boolean)
 	 */
 	public void sendRenewRequest(Prescription p) {

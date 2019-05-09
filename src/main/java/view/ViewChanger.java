@@ -48,6 +48,7 @@ public class ViewChanger {
 			stage.show();
 		} catch (IOException e) {
 			LOGGER.warning("Opening scene failed");
+			e.printStackTrace();
 		}
 		loaded();
 	}

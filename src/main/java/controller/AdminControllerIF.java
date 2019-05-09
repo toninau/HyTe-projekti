@@ -1,13 +1,13 @@
 package controller;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import model.Customer;
 import model.Staff;
 
 public interface AdminControllerIF {
 	boolean addStaff();
-	boolean addCustomer(HashMap<String, String> map);
+	boolean addCustomer(Map<String, String> map);
 	Staff[] findStaffAll();
 	Customer[] findCustomerAll();
 	Customer findCustomerWithID(String id);

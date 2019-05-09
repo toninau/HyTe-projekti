@@ -64,7 +64,7 @@ public class LoginView extends ViewChanger implements Initializable, LoginViewIF
 	@FXML
 	private ImageView staffPasswordValidation;
 
-	ObservableList<String> imageList;
+	private ObservableList<String> imageList;
 	private ResourceBundle bundle;
 	private LoginControllerIF c;
 

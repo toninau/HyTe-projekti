@@ -301,7 +301,7 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 			checkAppointments(day, month.getValue(), year, p);
 			checkCurrentDate(day, month.getValue(), year, p);
 		}
-		nextMonthDays(day, column, MAX_COL, MAX_ROW, row);
+		nextMonthDays(column, MAX_COL, MAX_ROW, row);
 	}
 
 	/**
@@ -313,9 +313,8 @@ public class CustomerCalendarView extends ViewChanger implements Initializable {
 	 * @param maxrow
 	 * @param row
 	 */
-	public void nextMonthDays(int day, int column, int maxcol, int maxrow, int row) {
-		int d = day;
-		d = 0;
+	public void nextMonthDays(int column, int maxcol, int maxrow, int row) {
+		int d = 0;
 		while (row <= maxrow && column <= maxcol) {
 			d++;
 			boolean done = false;

@@ -1,3 +1,8 @@
 controller
+dao
 model
 view
+view.admin
+view.customer
+view.enums
+view.staff

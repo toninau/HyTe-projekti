@@ -41,6 +41,7 @@ public class StaffHomeView extends ViewChanger implements Initializable {
 	}
 
 	public void populateCustomerListView() {
+
 		staffCustomers.getItems().addAll(controller.getStaffCustomers());
 		staffCustomers.setCellFactory(param -> new ListCell<Customer>() {
 			@Override
